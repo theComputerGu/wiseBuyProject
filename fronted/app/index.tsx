@@ -6,7 +6,7 @@ const Home = () => {
     <View style={styles.container}>
 
       <Text style={styles.title}>Wisebuy</Text>
-      
+
       <Text>shop smarter today</Text>
       
     </View>
