@@ -9,17 +9,23 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "expo": "~54.0.20",
+    "expo-checkbox": "~5.0.7",
     "expo-constants": "~18.0.10",
     "expo-linking": "~8.0.8",
     "expo-router": "~6.0.14",
     "expo-status-bar": "~3.0.8",
     "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-hook-form": "^7.66.0",
     "react-native": "0.81.5",
     "react-native-safe-area-context": "~5.6.0",
-    "react-native-screens": "~4.16.0"
+    "react-native-screens": "~4.16.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@react-native/dev-middleware": "^0.82.1",
     "@types/react": "~19.1.0",
     "typescript": "~5.9.2"
   },
