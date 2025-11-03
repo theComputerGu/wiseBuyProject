@@ -4,6 +4,8 @@ import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useMemo } from "react";
 import { useRouter } from "expo-router";
+import BottomNav from '../../components/Bottomnavigation';
+import TopNav from '../../components/Topnav'
 
 const BRAND = "#197FF4";
 
@@ -23,11 +25,7 @@ export default function GroupPage() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View style={s.wrap}>
-        {/* Header */}
-        <View style={s.header}>
-          <Ionicons name="person-circle-outline" size={28} color={BRAND} />
-          <Text style={s.brand}>WiseBuy</Text>
-        </View>
+          <TopNav />
 
         {/* Title */}
         <Text style={s.section}>Shopping lists</Text>
@@ -62,7 +60,10 @@ export default function GroupPage() {
             <Text style={[s.pillText, { color: "#fff" }]}>Create Group</Text>
           </Pressable>
         </View>
+
+        <BottomNav />
       </View>
+      
     </SafeAreaView>
   );
 }

@@ -40,10 +40,9 @@ export default function SignIn() {
           secure
         />
 
-        {/* ניווט ישיר ל-Group Page */}
         <Button
           title="Sign In"
-          onPress={() => router.replace("/group")}
+          onPress={() => router.replace("/product")}
         />
 
         <Text style={s.switch}>

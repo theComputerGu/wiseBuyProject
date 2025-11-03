@@ -9,20 +9,13 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ItimText from '../components/Itimtext';
 import Logo from '../assets/logos/logo black.png';
+import BottomNav from '../components/Bottomnavigation';
+import TopNav from '../components/Topnav'
 
 export default function product() {
   return (
     <View style={styles.container}>
-      {/* ✅ Top Bar */}
-      <View style={styles.topBar}>
-        <View style={styles.logoRow}>
-          <MaterialCommunityIcons name="account-circle" size={28} color="#197FF4" />
-          <ItimText size={22} color="#197FF4" weight="bold" style={{ marginLeft: 6 }}>
-            WiseBuy
-          </ItimText>
-        </View>
-        <MaterialCommunityIcons name="menu" size={28} color="#197FF4" />
-      </View>
+    <TopNav />
 
       {/* ✅ Home title */}
       <ItimText size={20} color="#197FF4" weight="bold" style={{ marginLeft: 20 }}>
@@ -45,12 +38,13 @@ export default function product() {
           image={require('../assets/logo black.png')}
           quantity={2}
         />
+        </ScrollView>
 
         {/* ✅ Recommendations section */}
         <ItimText size={20} color="#197FF4" weight="bold" style={{ marginTop: 20 }}>
           Recommendation's
         </ItimText>
-
+        <ScrollView contentContainerStyle={styles.scrollContent}>
         <ProductCard
           name="חלב יטבתה 3% ליטר"
           price="5.94₪"
@@ -72,16 +66,7 @@ export default function product() {
         </View>
       </View>
 
-      {/* ✅ Bottom navigation */}
-      <View style={styles.bottomNav}>
-        <MaterialCommunityIcons name="home" size={28} color="#197FF4" />
-        <MaterialCommunityIcons name="account-group" size={28} color="#197FF4" />
-        <Pressable style={styles.addButton}>
-          <MaterialCommunityIcons name="plus" size={32} color="#fff" />
-        </Pressable>
-        <MaterialCommunityIcons name="cart" size={28} color="#197FF4" />
-        <MaterialCommunityIcons name="account" size={28} color="#197FF4" />
-      </View>
+     <BottomNav />
     </View>
   );
 }
@@ -118,15 +103,7 @@ function ProductCard({ name, price, average, image, quantity }: ProductCardProps
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
-  topBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 15,
-    paddingTop: 40,
-    paddingBottom: 10,
-  },
+  container: { flex: 1, backgroundColor: '#fff', paddingTop: 50, paddingHorizontal: 20 },
   logoRow: { flexDirection: 'row', alignItems: 'center' },
   scrollContent: { paddingHorizontal: 15, paddingBottom: 100 },
   card: {

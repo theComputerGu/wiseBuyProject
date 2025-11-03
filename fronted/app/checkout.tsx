@@ -3,12 +3,17 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  Pressable,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router'; // ✅ FIXED
 import ItimText from '../components/Itimtext';
+import BottomNav from '../components/Bottomnavigation';
+import Button from '../components/Button';
+import TopNav from '../components/Topnav'
 
 export default function CheckoutScreen() {
+  const router = useRouter(); // ✅ initialize router
+
   const stores = [
     {
       id: 1,
@@ -44,34 +49,24 @@ export default function CheckoutScreen() {
 
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* ✅ Header */}
-        <ItimText size={28} weight="bold" color="#197FF4" style={styles.logo}>
-          WiseBuy
+      <TopNav />
+
+      <ItimText size={24} color="#197FF4" style={{marginBottom: 5 }}>
+        Checkout
+      </ItimText>
+
+      <View style={styles.locationRow}>
+        <MaterialCommunityIcons name="map-marker" size={30} color="#197FF4" />
+        <ItimText size={20} color="#197FF4" style={{  marginTop: 5 }}>
+          Your current location
         </ItimText>
-
-        {/* ✅ Section Title */}
-        <ItimText size={22} weight="bold" color="#197FF4" style={styles.section}>
-          Check Out
-        </ItimText>
-
-        {/* ✅ Location */}
-        <View style={styles.locationRow}>
-          <MaterialCommunityIcons name="map-marker" size={20} color="#197FF4" />
-          <ItimText size={16} color="#197FF4" style={{ marginLeft: 5 }}>
-            Your current location
-          </ItimText>
-          <MaterialCommunityIcons
-            name="heart"
-            size={18}
-            color="#197FF4"
-            style={{ marginLeft: 4 }}
-          />
-        </View>
-
-        <ItimText size={16} color="#197FF4" style={{ marginBottom: 10 }}>
+      </View>
+      <ItimText size={16} color="#197FF4" style={{ marginBottom: 10 }}>
           Top 5 stores near your location
         </ItimText>
+
+      <ScrollView showsVerticalScrollIndicator={false}>
+        
 
         {/* ✅ Stores List */}
         {stores.map((store) => (
@@ -107,29 +102,16 @@ export default function CheckoutScreen() {
           </View>
         ))}
 
-        {/* ✅ Spacer before button */}
         <View style={{ height: 100 }} />
       </ScrollView>
 
       {/* ✅ Mark as purchased button */}
-      <View style={styles.footer}>
-        <Pressable style={styles.purchaseButton}>
-          <ItimText size={18} color="#fff" weight="bold">
-            Mark as purchased!
-          </ItimText>
-        </Pressable>
-      </View>
+      <Button
+        title="Mark as purchased!"
+        onPress={() => router.replace('/history')}
+      />
 
-      {/* ✅ Bottom Navigation */}
-      <View style={styles.bottomNav}>
-        <MaterialCommunityIcons name="home" size={28} color="#197FF4" />
-        <MaterialCommunityIcons name="account-group" size={28} color="#197FF4" />
-        <Pressable style={styles.addButton}>
-          <MaterialCommunityIcons name="plus" size={32} color="#fff" />
-        </Pressable>
-        <MaterialCommunityIcons name="cart" size={28} color="#197FF4" />
-        <MaterialCommunityIcons name="account" size={28} color="#197FF4" />
-      </View>
+      <BottomNav />
     </View>
   );
 }
@@ -140,7 +122,6 @@ const styles = StyleSheet.create({
   section: { marginBottom: 10 },
   locationRow: {
     flexDirection: 'row',
-    alignItems: 'center',
     marginBottom: 8,
   },
   storeCard: {
@@ -169,37 +150,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 4,
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 80,
-    left: 0,
-    right: 0,
-    alignItems: 'center',
-  },
-  purchaseButton: {
-    backgroundColor: '#197FF4',
-    borderRadius: 25,
-    paddingVertical: 12,
-    paddingHorizontal: 60,
-    elevation: 3,
-  },
-  bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingVertical: 10,
-    borderTopWidth: 0.5,
-    borderColor: '#ccc',
-    backgroundColor: '#fff',
-  },
-  addButton: {
-    backgroundColor: '#197FF4',
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
   },
 });

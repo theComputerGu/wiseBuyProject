@@ -8,17 +8,16 @@ import {
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ItimText from '../components/Itimtext';
+import BottomNav from '../components/Bottomnavigation';
+import TopNav from '../components/Topnav'
 
 export default function AccountScreen() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
     <View style={styles.container}>
+        <TopNav />
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* ✅ Logo */}
-        <ItimText size={28} weight="bold" color="#197FF4" style={styles.logo}>
-          WiseBuy
-        </ItimText>
 
         {/* ✅ Account Section */}
         <ItimText size={22} weight="bold" color="#197FF4" style={styles.section}>
@@ -103,16 +102,7 @@ export default function AccountScreen() {
         </ItimText>
       </ScrollView>
 
-      {/* ✅ Bottom Navigation */}
-      <View style={styles.bottomNav}>
-        <MaterialCommunityIcons name="home" size={28} color="#197FF4" />
-        <MaterialCommunityIcons name="account-group" size={28} color="#197FF4" />
-        <Pressable style={styles.addButton}>
-          <MaterialCommunityIcons name="plus" size={32} color="#fff" />
-        </Pressable>
-        <MaterialCommunityIcons name="cart" size={28} color="#197FF4" />
-        <MaterialCommunityIcons name="account" size={28} color="#197FF4" />
-      </View>
+    <BottomNav />
     </View>
   );
 }

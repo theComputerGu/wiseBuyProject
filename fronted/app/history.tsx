@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ItimText from '../components/Itimtext';
+import BottomNav from '../components/Bottomnavigation';
+import TopNav from '../components/Topnav'
 
 export default function HistoryScreen() {
   const history = [
@@ -33,13 +35,9 @@ export default function HistoryScreen() {
 
   return (
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* ✅ App Logo */}
-        <ItimText size={28} weight="bold" color="#197FF4" style={styles.logo}>
-          WiseBuy
-        </ItimText>
+      <TopNav />
 
-        {/* ✅ Page Title */}
+       {/* ✅ Page Title */}
         <ItimText size={22} weight="bold" color="#197FF4" style={styles.section}>
           History
         </ItimText>
@@ -52,6 +50,11 @@ export default function HistoryScreen() {
           <MaterialCommunityIcons name="chevron-down" size={22} color="#197FF4" />
         </View>
 
+
+      <ScrollView showsVerticalScrollIndicator={false}>
+
+       
+        
         {/* ✅ Purchase List */}
         {history.map((item) => (
           <View key={item.id} style={styles.purchaseCard}>
@@ -85,16 +88,7 @@ export default function HistoryScreen() {
         <View style={{ height: 100 }} />
       </ScrollView>
 
-      {/* ✅ Bottom Navigation */}
-      <View style={styles.bottomNav}>
-        <MaterialCommunityIcons name="home" size={28} color="#197FF4" />
-        <MaterialCommunityIcons name="account-group" size={28} color="#197FF4" />
-        <Pressable style={styles.addButton}>
-          <MaterialCommunityIcons name="plus" size={32} color="#fff" />
-        </Pressable>
-        <MaterialCommunityIcons name="cart" size={28} color="#197FF4" />
-        <MaterialCommunityIcons name="account" size={28} color="#197FF4" />
-      </View>
+      <BottomNav />
     </View>
   );
 }

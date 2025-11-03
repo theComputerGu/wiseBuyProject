@@ -1,37 +1,88 @@
-import * as React from 'react';
-import { BottomNavigation, Text } from 'react-native-paper';
+import React from 'react';
+import { View, Pressable, StyleSheet } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 
-const MusicRoute = () => <Text>Music</Text>;
 
-const AlbumsRoute = () => <Text>Albums</Text>;
 
-const RecentsRoute = () => <Text>Recents</Text>;
+/**
+ * ✅ WiseBuy Bottom Navigation Component
+ * Use: <BottomNav active="home" />
+ */
+export default function BottomNav() {
+  const router = useRouter();
 
-const NotificationsRoute = () => <Text>Notifications</Text>;
-
-const MyComponent = () => {
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'music', title: 'Favorites', focusedIcon: 'heart', unfocusedIcon: 'heart-outline'},
-    { key: 'albums', title: 'Albums', focusedIcon: 'album' },
-    { key: 'recents', title: 'Recents', focusedIcon: 'history' },
-    { key: 'notifications', title: 'Notifications', focusedIcon: 'bell', unfocusedIcon: 'bell-outline' },
-  ]);
-
-  const renderScene = BottomNavigation.SceneMap({
-    music: MusicRoute,
-    albums: AlbumsRoute,
-    recents: RecentsRoute,
-    notifications: NotificationsRoute,
-  });
+  const handleNavigate = (path: string) => {
+    router.push(path);
+  };
 
   return (
-    <BottomNavigation
-      navigationState={{ index, routes }}
-      onIndexChange={setIndex}
-      renderScene={renderScene}
-    />
-  );
-};
+    <View style={styles.container}>
+      <Pressable onPress={() => handleNavigate('/product')}>
+        <MaterialCommunityIcons
+          name="home"
+          size={28}
+                  color={'#197FF4'}
 
-export default MyComponent;
+        />
+      </Pressable>
+
+      <Pressable onPress={() => handleNavigate('/group')}>
+        <MaterialCommunityIcons
+          name="account-group"
+          size={28}
+          color={'#197FF4'}
+
+        />
+      </Pressable>
+
+      <Pressable
+        style={styles.addButton}
+        onPress={() => handleNavigate('/additem')}
+      >
+        <MaterialCommunityIcons name="plus" size={32} color="#fff" />
+      </Pressable>
+
+      <Pressable onPress={() => handleNavigate('/history')}>
+        <MaterialCommunityIcons
+          name="basket"
+          size={28}
+          color={'#197FF4'}
+        />
+      </Pressable>
+
+      <Pressable onPress={() => handleNavigate('/checkout')}>
+        <MaterialCommunityIcons
+          name="cart"
+          size={28}
+          color={'#197FF4'}
+        />
+      </Pressable>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderTopWidth: 0.5,
+    borderColor: '#ccc',
+    backgroundColor: '#fff',
+  },
+  addButton: {
+    backgroundColor: '#197FF4',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+});
