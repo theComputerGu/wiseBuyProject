@@ -1,28 +1,18 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { Link } from "expo-router";
+import { View, Text, StyleSheet } from "react-native";
 
-const Home = () => {
+export default function Index() {
   return (
-    <View style={styles.container}>
-
-      <Text style={styles.title}>Wisebuy</Text>
-
-      <Text>shop smarter today</Text>
-      
+    <View style={s.wrap}>
+      <Text style={s.title}>WiseBuy</Text>
+      <Link href="/sign-in" style={s.btn}>Sign In</Link>
+      <Link href="/sign-up" style={[s.btn, s.secondary]}>Sign Up</Link>
     </View>
-  )
+  );
 }
-
-export default Home
-
-const styles = StyleSheet.create({
-    container: {
-        flex : 1,
-        alignItems: 'center',
-        justifyContent : 'center'
-    },
-    title: {
-        fontWeight: 'bold',
-        fontSize: 18
-    }
-})
+const s = StyleSheet.create({
+  wrap:{ flex:1, justifyContent:"center", alignItems:"center", gap:12, padding:24, backgroundColor:"#E5E7EB" },
+  title:{ fontSize:28, fontWeight:"800", marginBottom:8 },
+  btn:{ width:220, textAlign:"center", paddingVertical:14, borderRadius:12, backgroundColor:"#2563EB", color:"#fff", fontWeight:"700" },
+  secondary:{ backgroundColor:"#1F2937" }
+});
