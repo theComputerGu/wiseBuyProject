@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
-
+import itimtext from '../components/itimtext'
+import BottomNavigation from '../components/bottomnavigation'
+import Topnav from '../components/topnav'
 export default function Product() {
   const [fontsLoaded] = useFonts({
     Itim_400Regular,

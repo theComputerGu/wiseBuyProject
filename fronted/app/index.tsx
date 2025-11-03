@@ -25,7 +25,7 @@ export default function Index() {
     if (!fontsLoaded) return;
 
     const timer = setTimeout(() => {
-      router.replace('/home'); // replace = no back navigation
+      router.replace('/product'); // replace = no back navigation
     }, 3000);
 
     return () => clearTimeout(timer);
