@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ItimText from '../components/itimtext';
+import ItimText from '../components/Itimtext';
 
 export default function HistoryScreen() {
   const history = [

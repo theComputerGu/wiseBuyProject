@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
-import ItimText from '../components/itimtext'; 
+import ItimText from '../components/Itimtext'; 
 import Logo from '../assets/logos/logo black.png';
 
 const screenHeight = Dimensions.get('window').height;

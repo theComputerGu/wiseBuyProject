@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ItimText from '../components/itimtext';
+import ItimText from '../components/Itimtext';
 
 const screenWidth = Dimensions.get('window').width;
 
