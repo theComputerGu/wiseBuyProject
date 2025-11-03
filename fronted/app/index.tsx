@@ -8,9 +8,9 @@ import {
   Dimensions,
   Button,
 } from 'react-native';
-import { useRouter } from 'expo-router'; // ✅ import router
+import { useRouter } from 'expo-router'; 
 import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
-
+import ItimText from '../components/itimtext'
 import Logo from '../assets/logos/logo white.png';
 
 const screenHeight = Dimensions.get('window').height;
@@ -25,7 +25,7 @@ export default function Index() {
   // ✅ Navigate automatically to /home after 3 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace('/home'); // replace instead of push (no back button)
+      router.replace('/product'); // replace instead of push (no back button)
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -42,9 +42,9 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Image source={Logo} style={styles.img} />
-      <Text style={styles.title1}>WiseBuy</Text>
-      <Text style={styles.title2}>Shop smart. Stock right.</Text>
-      <Text style={styles.title3}>Save big.</Text>
+      <ItimText size={24} color='#fff'>WiseBuy</ItimText>
+      <ItimText size={24} color='#fff'>Shop smart. Stock right.</ItimText>
+      <ItimText size={24} color='#fff'>Save big.</ItimText>
       
     </View>
   );
