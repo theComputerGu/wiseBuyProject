@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Pressable, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import ItimText from '../components/Itimtext';
+import ItimText from './Itimtext';
 
 export default function Topnav() {
   const router = useRouter();
