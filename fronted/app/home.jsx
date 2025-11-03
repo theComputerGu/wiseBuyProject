@@ -40,14 +40,14 @@ export default function Home() {
       <View style={styles.buttonRow}>
         <Pressable
           style={styles.signInButton}
-          onPress={() => router.push('/signin')}
+          onPress={() => router.push('/sign-in')}
         >
           <Text style={styles.signInText}>Sign In</Text>
         </Pressable>
 
         <Pressable
           style={styles.signUpButton}
-          onPress={() => router.push('/signup')}
+          onPress={() => router.push('/sign-up')}
         >
           <Text style={styles.signUpText}>Sign Up</Text>
         </Pressable>

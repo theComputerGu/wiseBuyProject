@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/itim": "^0.4.1",
+    "@expo/vector-icons": "^15.0.3",
     "@hookform/resolvers": "^5.2.2",
     "expo": "~54.0.20",
     "expo-checkbox": "~5.0.7",
@@ -19,6 +20,7 @@
     "expo-router": "~6.0.14",
     "expo-status-bar": "~3.0.8",
     "react": "19.1.0",
+    "react-hook-form": "^7.66.0",
     "react-native": "0.81.5",
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
