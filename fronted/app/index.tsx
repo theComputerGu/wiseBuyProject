@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   Image,
   ActivityIndicator,
   Dimensions,
-  Button,
 } from 'react-native';
-import { useRouter } from 'expo-router'; 
+import { useRouter } from 'expo-router';
 import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
-import ItimText from '../components/itimtext'
+import FontText from '../components/itimtext'; // ✅ correct import name
 import Logo from '../assets/logos/logo white.png';
 
 const screenHeight = Dimensions.get('window').height;
@@ -19,21 +17,23 @@ export default function Index() {
   const router = useRouter();
 
   const [fontsLoaded] = useFonts({
-    itim: Itim_400Regular,
+    Itim_400Regular,
   });
 
-  // ✅ Navigate automatically to /home after 3 seconds
+  // ✅ Navigate automatically after 3 seconds
   useEffect(() => {
+    if (!fontsLoaded) return;
+
     const timer = setTimeout(() => {
-      router.replace('/product'); // replace instead of push (no back button)
+      router.replace('/home'); // replace = no back navigation
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, styles.center]}>
         <ActivityIndicator size="large" color="#FFFFFF" />
       </View>
     );
@@ -42,10 +42,9 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Image source={Logo} style={styles.img} />
-      <ItimText size={24} color='#fff'>WiseBuy</ItimText>
-      <ItimText size={24} color='#fff'>Shop smart. Stock right.</ItimText>
-      <ItimText size={24} color='#fff'>Save big.</ItimText>
-      
+      <FontText size={28} color="#fff" weight="bold">WiseBuy</FontText>
+      <FontText size={20} color="#fff">Shop smart. Stock right.</FontText>
+      <FontText size={20} color="#fff">Save big.</FontText>
     </View>
   );
 }
@@ -55,31 +54,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#197FF4',
+    justifyContent: 'center',
+  },
+  center: {
+    justifyContent: 'center',
   },
   img: {
-    width: 300,
-    height: 300,
+    width: 250,
+    height: 250,
     resizeMode: 'contain',
-    marginTop: screenHeight * 0.1,
-  },
-  title1: {
-    fontFamily: 'itim',
-    fontWeight: 'bold',
-    fontSize: 40,
-    color: '#FFFFFF',
-    marginTop: -20,
-  },
-  title2: {
-    fontFamily: 'itim',
-    fontWeight: 'bold',
-    fontSize: 30,
-    color: '#FFFFFF',
-    marginTop: 8,
-  },
-  title3: {
-    fontFamily: 'itim',
-    fontWeight: 'bold',
-    fontSize: 30,
-    color: '#FFFFFF',
+    marginBottom: screenHeight * 0.05,
   },
 });
