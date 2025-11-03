@@ -7,7 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ItimText from '../components/itimtext';
+import ItimText from '../components/ItimText';
 
 export default function AccountScreen() {
   const [showPassword, setShowPassword] = useState(false);

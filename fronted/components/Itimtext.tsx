@@ -1,37 +1,24 @@
-import React from 'react';
-import { Text, TextProps, StyleSheet } from 'react-native';
-import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
+import React from "react";
+import { Text, TextProps, StyleSheet, TextStyle } from "react-native";
 
-interface FontTextProps extends TextProps {
-  children: React.ReactNode;
+type Props = TextProps & {
   size?: number;
   color?: string;
-  weight?: 'regular' | 'bold';
-}
+  weight?: TextStyle["fontWeight"];
+};
 
-export default function FontText({
+export default function ItimText({
   children,
   size = 16,
-  color = '#000',
-  weight = 'regular',
+  color = "#000",
+  weight = "normal",
   style,
-  ...props
-}: FontTextProps) {
-  const [fontsLoaded] = useFonts({
-    Itim_400Regular,
-  });
-
-  if (!fontsLoaded) return null;
-
+  ...rest
+}: Props) {
   return (
     <Text
-      {...props}
-      style={[
-        styles.text,
-        { fontSize: size, color },
-        weight === 'bold' && styles.bold,
-        style,
-      ]}
+      {...rest}
+      style={[styles.base, { fontSize: size, color, fontWeight: weight }, style]}
     >
       {children}
     </Text>
@@ -39,10 +26,6 @@ export default function FontText({
 }
 
 const styles = StyleSheet.create({
-  text: {
-    fontFamily: 'Itim_400Regular',
-  },
-  bold: {
-    fontWeight: '700',
-  },
+  // שם הפונט כפי שמוטען מה-hook
+  base: { fontFamily: "Itim_400Regular" },
 });
