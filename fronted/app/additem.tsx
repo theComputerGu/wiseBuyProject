@@ -142,7 +142,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     marginTop: 8,
-  
     paddingBottom: 60,
   },
   categoryCard: {
