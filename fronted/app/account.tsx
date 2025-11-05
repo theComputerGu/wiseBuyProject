@@ -7,9 +7,10 @@ import {
   ScrollView,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ItimText from '../components/Itimtext';
 import BottomNav from '../components/Bottomnavigation';
 import TopNav from '../components/Topnav'
+import ItimText from '../components/Itimtext';
+import Title from '../components/Title'
 
 export default function AccountScreen() {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,13 +21,8 @@ export default function AccountScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
 
         {/* ✅ Account Section */}
-        <ItimText size={22} weight="bold" color="#197FF4" style={styles.section}>
-          Account
-        </ItimText>
-
-        <ItimText size={20} weight="bold" color="#197FF4" style={styles.subSection}>
-          Settings
-        </ItimText>
+        <Title text="Account" />
+        <Title text="Settings" />
 
         <View style={styles.accountRow}>
           <View style={styles.profileContainer}>
@@ -62,9 +58,7 @@ export default function AccountScreen() {
         </View>
 
         {/* ✅ Privacy Section */}
-        <ItimText size={20} weight="bold" color="#197FF4" style={styles.subSection}>
-          Privacy
-        </ItimText>
+        <Title text="Privacy" />
 
         <View style={styles.privacyRow}>
           <View>
@@ -87,9 +81,7 @@ export default function AccountScreen() {
         </View>
 
         {/* ✅ Others Section */}
-        <ItimText size={20} weight="bold" color="#197FF4" style={styles.subSection}>
-          Others
-        </ItimText>
+        <Title text="Others" />
 
         <ItimText size={16} color="#000" style={styles.otherText}>
           Change Password

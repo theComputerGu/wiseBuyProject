@@ -6,6 +6,7 @@ import { useMemo } from "react";
 import { useRouter } from "expo-router";
 import BottomNav from '../../components/Bottomnavigation';
 import TopNav from '../../components/Topnav'
+import Title from '../../components/Title'
 
 const BRAND = "#197FF4";
 
@@ -23,12 +24,10 @@ export default function GroupPage() {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-      <View style={s.wrap}>
-          <TopNav />
-
-        {/* Title */}
-        <Text style={s.section}>Shopping lists</Text>
+      <View style={s.container}>
+        <TopNav />
+        <Title text="Shopping lists" />
+        
 
         {/* List */}
         <FlatList
@@ -63,12 +62,11 @@ export default function GroupPage() {
 
         <BottomNav />
       </View>
-      
-    </SafeAreaView>
   );
 }
 
 const s = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#fff', paddingTop: 50, paddingHorizontal: 20 },
   wrap: { flex: 1 },
   header: {
     flexDirection: "row",
@@ -122,10 +120,7 @@ const s = StyleSheet.create({
   },
 
   pills: {
-    position: "absolute",
-    bottom: 22,
-    left: 16,
-    right: 16,
+    position: 'relative',
     flexDirection: "row",
     justifyContent: "space-between",
     gap: 12,

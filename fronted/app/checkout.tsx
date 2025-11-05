@@ -10,6 +10,7 @@ import ItimText from '../components/Itimtext';
 import BottomNav from '../components/Bottomnavigation';
 import Button from '../components/Button';
 import TopNav from '../components/Topnav'
+import Title from '../components/Title'
 
 export default function CheckoutScreen() {
   const router = useRouter(); // ✅ initialize router
@@ -51,19 +52,10 @@ export default function CheckoutScreen() {
     <View style={styles.container}>
       <TopNav />
 
-      <ItimText size={24} color="#197FF4" style={{marginBottom: 5 }}>
-        Checkout
-      </ItimText>
-
-      <View style={styles.locationRow}>
-        <MaterialCommunityIcons name="map-marker" size={30} color="#197FF4" />
-        <ItimText size={20} color="#197FF4" style={{  marginTop: 5 }}>
-          Your current location
-        </ItimText>
-      </View>
-      <ItimText size={16} color="#197FF4" style={{ marginBottom: 10 }}>
-          Top 5 stores near your location
-        </ItimText>
+      <Title text="Checkout" />
+      <Title text="your current location" icon='map-marker' />
+      <Title text="Top 5 stores near your location" />
+      
 
       <ScrollView showsVerticalScrollIndicator={false}>
         

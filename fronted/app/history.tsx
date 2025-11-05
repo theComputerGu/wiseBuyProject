@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ItimText from '../components/Itimtext';
 import BottomNav from '../components/Bottomnavigation';
 import TopNav from '../components/Topnav'
+import Title from '../components/Title'
 
 export default function HistoryScreen() {
   const history = [
@@ -36,25 +37,22 @@ export default function HistoryScreen() {
   return (
     <View style={styles.container}>
       <TopNav />
+      <Title text="History" />
 
-       {/* ✅ Page Title */}
-        <ItimText size={22} weight="bold" color="#197FF4" style={styles.section}>
-          History
+
+      {/* ✅ Group Selector */}
+      <View style={styles.groupRow}>
+        <ItimText size={16} color="#197FF4">
+          Group: <ItimText size={16} color="#197FF4" weight="bold">Sean & Mark home</ItimText>
         </ItimText>
-
-        {/* ✅ Group Selector */}
-        <View style={styles.groupRow}>
-          <ItimText size={16} color="#197FF4">
-            Group: <ItimText size={16} color="#197FF4" weight="bold">Sean & Mark home</ItimText>
-          </ItimText>
-          <MaterialCommunityIcons name="chevron-down" size={22} color="#197FF4" />
-        </View>
+        <MaterialCommunityIcons name="chevron-down" size={22} color="#197FF4" />
+      </View>
 
 
       <ScrollView showsVerticalScrollIndicator={false}>
 
-       
-        
+
+
         {/* ✅ Purchase List */}
         {history.map((item) => (
           <View key={item.id} style={styles.purchaseCard}>

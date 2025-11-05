@@ -12,6 +12,7 @@ import { useRouter } from 'expo-router';
 import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
 import ItimText from '../components/Itimtext'; 
 import Logo from '../assets/logos/logo black.png';
+import Title from '../components/Title'
 
 const screenHeight = Dimensions.get('window').height;
 
@@ -58,11 +59,7 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  },
+  container: { flex: 1, backgroundColor: '#fff', paddingTop: 50, paddingHorizontal: 20 },
   img: {
     width: 300,
     height: 300,

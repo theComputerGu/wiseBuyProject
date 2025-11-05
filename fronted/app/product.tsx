@@ -11,62 +11,47 @@ import ItimText from '../components/Itimtext';
 import Logo from '../assets/logos/logo black.png';
 import BottomNav from '../components/Bottomnavigation';
 import TopNav from '../components/Topnav'
+import Title from '../components/Title'
+import BottomSummary from '../components/BottomSummary';
 
 export default function product() {
   return (
     <View style={styles.container}>
-    <TopNav />
+      <TopNav />
 
-      {/* ✅ Home title */}
-      <ItimText size={20} color="#197FF4" weight="bold" style={{ marginLeft: 20 }}>
-        Sean & Mark home
-      </ItimText>
+      <Title text="Sean and mark home" />
+
 
       {/* ✅ Product list */}
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <ProductCard
           name="חלב תנובה 1% ליטר"
           price="6.94₪"
           average="מחיר ממוצע"
-          image={require('../assets/logo black.png')}
+          image={require('../assets/products/חלב תנובה.png')}
           quantity={1}
         />
         <ProductCard
           name="חלב טרה 3% ליטר"
           price="14.86₪"
           average="מחיר ממוצע"
-          image={require('../assets/logo black.png')}
+          image={require('../assets/products/חלב טרה.png')}
           quantity={2}
         />
-        </ScrollView>
-
-        {/* ✅ Recommendations section */}
-        <ItimText size={20} color="#197FF4" weight="bold" style={{ marginTop: 20 }}>
-          Recommendation's
-        </ItimText>
-        <ScrollView contentContainerStyle={styles.scrollContent}>
+      </ScrollView>
+      <Title text=" Recommendation's" />
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <ProductCard
           name="חלב יטבתה 3% ליטר"
           price="5.94₪"
           average="מחיר ממוצע"
-          image={require('../assets/logo black.png')}
+          image={require('../assets/products/חלב יטבתה.jpeg')}
           quantity={0}
         />
       </ScrollView>
 
-      {/* ✅ Bottom summary */}
-      <View style={styles.summaryRow}>
-        <View style={styles.summaryItem}>
-          <ItimText size={18} color="#000">Amount</ItimText>
-          <ItimText size={18} color="#000" weight="bold">3</ItimText>
-        </View>
-        <View style={styles.summaryItem}>
-          <ItimText size={18} color="#000">Price (Estimated)</ItimText>
-          <ItimText size={18} color="#000" weight="bold">21.8₪</ItimText>
-        </View>
-      </View>
-
-     <BottomNav />
+      <BottomSummary amount={2} price={21.8} />
+      <BottomNav />
     </View>
   );
 }
@@ -104,7 +89,6 @@ function ProductCard({ name, price, average, image, quantity }: ProductCardProps
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff', paddingTop: 50, paddingHorizontal: 20 },
-  logoRow: { flexDirection: 'row', alignItems: 'center' },
   scrollContent: { paddingHorizontal: 15, paddingBottom: 100 },
   card: {
     flexDirection: 'row',

@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     borderTopWidth: 0.5,
-    borderColor: '#ccc',
+    borderColor: '#ffffffff',
     backgroundColor: '#fff',
   },
   addButton: {

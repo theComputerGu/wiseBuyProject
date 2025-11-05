@@ -5,6 +5,7 @@ type Props = TextProps & {
   size?: number;
   color?: string;
   weight?: TextStyle["fontWeight"];
+  family?: string
 };
 
 export default function ItimText({
@@ -12,20 +13,20 @@ export default function ItimText({
   size = 16,
   color = "#000",
   weight = "normal",
+  family = "",
   style,
   ...rest
 }: Props) {
   return (
     <Text
       {...rest}
-      style={[styles.base, { fontSize: size, color, fontWeight: weight }, style]}
+      style={[styles.base, { fontSize: size, color, fontWeight: weight, fontFamily: family  }, style]}
     >
       {children}
     </Text>
   );
 }
-
 const styles = StyleSheet.create({
-  // שם הפונט כפי שמוטען מה-hook
+ //font name
   base: { fontFamily: "Itim_400Regular" },
 });

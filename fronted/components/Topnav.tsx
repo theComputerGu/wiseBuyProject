@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import ItimText from './Itimtext';
 
+
 export default function Topnav() {
   const router = useRouter();
 
@@ -20,7 +21,7 @@ export default function Topnav() {
           />
         </Pressable>
 
-        <ItimText size={40} weight="bold" color="#197FF4">
+        <ItimText size={40} weight="bold" color="#197FF4" family='Itim_400Regular'>
           WiseBuy
         </ItimText>
       </View>

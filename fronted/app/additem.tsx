@@ -9,16 +9,19 @@ import {
   Dimensions,
   Pressable,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import ItimText from '../components/Itimtext';
+import Title from '../components/Title'
+import SearchHeader from '../components/SearchHeader';
 
 const screenWidth = Dimensions.get('window').width;
 
 const mostOrdered = [
-  { id: '1', name: 'חזה עוף טרי', price: '52.40₪', weight: '648₪/kg', image: require('../assets/logo black.png') },
-  { id: '2', name: 'חזה עוף טרי', price: '52.40₪', weight: '648₪/kg', image: require('../assets/logo black.png') },
-  { id: '3', name: 'חזה עוף טרי', price: '52.40₪', weight: '648₪/kg', image: require('../assets/logo black.png') },
+  { id: '1', name: 'חזה עוף טרי', price: '52.40₪', weight: '648₪/kg', image: require('../assets/products/chicken-breast.png') },
+  { id: '2', name: 'חזה עוף טרי', price: '52.40₪', weight: '648₪/kg', image: require('../assets/products/chicken-breast.png') },
+  { id: '3', name: 'חזה עוף טרי', price: '52.40₪', weight: '648₪/kg', image: require('../assets/products/chicken-breast.png') },
 ];
 
 const categories = Array(12)
@@ -26,36 +29,25 @@ const categories = Array(12)
   .map((_, i) => ({
     id: i.toString(),
     name: 'בשרים',
-    image: require('../assets/logo black.png'),
+    image: require('../assets/products/ground-beef.png'),
   }));
 
 export default function AddItemScreen() {
   const router = useRouter();
 
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
     <View style={styles.container}>
-      {/* ✅ Back Button + Search Bar in same row */}
-      <View style={styles.topRow}>
-        <Pressable onPress={() => router.push('/product')} style={styles.backButton}>
-          <MaterialCommunityIcons name="arrow-left" size={20} color="#fff" />
-        </Pressable>
-
-        <View style={styles.searchBar}>
-          <MaterialCommunityIcons name="magnify" size={22} color="#197FF4" />
-          <TextInput
-            placeholder="looking for a specific item"
-            placeholderTextColor="#888"
-            style={styles.searchInput}
-          />
-        </View>
-      </View>
+      <SearchHeader
+        placeholder="Search items..."
+        backRoute="/product"
+        onSearchChange={(text) => console.log('Searching:', text)}
+      />
 
       {/* ✅ Scroll Content */}
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* ✅ Most Ordered Section */}
-        <ItimText size={18} color="#197FF4" style={styles.sectionTitle}>
-          most ordered
-        </ItimText>
+        <Title text="Most ordered" />
 
         <FlatList
           horizontal
@@ -80,9 +72,7 @@ export default function AddItemScreen() {
         />
 
         {/* ✅ Categories Section */}
-        <ItimText size={18} color="#197FF4" style={styles.sectionTitle}>
-          Categories
-        </ItimText>
+        <Title text="Categories" />
 
         <View style={styles.categoriesGrid}>
           {categories.map((cat) => (
@@ -96,20 +86,17 @@ export default function AddItemScreen() {
         </View>
       </ScrollView>
     </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: 75,
-    paddingHorizontal: 12,
-  },
-  topRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 12,
+  container: { 
+  flex: 1, 
+  backgroundColor: '#fff', 
+  paddingTop: 10, 
+  paddingHorizontal: 20, 
+  marginBottom: 1 
   },
   backButton: {
     backgroundColor: '#197FF4',
@@ -122,29 +109,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 3,
     elevation: 4,
-  },
-  searchBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: '#197FF4',
-    borderWidth: 1.5,
-    borderRadius: 25,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    backgroundColor: '#f8f8f8',
-    flex: 1,
-    marginLeft: 10,
-  },
-  searchInput: {
-    flex: 1,
-    marginLeft: 6,
-    fontSize: 16,
-    color: '#000',
-  },
-  sectionTitle: {
-    marginTop: 10,
-    marginBottom: 6,
-    marginLeft: 6,
   },
   mostCard: {
     width: screenWidth * 0.34,
@@ -188,5 +152,6 @@ const styles = StyleSheet.create({
     height: 65,
     resizeMode: 'contain',
     marginBottom: 4,
+    backgroundColor: '#fff'
   },
 });
