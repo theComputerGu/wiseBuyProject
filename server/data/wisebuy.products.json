@@ -1,0 +1,26 @@
+[{
+  "_id": {
+    "$oid": "690ca6a62d0df1ae6061aa72"
+  },
+  "title": "Milk 3% 1L",
+  "brand": "Tnuva",
+  "price": 6.9,
+  "currency": "ILS",
+  "unit": "/unit",
+  "rating": 4.3,
+  "images": [
+    "https://example.com/milk.png"
+  ],
+  "inStock": true,
+  "category": "Dairy",
+  "tags": [
+    "milk"
+  ],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-06T13:46:14.509Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-06T13:46:14.509Z"
+  }
+}]
