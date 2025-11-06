@@ -13,7 +13,7 @@ export default function BottomNav() {
   const router = useRouter();
 
   const handleNavigate = (path: string) => {
-    router.push(path);
+    router.replace(path);
   };
 
   return (
@@ -45,7 +45,7 @@ export default function BottomNav() {
 
       <Pressable onPress={() => handleNavigate('/history')}>
         <MaterialCommunityIcons
-          name="basket"
+          name="clipboard-text-outline"
           size={28}
           color={'#197FF4'}
         />

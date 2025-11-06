@@ -8,7 +8,7 @@ type Props = TextProps & {
   family?: string
 };
 
-export default function ItimText({
+export default function Itimtext({
   children,
   size = 16,
   color = "#000",
