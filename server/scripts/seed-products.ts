@@ -19,6 +19,18 @@ async function main() {
       category: 'Dairy',
       tags: ['milk'],
     },
+
+
+    {
+      title: 'Milk 3% 1L',
+      brand: 'Tnuva',
+      price: 6.9,
+      unit: '/unit',
+      rating: 4.3,
+      images: ['https://example.com/milk.png'],
+      category: 'Dairy',
+      tags: ['milk'],
+    },
   ];
 
   await Product.deleteMany({});

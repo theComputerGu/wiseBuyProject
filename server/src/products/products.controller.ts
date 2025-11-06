@@ -19,4 +19,11 @@ export class ProductsController {
       maxPrice: maxPrice ? +maxPrice : undefined,
     });
   }
+
+  @Get('recommendations')
+  async getRecommendations() {
+    const all = await this.products.findAll({});
+    return all.slice(0, 2);
+  }
+
 }
