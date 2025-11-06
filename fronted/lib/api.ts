@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Platform } from "react-native";
 
-// כתובת בסיס לפי פלטפורמה:
+
 const baseURL =
   Platform.OS === "android"
     ? "http://10.0.2.2:3000"       // Android Emulator
