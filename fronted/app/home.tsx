@@ -59,19 +59,25 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', paddingTop: 50, paddingHorizontal: 20 },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',       // מרכז אופקית
+    justifyContent: 'center',   // מרכז אנכית
+  },
   img: {
     width: 300,
     height: 300,
     resizeMode: 'contain',
-    marginTop: screenHeight * 0.1,
+    marginTop: -40, // אפשר לכוון לגובה שייראה טוב
   },
   title1: {
     fontFamily: 'itim',
     fontWeight: 'bold',
     fontSize: 40,
     color: '#000000',
-    marginTop: -20,
+    marginTop: 10,
+    textAlign: 'center',        // ✅ לוודא שהטקסט ממורכז בתוך האלמנט
   },
   title2: {
     fontFamily: 'itim',
@@ -79,6 +85,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: '#000000',
     marginTop: 8,
+    textAlign: 'center',        // ✅
   },
   title3: {
     fontFamily: 'itim',
@@ -86,6 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: '#000000',
     marginBottom: 40,
+    textAlign: 'center',        // ✅
   },
 
   /* ✅ New layout for horizontal buttons */
