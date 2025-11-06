@@ -69,7 +69,7 @@ export default function ProductScreen() {
       const res = await fetch(`${BASE_URL}/products`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data: ServerProduct[] = await res.json();
-      console.log("Fetched /products:", data); // 🔎 לוג בדיקה
+      console.log("Fetched /products:", data); 
 
       // ממפה לתצורת ה-Card שלך + תמונת fallback מקומית אם אין URL
       const mapped: CardItem[] = data.map((p) => ({
