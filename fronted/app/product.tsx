@@ -17,44 +17,41 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function product() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
-      <View style={styles.container}>
-        <TopNav />
-
-        <Title text="Sean and mark home" />
+    <SafeAreaView style={styles.container}>
+      <TopNav />
+      <Title text="Sean and mark home" />
 
 
-        {/* ✅ Product list */}
-        <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-          <ProductCard
-            name="חלב תנובה 1% ליטר"
-            price="6.94₪"
-            average="מחיר ממוצע"
-            image={require('../assets/products/חלב תנובה.png')}
-            quantity={1}
-          />
-          <ProductCard
-            name="חלב טרה 3% ליטר"
-            price="14.86₪"
-            average="מחיר ממוצע"
-            image={require('../assets/products/חלב טרה.png')}
-            quantity={2}
-          />
-        </ScrollView>
-        <Title text=" Recommendation's" />
-        <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-          <ProductCard
-            name="חלב יטבתה 3% ליטר"
-            price="5.94₪"
-            average="מחיר ממוצע"
-            image={require('../assets/products/חלב יטבתה.jpeg')}
-            quantity={0}
-          />
-        </ScrollView>
+      {/* ✅ Product list */}
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        <ProductCard
+          name="חלב תנובה 1% ליטר"
+          price="6.94₪"
+          average="מחיר ממוצע"
+          image={require('../assets/products/חלב תנובה.png')}
+          quantity={1}
+        />
+        <ProductCard
+          name="חלב טרה 3% ליטר"
+          price="14.86₪"
+          average="מחיר ממוצע"
+          image={require('../assets/products/חלב טרה.png')}
+          quantity={2}
+        />
+      </ScrollView>
+      <Title text=" Recommendation's" />
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        <ProductCard
+          name="חלב יטבתה 3% ליטר"
+          price="5.94₪"
+          average="מחיר ממוצע"
+          image={require('../assets/products/חלב יטבתה.jpeg')}
+          quantity={0}
+        />
+      </ScrollView>
 
-        <BottomSummary amount={2} price={21.8} />
-        <BottomNav />
-      </View>
+      <BottomSummary amount={2} price={21.8} />
+      <BottomNav />
     </SafeAreaView>
   );
 }
@@ -91,7 +88,7 @@ function ProductCard({ name, price, average, image, quantity }: ProductCardProps
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20 ,justifyContent: "flex-start"},
+  container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20, justifyContent: "flex-start" },
   scrollContent: { paddingBottom: 0 },
   card: {
     flexDirection: 'row',
