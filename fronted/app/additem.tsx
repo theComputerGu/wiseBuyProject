@@ -12,6 +12,8 @@ import { useRouter } from 'expo-router';
 import ItimText from '../components/Itimtext';
 import Title from '../components/Title';
 import SearchHeader from '../components/SearchHeader';
+import CategoryCard from '../components/categorycard';
+import { navigate } from 'expo-router/build/global-state/routing';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -52,57 +54,55 @@ export default function AddItemScreen() {
   const router = useRouter();
 
   return (
-     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-      <View style={styles.container}>
-        {/* ✅ Back Button + Search Bar */}
-        <SearchHeader
-          placeholder="Search items..."
-          backRoute="/product"
-          onSearchChange={(text) => console.log('Searching:', text)}
+    <SafeAreaView style={styles.container}>
+      {/* 🔍 Back Button + Search Bar */}
+      <SearchHeader
+        placeholder="Search items..."
+        backRoute="/product"
+        onSearchChange={(text) => console.log('Searching:', text)}
+      />
+
+      {/* 🧾 Scrollable Content */}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* 🍗 Most Ordered */}
+        <Title text="Most ordered" />
+
+        <FlatList
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          data={mostOrdered}
+          keyExtractor={(item) => item.id}
+          contentContainerStyle={styles.mostList}
+          renderItem={({ item }) => (
+            <View style={styles.mostCard}>
+              <Image source={item.image} style={styles.mostImage} />
+              <ItimText size={14} color="#197FF4" weight="bold">
+                {item.price}
+              </ItimText>
+              <ItimText size={14} color="#000">
+                {item.name}
+              </ItimText>
+              <ItimText size={12} color="#555">
+                {item.weight}
+              </ItimText>
+            </View>
+          )}
         />
 
-        {/* ✅ Scrollable Content */}
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {/* ✅ Most Ordered */}
-          <Title text="Most ordered" />
-
-          <FlatList
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            data={mostOrdered}
-            keyExtractor={(item) => item.id}
-            contentContainerStyle={{ paddingVertical: 8 }}
-            renderItem={({ item }) => (
-              <View style={styles.mostCard}>
-                <Image source={item.image} style={styles.mostImage} />
-                <ItimText size={14} color="#197FF4" weight="bold">
-                  {item.price}
-                </ItimText>
-                <ItimText size={14} color="#000">
-                  {item.name}
-                </ItimText>
-                <ItimText size={12} color="#555">
-                  {item.weight}
-                </ItimText>
-              </View>
-            )}
-          />
-
-          {/* ✅ Categories */}
-          <Title text="Categories" />
-
-          <View style={styles.categoriesGrid}>
-            {categories.map((cat) => (
-              <View key={cat.id} style={styles.categoryCard}>
-                <Image source={cat.image} style={styles.categoryImage} />
-                <ItimText size={16} color="#000">
-                  {cat.name}
-                </ItimText>
-              </View>
-            ))}
-          </View>
-        </ScrollView>
-      </View>
+        {/* 📂 Categories */}
+        <Title text="Categories" />
+        <View style={styles.categoriesGrid}>
+          {categories.map((cat) => (
+            <CategoryCard
+              key={cat.id}
+              name={cat.name}
+              image={cat.image}
+              onPress={() => router.push(`/additemcategory?name=${cat.name}`)}
+              
+            />
+          ))}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -111,11 +111,15 @@ export default function AddItemScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffffff',
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 16,
+  },
+  mostList: {
+    paddingVertical: 8,
   },
   mostCard: {
     width: screenWidth * 0.34,
-    backgroundColor: '#ffffffff',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     alignItems: 'center',
     marginRight: 12,
@@ -130,7 +134,6 @@ const styles = StyleSheet.create({
     height: 85,
     resizeMode: 'contain',
     marginBottom: 4,
-    backgroundColor: 'transparent', // ✅ allow transparent PNGs
   },
   categoriesGrid: {
     flexDirection: 'row',
@@ -138,24 +141,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 8,
     paddingBottom: 60,
-  },
-  categoryCard: {
-    width: '30%',
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    alignItems: 'center',
-    marginBottom: 15,
-    paddingVertical: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  categoryImage: {
-    width: 65,
-    height: 65,
-    resizeMode: 'contain',
-    marginBottom: 4,
-    backgroundColor: 'transparent', // ✅ transparent background
   },
 });

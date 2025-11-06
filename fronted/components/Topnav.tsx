@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     paddingHorizontal: 0,
-    paddingTop: 20,
     
   },
   headerRow: {
