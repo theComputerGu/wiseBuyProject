@@ -45,7 +45,7 @@ export default function BottomNav() {
 
       <Pressable onPress={() => handleNavigate('/history')}>
         <MaterialCommunityIcons
-          name="basket"
+          name="clipboard-text-outline"
           size={28}
           color={'#197FF4'}
         />
