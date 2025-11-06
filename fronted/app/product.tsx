@@ -8,7 +8,7 @@ import BottomNav from "../components/Bottomnavigation";
 import BottomSummary from "../components/BottomSummary";
 import ProductCard from "../components/productcard";
 
-const BASE_URL = "http://192.168.30.122:3000";
+const BASE_URL = "http://172.20.10.2:3000";
 
 type ServerProduct = {
   _id: string;
