@@ -25,8 +25,7 @@ export default function GroupPage() {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-      <View style={s.container}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" , paddingHorizontal: 20}}>
         <TopNav />
         <Title text="Shopping lists" />
         
@@ -63,7 +62,6 @@ export default function GroupPage() {
         </View>
 
         <BottomNav />
-      </View>
       </SafeAreaView>
   );
 }
