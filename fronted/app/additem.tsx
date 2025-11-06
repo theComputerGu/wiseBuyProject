@@ -52,7 +52,7 @@ export default function AddItemScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View style={styles.container}>
         {/* ✅ Back Button + Search Bar */}
         <SearchHeader
@@ -109,14 +109,9 @@ export default function AddItemScreen() {
 
 // ✅ Styles
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: '#ffffffff',
-  },
   container: {
     flex: 1,
     backgroundColor: '#ffffffff',
-    paddingHorizontal: 20,
   },
   mostCard: {
     width: screenWidth * 0.34,

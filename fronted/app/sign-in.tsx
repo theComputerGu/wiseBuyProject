@@ -9,6 +9,7 @@ import TextField from "../components/TextField";
 import Button from "../components/Button";
 import Logo from "../components/Logo";
 
+
 export default function SignIn() {
   const router = useRouter();
   const [remember, setRemember] = useState<boolean>(false);
@@ -16,7 +17,7 @@ export default function SignIn() {
   const [password, setPassword] = useState<string>("");
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#F8FAFC" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
       <View style={s.page}>
         <Ionicons
           name="arrow-back"

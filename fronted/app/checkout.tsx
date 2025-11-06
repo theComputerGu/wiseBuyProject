@@ -11,6 +11,7 @@ import BottomNav from '../components/Bottomnavigation';
 import Button from '../components/Button';
 import TopNav from '../components/Topnav'
 import Title from '../components/Title'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function CheckoutScreen() {
   const router = useRouter(); // ✅ initialize router
@@ -49,6 +50,7 @@ export default function CheckoutScreen() {
   ];
 
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" , justifyContent: 'space-between' }}>
     <View style={styles.container}>
       <TopNav />
 
@@ -105,11 +107,12 @@ export default function CheckoutScreen() {
 
       <BottomNav />
     </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', paddingTop: 50, paddingHorizontal: 20 },
+  container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20, justifyContent: 'space-between' },
   logo: { marginBottom: 10 },
   section: { marginBottom: 10 },
   locationRow: {

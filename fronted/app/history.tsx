@@ -5,6 +5,7 @@ import ItimText from '../components/Itimtext';
 import BottomNav from '../components/Bottomnavigation';
 import TopNav from '../components/Topnav'
 import Title from '../components/Title'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HistoryScreen() {
   const history = [
@@ -35,6 +36,7 @@ export default function HistoryScreen() {
   ];
 
   return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
     <View style={styles.container}>
       <TopNav />
       <Title text="History" />
@@ -88,11 +90,12 @@ export default function HistoryScreen() {
 
       <BottomNav />
     </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', paddingTop: 50, paddingHorizontal: 20 },
+   container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20 },
   logo: { marginBottom: 10 },
   section: { marginBottom: 10 },
   groupRow: {

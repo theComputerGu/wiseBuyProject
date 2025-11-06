@@ -11,6 +11,7 @@ import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
 import LottieView from 'lottie-react-native';
 import ItimText from '../components/Itimtext'; 
 import Logo from '../assets/logos/logo white.png';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const screenHeight = Dimensions.get('window').height;
 
@@ -58,6 +59,7 @@ export default function Index() {
   if (!fontsLoaded) return <View style={styles.container} />;
 
   return (
+       <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
     <View style={styles.container}>
       {/* ✅ Animated Logo */}
       <Animated.Image
@@ -86,6 +88,7 @@ export default function Index() {
         />
       )}
     </View>
+    </SafeAreaView>
   );
 }
 

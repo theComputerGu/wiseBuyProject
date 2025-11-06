@@ -13,6 +13,7 @@ import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
 import ItimText from '../components/Itimtext'; 
 import Logo from '../assets/logos/logo black.png';
 import Title from '../components/Title'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const screenHeight = Dimensions.get('window').height;
 
@@ -32,6 +33,7 @@ export default function Home() {
   }
 
   return (
+        <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
     <View style={styles.container}>
       <Image source={Logo} style={styles.img} />
       <Text style={styles.title1}>WiseBuy</Text>
@@ -55,11 +57,12 @@ export default function Home() {
         </Pressable>
       </View>
     </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', paddingTop: 50, paddingHorizontal: 20 },
+   container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20 },
   img: {
     width: 300,
     height: 300,

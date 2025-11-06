@@ -8,6 +8,7 @@ import BottomNav from '../../components/Bottomnavigation';
 import TopNav from '../../components/Topnav'
 import Title from '../../components/Title'
 
+
 const BRAND = "#197FF4";
 
 export default function GroupPage() {
@@ -24,6 +25,7 @@ export default function GroupPage() {
   );
 
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View style={s.container}>
         <TopNav />
         <Title text="Shopping lists" />
@@ -62,6 +64,7 @@ export default function GroupPage() {
 
         <BottomNav />
       </View>
+      </SafeAreaView>
   );
 }
 

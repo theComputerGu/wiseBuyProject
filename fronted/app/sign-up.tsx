@@ -33,7 +33,7 @@ export default function SignUp() {
   };
 
   return (
-    <SafeAreaView style={{ flex:1, backgroundColor:"#F8FAFC" }}>
+    <SafeAreaView style={{ flex:1, backgroundColor:"#ffffffff" }}>
       <View style={s.page}>
         <Ionicons name="arrow-back" size={22} onPress={()=>router.back()} style={s.back} />
         <Logo sizeMultiplier={0.5} textScale={0.2} />

@@ -11,11 +11,13 @@ import BottomNav from '../components/Bottomnavigation';
 import TopNav from '../components/Topnav'
 import ItimText from '../components/Itimtext';
 import Title from '../components/Title'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function AccountScreen() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
+       <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
     <View style={styles.container}>
         <TopNav />
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -96,11 +98,12 @@ export default function AccountScreen() {
 
     <BottomNav />
     </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', paddingTop: 50, paddingHorizontal: 20 },
+    container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20 },
   logo: { marginBottom: 20 },
   section: { marginBottom: 10 },
   subSection: { marginTop: 15, marginBottom: 8 },
