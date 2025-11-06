@@ -13,6 +13,7 @@
     "@expo/vector-icons": "^15.0.3",
     "@gorhom/bottom-sheet": "^5.2.6",
     "@hookform/resolvers": "^5.2.2",
+    "axios": "^1.13.2",
     "expo": "~54.0.20",
     "expo-checkbox": "~5.0.7",
     "expo-constants": "~18.0.10",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@react-native/dev-middleware": "^0.82.1",
+    "@types/axios": "^0.14.4",
     "@types/react": "~19.1.0",
     "typescript": "~5.9.2"
   },

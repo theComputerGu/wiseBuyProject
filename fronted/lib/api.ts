@@ -1,11 +1,10 @@
-type SignUpInput = { name: string; email: string; password: string };
+import axios from "axios";
+import { Platform } from "react-native";
 
-export async function signIn(email: string, password: string, _remember: boolean) {
-  await sleep(500);
-  return !!email && !!password; // TODO: להחליף ב-fetch לשרת
-}
-export async function signUp(input: SignUpInput, _remember: boolean) {
-  await sleep(700);
-  return !!input.email && !!input.password; // TODO: להחליף ב-fetch אמיתי
-}
-const sleep = (ms:number)=> new Promise(r=>setTimeout(r, ms));
+// כתובת בסיס לפי פלטפורמה:
+const baseURL =
+  Platform.OS === "android"
+    ? "http://10.0.2.2:3000"       // Android Emulator
+    : "http://localhost:3000";     // Web/iOS Simulator במחשב
+
+export const api = axios.create({ baseURL, timeout: 10000 });
