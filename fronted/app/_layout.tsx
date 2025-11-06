@@ -6,8 +6,8 @@ export default function RootLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
-        animation: "fade",       // אפשר גם "none" למעבר מיידי
-        gestureEnabled: false,   // מבטל מחוות push/back שמרגישות כמו שכבות
+        animation: "none",       // אפשר גם "none" למעבר מיידי
+        gestureEnabled: true,   // מבטל מחוות push/back שמרגישות כמו שכבות
         animationTypeForReplace: "push", // כשהולכים עם replace (ראו סעיף 2)
       }}
     >
