@@ -13,7 +13,7 @@ export default function BottomNav() {
   const router = useRouter();
 
   const handleNavigate = (path: string) => {
-    router.push(path);
+    router.replace(path);
   };
 
   return (
