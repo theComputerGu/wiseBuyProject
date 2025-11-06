@@ -1,5 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { View, StyleSheet, ScrollView, Platform, ActivityIndicator, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  ActivityIndicator,
+  Text,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import TopNav from "../components/Topnav";
@@ -8,7 +14,7 @@ import BottomNav from "../components/Bottomnavigation";
 import BottomSummary from "../components/BottomSummary";
 import ProductCard from "../components/productcard";
 
-const BASE_URL = "http://172.20.10.2:3000";
+const BASE_URL = "http://192.168.30.122:3000";
 
 type ServerProduct = {
   _id: string;
@@ -22,8 +28,8 @@ type ServerProduct = {
 type CardItem = {
   id: string | number;
   name: string;
-  price: string;     // "6.94₪"
-  image?: any;       // { uri: ... } או require()
+  price: string;
+  image?: any;
   quantity: number;
   averageLabel: string;
   uploaderAvatar?: any;
@@ -36,7 +42,8 @@ export default function ProductScreen() {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
-  const fmtPrice = (n: number, currency = "₪") => `${n.toFixed(2)}${currency}`;
+  const fmtPrice = (n: number, currency = "₪") =>
+    `${n.toFixed(2)}${currency}`;
   const parsePrice = (s: string) => parseFloat(s.replace(/[^\d.]/g, ""));
 
   const inc = (setList: React.Dispatch<any>, index: number) =>
@@ -54,75 +61,40 @@ export default function ProductScreen() {
       return copy;
     });
 
-  const totalQty =
-    items.reduce((s, it) => s + it.quantity, 0) +
-    reco.reduce((s, it) => s + it.quantity, 0);
-
-  const totalPrice =
-    items.reduce((sum, it) => sum + parsePrice(it.price) * it.quantity, 0) +
-    reco.reduce((sum, it) => sum + parsePrice(it.price) * it.quantity, 0);
-
   const fetchProducts = useCallback(async () => {
     setLoading(true);
     setErr(null);
     try {
-      const res = await fetch(`${BASE_URL}/products`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data: ServerProduct[] = await res.json();
-      console.log("Fetched /products:", data); 
+      // שולף במקביל את כל המוצרים + ההמלצות
+      const [resProducts, resReco] = await Promise.all([
+        fetch(`${BASE_URL}/products`),
+        fetch(`${BASE_URL}/products/recommendations`),
+      ]);
 
-      // ממפה לתצורת ה-Card שלך + תמונת fallback מקומית אם אין URL
-      const mapped: CardItem[] = data.map((p) => ({
+      if (!resProducts.ok || !resReco.ok)
+        throw new Error("HTTP error fetching products");
+
+      const products: ServerProduct[] = await resProducts.json();
+      const recos: ServerProduct[] = await resReco.json();
+
+      const toCard = (p: ServerProduct): CardItem => ({
         id: p._id,
         name: p.title,
-        price: fmtPrice(p.price, (!p.currency || p.currency === "ILS") ? "₪" : ` ${p.currency}`),
-        image: p.images?.[0] ? { uri: p.images[0] } : require("../assets/icon2.png"),
+        price: fmtPrice(p.price),
+        image: p.images?.[0]
+          ? { uri: p.images[0] }
+          : require("../assets/icon2.png"),
         quantity: 0,
         averageLabel: "מחיר ממוצע",
         uploaderAvatar: require("../assets/icon2.png"),
         uploaderName: "System",
-      }));
+      });
 
-      // אם אין כלום בשרת, נראה לפחות משהו (fallback לוקאלי)
-      if (mapped.length === 0) {
-        console.warn("No products from server; showing fallback.");
-        const fallback: CardItem[] = [
-          {
-            id: "fallback-1",
-            name: "חלב תנובה 1% ליטר",
-            price: fmtPrice(6.94),
-            image: require("../assets/icon2.png"),
-            quantity: 0,
-            averageLabel: "מחיר ממוצע",
-            uploaderAvatar: require("../assets/icon2.png"),
-            uploaderName: "System",
-          },
-        ];
-        setItems(fallback);
-        setReco([]);
-        return;
-      }
-
-      // להצגה פשוטה: הכל ב-items (בלי “המלצות” כרגע)
-      setItems(mapped);
-      setReco([]);
+      setItems(products.map(toCard));
+      setReco(recos.map(toCard));
     } catch (e: any) {
-      console.error("Failed to fetch /products:", e);
+      console.error("❌ Failed to fetch:", e);
       setErr(e?.message ?? "Failed to load");
-      // fallback לוקאלי כדי שתראה משהו גם בשגיאה
-      setItems([
-        {
-          id: "fallback-err",
-          name: "Milk (fallback)",
-          price: fmtPrice(5.9),
-          image: require("../assets/icon2.png"),
-          quantity: 0,
-          averageLabel: "מחיר ממוצע",
-          uploaderAvatar: require("../assets/icon2.png"),
-          uploaderName: "System",
-        },
-      ]);
-      setReco([]);
     } finally {
       setLoading(false);
     }
@@ -156,61 +128,66 @@ export default function ProductScreen() {
         </Text>
       )}
 
-      {items.length === 0 && reco.length === 0 ? (
-        <View style={{ padding: 16 }}>
-          <Text>אין מוצרים להצגה.</Text>
-        </View>
-      ) : (
-        <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-          {items.map((p, i) => (
-            <ProductCard
-              key={p.id}
-              id={p.id}
-              name={p.name}
-              price={p.price}
-              image={p.image}
-              quantity={p.quantity}
-              averageLabel={p.averageLabel}
-              uploaderAvatar={p.uploaderAvatar}
-              uploaderName={p.uploaderName}
-              onIncrease={() => inc(setItems, i)}
-              onDecrease={() => dec(setItems, i)}
-            />
-          ))}
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* --- כל המוצרים --- */}
+        {items.map((p, i) => (
+          <ProductCard
+            key={p.id}
+            id={p.id}
+            name={p.name}
+            price={p.price}
+            image={p.image}
+            quantity={p.quantity}
+            averageLabel={p.averageLabel}
+            uploaderAvatar={p.uploaderAvatar}
+            uploaderName={p.uploaderName}
+            onIncrease={() => inc(setItems, i)}
+            onDecrease={() => dec(setItems, i)}
+          />
+        ))}
 
-          {reco.length > 0 && <Title text="Recommendation's" />}
-
+        {/* --- כותרת והמלצות --- */}
+        <Title text="Recommendation's" />
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingVertical: 10 }}
+        >
           {reco.map((p, i) => (
-            <ProductCard
-              key={p.id}
-              id={p.id}
-              name={p.name}
-              price={p.price}
-              image={p.image}
-              quantity={p.quantity}
-              averageLabel={p.averageLabel}
-              uploaderAvatar={p.uploaderAvatar}
-              uploaderName={p.uploaderName}
-              onIncrease={() => inc(setReco, i)}
-              onDecrease={() => dec(setReco, i)}
-            />
+            <View key={p.id} style={{ marginRight: 10 }}>
+              <ProductCard
+                id={p.id}
+                name={p.name}
+                price={p.price}
+                image={p.image}
+                quantity={p.quantity}
+                averageLabel={p.averageLabel}
+                uploaderAvatar={p.uploaderAvatar}
+                uploaderName={p.uploaderName}
+                onIncrease={() => inc(setReco, i)}
+                onDecrease={() => dec(setReco, i)}
+              />
+            </View>
           ))}
-
-          <View style={{ height: 110 }} />
         </ScrollView>
-      )}
+
+        <View style={{ height: 110 }} />
+      </ScrollView>
 
       <BottomSummary
         amount={
           items.reduce((s, it) => s + it.quantity, 0) +
           reco.reduce((s, it) => s + it.quantity, 0)
         }
-        price={
-          Number((
+        price={Number(
+          (
             items.reduce((sum, it) => sum + parsePrice(it.price) * it.quantity, 0) +
             reco.reduce((sum, it) => sum + parsePrice(it.price) * it.quantity, 0)
-          ).toFixed(2))
-        }
+          ).toFixed(2)
+        )}
       />
       <BottomNav />
     </SafeAreaView>
