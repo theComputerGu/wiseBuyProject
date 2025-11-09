@@ -4,6 +4,8 @@ import { ConfigModule } from '@nestjs/config';
 import { ProductsModule } from './products/products.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { GroupsModule } from './groups/groups.module';
+import { StoresModule } from './stores/stores.module';
 
 @Module({
   imports: [
@@ -16,6 +18,10 @@ import { AppService } from './app.service';
     ),
 
     ProductsModule,
+
+    GroupsModule,
+
+    StoresModule,
   ],
   controllers:[AppController],
   providers:[AppService],
