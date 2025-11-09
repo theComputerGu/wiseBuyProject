@@ -13,6 +13,8 @@
     "@expo/vector-icons": "^15.0.3",
     "@gorhom/bottom-sheet": "^5.2.6",
     "@hookform/resolvers": "^5.2.2",
+    "@react-native-async-storage/async-storage": "^2.2.0",
+    "@reduxjs/toolkit": "^2.10.1",
     "axios": "^1.13.2",
     "expo": "~54.0.20",
     "expo-checkbox": "~5.0.7",
@@ -30,6 +32,8 @@
     "react-native-reanimated": "~4.1.1",
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
