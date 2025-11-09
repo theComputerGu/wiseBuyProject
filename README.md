@@ -6,7 +6,7 @@ WiseBuy is a mobile app built with **React Native (Expo)** and a **NestJS + Mong
 
 # Running instructions
 **Backend running instructions**  
-1.cd backend  
+1.cd server
 2.npm install (if not installed allready)  
 3.npm run start:dev  
 
