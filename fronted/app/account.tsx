@@ -13,9 +13,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { API_URL } from '@env';
 
 import { useSelector, useDispatch } from 'react-redux';
-import type { RootState } from '../app/src/state/store';
-import { setUser, signOut } from '../app/src/slices/authSlice';
-import { useUpdateUserMutation, useDeleteUserMutation } from '../app/src/svc/wisebuyApi';
+import type { RootState } from '../redux/state/store';
+import { setUser, signOut } from '../redux/slices/authSlice';
+import { useUpdateUserMutation, useDeleteUserMutation } from '../redux/svc/wisebuyApi';
 import { useRouter } from 'expo-router';
 
 export default function AccountScreen() {

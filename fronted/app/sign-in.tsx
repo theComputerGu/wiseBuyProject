@@ -8,9 +8,9 @@ import TextField from "../components/TextField";
 import Button from "../components/Button";
 import Logo from "../components/Logo";
 import { API_URL } from '@env';
-import { useLoginMutation } from "../app/src/svc/wisebuyApi";
+import { useLoginMutation } from "../redux/svc/wisebuyApi";
 import { useDispatch } from "react-redux";
-import { setUser /*, setToken*/ } from "../app/src/slices/authSlice";
+import { setUser /*, setToken*/ } from "../redux/slices/authSlice";
 
 export default function SignIn() {
   const router = useRouter();

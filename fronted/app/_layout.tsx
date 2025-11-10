@@ -2,7 +2,7 @@ import { Stack } from "expo-router";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { View, ActivityIndicator } from "react-native";
-import { store, persistor } from "../app/src/state/store";
+import { store, persistor } from "../redux/state/store";
 
 export default function RootLayout() {
   return (
