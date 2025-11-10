@@ -8,30 +8,19 @@ export default function RootLayout() {
   return (
     <Provider store={store}>
       <PersistGate
+        persistor={persistor}
         loading={
           <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
             <ActivityIndicator size="large" color="#197FF4" />
           </View>
         }
-        persistor={persistor}
       >
         <Stack
           screenOptions={{
             headerShown: false,
-            animation: "none", // אפשר גם "slide" או "fade"
-            gestureEnabled: true,
-            animationTypeForReplace: "push",
+            animation: "fade",
           }}
-        >
-          <Stack.Screen name="index" />
-          <Stack.Screen name="home" />
-          <Stack.Screen name="sign-in" />
-          <Stack.Screen name="sign-up" />
-          <Stack.Screen name="group/index" />
-          <Stack.Screen name="group/join" />
-          <Stack.Screen name="group/create" />
-          <Stack.Screen name="group/create/add" />
-        </Stack>
+        />
       </PersistGate>
     </Provider>
   );

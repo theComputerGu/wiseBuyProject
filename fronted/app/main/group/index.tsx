@@ -4,9 +4,9 @@ import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useMemo } from "react";
 import { useRouter } from "expo-router";
-import BottomNav from '../../components/Bottomnavigation';
-import TopNav from '../../components/Topnav'
-import Title from '../../components/Title'
+import BottomNav from '../../../components/Bottomnavigation';
+import TopNav from '../../../components/Topnav'
+import Title from '../../../components/Title'
 import { API_URL } from '@env';
 
 
@@ -53,11 +53,11 @@ export default function GroupPage() {
 
         {/* Pills – Join/Create */}
         <View style={s.pills}>
-          <Pressable style={[s.pill, s.pillSolid]} onPress={() => router.push("/group/join")}>
+          <Pressable style={[s.pill, s.pillSolid]} onPress={() => router.push("/main/group/join")}>
             <Text style={[s.pillText, { color: "#fff" }]}>Join Group</Text>
           </Pressable>
 
-          <Pressable style={[s.pill, s.pillSolid]} onPress={() => router.push("/group/create")}>
+          <Pressable style={[s.pill, s.pillSolid]} onPress={() => router.push("/main/group/create")}>
             <Text style={[s.pillText, { color: "#fff" }]}>Create Group</Text>
           </Pressable>
         </View>

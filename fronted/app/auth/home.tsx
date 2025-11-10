@@ -10,9 +10,9 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
-import Title from '../components/Title';
-import ItimText from '../components/Itimtext';
-import Logo from '../assets/logos/logo blue.png';
+import Title from '../../components/Title';
+import ItimText from '../../components/Itimtext';
+import Logo from '../../assets/logos/logo blue.png';
 import { API_URL } from '@env';
 
 const screenHeight = Dimensions.get('window').height;
@@ -49,7 +49,7 @@ export default function Home() {
         <View style={styles.buttonRow}>
           <Pressable
             style={styles.signInButton}
-            onPress={() => router.push('/sign-in')}
+            onPress={() => router.replace('/auth/sign-in')}
           >
             <ItimText size={20} color="#197FF4" weight="bold">
               Sign In
@@ -58,7 +58,7 @@ export default function Home() {
 
           <Pressable
             style={styles.signUpButton}
-            onPress={() => router.push('/sign-up')}
+            onPress={() => router.replace('/auth/sign-up')}
           >
             <ItimText size={20} color="#197FF4" weight="bold">
               Register

@@ -12,9 +12,9 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import ItimText from '../components/Itimtext';
-import Title from '../components/Title';
-import SearchHeader from '../components/SearchHeader';
+import ItimText from '../../../components/Itimtext';
+import Title from '../../../components/Title';
+import SearchHeader from '../../../components/SearchHeader';
 import { API_URL } from '@env';
 
 const screenWidth = Dimensions.get('window').width;
@@ -41,21 +41,21 @@ export default function AddItemScreen() {
             name: 'חזה עוף טרי',
             price: '52.40₪',
             weight: '648₪/kg',
-            image: require('../assets/products/Chicken-breast.png'),
+            image: require('../../../assets/products/Chicken-breast.png'),
         },
         {
             id: '2',
             name: 'בשר טחון טרי',
             price: '68.90₪',
             weight: '850₪/kg',
-            image: require('../assets/products/ground-beef.png'),
+            image: require('../../../assets/products/ground-beef.png'),
         },
         {
             id: '3',
             name: 'חלב תנובה',
             price: '11.00₪',
             weight: '12₪/kg',
-            image: require('../assets/products/חלב תנובה.png'),
+            image: require('../../../assets/products/חלב תנובה.png'),
         },
     ];
 
@@ -80,7 +80,7 @@ export default function AddItemScreen() {
         <SafeAreaView style={styles.container}>
             <SearchHeader
                 placeholder="Search items..."
-                backRoute="/product"
+                backRoute="main/additem/additem"
                 onSearchChange={(text) => console.log('Searching:', text)}
             />
             <Title text={name ?? 'No category selected'} />

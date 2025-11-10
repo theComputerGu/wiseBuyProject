@@ -4,13 +4,13 @@ import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import Checkbox from "expo-checkbox";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-import TextField from "../components/TextField";
-import Button from "../components/Button";
-import Logo from "../components/Logo";
+import TextField from "../../components/TextField";
+import Button from "../../components/Button";
+import Logo from "../../components/Logo";
 import { API_URL } from '@env';
-import { useLoginMutation } from "../redux/svc/wisebuyApi";
+import { useLoginMutation } from "../../redux/svc/wisebuyApi";
 import { useDispatch } from "react-redux";
-import { setUser /*, setToken*/ } from "../redux/slices/authSlice";
+import { setUser /*, setToken*/ } from "../../redux/slices/authSlice";
 
 export default function SignIn() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function SignIn() {
       const u = await login({ email, password }).unwrap();
       dispatch(setUser({ id: u._id, name: u.name, email: u.email }));
       // בעתיד עם JWT: dispatch(setToken(token)); להשתמש ב-remember כדי להחליט persist.
-      router.replace("/product"); // שנה ל"/home" אם זה המסך שלך
+      router.replace("main/product"); // שנה ל"/home" אם זה המסך שלך
     } catch (e: any) {
       alert(e?.data?.message || e?.error || "Sign in failed");
     }
@@ -36,7 +36,7 @@ export default function SignIn() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
       <View style={s.page}>
-        <Ionicons name="arrow-back" size={22} onPress={() => router.back()} style={s.back} />
+        <Ionicons name="arrow-back" size={22} onPress={() => router.navigate('/auth/home')} style={s.back} />
         <Logo sizeMultiplier={0.7} textScale={0.15} />
         <Text style={s.title}>Sign In</Text>
 
@@ -47,7 +47,7 @@ export default function SignIn() {
         {isLoading && <ActivityIndicator style={{ marginTop: 6 }} />}
 
         <Text style={s.switch}>
-          Don’t have an account? <Link href="/sign-up">Sign up</Link>
+          Don’t have an account? <Link href="/auth/sign-up">Sign up</Link>
         </Text>
 
         <View style={s.remember}>

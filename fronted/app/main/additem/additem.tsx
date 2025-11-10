@@ -9,10 +9,10 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import ItimText from '../components/Itimtext';
-import Title from '../components/Title';
-import SearchHeader from '../components/SearchHeader';
-import CategoryCard from '../components/categorycard';
+import ItimText from '../../../components/Itimtext';
+import Title from '../../../components/Title';
+import SearchHeader from '../../../components/SearchHeader';
+import CategoryCard from '../../../components/categorycard';
 import { navigate } from 'expo-router/build/global-state/routing';
 import { API_URL } from '@env';
 
@@ -25,21 +25,21 @@ const mostOrdered = [
     name: 'חזה עוף טרי',
     price: '52.40₪',
     weight: '648₪/kg',
-    image: require('../assets/products/Chicken-breast.png'),
+    image: require('../../../assets/products/Chicken-breast.png'),
   },
   {
     id: '2',
     name: 'חזה עוף טרי',
     price: '52.40₪',
     weight: '648₪/kg',
-    image: require('../assets/products/Chicken-breast.png'),
+    image: require('../../../assets/products/Chicken-breast.png'),
   },
   {
     id: '3',
     name: 'חזה עוף טרי',
     price: '52.40₪',
     weight: '648₪/kg',
-    image: require('../assets/products/Chicken-breast.png'),
+    image: require('../../../assets/products/Chicken-breast.png'),
   },
 ];
 
@@ -48,7 +48,7 @@ const categories = Array(12)
   .map((_, i) => ({
     id: i.toString(),
     name: 'בשרים',
-    image: require('../assets/products/ground-beef.png'),
+    image: require('../../../assets/products/ground-beef.png'),
   }));
 
 export default function AddItemScreen() {
@@ -59,7 +59,7 @@ export default function AddItemScreen() {
       {/* 🔍 Back Button + Search Bar */}
       <SearchHeader
         placeholder="Search items..."
-        backRoute="/product"
+        backRoute="/main/product"
         onSearchChange={(text) => console.log('Searching:', text)}
       />
 
@@ -98,7 +98,7 @@ export default function AddItemScreen() {
               key={cat.id}
               name={cat.name}
               image={cat.image}
-              onPress={() => router.push(`/additemcategory?name=${cat.name}`)}
+              onPress={() => router.replace(`/main/additem/additemcategory?name=${cat.name}`)}
               
             />
           ))}

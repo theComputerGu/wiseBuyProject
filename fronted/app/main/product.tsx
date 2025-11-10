@@ -8,11 +8,11 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import TopNav from "../components/Topnav";
-import Title from "../components/Title";
-import BottomNav from "../components/Bottomnavigation";
-import BottomSummary from "../components/BottomSummary";
-import ProductCard from "../components/productcard";
+import TopNav from "../../components/Topnav";
+import Title from "../../components/Title";
+import BottomNav from "../../components/Bottomnavigation";
+import BottomSummary from "../../components/BottomSummary";
+import ProductCard from "../../components/productcard";
 import { API_URL } from '@env';
 
 
@@ -83,10 +83,10 @@ export default function ProductScreen() {
         price: fmtPrice(p.price),
         image: p.images?.[0]
           ? { uri: p.images[0] }
-          : require("../assets/icon2.png"),
+          : require("../../assets/icon2.png"),
         quantity: 0,
         averageLabel: "מחיר ממוצע",
-        uploaderAvatar: require("../assets/icon2.png"),
+        uploaderAvatar: require("../../assets/icon2.png"),
         uploaderName: "System",
       });
 

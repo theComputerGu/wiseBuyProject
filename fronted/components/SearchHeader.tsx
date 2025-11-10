@@ -12,7 +12,7 @@ interface SearchHeaderProps {
 
 export default function SearchHeader({
   placeholder = 'Looking for a specific item',
-  backRoute = '/product',
+  backRoute = '/main/product',
   onSearchChange,
   value,
 }: SearchHeaderProps) {
@@ -21,7 +21,7 @@ export default function SearchHeader({
   return (
     <View style={styles.topRow}>
       {/* ✅ Circular Back Button */}
-      <Pressable onPress={() => router.push(backRoute)} style={styles.backButton}>
+      <Pressable onPress={() => router.replace(backRoute)} style={styles.backButton}>
         <MaterialCommunityIcons name="arrow-left" size={20} color="#fff" />
       </Pressable>
 

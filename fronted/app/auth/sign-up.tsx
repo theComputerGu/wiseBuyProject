@@ -7,15 +7,15 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import TextField from "../components/TextField";
-import Button from "../components/Button";
-import Logo from "../components/Logo";
+import TextField from "../../components/TextField";
+import Button from "../../components/Button";
+import Logo from "../../components/Logo";
 import { API_URL } from '@env';
 
 // ✅ RTK Query + Redux
-import { useCreateUserMutation } from "../redux/svc/wisebuyApi";
+import { useCreateUserMutation } from "../../redux/svc/wisebuyApi";
 import { useDispatch } from "react-redux";
-import { setUser/*, setToken*/ } from "../redux/slices/authSlice";
+import { setUser/*, setToken*/ } from "../../redux/slices/authSlice";
 
 const schema = z.object({
   name: z.string().min(2),
@@ -48,7 +48,7 @@ export default function SignUp() {
       // אם בהמשך יהיה JWT מהשרת, נשמור כאן: dispatch(setToken(token)) וגם נתחשב ב-remember.
 
       // ✅ נכנסים ישר לעמוד המוצרים
-      router.replace("/product"); // אם המסך נקרא אחרת – שנה לנתיב המתאים (למשל "/home")
+      router.replace("/main/product"); // אם המסך נקרא אחרת – שנה לנתיב המתאים (למשל "/home")
     } catch (e: any) {
       const msg = e?.data?.message || e?.error || "Could not create account";
       alert(msg);
@@ -58,7 +58,7 @@ export default function SignUp() {
   return (
     <SafeAreaView style={{ flex:1, backgroundColor:"#ffffffff" }}>
       <View style={s.page}>
-        <Ionicons name="arrow-back" size={22} onPress={()=>router.back()} style={s.back} />
+        <Ionicons name="arrow-back" size={22} onPress={()=>router.navigate('/auth/home')} style={s.back} />
         <Logo sizeMultiplier={0.5} textScale={0.2} />
         <Text style={s.title}>Sign Up</Text>
 

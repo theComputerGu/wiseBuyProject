@@ -12,7 +12,7 @@ export default function Topnav() {
     <View style={styles.container}>
       {/* ✅ Icon + Text in one row */}
       <View style={styles.headerRow}>
-        <Pressable onPress={() => router.push('/account')}>
+        <Pressable onPress={() => router.replace('/main/account')}>
           <MaterialCommunityIcons
             name="account-circle"
             size={50}

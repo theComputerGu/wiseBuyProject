@@ -5,17 +5,17 @@ import {
   ScrollView,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router'; // ✅ FIXED
-import ItimText from '../components/Itimtext';
-import BottomNav from '../components/Bottomnavigation';
-import Button from '../components/Button';
-import TopNav from '../components/Topnav'
-import Title from '../components/Title'
+import { useRouter } from 'expo-router'; 
+import ItimText from '../../components/Itimtext';
+import BottomNav from '../../components/Bottomnavigation';
+import Button from '../../components/Button';
+import TopNav from '../../components/Topnav'
+import Title from '../../components/Title'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { API_URL } from '@env';
 
 export default function CheckoutScreen() {
-  const router = useRouter(); // ✅ initialize router
+  const router = useRouter(); 
 
   const stores = [
     {
@@ -103,7 +103,7 @@ export default function CheckoutScreen() {
       {/* ✅ Mark as purchased button */}
       <Button
         title="Mark as purchased!"
-        onPress={() => router.replace('/history')}
+        onPress={() => router.replace('/main/history')}
       />
 
       <BottomNav />

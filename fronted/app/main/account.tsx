@@ -3,19 +3,19 @@ import React, { useMemo, useState } from 'react';
 import { View, StyleSheet, Pressable, ScrollView, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import BottomNav from '../components/Bottomnavigation';
-import TopNav from '../components/Topnav';
-import ItimText from '../components/Itimtext';
-import Title from '../components/Title';
-import TextField from '../components/TextField';
-import Button from '../components/Button';
+import BottomNav from '../../components/Bottomnavigation';
+import TopNav from '../../components/Topnav';
+import ItimText from '../../components/Itimtext';
+import Title from '../../components/Title';
+import TextField from '../../components/TextField';
+import Button from '../../components/Button';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { API_URL } from '@env';
 
 import { useSelector, useDispatch } from 'react-redux';
-import type { RootState } from '../redux/state/store';
-import { setUser, signOut } from '../redux/slices/authSlice';
-import { useUpdateUserMutation, useDeleteUserMutation } from '../redux/svc/wisebuyApi';
+import type { RootState } from '../../redux/state/store';
+import { setUser, signOut } from '../../redux/slices/authSlice';
+import { useUpdateUserMutation, useDeleteUserMutation } from '../../redux/svc/wisebuyApi';
 import { useRouter } from 'expo-router';
 
 export default function AccountScreen() {
@@ -100,7 +100,7 @@ export default function AccountScreen() {
 
   const onLogout = () => {
     dispatch(signOut());
-    router.replace('/home'); // החזרה ל-Home (התאם אם יש לך נתיב אחר)
+    router.replace('/main/home'); // החזרה ל-Home (התאם אם יש לך נתיב אחר)
   };
 
   const onDeleteUser = async () => {

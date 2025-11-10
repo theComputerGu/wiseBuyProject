@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { StyleSheet, View, Animated, Easing } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Video, ResizeMode } from 'expo-av';
+import { VideoView, useVideoPlayer } from 'expo-video';
 import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
 import ItimText from '../components/Itimtext';
-import { API_URL } from '@env';
 
 export default function Index() {
   const router = useRouter();
@@ -13,7 +12,16 @@ export default function Index() {
   // 🎞️ Fade animation for smooth appearance
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
+  // 🎥 Setup the video player
+  const player = useVideoPlayer(require('../assets/logos/cart-gif.mp4'), (status) => {
+    // You can handle playback status here if needed
+  });
+
   useEffect(() => {
+    // Auto-play and loop
+    player.play();
+    player.loop = true;
+
     // Fade-in effect
     Animated.timing(fadeAnim, {
       toValue: 1,
@@ -24,7 +32,7 @@ export default function Index() {
 
     // Navigate after 3 seconds
     const timer = setTimeout(() => {
-      router.replace('/home');
+      router.replace('/auth/home');
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -36,27 +44,13 @@ export default function Index() {
     <View style={styles.container}>
       {/* 🎬 Fullscreen background video */}
       <Animated.View style={[StyleSheet.absoluteFill, { opacity: fadeAnim }]}>
-        <Video
-          source={require('../assets/logos/cart-gif.mp4')}
+        <VideoView
+          player={player}
           style={styles.video}
-          resizeMode={ResizeMode.COVER}
-          shouldPlay
-          isLooping
+          contentFit='cover'
         />
       </Animated.View>
 
-      {/* 📝 Optional overlay text (currently commented) */}
-      {/*
-      <ItimText size={40} weight="bold" color="#fff" style={{ marginTop: -10 }}>
-        WiseBuy
-      </ItimText>
-      <ItimText size={28} color="#fff" weight="bold" style={{ marginTop: 8 }}>
-        Shop smart. Stock right.
-      </ItimText>
-      <ItimText size={28} color="#fff" weight="bold">
-        Save big.
-      </ItimText>
-      */}
     </View>
   );
 }

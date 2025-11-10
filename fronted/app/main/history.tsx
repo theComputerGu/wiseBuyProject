@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ItimText from '../components/Itimtext';
-import BottomNav from '../components/Bottomnavigation';
-import TopNav from '../components/Topnav'
-import Title from '../components/Title'
+import ItimText from '../../components/Itimtext';
+import BottomNav from '../../components/Bottomnavigation';
+import TopNav from '../../components/Topnav'
+import Title from '../../components/Title'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { API_URL } from '@env';
 
