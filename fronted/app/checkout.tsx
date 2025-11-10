@@ -12,6 +12,7 @@ import Button from '../components/Button';
 import TopNav from '../components/Topnav'
 import Title from '../components/Title'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { API_URL } from '@env';
 
 export default function CheckoutScreen() {
   const router = useRouter(); // ✅ initialize router

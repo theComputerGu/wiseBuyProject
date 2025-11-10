@@ -14,6 +14,7 @@ import Title from '../components/Title';
 import SearchHeader from '../components/SearchHeader';
 import CategoryCard from '../components/categorycard';
 import { navigate } from 'expo-router/build/global-state/routing';
+import { API_URL } from '@env';
 
 const screenWidth = Dimensions.get('window').width;
 

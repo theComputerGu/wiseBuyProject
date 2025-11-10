@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import { Video, ResizeMode } from 'expo-av';
 import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
 import ItimText from '../components/Itimtext';
+import { API_URL } from '@env';
 
 export default function Index() {
   const router = useRouter();

@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import TextField from "../components/TextField";
 import Button from "../components/Button";
 import Logo from "../components/Logo";
+import { API_URL } from '@env';
 
 // ✅ RTK Query + Redux
 import { useCreateUserMutation } from "../app/src/svc/wisebuyApi";

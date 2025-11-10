@@ -13,8 +13,8 @@ import Title from "../components/Title";
 import BottomNav from "../components/Bottomnavigation";
 import BottomSummary from "../components/BottomSummary";
 import ProductCard from "../components/productcard";
+import { API_URL } from '@env';
 
-const BASE_URL = "http://172.20.10.2:3000";
 
 type ServerProduct = {
   _id: string;
@@ -67,8 +67,8 @@ export default function ProductScreen() {
     try {
       // שולף במקביל את כל המוצרים + ההמלצות
       const [resProducts, resReco] = await Promise.all([
-        fetch(`${BASE_URL}/products`),
-        fetch(`${BASE_URL}/products/recommendations`),
+        fetch(`${API_URL}/products`),
+        fetch(`${API_URL}/products/recommendations`),
       ]);
 
       if (!resProducts.ok || !resReco.ok)

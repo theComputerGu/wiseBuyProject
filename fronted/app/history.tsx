@@ -6,6 +6,7 @@ import BottomNav from '../components/Bottomnavigation';
 import TopNav from '../components/Topnav'
 import Title from '../components/Title'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { API_URL } from '@env';
 
 export default function HistoryScreen() {
   const history = [

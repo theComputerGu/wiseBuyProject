@@ -15,6 +15,7 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import ItimText from '../components/Itimtext';
 import Title from '../components/Title';
 import SearchHeader from '../components/SearchHeader';
+import { API_URL } from '@env';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;

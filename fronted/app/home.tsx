@@ -13,6 +13,7 @@ import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
 import Title from '../components/Title';
 import ItimText from '../components/Itimtext';
 import Logo from '../assets/logos/logo blue.png';
+import { API_URL } from '@env';
 
 const screenHeight = Dimensions.get('window').height;
 

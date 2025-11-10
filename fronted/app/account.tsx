@@ -12,6 +12,7 @@ import TopNav from '../components/Topnav'
 import ItimText from '../components/Itimtext';
 import Title from '../components/Title'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { API_URL } from '@env';
 
 export default function AccountScreen() {
   const [showPassword, setShowPassword] = useState(false);
