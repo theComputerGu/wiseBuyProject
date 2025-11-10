@@ -172,6 +172,21 @@ export const wisebuyApi = createApi({
     deleteGroup: builder.mutation<any, string>({ query:(id)=>({ url:`/groups/${id}`, method:'DELETE' }), invalidatesTags:[{type:'Groups', id:'LIST'}] }),
 
     // ===== USERS =====
+
+    uploadAvatar: builder.mutation<any, { id: string; file: any }>({
+      query: ({ id, file }) => {
+        const form = new FormData();
+        form.append('file', file as any);
+
+        return {
+          url: `/users/${id}/avatar`,
+          method: 'PATCH',
+          body: form,
+          // חשוב: ללא הגדרת Content-Type ידנית—הדפדפן/רנ״ט מוסיף boundary
+        };
+      },
+    }),
+
     // 👇 חדש: מחיקת משתמש
     deleteUser: builder.mutation<void, { id: string }>({
       query: ({ id }) => ({
@@ -242,6 +257,7 @@ export const {
   useGetUserGroupsQuery,
   useDeleteUserMutation, // 👈 חדש
   useUpdateUserMutation,
+  useUploadAvatarMutation, // 👈 חדש
   // auth
   useLoginMutation,
 } = wisebuyApi;

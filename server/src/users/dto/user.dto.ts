@@ -6,4 +6,5 @@ export class UserDto {
   groups: string[];
   createdAt?: string;
   updatedAt?: string;
+  avatarUrl?: string; // 👈 חדש
 }
