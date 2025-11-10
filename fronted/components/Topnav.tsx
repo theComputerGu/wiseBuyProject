@@ -14,7 +14,7 @@ export default function TopNav() {
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
-        <Pressable onPress={() => router.replace('/main/account')}>
+        <Pressable onPress={() => router.replace('/main/account')} />
           <MaterialCommunityIcons
             name="account-circle"
             size={50}

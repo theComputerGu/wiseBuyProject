@@ -14,9 +14,9 @@ import Button from "../../components/Button";
 import Logo from "../../components/Logo";
 
 // ✅ RTK Query + Redux
-import { useCreateUserMutation } from "../app/src/svc/wisebuyApi";
+import { useCreateUserMutation } from "../../redux/svc/wisebuyApi";
 import { useDispatch } from "react-redux";
-import { setUser/*, setToken*/ } from "../app/src/slices/authSlice";
+import { setUser/*, setToken*/ } from "../../redux/slices/authSlice";
 
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
