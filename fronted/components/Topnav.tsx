@@ -7,7 +7,7 @@ import ItimText from './Itimtext';
 
 export default function TopNav() {
   const router = useRouter();
-  const user = useSelector((s: any) => s.auth?.user); // נשלף את המשתמש מה-Redux
+  const user = useSelector((s: any) => s.auth?.user); 
 
   const avatarUrl = user?.avatarUrl;
 
