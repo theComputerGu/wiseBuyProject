@@ -68,4 +68,23 @@ export class UsersService {
   return { _id: user._id.toString(), name: user.name, email: user.email };
 }
 
+
+// ✅ Update user (name/email/password)
+  async update(id: string, patch: Partial<User>) {
+    // לא לאפשר לשנות _id/createdAt וכו'
+    const allowed: Partial<User> = {};
+    if (typeof patch.name === 'string') allowed.name = patch.name;
+    if (typeof patch.email === 'string') allowed.email = patch.email;
+    if (typeof patch.password === 'string') allowed.password = patch.password; // בהמשך נחליף ל-bcrypt
+
+    const updated = await this.userModel
+      .findByIdAndUpdate(id, allowed, { new: true, runValidators: true })
+      .exec();
+
+    if (!updated) throw new NotFoundException(`User with ID ${id} not found`);
+
+    // מחזירים ללא סיסמה
+    return { _id: updated.id, name: updated.name, email: updated.email, createdAt: (updated as any).createdAt };
+  }
+
 }

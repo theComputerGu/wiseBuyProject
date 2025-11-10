@@ -1,22 +1,46 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type User = { id: string; name: string; email?: string; defaultGroupId?: string };
-interface AuthState { token?: string; user?: User; activeGroupId?: string }
+type User = {
+  id: string;
+  name: string;
+  email?: string;
+  defaultGroupId?: string;
 
-const initialState: AuthState = { token: undefined, user: undefined, activeGroupId: undefined };
+  // 👇 תוספת מינימלית כדי ש-Account יוכל לשמור ולהציג תאריכים
+  createdAt?: string;   // ISO string מהשרת (אופציונלי)
+  updatedAt?: string;   // ISO string מהשרת (אופציונלי)
+};
+
+interface AuthState {
+  token?: string;
+  user?: User;
+  activeGroupId?: string;
+}
+
+const initialState: AuthState = {
+  token: undefined,
+  user: undefined,
+  activeGroupId: undefined,
+};
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setToken: (s, a: PayloadAction<string | undefined>) => { s.token = a.payload; },
+    setToken: (s, a: PayloadAction<string | undefined>) => {
+      s.token = a.payload;
+    },
     setUser: (s, a: PayloadAction<User | undefined>) => {
       s.user = a.payload;
       if (a.payload?.defaultGroupId) s.activeGroupId = a.payload.defaultGroupId;
     },
-    signOut: (s) => { s.token = undefined; s.user = undefined; s.activeGroupId = undefined; },
+    signOut: (s) => {
+      s.token = undefined;
+      s.user = undefined;
+      s.activeGroupId = undefined;
+    },
   },
 });
 
 export const { setToken, setUser, signOut } = authSlice.actions;
-export default authSlice.reducer;                    
+export default authSlice.reducer;
