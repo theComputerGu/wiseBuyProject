@@ -58,6 +58,7 @@ export interface User {
   groups?: string[];
   createdAt?: string;
   updatedAt?: string;
+  avatarUrl?: string | null;   // ⬅️ חדש
 }
 
 export type ShoppingListItem = {
@@ -213,9 +214,9 @@ export const wisebuyApi = createApi({
     
 
     // ===== AUTH (Login) =====
-    login: builder.mutation<{ _id:string; name:string; email:string }, { email:string; password:string }>({
-      query: (body) => ({ url: '/users/login', method: 'POST', body }),
-    }),
+    login: builder.mutation<{ _id:string; name:string; email:string; avatarUrl?: string | null }, { email:string; password:string }>({
+  query: (body) => ({ url: '/users/login', method: 'POST', body }),
+}),
   }),
 });
 
