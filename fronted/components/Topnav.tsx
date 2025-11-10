@@ -14,14 +14,7 @@ export default function TopNav() {
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
-        <Pressable onPress={() => router.replace('/main/account')} />
-          <MaterialCommunityIcons
-            name="account-circle"
-            size={50}
-            color="#197FF4"
-            style={styles.icon}
-          />
-        <Pressable onPress={() => router.push('/account')}>
+        <Pressable onPress={() => router.push('/main/account')}>
           {avatarUrl ? (
             <Image
               source={{ uri: avatarUrl }}
