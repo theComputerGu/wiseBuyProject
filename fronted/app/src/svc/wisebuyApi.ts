@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // ---------- BASE ----------
-const BASE_URL = 'http://172.20.10.2:3000';
+const BASE_URL = 'http://192.168.30.122:3000';
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -173,6 +173,19 @@ export const wisebuyApi = createApi({
     deleteGroup: builder.mutation<any, string>({ query:(id)=>({ url:`/groups/${id}`, method:'DELETE' }), invalidatesTags:[{type:'Groups', id:'LIST'}] }),
 
     // ===== USERS =====
+    // 👇 חדש: מחיקת משתמש
+    deleteUser: builder.mutation<void, { id: string }>({
+      query: ({ id }) => ({
+        url: `/users/${id}`,
+        method: 'DELETE',
+      }),
+    }),
+
+    updateUser: builder.mutation<User, { id: string; patch: Partial<User> }>({
+    query: ({ id, patch }) => ({ url: `/users/${id}`, method: 'PATCH', body: patch }),
+    invalidatesTags: (_r, _e, arg) => [{ type: 'Users', id: arg.id }, { type: 'Users', id: 'LIST' }],
+    }),
+
     createUser: builder.mutation<User, { name:string; email:string; password:string }>({
       query:(body)=>({ url:'/users', method:'POST', body }), invalidatesTags:[{type:'Users', id:'LIST'}],
     }),
@@ -183,7 +196,7 @@ export const wisebuyApi = createApi({
       invalidatesTags:(_,_e,arg)=>[{type:'Users', id:arg.userId},{type:'Groups', id:arg.groupId}],
     }),
     getUserGroups: builder.query<Group[], string>({ query:(id)=>`/users/${id}/groups`, providesTags:(_,_e,id)=>[{type:'Users', id}] }),
-    deleteUser: builder.mutation<any, string>({ query:(id)=>({ url:`/users/${id}`, method:'DELETE' }), invalidatesTags:[{type:'Users', id:'LIST'}] }),
+    
 
     // ===== AUTH (Login) =====
     login: builder.mutation<{ _id:string; name:string; email:string }, { email:string; password:string }>({
@@ -228,7 +241,8 @@ export const {
   useGetUserByIdQuery,
   useAddGroupToUserMutation,
   useGetUserGroupsQuery,
-  useDeleteUserMutation,
+  useDeleteUserMutation, // 👈 חדש
+  useUpdateUserMutation,
   // auth
   useLoginMutation,
 } = wisebuyApi;

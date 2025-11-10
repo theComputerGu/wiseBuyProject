@@ -18,6 +18,13 @@ export class User {
 
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Group' }] })
   groups: Types.ObjectId[];
+
+  // 👇 להוסיף — רק כדי שהטיפוס ידע עליהם. Mongoose כבר ינהל אותם.
+  @Prop()
+  createdAt?: Date;
+
+  @Prop()
+  updatedAt?: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
