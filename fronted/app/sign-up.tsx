@@ -10,26 +10,48 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import TextField from "../components/TextField";
 import Button from "../components/Button";
 import Logo from "../components/Logo";
-import { signUp } from "../lib/api";
+
+// ✅ RTK Query + Redux
+import { useCreateUserMutation } from "../app/src/svc/wisebuyApi";
+import { useDispatch } from "react-redux";
+import { setUser/*, setToken*/ } from "../app/src/slices/authSlice";
 
 const schema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
   password: z.string().min(6),
-  confirm: z.string().min(6)
+  confirm: z.string().min(6),
 }).refine(v => v.password === v.confirm, { path:["confirm"], message:"Passwords do not match" });
 type Form = z.infer<typeof schema>;
 
 export default function SignUp() {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [remember, setRemember] = useState(false);
+
   const { control, handleSubmit, formState:{ isSubmitting } } =
     useForm<Form>({ resolver: zodResolver(schema), defaultValues:{ name:"", email:"", password:"", confirm:"" } });
 
+  const [createUser, { isLoading }] = useCreateUserMutation();
+
   const onSubmit = async (data: Form) => {
-    const ok = await signUp({ name: data.name, email: data.email, password: data.password }, remember);
-    if (ok) { alert("Account created! Please sign in."); router.replace("/sign-in"); }
-    else alert("Could not create account");
+    try {
+      const u = await createUser({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      }).unwrap();
+
+      // ✅ "מחובר" באפליקציה – שומרים ב-Redux
+      dispatch(setUser({ id: u._id, name: u.name, email: u.email }));
+      // אם בהמשך יהיה JWT מהשרת, נשמור כאן: dispatch(setToken(token)) וגם נתחשב ב-remember.
+
+      // ✅ נכנסים ישר לעמוד המוצרים
+      router.replace("/product"); // אם המסך נקרא אחרת – שנה לנתיב המתאים (למשל "/home")
+    } catch (e: any) {
+      const msg = e?.data?.message || e?.error || "Could not create account";
+      alert(msg);
+    }
   };
 
   return (
@@ -52,8 +74,11 @@ export default function SignUp() {
           <TextField value={value} onChangeText={onChange} placeholder="Confirm Password" secure />
         )}/>
 
-        <Button title={isSubmitting ? "..." : "Sign Up"} onPress={handleSubmit(onSubmit)} />
-        {isSubmitting && <ActivityIndicator style={{ marginTop:8 }} />}
+        <Button
+          title={isSubmitting || isLoading ? "..." : "Sign Up"}
+          onPress={handleSubmit(onSubmit)}
+        />
+        {(isSubmitting || isLoading) && <ActivityIndicator style={{ marginTop:8 }} />}
 
         <Text style={s.switch}>Already have an account? <Link href="/sign-in">Sign In</Link></Text>
 
@@ -65,6 +90,7 @@ export default function SignUp() {
     </SafeAreaView>
   );
 }
+
 const s = StyleSheet.create({
   page:{ flex:1, padding:20, gap:12, justifyContent:"center" },
   back:{ position:"absolute", top:8, left:8 },

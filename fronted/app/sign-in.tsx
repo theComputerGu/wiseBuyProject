@@ -1,7 +1,6 @@
-// app/sign-in.tsx
 import { useRouter, Link } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import Checkbox from "expo-checkbox";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
@@ -9,42 +8,43 @@ import TextField from "../components/TextField";
 import Button from "../components/Button";
 import Logo from "../components/Logo";
 
+import { useLoginMutation } from "../app/src/svc/wisebuyApi";
+import { useDispatch } from "react-redux";
+import { setUser /*, setToken*/ } from "../app/src/slices/authSlice";
 
 export default function SignIn() {
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const [remember, setRemember] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const [login, { isLoading }] = useLoginMutation();
+
+  const onSignIn = async () => {
+    try {
+      const u = await login({ email, password }).unwrap();
+      dispatch(setUser({ id: u._id, name: u.name, email: u.email }));
+      // בעתיד עם JWT: dispatch(setToken(token)); להשתמש ב-remember כדי להחליט persist.
+      router.replace("/product"); // שנה ל"/home" אם זה המסך שלך
+    } catch (e: any) {
+      alert(e?.data?.message || e?.error || "Sign in failed");
+    }
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
       <View style={s.page}>
-        <Ionicons
-          name="arrow-back"
-          size={22}
-          onPress={() => router.back()}
-          style={s.back}
-        />
+        <Ionicons name="arrow-back" size={22} onPress={() => router.back()} style={s.back} />
         <Logo sizeMultiplier={0.7} textScale={0.15} />
         <Text style={s.title}>Sign In</Text>
 
-        <TextField
-          value={email}
-          onChangeText={setEmail}
-          placeholder="Email address"
-          keyboardType="email-address"
-        />
-        <TextField
-          value={password}
-          onChangeText={setPassword}
-          placeholder="Password"
-          secure
-        />
+        <TextField value={email} onChangeText={setEmail} placeholder="Email address" keyboardType="email-address" />
+        <TextField value={password} onChangeText={setPassword} placeholder="Password" secure />
 
-        <Button
-          title="Sign In"
-          onPress={() => router.replace("/product")}
-        />
+        <Button title={isLoading ? "..." : "Sign In"} onPress={onSignIn} />
+        {isLoading && <ActivityIndicator style={{ marginTop: 6 }} />}
 
         <Text style={s.switch}>
           Don’t have an account? <Link href="/sign-up">Sign up</Link>

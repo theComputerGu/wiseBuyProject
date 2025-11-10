@@ -1,18 +1,51 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { UsersController } from './users.controller';
+import { Controller, Get, Post, Delete, Param, Body, Patch } from '@nestjs/common';
+import { UsersService } from './users.service';
+import { LoginDto } from './dto/login.dto';
 
-describe('UsersController', () => {
-  let controller: UsersController;
+@Controller('users')
+export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [UsersController],
-    }).compile();
+  @Post()
+  async create(
+    @Body('name') name: string,
+    @Body('email') email: string,
+    @Body('password') password: string,
+  ) {
+    return this.usersService.create({ name, email, password });
+  }
 
-    controller = module.get<UsersController>(UsersController);
-  });
+  @Get()
+  async findAll() {
+    return this.usersService.findAll();
+  }
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
-});
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    return this.usersService.findOne(id);
+  }
+
+  @Patch(':userId/add-group/:groupId')
+  async addGroup(
+    @Param('userId') userId: string,
+    @Param('groupId') groupId: string,
+  ) {
+    return this.usersService.addGroup(userId, groupId);
+  }
+
+  @Get(':id/groups')
+  async getUserGroups(@Param('id') id: string) {
+    return this.usersService.findUserGroups(id);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
+    return this.usersService.delete(id);
+  }
+
+  // 🔐 NEW: /users/login
+  @Post('login')
+  async login(@Body() dto: LoginDto) {
+    return this.usersService.login(dto.email, dto.password);
+  }
+}
