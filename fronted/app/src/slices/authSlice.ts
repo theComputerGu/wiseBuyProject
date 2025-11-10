@@ -9,7 +9,7 @@ type User = {
   // 👇 תוספת מינימלית כדי ש-Account יוכל לשמור ולהציג תאריכים
   createdAt?: string;   // ISO string מהשרת (אופציונלי)
   updatedAt?: string;   // ISO string מהשרת (אופציונלי)
-  avatarUrl?: string; // 👈 חדש
+  avatarUrl?: string | null;   // ⬅️ חדש
 };
 
 interface AuthState {
