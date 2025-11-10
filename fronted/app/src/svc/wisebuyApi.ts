@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API_URL } from '@env';
 
-// ---------- BASE ----------
-const BASE_URL = 'http://192.168.30.122:3000';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: BASE_URL,
+  baseUrl: API_URL,
   prepareHeaders: (headers, { getState }) => {
     const state: any = getState();
     const token = state?.auth?.token;
