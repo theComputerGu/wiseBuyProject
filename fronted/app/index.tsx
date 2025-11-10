@@ -1,55 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  StyleSheet,
-  View,
-  Animated,
-  Dimensions,
-  Easing,
-} from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { StyleSheet, View, Animated, Easing } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Video, ResizeMode } from 'expo-av';
 import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
-import LottieView from 'lottie-react-native';
-import ItimText from '../components/Itimtext'; 
-import Logo from '../assets/logos/logo white.png';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
-const screenHeight = Dimensions.get('window').height;
+import ItimText from '../components/Itimtext';
 
 export default function Index() {
   const router = useRouter();
   const [fontsLoaded] = useFonts({ Itim_400Regular });
 
-  // Animation control
-  const scaleAnim = useRef(new Animated.Value(1)).current;
-  const [showAnim, setShowAnim] = useState(true);
+  // 🎞️ Fade animation for smooth appearance
+  const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  // ✅ Breathing logo animation
   useEffect(() => {
-    const loop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(scaleAnim, {
-          toValue: 1.1,
-          duration: 900,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-        Animated.timing(scaleAnim, {
-          toValue: 1.0,
-          duration: 900,
-          easing: Easing.inOut(Easing.quad),
-          useNativeDriver: true,
-        }),
-      ])
-    );
+    // Fade-in effect
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1500,
+      easing: Easing.inOut(Easing.ease),
+      useNativeDriver: true,
+    }).start();
 
-    loop.start();
-    return () => loop.stop();
-  }, [scaleAnim]);
-
-  // ✅ Navigate after 3 seconds
-  useEffect(() => {
+    // Navigate after 3 seconds
     const timer = setTimeout(() => {
-      setShowAnim(false);
       router.replace('/home');
     }, 3000);
 
@@ -59,16 +32,21 @@ export default function Index() {
   if (!fontsLoaded) return <View style={styles.container} />;
 
   return (
-       <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
     <View style={styles.container}>
-      {/* ✅ Animated Logo */}
-      <Animated.Image
-        source={Logo}
-        style={[styles.img, { transform: [{ scale: scaleAnim }] }]}
-      />
+      {/* 🎬 Fullscreen background video */}
+      <Animated.View style={[StyleSheet.absoluteFill, { opacity: fadeAnim }]}>
+        <Video
+          source={require('../assets/logos/cart-gif.mp4')}
+          style={styles.video}
+          resizeMode={ResizeMode.COVER}
+          shouldPlay
+          isLooping
+        />
+      </Animated.View>
 
-      {/* ✅ Texts using Itim font */}
-      <ItimText size={40} weight="bold" color="#fff" style={{ marginTop: -20 }}>
+      {/* 📝 Optional overlay text (currently commented) */}
+      {/*
+      <ItimText size={40} weight="bold" color="#fff" style={{ marginTop: -10 }}>
         WiseBuy
       </ItimText>
       <ItimText size={28} color="#fff" weight="bold" style={{ marginTop: 8 }}>
@@ -77,37 +55,25 @@ export default function Index() {
       <ItimText size={28} color="#fff" weight="bold">
         Save big.
       </ItimText>
-
-      {/* ✅ Loading animation (Lottie) */}
-      {showAnim && (
-        <LottieView
-          source={require('../assets/animations/loading.json')}
-          autoPlay
-          loop
-          style={styles.lottie}
-        />
-      )}
+      */}
     </View>
-    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#197FF4',
+    alignItems: 'center',
+    backgroundColor: 'white', // fallback while video loads
   },
-  img: {
-    width: 280,
-    height: 280,
-    resizeMode: 'contain',
-    marginBottom: 10,
-  },
-  lottie: {
-    width: 150,
-    height: 150,
-    marginTop: 6,
+  video: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '60%',
   },
 });

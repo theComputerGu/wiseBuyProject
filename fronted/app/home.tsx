@@ -1,127 +1,116 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   Image,
   ActivityIndicator,
   Dimensions,
   Pressable,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useFonts, Itim_400Regular } from '@expo-google-fonts/itim';
-import ItimText from '../components/Itimtext'; 
-import Logo from '../assets/logos/logo black.png';
-import Title from '../components/Title'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import Title from '../components/Title';
+import ItimText from '../components/Itimtext';
+import Logo from '../assets/logos/logo blue.png';
 
 const screenHeight = Dimensions.get('window').height;
 
 export default function Home() {
   const router = useRouter();
-
-  const [fontsLoaded] = useFonts({
-    itim: Itim_400Regular,
-  });
+  const [fontsLoaded] = useFonts({ itim: Itim_400Regular });
 
   if (!fontsLoaded) {
     return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#000000ff" />
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#197FF4" />
       </View>
     );
   }
 
   return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
-    <View style={styles.container}>
-      <Image source={Logo} style={styles.img} />
-      <Text style={styles.title1}>WiseBuy</Text>
-      <Text style={styles.title2}>Shop smart. Stock right.</Text>
-      <Text style={styles.title3}>Save big.</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.inner}>
+        <Image source={Logo} style={styles.img} />
 
-      {/* ✅ Buttons Side by Side */}
-      <View style={styles.buttonRow}>
-        <Pressable
-          style={styles.signInButton}
-          onPress={() => router.push('/sign-in')}
-        >
-          <Text style={styles.signInText}>Sign In</Text>
-        </Pressable>
+        {/* ✅ Use Title component for consistency */}
+        <ItimText size={70} color="#197FF4"  family='Itim_400Regular'>
+          WiseBuy
+        </ItimText>
+        <ItimText size={30} color="#197FF4" style={{ marginTop: 6 }} family='Itim_400Regular'>
+          Shop smart. Stock right.
+        </ItimText>
+        <ItimText size={30} color="#197FF4" family='Itim_400Regular'>
+          Save big.
+        </ItimText>
 
-        <Pressable
-          style={styles.signUpButton}
-          onPress={() => router.push('/sign-up')}
-        >
-          <Text style={styles.signUpText}>Sign Up</Text>
-        </Pressable>
+        {/* ✅ Buttons Side by Side */}
+        <View style={styles.buttonRow}>
+          <Pressable
+            style={styles.signInButton}
+            onPress={() => router.push('/sign-in')}
+          >
+            <ItimText size={20} color="#197FF4" weight="bold">
+              Sign In
+            </ItimText>
+          </Pressable>
+
+          <Pressable
+            style={styles.signUpButton}
+            onPress={() => router.push('/sign-up')}
+          >
+            <ItimText size={20} color="#197FF4" weight="bold">
+              Register
+            </ItimText>
+          </Pressable>
+        </View>
       </View>
-    </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-   container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20 },
-  img: {
-    width: 300,
-    height: 300,
-    resizeMode: 'contain',
-    marginTop: -40, // אפשר לכוון לגובה שייראה טוב
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
   },
-  title1: {
-    fontFamily: 'itim',
-    fontWeight: 'bold',
-    fontSize: 40,
-    color: '#000000',
-    marginTop: 10,
-    textAlign: 'center',        // ✅ לוודא שהטקסט ממורכז בתוך האלמנט
+  inner: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 25,
   },
-  title2: {
-    fontFamily: 'itim',
-    fontWeight: 'bold',
-    fontSize: 30,
-    color: '#000000',
-    marginTop: 8,
-    textAlign: 'center',        // ✅
-  },
-  title3: {
-    fontFamily: 'itim',
-    fontWeight: 'bold',
-    fontSize: 30,
-    color: '#000000',
-    marginBottom: 40,
-    textAlign: 'center',        // ✅
-  },
-
-  /* ✅ New layout for horizontal buttons */
-  buttonRow: {
-    flexDirection: 'row', // side by side
+  loadingContainer: {
+    flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '90%',
-    gap: 15, // adds space between them (RN 0.71+)
-    marginTop: 80
   },
-
+  img: {
+    width: 280,
+    height: 280,
+    resizeMode: 'contain',
+    marginBottom: 10,
+    marginRight: 20,
+  },
+  buttonRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 16,
+    width: '100%',
+    marginTop: 60,
+  },
   signInButton: {
-    flex: 1,
-    backgroundColor: '#197FF4',
+     flex: 1,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 2,
+    borderColor: '#197FF4',
     paddingVertical: 14,
     borderRadius: 30,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
+    shadowOpacity: 0.05,
+    elevation: 3,
   },
-  signInText: {
-    color: '#FFFFFF',
-    fontFamily: 'itim',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-
   signUpButton: {
     flex: 1,
     backgroundColor: '#FFFFFF',
@@ -130,11 +119,8 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     borderRadius: 30,
     alignItems: 'center',
-  },
-  signUpText: {
-    color: '#197FF4',
-    fontFamily: 'itim',
-    fontSize: 20,
-    fontWeight: 'bold',
+    shadowColor: '#000',
+    shadowOpacity: 0.05,
+    elevation: 3,
   },
 });

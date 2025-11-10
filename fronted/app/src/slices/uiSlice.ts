@@ -25,4 +25,4 @@ const uiSlice = createSlice({
 });
 
 export const { setFilters, pushSearch, clearFilters } = uiSlice.actions;
-export default uiSlice.reducer;                       // ✅
+export default uiSlice.reducer;                 
