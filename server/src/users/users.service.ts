@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { User, UserDocument } from './schemas/users.schema';
@@ -11,25 +15,25 @@ export class UsersService {
     @InjectModel(Group.name) private groupModel: Model<GroupDocument>,
   ) {}
 
-  // Create user
+  // ✅ Create user
   async create(data: Partial<User>): Promise<User> {
     const user = new this.userModel(data);
     return user.save();
   }
 
-  // List users
+  // ✅ Get all users
   async findAll(): Promise<User[]> {
     return this.userModel.find().populate('groups').exec();
   }
 
-  // Get user by id
+  // ✅ Get one user by ID
   async findOne(id: string): Promise<User> {
     const user = await this.userModel.findById(id).populate('groups').exec();
     if (!user) throw new NotFoundException(`User with ID ${id} not found`);
     return user;
   }
 
-  // Add group to user
+  // ✅ Add group to user
   async addGroup(userId: string, groupId: string): Promise<User> {
     const user = await this.userModel
       .findByIdAndUpdate(
@@ -48,34 +52,45 @@ export class UsersService {
     return user;
   }
 
-  // User groups
+  // ✅ Get user groups
   async findUserGroups(userId: string): Promise<Group[]> {
     const user = await this.userModel.findById(userId).populate('groups').exec();
     if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
-    return (user.groups as any) as Group[];
+    return user.groups as unknown as Group[];
   }
 
-  // Delete
+  // ✅ Delete user
   async delete(userId: string): Promise<User | null> {
     return this.userModel.findByIdAndDelete(userId).exec();
   }
 
+  // ✅ Login
   async login(email: string, password: string) {
-  const user = (await this.userModel.findOne({ email }).exec()) as UserDocument | null;
-  if (!user || user.password !== password) {
-    throw new UnauthorizedException('Invalid email or password');
+    const user = (await this.userModel.findOne({ email }).exec()) as
+      | UserDocument
+      | null;
+
+    if (!user || user.password !== password) {
+      throw new UnauthorizedException('Invalid email or password');
+    }
+
+    return {
+      _id: user._id.toString(),
+      name: user.name,
+      email: user.email,
+      avatarUrl: user.avatarUrl || null,
+    };
   }
-  return { _id: user._id.toString(), name: user.name, email: user.email };
-}
 
-
-// ✅ Update user (name/email/password)
+  // ✅ Update user (name/email/password/avatar)
   async update(id: string, patch: Partial<User>) {
-    // לא לאפשר לשנות _id/createdAt וכו'
+    // נעדכן רק שדות מותרים
     const allowed: Partial<User> = {};
+
     if (typeof patch.name === 'string') allowed.name = patch.name;
     if (typeof patch.email === 'string') allowed.email = patch.email;
-    if (typeof patch.password === 'string') allowed.password = patch.password; // בהמשך נחליף ל-bcrypt
+    if (typeof patch.password === 'string') allowed.password = patch.password;
+    if (typeof patch.avatarUrl === 'string') allowed.avatarUrl = patch.avatarUrl; // ✅ חשוב מאוד
 
     const updated = await this.userModel
       .findByIdAndUpdate(id, allowed, { new: true, runValidators: true })
@@ -83,8 +98,14 @@ export class UsersService {
 
     if (!updated) throw new NotFoundException(`User with ID ${id} not found`);
 
-    // מחזירים ללא סיסמה
-    return { _id: updated.id, name: updated.name, email: updated.email, createdAt: (updated as any).createdAt };
+    // ✅ נחזיר אובייקט נקי, כולל תמונה
+    return {
+      _id: updated.id,
+      name: updated.name,
+      email: updated.email,
+      avatarUrl: updated.avatarUrl || null,
+      createdAt: (updated as any).createdAt,
+      updatedAt: (updated as any).updatedAt,
+    };
   }
-
 }

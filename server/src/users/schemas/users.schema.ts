@@ -25,6 +25,10 @@ export class User {
 
   @Prop()
   updatedAt?: Date;
+
+  @Prop()
+   avatarUrl?: string;
+
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
