@@ -42,6 +42,15 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
+    // users.controller.ts
+  @Patch(':id')
+  async updateUser(
+    @Param('id') id: string,
+    @Body() patch: Partial<{ name: string; email: string; password: string; avatarUrl: string }>
+  ) {
+    return this.usersService.update(id, patch);
+  }
+
   @Patch(':userId/add-group/:groupId')
   async addGroup(
     @Param('userId') userId: string,
