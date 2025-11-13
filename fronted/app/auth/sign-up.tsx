@@ -120,7 +120,7 @@ export default function SignUp() {
         <Ionicons
           name="arrow-back"
           size={24}
-          onPress={() => router.back()}
+          onPress={() => router.replace('/auth/home')}
           style={s.back}
           color="#197FF4"
         />

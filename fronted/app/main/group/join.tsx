@@ -26,7 +26,7 @@ export default function JoinGroup() {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View style={s.container}>
         {/* back arrow */}
-        <Ionicons name="arrow-back" size={22} color="#111" onPress={() => router.back()} style={s.back} />
+        <Ionicons name="arrow-back" size={22} color="#111" onPress={() => router.replace("/main/group")} style={s.back} />
 
         {/* logo + brand */}
         <Logo sizeMultiplier={0.6} textScale={0.18} />

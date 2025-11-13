@@ -32,7 +32,7 @@ export default function AddMembers() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View style={s.page}>
-        <Ionicons name="arrow-back" size={22} onPress={() => router.back()} style={s.back} />
+        <Ionicons name="arrow-back" size={22} onPress={() => router.replace("/main/group/create")} style={s.back} />
         <Logo sizeMultiplier={0.55} textScale={0.18} />
 
         <Text style={s.title}>Add Members</Text>

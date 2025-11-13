@@ -17,19 +17,19 @@ export default function CreateGroup() {
     if (!name) return Alert.alert("Missing name", "Please enter a group name.");
     // דמו: "יצירת" קבוצה והחזרה לדף הקבוצות
     Alert.alert("Group created", `“${name}” was created.`, [
-      { text: "OK", onPress: () => router.replace("/group") },
+      { text: "OK", onPress: () => router.replace("main/group") },
     ]);
   };
 
   const goToAddMembers = () => {
     // מעבירים הלאה את השם (לא חובה כרגע)
-    router.push({ pathname: "/group/create/add", params: { name: groupName } });
+    router.replace("main/group/add/");
   };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View style={s.page}>
-        <Ionicons name="arrow-back" size={22} onPress={() => router.back()} style={s.back} />
+        <Ionicons name="arrow-back" size={22} onPress={() => router.replace("/main/group")} style={s.back} />
         <Logo sizeMultiplier={0.55} textScale={0.18} />
 
         <Text style={s.title}>Create Group</Text>

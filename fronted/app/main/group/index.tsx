@@ -53,11 +53,11 @@ export default function GroupPage() {
 
         {/* Pills – Join/Create */}
         <View style={s.pills}>
-          <Pressable style={[s.pill, s.pillSolid]} onPress={() => router.push("/main/group/join")}>
+          <Pressable style={[s.pill, s.pillSolid]} onPress={() => router.replace("/main/group/join")}>
             <Text style={[s.pillText, { color: "#fff" }]}>Join Group</Text>
           </Pressable>
 
-          <Pressable style={[s.pill, s.pillSolid]} onPress={() => router.push("/main/group/create")}>
+          <Pressable style={[s.pill, s.pillSolid]} onPress={() => router.replace("/main/group/create")}>
             <Text style={[s.pillText, { color: "#fff" }]}>Create Group</Text>
           </Pressable>
         </View>
