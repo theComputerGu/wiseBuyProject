@@ -53,7 +53,7 @@ export default function SignIn() {
       }).unwrap();
 
       // ✅ Save user to Redux
-      dispatch(setUser({ id: u._id, name: u.name, email: u.email }));
+      dispatch(setUser({ id: u._id, name: u.name, email: u.email,avatarUrl: u.avatarUrl ?? null }));
 
       // ✅ Navigate and clear stack
       router.replace("/main/product");
