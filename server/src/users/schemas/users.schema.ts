@@ -1,4 +1,3 @@
-// src/users/schemas/users.schema.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 import { Group } from '../../groups/schemas/groups.schema';
@@ -7,6 +6,10 @@ export type UserDocument = HydratedDocument<User>;
 
 @Schema({ timestamps: true })
 export class User {
+
+  @Prop()
+  defaultGroupId?: string;
+
   @Prop({ required: true, unique: true })
   name: string;
 
@@ -19,7 +22,6 @@ export class User {
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Group' }] })
   groups: Types.ObjectId[];
 
-  // 👇 להוסיף — רק כדי שהטיפוס ידע עליהם. Mongoose כבר ינהל אותם.
   @Prop()
   createdAt?: Date;
 

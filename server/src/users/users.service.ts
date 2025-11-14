@@ -15,97 +15,138 @@ export class UsersService {
     @InjectModel(Group.name) private groupModel: Model<GroupDocument>,
   ) {}
 
-  // ✅ Create user
-  async create(data: Partial<User>): Promise<User> {
-    const user = new this.userModel(data);
-    return user.save();
+
+  private toDto(user: UserDocument) {
+    return {
+      _id: user._id.toString(),
+      name: user.name,
+      email: user.email,
+      avatarUrl: user.avatarUrl ?? null,
+      groups: (user.groups ?? []).map((g: any) => g.toString()),
+      createdAt: user.createdAt?.toISOString() ?? '',
+      updatedAt: user.updatedAt?.toISOString() ?? '',
+      defaultGroupId: user.defaultGroupId ?? null,
+    };
   }
 
-  // ✅ Get all users
-  async findAll(): Promise<User[]> {
-    return this.userModel.find().populate('groups').exec();
+
+  async create(data: Partial<User>) {
+    const user = await new this.userModel(data).save();
+    return this.toDto(user);
   }
 
-  // ✅ Get one user by ID
-  async findOne(id: string): Promise<User> {
+
+  async findAll() {
+    const users = await this.userModel.find().populate('groups').exec();
+    return users.map((u) => this.toDto(u));
+  }
+
+  async findOne(id: string) {
     const user = await this.userModel.findById(id).populate('groups').exec();
     if (!user) throw new NotFoundException(`User with ID ${id} not found`);
-    return user;
+    return this.toDto(user);
   }
 
-  // ✅ Add group to user
-  async addGroup(userId: string, groupId: string): Promise<User> {
-    const user = await this.userModel
+  async addGroup(userId: string, groupId: string) {
+  let user = await this.userModel
+    .findByIdAndUpdate(
+      userId,
+      { $addToSet: { groups: new Types.ObjectId(groupId) } },
+      { new: true }
+    )
+    .populate('groups')
+    .exec();
+
+  if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
+
+  await this.groupModel.findByIdAndUpdate(groupId, {
+    $addToSet: { users: new Types.ObjectId(userId) },
+  });
+
+  if (!user.defaultGroupId) {
+    const updated = await this.userModel
       .findByIdAndUpdate(
         userId,
-        { $addToSet: { groups: new Types.ObjectId(groupId) } },
-        { new: true },
+        { defaultGroupId: groupId },
+        { new: true }
       )
-      .populate('groups');
+      .populate('groups')
+      .exec();
 
-    if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
+    if (!updated) {
+      throw new NotFoundException(`User with ID ${userId} not found`);
+    }
 
-    await this.groupModel.findByIdAndUpdate(groupId, {
-      $addToSet: { users: new Types.ObjectId(userId) },
+    user = updated;
+  }
+
+  return this.toDto(user);
+}
+
+
+  async removeGroup(userId: string, groupId: string) {
+    await this.userModel.findByIdAndUpdate(userId, {
+      $pull: { groups: new Types.ObjectId(groupId) },
     });
 
-    return user;
-  }
+    await this.groupModel.findByIdAndUpdate(groupId, {
+      $pull: { users: new Types.ObjectId(userId) },
+    });
 
-  // ✅ Get user groups
-  async findUserGroups(userId: string): Promise<Group[]> {
     const user = await this.userModel.findById(userId).populate('groups').exec();
-    if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
-    return user.groups as unknown as Group[];
+    if (!user) throw new NotFoundException('User not found');
+
+    return this.toDto(user);
   }
 
-  // ✅ Delete user
-  async delete(userId: string): Promise<User | null> {
-    return this.userModel.findByIdAndDelete(userId).exec();
+
+  async findUserGroups(userId: string) {
+  const user = await this.userModel
+    .findById(userId)
+    .populate('groups')
+    .exec();
+
+  if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
+
+  return user.groups as any;
+}
+
+
+
+  async delete(userId: string) {
+    const deleted = await this.userModel.findByIdAndDelete(userId).exec();
+    return deleted ? this.toDto(deleted) : null;
   }
 
-  // ✅ Login
   async login(email: string, password: string) {
-    const user = (await this.userModel.findOne({ email }).exec()) as
-      | UserDocument
-      | null;
+    const user = await this.userModel.findOne({ email }).populate('groups').exec();
 
     if (!user || user.password !== password) {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    return {
-      _id: user._id.toString(),
-      name: user.name,
-      email: user.email,
-      avatarUrl: user.avatarUrl || null,
-    };
+    return this.toDto(user);
   }
 
-  // ✅ Update user (name/email/password/avatar)
   async update(id: string, patch: Partial<User>) {
-    // נעדכן רק שדות מותרים
     const allowed: Partial<User> = {};
 
     if (typeof patch.name === 'string') allowed.name = patch.name;
     if (typeof patch.email === 'string') allowed.email = patch.email;
     if (typeof patch.password === 'string') allowed.password = patch.password;
-    if (typeof patch.avatarUrl === 'string') allowed.avatarUrl = patch.avatarUrl; // ✅ חשוב מאוד
+    if (typeof patch.avatarUrl === 'string') allowed.avatarUrl = patch.avatarUrl;
+    if (typeof patch.defaultGroupId === 'string') allowed.defaultGroupId = patch.defaultGroupId;
 
     const updated = await this.userModel
-      .findByIdAndUpdate(id, allowed, { new: true, runValidators: true })
+      .findByIdAndUpdate(id, allowed, {
+        new: true,
+        runValidators: true,
+      })
+      .populate('groups')
       .exec();
 
     if (!updated) throw new NotFoundException(`User with ID ${id} not found`);
 
-    // ✅ נחזיר אובייקט נקי, כולל תמונה
-    return {
-      _id: updated.id,
-      name: updated.name,
-      email: updated.email,
-      avatarUrl: updated.avatarUrl || null,
-      createdAt: (updated as any).createdAt,
-      updatedAt: (updated as any).updatedAt,
-    };
+    return this.toDto(updated);
   }
 }

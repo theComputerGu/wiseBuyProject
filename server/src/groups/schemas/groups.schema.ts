@@ -1,4 +1,3 @@
-// src/groups/schemas/group.schema.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import { User } from '../../users/schemas/users.schema';
@@ -7,19 +6,18 @@ export type GroupDocument = Group & Document;
 
 @Schema({ timestamps: true })
 export class Group {
-  // Group name
   @Prop({ required: true })
   name: string;
 
-  // Users in the group
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'User' }] })
+  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+  admin: Types.ObjectId;
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'User' }], default: [] })
   users: Types.ObjectId[];
 
-  // Group join code
   @Prop({ required: true, unique: true })
   groupcode: string;
 
-  // Active shopping list
   @Prop({
     type: [
       {
@@ -38,18 +36,11 @@ export class Group {
     checked: boolean;
   }[];
 
-  // History of past shopping lists
   @Prop({ type: Array, default: [] })
-  history: Array<
-    {
-      purchasedAt: Date;
-      items: {
-        productName: string;
-        quantity: number;
-        price: number;
-      }[];
-    }
-  >;
+  history: Array<{
+    purchasedAt: Date;
+    items: { productName: string; quantity: number; price: number }[];
+  }>;
 }
 
 export const GroupSchema = SchemaFactory.createForClass(Group);

@@ -1,7 +1,6 @@
-// src/groups/groups.service.ts
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { Group, GroupDocument } from './schemas/groups.schema';
 import { User, UserDocument } from '../users/schemas/users.schema';
 
@@ -9,50 +8,100 @@ import { User, UserDocument } from '../users/schemas/users.schema';
 export class GroupsService {
   constructor(
     @InjectModel(Group.name) private groupModel: Model<GroupDocument>,
+    @InjectModel(User.name) private userModel: Model<UserDocument>,
   ) {}
 
- //  Create a new group
-async create(data: Partial<Group>): Promise<Group> {
-  // Generate a random 5-digit code
-  const groupcode = Math.floor(10000 + Math.random() * 90000).toString();
+  async create(data: { name: string; adminId: string }) {
+    const groupcode = Math.floor(10000 + Math.random() * 90000).toString();
 
-  const group = new this.groupModel({ ...data, groupcode });
-  return group.save();
-}
-  //  Get all groups (with user info)
-  async findAll(): Promise<Group[]> {
-    return this.groupModel.find().populate('users').exec();
+    const group = new this.groupModel({
+      name: data.name,
+      admin: data.adminId,
+      users: [data.adminId],
+      groupcode,
+    });
+
+    return group.save();
   }
 
-  //  Get a specific group by ID
-  async findOne(id: string): Promise<Group | null > {
-    return this.groupModel.findById(id).populate('users').exec();
+  async findAll() {
+    return this.groupModel
+      .find()
+      .populate('users', 'name email avatarUrl')
+      .populate('admin', 'name email avatarUrl')
+      .exec();
   }
 
-  // Get all users
-  async findUsers(id: string): Promise<any[] | null> {
-  const group = await this.groupModel.findById(id).populate('users').exec();
-  return group ? group.users : null;
+  async findOne(id: string) {
+    const group = await this.groupModel
+      .findById(id)
+      .populate('users', 'name email avatarUrl')
+      .populate('admin', 'name email avatarUrl')
+      .exec();
+
+    if (!group) throw new NotFoundException('Group not found');
+    return group;
   }
 
-  //  Find by group code
-  async findByCode(groupcode: string): Promise<Group | null> {
-    return this.groupModel.findOne({ groupcode }).populate('users').exec();
+  async findUsers(id: string) {
+    const group = await this.groupModel
+      .findById(id)
+      .populate('users', 'name email avatarUrl')
+      .exec();
+    return group ? group.users : [];
   }
 
-  //  Add a user to group
-  async addUserToGroup(groupId: string, userId: string): Promise<Group | null > {
+  async findByCode(code: string) {
+    const group = await this.groupModel
+      .findOne({ groupcode: code })
+      .populate('users', 'name email avatarUrl')
+      .populate('admin', 'name email avatarUrl')
+      .exec();
+
+    if (!group) throw new NotFoundException('Group not found');
+    return group;
+  }
+
+  async addUserToGroup(groupId: string, userId: string) {
     return this.groupModel
       .findByIdAndUpdate(
         groupId,
-        { $addToSet: { users: userId } },
+        { $addToSet: { users: new Types.ObjectId(userId) } },
         { new: true },
       )
-      .populate('users');
+      .populate('users', 'name email avatarUrl')
+      .populate('admin', 'name email avatarUrl')
+      .exec();
   }
 
-  //  Delete group
-  async delete(groupId: string): Promise<Group | null > {
-    return this.groupModel.findByIdAndDelete(groupId).exec();
+  async removeUserFromGroup(groupId: string, userId: string) {
+  await this.groupModel.findByIdAndUpdate(
+    groupId,
+    { $pull: { users: new Types.ObjectId(userId) } },
+  );
+
+  await this.userModel.findByIdAndUpdate(
+    userId,
+    { $pull: { groups: new Types.ObjectId(groupId) } },
+  );
+
+  return { success: true };
+}
+
+  async delete(groupId: string, requesterId: string) {
+  const group = await this.groupModel.findById(groupId);
+  if (!group) throw new NotFoundException('Group not found');
+
+  if (group.admin.toString() !== requesterId) {
+    throw new Error('Only admin can delete this group');
   }
+  await this.groupModel.findByIdAndDelete(groupId);
+
+  await this.userModel.updateMany(
+    { groups: groupId },
+    { $pull: { groups: groupId } }
+  );
+
+  return { deleted: true, groupId };
+}
 }

@@ -8,17 +8,13 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as ImagePicker from "expo-image-picker";
-
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
-
-// ✅ RTK Query + Redux
 import { useCreateUserMutation, useUploadAvatarMutation } from "../../redux/svc/wisebuyApi";
 import { useDispatch } from "react-redux";
 import { setUser /*, setToken*/ } from "../../redux/slices/authSlice";
 
-// ✅ Zod validation schema
 const schema = z
   .object({
     name: z.string().min(2, "Name must be at least 2 characters"),
@@ -51,7 +47,7 @@ export default function SignUp() {
   const [createUser, { isLoading }] = useCreateUserMutation();
   const [uploadAvatar, { isLoading: isUploading }] = useUploadAvatarMutation();
 
-  // -------------------- Image Picker --------------------
+
   const pickImage = async () => {
     const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!granted) {
@@ -69,51 +65,48 @@ export default function SignUp() {
     }
   };
 
-  // -------------------- Submit --------------------
   const onSubmit = async (data: Form) => {
-    try {
-      // 1️⃣ Create user
-      const u = await createUser({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-      }).unwrap();
+  try {
+    const u = await createUser({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    }).unwrap();
 
-      let avatarUrl: string | undefined;
+    let finalUser = u;
 
-      // 2️⃣ Upload avatar if selected
-      if (pickedUri) {
-        const file = {
-          uri: pickedUri,
-          name: "avatar.jpg",
-          type: "image/jpeg",
-        } as any;
+    if (pickedUri) {
+      const file = {
+        uri: pickedUri,
+        name: "avatar.jpg",
+        type: "image/jpeg",
+      } as any;
 
-        const updatedUser = await uploadAvatar({ id: u._id, file }).unwrap();
-        avatarUrl = updatedUser.avatarUrl;
-      }
+      const updated = await uploadAvatar({ id: u._id, file }).unwrap();
+      finalUser = updated;
+    }
 
-      // 3️⃣ Save user to Redux
-      dispatch(
-        setUser({
-          id: u._id,
-          name: u.name,
-          email: u.email,
-          createdAt: u.createdAt,
-          updatedAt: u.updatedAt,
-          avatarUrl,
-        })
-      );
+    dispatch(
+      setUser({
+        _id: finalUser._id,
+        name: finalUser.name,
+        email: finalUser.email,
+        avatarUrl: finalUser.avatarUrl ?? null,
+        groups: [],
+        createdAt: finalUser.createdAt ?? "",
+        updatedAt: finalUser.updatedAt ?? "",
+      })
+    );
 
-      // ✅ Navigate to main screen
       router.replace("/main/product");
+
     } catch (e: any) {
       const msg = e?.data?.message || e?.error || "Could not create account";
       alert(msg);
     }
   };
 
-  // -------------------- Render --------------------
+  
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={s.page}>

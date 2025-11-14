@@ -14,7 +14,7 @@ import {
 import { UsersService } from './users.service';
 import { LoginDto } from './dto/login.dto';
 import type { Request } from 'express';
-import { FileInterceptor } from '@nestjs/platform-express'; // ✅ להעלאת קובץ
+import { FileInterceptor } from '@nestjs/platform-express'; 
 import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 import { existsSync, mkdirSync } from 'fs';
@@ -37,12 +37,19 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @Patch(':userId/remove-group/:groupId')
+removeGroup(
+  @Param('userId') userId: string,
+  @Param('groupId') groupId: string
+) {
+  return this.usersService.removeGroup(userId, groupId);
+}
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
-    // users.controller.ts
   @Patch(':id')
   async updateUser(
     @Param('id') id: string,
@@ -69,13 +76,11 @@ export class UsersController {
     return this.usersService.delete(id);
   }
 
-  // 🔐 Login
   @Post('login')
   async login(@Body() dto: LoginDto) {
     return this.usersService.login(dto.email, dto.password);
   }
 
-  // 🖼️ העלאת תמונת פרופיל (avatar)
   @Patch(':id/avatar')
   @UseInterceptors(
     FileInterceptor('file', {
@@ -90,17 +95,16 @@ export class UsersController {
           cb(null, `${req.params.id}_${unique}${extname(file.originalname)}`);
         },
       }),
-      limits: { fileSize: 3 * 1024 * 1024 }, // עד 3MB
+      limits: { fileSize: 3 * 1024 * 1024 },
     }),
   )
   async uploadAvatar(
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
-    @Req() req: Request, // ✅ כאן נוסף ה־req שגרם לשגיאה
+    @Req() req: Request, 
   ) {
     if (!file) throw new BadRequestException('No file provided');
 
-    // ✅ נבנה את הכתובת המדויקת של הקובץ
     const base =
       process.env.PUBLIC_BASE_URL || `${req.protocol}://${req.get('host')}`;
     const url = `${base}/uploads/avatars/${file.filename}`;
@@ -108,8 +112,7 @@ export class UsersController {
     console.log('[uploadAvatar] saved:', file.path);
     console.log('[uploadAvatar] url:', url);
 
-    // ✅ נשמור את כתובת התמונה במסד
     const doc = await this.usersService.update(id, { avatarUrl: url });
-    return doc; // אפשר גם למפות ל-DTO אם יש לך
+    return doc;
   }
 }
