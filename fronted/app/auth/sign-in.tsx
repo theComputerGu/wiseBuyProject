@@ -6,31 +6,27 @@ import { useRouter, Link } from "expo-router";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-// 🧩 Components
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
-
-// 🧠 Redux + RTK Query
 import { useLoginMutation } from "../../redux/svc/wisebuyApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/slices/authSlice";
 
-// ✅ Zod validation schema
+
 const schema = z.object({
   email: z.string().email("Please enter a valid email address"),
   password: z.string().min(6, "Password must be at least 6 characters long"),
 });
 
-// ✅ Type derived automatically from schema
+
 type Form = z.infer<typeof schema>;
 
 export default function SignIn() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  // ✅ React Hook Form setup
+  
   const {
     control,
     handleSubmit,
@@ -40,22 +36,28 @@ export default function SignIn() {
     defaultValues: { email: "", password: "" },
   });
 
-  // ✅ RTK Query login mutation
   const [login, { isLoading }] = useLoginMutation();
 
-  // -------------------- Submit --------------------
   const onSubmit = async (data: Form) => {
-    try {
-      // ✅ use destructured data.email, data.password
-      const u = await login({
-        email: data.email,
-        password: data.password,
-      }).unwrap();
+  try {
+    const u = await login({
+      email: data.email,
+      password: data.password,
+    }).unwrap();
 
-      // ✅ Save user to Redux
-      dispatch(setUser({ id: u._id, name: u.name, email: u.email,avatarUrl: u.avatarUrl ?? null }));
+    dispatch(
+      setUser({
+        _id: u._id,
+        name: u.name,
+        email: u.email,
+        avatarUrl: u.avatarUrl ?? null,
+        groups: [],
+        defaultGroupId: undefined,
+        createdAt: "",
+        updatedAt: "",
+      })
+    );
 
-      // ✅ Navigate and clear stack
       router.replace("/main/product");
     } catch (e: any) {
       const msg = e?.data?.message || e?.error || "Login failed";

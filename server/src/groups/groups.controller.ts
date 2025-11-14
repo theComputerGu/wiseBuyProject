@@ -14,47 +14,46 @@ import { GroupsService } from './groups.service';
 export class GroupsController {
   constructor(private readonly groupsService: GroupsService) {}
 
-  //  Create group
   @Post()
   async create(
     @Body('name') name: string,
+    @Body('adminId') adminId: string,
   ) {
-    return this.groupsService.create({ name });
+    return this.groupsService.create({ name, adminId });
   }
 
-  //  Get all groups
   @Get()
-  async findAll() {
+  findAll() {
     return this.groupsService.findAll();
   }
 
-  //  Get group by ID
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string) {
     return this.groupsService.findOne(id);
   }
 
-  //  Get group by join code
   @Get('code/:groupcode')
-  async findByCode(@Param('groupcode') groupcode: string) {
-    return this.groupsService.findByCode(groupcode);
+  findByCode(@Param('groupcode') code: string) {
+    return this.groupsService.findByCode(code);
   }
 
-  // Get all users of a specific group
-@Get(':id/users')
-async getGroupUsers(@Param('id') id: string) {
-  return this.groupsService.findUsers(id);
-}
+  @Get(':id/users')
+  getUsers(@Param('id') id: string) {
+    return this.groupsService.findUsers(id);
+  }
 
-  //  Add user to group
   @Patch(':id/add-user')
-  async addUser(@Param('id') id: string, @Body('userId') userId: string) {
+  addUser(@Param('id') id: string, @Body('userId') userId: string) {
     return this.groupsService.addUserToGroup(id, userId);
   }
 
-  //  Delete entire group
+  @Patch(':id/remove-user')
+  removeUser(@Param('id') id: string, @Body('userId') userId: string) {
+    return this.groupsService.removeUserFromGroup(id, userId);
+  }
+
   @Delete(':id')
-  async delete(@Param('id') id: string) {
-    return this.groupsService.delete(id);
+  delete(@Param('id') id: string, @Body('requesterId') requesterId: string) {
+    return this.groupsService.delete(id, requesterId);
   }
 }

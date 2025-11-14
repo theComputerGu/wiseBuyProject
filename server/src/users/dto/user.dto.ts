@@ -1,4 +1,3 @@
-// src/users/dto/user.dto.ts
 export class UserDto {
   _id: string;
   name: string;
@@ -6,5 +5,5 @@ export class UserDto {
   groups: string[];
   createdAt?: string;
   updatedAt?: string;
-  avatarUrl?: string; // 👈 חדש
+  avatarUrl?: string;
 }

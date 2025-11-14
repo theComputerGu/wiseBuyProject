@@ -1,80 +1,99 @@
-// app/group/join.tsx
+// app/main/group/join.tsx
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, StyleSheet, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useState } from "react";
+
 import Logo from "../../../components/Logo";
 import TextField from "../../../components/TextField";
 import Button from "../../../components/Button";
-import { API_URL } from '@env';
 
-const BRAND = "#197FF4";
+import {
+  useLazyGetGroupByCodeQuery,
+  useAddUserToGroupMutation,
+  useAddGroupToUserMutation
+} from "../../../redux/svc/wisebuyApi";
+
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../../redux/state/store";
+import { setUser } from "../../../redux/slices/authSlice";
 
 export default function JoinGroup() {
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  const user = useSelector((s: RootState) => s.auth.user);
+  const userId = user?._id;
+
   const [code, setCode] = useState("");
 
-  const onJoin = () => {
-    const trimmed = code.trim();
-    if (!trimmed) return Alert.alert("Missing code", "Please enter a group code.");
-    // TODO: חיבור ל־API בעתיד
-    router.replace("/group");
+  // שימוש נכון ב־Lazy Query
+  const [fetchGroupByCode] = useLazyGetGroupByCodeQuery();
+
+  const [addUserToGroup] = useAddUserToGroupMutation();
+  const [addGroupToUser] = useAddGroupToUserMutation();
+
+  const onJoin = async () => {
+    if (!code.trim()) return Alert.alert("Missing code");
+    if (!userId) return Alert.alert("Error", "User not logged in");
+
+    try {
+      // 1️⃣ מביאים את הקבוצה לפי קוד
+      const group = await fetchGroupByCode(code.trim()).unwrap();
+
+      if (!group?._id) return Alert.alert("Error", "Group not found");
+
+      // 2️⃣ מוסיפים משתמש לקבוצה
+      await addUserToGroup({
+        id: group._id,
+        userId
+      }).unwrap();
+
+      // 3️⃣ מוסיפים קבוצה למשתמש
+      await addGroupToUser({
+        userId,
+        groupId: group._id
+      }).unwrap();
+
+
+      Alert.alert("Success", "Joined group!", [
+        { text: "OK", onPress: () => router.replace("/main/group") },
+      ]);
+    } catch (e) {
+      console.log("JOIN ERROR:", e);
+      Alert.alert("Error", "Could not join group");
+    }
   };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View style={s.container}>
-        {/* back arrow */}
-        <Ionicons name="arrow-back" size={22} color="#111" onPress={() => router.replace("/main/group")} style={s.back} />
+        <Ionicons
+          name="arrow-back"
+          size={22}
+          onPress={() => router.replace("/main/group")}
+          style={s.back}
+        />
 
-        {/* logo + brand */}
         <Logo sizeMultiplier={0.6} textScale={0.18} />
-
-        {/* title */}
         <Text style={s.title}>Join Group</Text>
 
-        {/* input */}
         <TextField
           placeholder="Group code"
           value={code}
           onChangeText={setCode}
         />
 
-        {/* action */}
         <Button title="Join Group" onPress={onJoin} />
-
-        {/* subtle bottom divider like mock */}
-        <View style={s.bottomDivider} />
       </View>
     </SafeAreaView>
   );
 }
 
 const s = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    justifyContent: "center",
-    gap: 12,
-    backgroundColor: "#FFFFFF",
-  },
-  back: {
-    position: "absolute",
-    top: 10,
-    left: 12,
-  },
-  title: {
-    textAlign: "center",
-    fontSize: 28,
-    fontWeight: "800",
-    color: "#111",
-    marginTop: 4,
-    marginBottom: 6,
-  },
-  bottomDivider: {
-    height: 1,
-    backgroundColor: "#E5E7EB",
-    marginTop: 16,
-  },
+  container: { flex: 1, padding: 20, justifyContent: "center", gap: 12 },
+  back: { position: "absolute", top: 10, left: 12 },
+  title: { fontSize: 28, fontWeight: "900", textAlign: "center" },
 });
