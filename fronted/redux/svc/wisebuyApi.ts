@@ -74,7 +74,7 @@ export interface User {
   _id: string;
   name: string;
   email: string;
-  avatarUrl: string | null;
+  avatarUrl?: string | null;
   groups: string[];                 
   defaultGroupId?: string | null|  undefined;     
   createdAt?: string;
@@ -93,9 +93,9 @@ export type ShoppingListItem = {
 
 export interface ShoppingList {
   _id: string;
-  groupId: string;
-  userId: string;
-  storeId?: string;
+  groupId: string | Group | undefined;
+  userId: string | User | undefined;
+  storeId: string | Store | undefined;
   purchasedAt: string;
   items: ShoppingListItem[];
   subtotal: number;
@@ -196,6 +196,13 @@ export const wisebuyApi = createApi({
     }),
 
     // ===== SHOPPING LISTS =====
+    getGroupHistory: builder.query<any[], string>({
+    query: (groupId) => `/shopping-lists/group/${groupId}/history`,
+    providesTags: (_r, _e, groupId) => [
+      { type: 'ShoppingLists', id: `HISTORY-${groupId}` },
+    ],
+  }),
+
     getShoppingLists: builder.query<ShoppingList[], QueryShoppingList>({
       query: (params) => ({ url: '/shopping-lists', params }),
       providesTags: [{ type: 'ShoppingLists', id: 'LIST' }],
@@ -484,6 +491,7 @@ export const {
   useUpdateShoppingItemMutation,
   useRemoveShoppingItemMutation,
   useGetMonthlyStatsQuery,
+  useGetGroupHistoryQuery,
 
   // groups
   useCreateGroupMutation,

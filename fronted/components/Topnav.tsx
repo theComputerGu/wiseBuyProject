@@ -30,7 +30,7 @@ export default function TopNav() {
           )}
         </Pressable>
 
-        <ItimText size={40} weight="bold" color="#197FF4" family='Itim_400Regular'>
+        <ItimText size={40} weight="bold" color="#197FF4">
           WiseBuy
         </ItimText>
       </View>

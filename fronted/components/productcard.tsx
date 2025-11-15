@@ -29,6 +29,7 @@ function ProductCard({
   uploaderAvatar,
   uploaderName,
 }: Props) {
+
   return (
     <View style={s.card}>
       <Image source={image} style={s.img} />
@@ -37,18 +38,19 @@ function ProductCard({
         {/* --- Header row --- */}
         <View style={s.headerRow}>
           <View style={{ flex: 1 }}>
+            {/* 🔥 הופך תמיד למחרוזת */}
             <ItimText size={16} color="#000" weight="bold">
-              {name}
+              {String(name)}
             </ItimText>
+
+            {/* 🔥 לעולם לא יחזיר undefined / null */}
             <ItimText size={14} color="#555">
-              {price} {averageLabel ? `(${averageLabel})` : ""}
+              {String(`${price}${averageLabel ? ` (${averageLabel})` : ""}`)}
             </ItimText>
           </View>
 
-          {/* ✅ Avatar ממוקם בצד ימין בלבד */}
-          {uploaderAvatar && (
-            <Image source={uploaderAvatar} style={s.avatar} />
-          )}
+          {/* Avatar בצד ימין */}
+          {uploaderAvatar && <Image source={uploaderAvatar} style={s.avatar} />}
         </View>
 
         {/* --- Quantity controls --- */}
@@ -58,8 +60,9 @@ function ProductCard({
           </Pressable>
 
           <View style={s.qty}>
+            {/* 🔥 לעולם לא נשבר - הכמות תמיד string */}
             <ItimText size={16} color={BRAND} weight="bold">
-              {quantity}
+              {String(quantity)}
             </ItimText>
           </View>
 
@@ -70,7 +73,7 @@ function ProductCard({
 
         {uploaderName && (
           <ItimText size={12} color="#777" style={{ marginTop: 4 }}>
-            Added by: {uploaderName}
+            {String(`Added by: ${uploaderName}`)}
           </ItimText>
         )}
       </View>
@@ -96,14 +99,14 @@ const s = StyleSheet.create({
   headerRow: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between", // דוחף את האוואטאר לקצה הימני
+    justifyContent: "space-between",
   },
   avatar: {
     width: 26,
     height: 50,
     borderRadius: 13,
     marginLeft: 8,
-    alignSelf: "center", // ⬅️ זה גורם לו להיות באמצע בגובה הכרטיס
+    alignSelf: "center",
   },
   row: { flexDirection: "row", alignItems: "center", marginTop: 6, gap: 8 },
   btn: {

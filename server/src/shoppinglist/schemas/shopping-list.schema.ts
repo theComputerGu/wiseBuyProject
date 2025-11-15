@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
+import { Store } from '../../stores/schemas/stores.schema';
 
 export type ShoppingListDocument = HydratedDocument<ShoppingList>;
 
@@ -11,8 +12,9 @@ export class ShoppingList {
   @Prop({ type: Types.ObjectId, ref: 'User', required: true, index: true })
   userId: Types.ObjectId; // יוצר/מבצע הקנייה
 
-  @Prop({ type: Types.ObjectId, ref: 'Store', required: false, index: true })
-  storeId?: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: 'Store' })
+  storeId?: Types.ObjectId | Store;  // ⬅⬅⬅ שיניתי
+
 
   @Prop({ type: Date, required: true, index: true })
   purchasedAt: Date;

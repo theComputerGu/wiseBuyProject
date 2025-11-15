@@ -19,6 +19,8 @@ export class GroupsService {
       admin: data.adminId,
       users: [data.adminId],
       groupcode,
+      shoppingList: [],
+      history: [],
     });
 
     return group.save();
@@ -75,33 +77,67 @@ export class GroupsService {
   }
 
   async removeUserFromGroup(groupId: string, userId: string) {
-  await this.groupModel.findByIdAndUpdate(
-    groupId,
-    { $pull: { users: new Types.ObjectId(userId) } },
-  );
+    await this.groupModel.findByIdAndUpdate(
+      groupId,
+      { $pull: { users: new Types.ObjectId(userId) } },
+    );
 
-  await this.userModel.findByIdAndUpdate(
-    userId,
-    { $pull: { groups: new Types.ObjectId(groupId) } },
-  );
+    await this.userModel.findByIdAndUpdate(
+      userId,
+      { $pull: { groups: new Types.ObjectId(groupId) } },
+    );
 
-  return { success: true };
-}
+    return { success: true };
+  }
 
   async delete(groupId: string, requesterId: string) {
-  const group = await this.groupModel.findById(groupId);
-  if (!group) throw new NotFoundException('Group not found');
+    const group = await this.groupModel.findById(groupId);
+    if (!group) throw new NotFoundException('Group not found');
 
-  if (group.admin.toString() !== requesterId) {
-    throw new Error('Only admin can delete this group');
+    if (group.admin.toString() !== requesterId) {
+      throw new Error('Only admin can delete this group');
+    }
+    await this.groupModel.findByIdAndDelete(groupId);
+
+    await this.userModel.updateMany(
+      { groups: groupId },
+      { $pull: { groups: groupId } }
+    );
+
+    return { deleted: true, groupId };
   }
-  await this.groupModel.findByIdAndDelete(groupId);
 
-  await this.userModel.updateMany(
-    { groups: groupId },
-    { $pull: { groups: groupId } }
-  );
 
-  return { deleted: true, groupId };
-}
+  // ================================================
+  //  NEW: UPDATE ACTIVE SHOPPING LIST OF GROUP
+  // ================================================
+  async updateActiveList(groupId: string, items: any[]) {
+    const group = await this.groupModel.findById(groupId);
+    if (!group) throw new NotFoundException('Group not found');
+
+    group.shoppingList = items;
+    await group.save();
+
+    return group.shoppingList;
+  }
+
+  // ================================================
+  // NEW: ADD FINALIZED SHOPPING LIST TO HISTORY
+  // ================================================
+  async addToHistory(groupId: string, list: any) {
+    const group = await this.groupModel.findById(groupId);
+    if (!group) return;
+
+    group.history.push({
+      purchasedAt: list.purchasedAt,
+      items: list.items,
+      total: list.total,
+      storeId: list.storeId,
+    });
+
+    // RESET active shopping list
+    group.shoppingList = [];
+
+    await group.save();
+  }
 }

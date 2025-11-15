@@ -6,20 +6,21 @@ import authReducer from '../slices/authSlice';
 import uiReducer from '../slices/uiSlice';
 import shoppingDraftReducer from '../slices/shoppingDraftSlice';
 import { wisebuyApi } from '../svc/wisebuyApi';
+import shoppingSessionReducer from "../slices/shoppingSessionSlice";
 
 export const rootReducer = combineReducers({
   auth: authReducer,
   ui: uiReducer,
   shoppingDraft: shoppingDraftReducer,
+  shoppingSession: shoppingSessionReducer, // ⬅️ חדש
   [wisebuyApi.reducerPath]: wisebuyApi.reducer,
 });
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage: AsyncStorage,
-  whitelist: ['auth', 'ui', 'shoppingDraft'],
+  whitelist: ["auth", "ui", "shoppingDraft", "shoppingSession"], // ⬅️ נשמר בזיכרון
 };
-
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({

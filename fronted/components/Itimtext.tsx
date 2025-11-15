@@ -13,20 +13,24 @@ export default function Itimtext({
   size = 16,
   color = "#000",
   weight = "normal",
-  family = "",
   style,
   ...rest
 }: Props) {
   return (
     <Text
       {...rest}
-      style={[styles.base, { fontSize: size, color, fontWeight: weight, fontFamily: family  }, style]}
+      style={[
+        styles.base,
+        { fontSize: size, color, fontWeight: weight },
+        style,
+      ]}
     >
       {children}
     </Text>
   );
 }
+
 const styles = StyleSheet.create({
- //font name
   base: { fontFamily: "Itim_400Regular" },
 });
+

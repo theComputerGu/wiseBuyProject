@@ -6,6 +6,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { View, ActivityIndicator } from "react-native";
 import { store, persistor } from "../redux/state/store";
 
+
 // קומפוננטת Guard שמריצה הפניה אם אין משתמש ומנסים לצאת מ-/auth
 function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
