@@ -1,4 +1,3 @@
-// src/groups/groups.controller.ts
 import {
   Controller,
   Get,
@@ -55,5 +54,16 @@ export class GroupsController {
   @Delete(':id')
   delete(@Param('id') id: string, @Body('requesterId') requesterId: string) {
     return this.groupsService.delete(id, requesterId);
+  }
+
+  // ===================================================
+  // NEW: UPDATE ACTIVE SHOPPING LIST
+  // ===================================================
+  @Patch(':id/shopping-list')
+  updateActiveList(
+    @Param('id') groupId: string,
+    @Body('items') items: any[],
+  ) {
+    return this.groupsService.updateActiveList(groupId, items);
   }
 }

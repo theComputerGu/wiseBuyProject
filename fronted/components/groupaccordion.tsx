@@ -21,10 +21,9 @@ export default function GroupAccordion({ group }: any) {
   const user = useSelector((s: RootState) => s.auth.user);
   const userId = user?._id;
 
-  // אם אין יוזר — לא לרנדר
   if (!userId) return null;
 
-  // 🟦 refetch לטעינת משתמש עדכני מהשרת
+  // 🟦 נטען משתמש עדכני מהשרת
   const { refetch: refetchUser } = useGetUserByIdQuery(userId, {
     skip: !userId,
   });
@@ -53,15 +52,21 @@ export default function GroupAccordion({ group }: any) {
         style: "destructive",
         onPress: async () => {
           try {
-            // 🟦 פעולה לשרת
             await removeUserFromGroup({
               id: group._id,
-              userId: userId!, // בטוח שאינו undefined
+              userId: userId!,
             }).unwrap();
 
-            // 🟦 רענון משתמש מהשרת
             const freshUser = await refetchUser().unwrap();
-            dispatch(setUser(freshUser));
+
+            // 🟦 תיקון TYPES — בלי לשנות לוגיקה
+            dispatch(
+              setUser({
+                ...freshUser,
+                avatarUrl: freshUser.avatarUrl ?? null,
+                groups: freshUser.groups ?? [],
+              })
+            );
 
             Alert.alert("Success", "You left the group");
           } catch (err) {
@@ -83,15 +88,21 @@ export default function GroupAccordion({ group }: any) {
         style: "destructive",
         onPress: async () => {
           try {
-            // 🟦 מחיקה בשרת
             await deleteGroup({
               id: group._id,
               requesterId: userId!,
             }).unwrap();
 
-            // 🟦 רענון משתמש
             const freshUser = await refetchUser().unwrap();
-            dispatch(setUser(freshUser));
+
+            // 🟦 תיקון TYPES — בלי affecting לוגיקה
+            dispatch(
+              setUser({
+                ...freshUser,
+                avatarUrl: freshUser.avatarUrl ?? null,
+                groups: freshUser.groups ?? [],
+              })
+            );
 
             Alert.alert("Deleted", "Group removed successfully");
           } catch (err) {

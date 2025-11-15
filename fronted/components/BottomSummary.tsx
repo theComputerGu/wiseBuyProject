@@ -15,6 +15,7 @@ export default function BottomSummary({
   currency = '₪',
   backgroundColor = '#ffffffff',
 }: BottomSummaryProps) {
+
   return (
     <View style={[styles.container, { backgroundColor }]}>
       <View style={styles.item}>
@@ -30,10 +31,12 @@ export default function BottomSummary({
         <ItimText size={18} color="#000">
           Price (Estimated)
         </ItimText>
+
+        {/* ✔ FIX: Always pass a single string */}
         <ItimText size={18} color="#000" weight="bold">
-          {price}
-          {currency}
+          {`${price}${currency}`}
         </ItimText>
+
       </View>
     </View>
   );

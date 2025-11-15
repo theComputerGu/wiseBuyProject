@@ -7,13 +7,12 @@ import BottomNav from "../../../components/Bottomnavigation";
 import TopNav from "../../../components/Topnav";
 import Title from "../../../components/Title";
 import { useRouter } from "expo-router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
-
+import { setActiveGroup } from "../../../redux/slices/authSlice";
 import { useGetUserGroupsQuery } from "../../../redux/svc/wisebuyApi";
 import { useState } from "react";
 
-// הקומפוננטה של האקורדיון
 import GroupAccordion from "../../../components/groupaccordion";
 
 const BRAND = "#197FF4";
@@ -21,11 +20,14 @@ const BRAND = "#197FF4";
 export default function GroupPage() {
   const user = useSelector((s: RootState) => s.auth.user);
   const userId = user?._id;
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const { data: groups = [], isLoading } = useGetUserGroupsQuery(userId!, {
     skip: !userId,
   });
+
+  const activeGroupId = useSelector((s: RootState) => s.auth.activeGroupId);
 
   const [openGroupIds, setOpenGroupIds] = useState<string[]>([]);
 
@@ -40,14 +42,12 @@ export default function GroupPage() {
       <TopNav />
       <Title text="Shopping lists" />
 
-      {/* אין קבוצות */}
       {!isLoading && groups.length === 0 && (
         <Text style={{ textAlign: "center", marginTop: 30, fontSize: 16, color: "#777" }}>
           You are not part of any group yet.
         </Text>
       )}
 
-      {/* רשימת קבוצות */}
       <FlatList
         data={groups}
         keyExtractor={(item) => item._id}
@@ -58,10 +58,20 @@ export default function GroupPage() {
 
           return (
             <>
-              {/* השורה הראשית */}
               <View style={s.row}>
+                {/* פתיחה/סגירה */}
                 <Pressable style={{ flex: 1 }} onPress={() => toggleGroup(item._id)}>
                   <Text style={s.link}>{item.name}</Text>
+                </Pressable>
+
+                {/* כפתור בחירת קבוצה פעילה */}
+                <Pressable
+                  style={s.selectButton}
+                  onPress={() => dispatch(setActiveGroup(item._id))}
+                >
+                  <Text style={s.selectText}>
+                    {activeGroupId === item._id ? "Active ✓" : "Select"}
+                  </Text>
                 </Pressable>
 
                 <Ionicons
@@ -72,17 +82,14 @@ export default function GroupPage() {
                 />
               </View>
 
-              {/* אקורדיון */}
               {isOpen && <GroupAccordion group={item} />}
             </>
           );
         }}
       />
 
-      {/* לוגו מים */}
       <Text style={s.watermark}>WiseBuy</Text>
 
-      {/* כפתורים */}
       <View style={s.pills}>
         <Pressable
           style={[s.pill, s.pillSolid]}
@@ -131,6 +138,7 @@ const s = StyleSheet.create({
     color: "#197FF4",
     opacity: 0.06,
   },
+
   pills: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -149,4 +157,18 @@ const s = StyleSheet.create({
   },
   pillSolid: { backgroundColor: BRAND },
   pillText: { fontSize: 14, fontWeight: "800" },
+
+  // 🎯 הכפתור החדש
+  selectButton: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    backgroundColor: BRAND,
+    borderRadius: 12,
+    marginRight: 10,
+  },
+  selectText: {
+    color: "white",
+    fontWeight: "700",
+    fontSize: 12,
+  },
 });

@@ -10,6 +10,12 @@ import { QueryShoppingListDto } from './dto/query-shopping-list.dto';
 export class ShoppingListsController {
   constructor(private readonly service: ShoppingListsService) {}
 
+@Get('group/:groupId/history')
+async getGroupHistory(@Param('groupId') groupId: string) {
+  return this.service.getGroupHistoryReal(groupId);
+}
+
+
   @Post()
   create(@Body() dto: CreateShoppingListDto) {
     return this.service.create(dto);

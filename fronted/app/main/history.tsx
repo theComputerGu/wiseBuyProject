@@ -1,109 +1,136 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Pressable } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  ActivityIndicator,
+  Pressable,
+} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import ItimText from '../../components/Itimtext';
 import BottomNav from '../../components/Bottomnavigation';
-import TopNav from '../../components/Topnav'
-import Title from '../../components/Title'
+import TopNav from '../../components/Topnav';
+import Title from '../../components/Title';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { API_URL } from '@env';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../redux/state/store';
+import {
+  useGetGroupsQuery,
+  useGetGroupByIdQuery,
+} from '../../redux/svc/wisebuyApi';
+import { setActiveGroup } from '../../redux/slices/authSlice';
+import { setActiveList } from '../../redux/slices/shoppingSessionSlice'; // ⬅️ חדש
+import { useRouter } from 'expo-router';
 
 export default function HistoryScreen() {
-  const history = [
-    {
-      id: 3,
-      store: 'Rami levy',
-      items: 17,
-      total: '325.40₪',
-      date: '18/05/2025',
-      address: 'Ha-Sivim St 37, Petah Tikva',
-    },
-    {
-      id: 2,
-      store: 'Rami levy',
-      items: 4,
-      total: '89.90₪',
-      date: '13/05/2025',
-      address: 'Ha-Sivim St 37, Petah Tikva',
-    },
-    {
-      id: 1,
-      store: 'Rami levy',
-      items: 12,
-      total: '289.15₪',
-      date: '11/05/2025',
-      address: 'Ha-Sivim St 37, Petah Tikva',
-    },
-  ];
+
+  const user = useSelector((s: RootState) => s.auth.user);
+  const activeGroupId = useSelector((s: RootState) => s.auth.activeGroupId);
+  const { data: groups = [] } = useGetGroupsQuery();
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  // בחירת קבוצה אוטומטית
+  if (!activeGroupId && groups.length > 0) {
+    dispatch(setActiveGroup(groups[0]._id));
+  }
+
+  const activeGroup = groups.find((g) => g._id === activeGroupId) || null;
+
+  const {
+    data: currentGroup,
+    isLoading,
+    error,
+  } = useGetGroupByIdQuery(activeGroupId!, { skip: !activeGroupId });
+
+  const history = currentGroup?.history ?? [];
+
+  if (!activeGroupId) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <TopNav />
+        <View style={styles.center}>
+          <ItimText size={16}>No active group selected</ItimText>
+        </View>
+        <BottomNav />
+      </SafeAreaView>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <TopNav />
+        <View style={styles.center}>
+          <ActivityIndicator />
+        </View>
+        <BottomNav />
+      </SafeAreaView>
+    );
+  }
 
   return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" }}>
-    <View style={styles.container}>
-      <TopNav />
-      <Title text="History" />
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+      <View style={styles.container}>
+        <TopNav />
+        <Title text="History" />
 
+        <View style={styles.groupRow}>
+          <ItimText size={16} color="#197FF4">Group: </ItimText>
+          <ItimText size={16} weight="bold" color="#197FF4">
+            {activeGroup?.name ?? 'No group'}
+          </ItimText>
+          <MaterialCommunityIcons name="chevron-down" size={22} color="#197FF4" />
+        </View>
 
-      {/* ✅ Group Selector */}
-      <View style={styles.groupRow}>
-        <ItimText size={16} color="#197FF4">
-          Group: <ItimText size={16} color="#197FF4" weight="bold">Sean & Mark home</ItimText>
-        </ItimText>
-        <MaterialCommunityIcons name="chevron-down" size={22} color="#197FF4" />
-      </View>
+        {history.length === 0 && (
+          <ItimText size={14} color="#666">
+            No purchases yet for this group.
+          </ItimText>
+        )}
 
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {history.map((item: any, i: number) => (
+            <Pressable
+              key={i}
+              style={styles.purchaseCard}
+              onPress={() => {
+                if (!item.shoppingListId) return;
 
-      <ScrollView showsVerticalScrollIndicator={false}>
+                dispatch(
+                  setActiveList({
+                    listId: item.shoppingListId,
+                    purchaseNumber: i + 1,
+                  })
+                );
 
-
-
-        {/* ✅ Purchase List */}
-        {history.map((item) => (
-          <View key={item.id} style={styles.purchaseCard}>
-            <View style={styles.leftCol}>
-              <View style={styles.purchaseHeader}>
-                <ItimText size={16} color="#000" weight="bold">
-                  Purchase {item.id}
+                router.push("/main/product");
+              }}
+            >
+              <View style={styles.leftCol}>
+                <ItimText size={16} weight="bold">
+                  Purchase #{i + 1}
                 </ItimText>
-                <MaterialCommunityIcons
-                  name="pencil"
-                  size={16}
-                  color="#197FF4"
-                  style={{ marginLeft: 4 }}
-                />
+                <ItimText size={13} color="#555">
+                  Items: {item.items.length} • Total: {item.total}₪ • Date:{' '}
+                  {new Date(item.purchasedAt).toLocaleDateString()}
+                </ItimText>
               </View>
+            </Pressable>
+          ))}
 
-              <ItimText size={13} color="#555">
-                Items Bought: {item.items}  •  Total: {item.total}  •  Date: {item.date}
-              </ItimText>
-            </View>
+          <View style={{ height: 120 }} />
+        </ScrollView>
 
-            <View style={styles.rightCol}>
-              <ItimText size={15} color="#000" weight="bold">
-                {item.store}
-              </ItimText>
-              <ItimText size={12} color="#777">{item.address}</ItimText>
-            </View>
-          </View>
-        ))}
-
-        <View style={{ height: 100 }} />
-      </ScrollView>
-
-      <BottomNav />
-    </View>
+        <BottomNav />
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-   container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20 },
-  logo: { marginBottom: 10 },
-  section: { marginBottom: 10 },
-  groupRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 10,
-  },
+  container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20 },
+  groupRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 10 },
   purchaseCard: {
     backgroundColor: '#fff',
     borderRadius: 12,
@@ -113,38 +140,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
-  purchaseHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 2,
-  },
-  leftCol: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  rightCol: {
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-  bottomNav: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingVertical: 10,
-    borderTopWidth: 0.5,
-    borderColor: '#ccc',
-    backgroundColor: '#fff',
-  },
-  addButton: {
-    backgroundColor: '#197FF4',
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
-  },
+  leftCol: { flex: 1 },
+  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
 });

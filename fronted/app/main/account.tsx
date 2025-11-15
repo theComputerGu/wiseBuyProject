@@ -29,7 +29,7 @@ export default function AccountScreen() {
   const user = useSelector((s: RootState) => s.auth.user);
 
   const [uploadAvatar, { isLoading: isUploading }] = useUploadAvatarMutation();
-  const [avatarBust, setAvatarBust] = useState<number>(Date.now()); // לרענון cache של התמונה
+  const [avatarBust, setAvatarBust] = useState<number>(Date.now());
 
   const createdAtText = useMemo(() => {
     if (!user?.createdAt) return '';
@@ -45,7 +45,6 @@ export default function AccountScreen() {
   const [editName, setEditName] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
 
-  // מצב שינוי סיסמה
   const [changePwMode, setChangePwMode] = useState(false);
   const [pwCurrent, setPwCurrent] = useState('');
   const [pwNew, setPwNew] = useState('');
@@ -57,12 +56,15 @@ export default function AccountScreen() {
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
 
+  // ⬅⬅ FIX: always use _id
+  const getUserId = () => user?._id;
+
   // עדכון שם/אימייל
   const saveField = async (field: 'name' | 'email') => {
-    const id = (user as any)?.id || (user as any)?._id;
+    const id = getUserId();
     if (!id) return alert('No logged-in user');
 
-    const patch: any = {};
+    const patch: { name?: string; email?: string } = {};
     if (field === 'name') patch.name = name?.trim();
     if (field === 'email') patch.email = email?.trim();
 
@@ -70,12 +72,13 @@ export default function AccountScreen() {
       const updated = await updateUser({ id, patch }).unwrap();
       dispatch(
         setUser({
-          id: updated._id,
+          _id: updated._id,
           name: updated.name,
           email: updated.email,
-          avatarUrl: updated.avatarUrl ?? user?.avatarUrl ?? null, // לא מאבדים אווטאר
+          avatarUrl: updated.avatarUrl ?? user?.avatarUrl ?? null,
           createdAt: updated.createdAt,
           updatedAt: updated.updatedAt,
+          groups: updated.groups ?? user?.groups ?? [],
         })
       );
       if (field === 'name') setEditName(false);
@@ -87,22 +90,27 @@ export default function AccountScreen() {
 
   // שינוי סיסמה
   const savePassword = async () => {
-    const id = (user as any)?.id || (user as any)?._id;
+    const id = getUserId();
     if (!id) return alert('No logged-in user');
 
     if (!pwNew || pwNew.length < 6) return alert('Password must be at least 6 characters');
     if (pwNew !== pwConfirm) return alert('Passwords do not match');
 
     try {
-      const updated = await updateUser({ id, patch: { password: pwNew } }).unwrap();
+      const updated = await updateUser({
+        id,
+        patch: { password: pwNew } as any // ⬅⬅ FIX: allow password in patch
+      }).unwrap();
+
       dispatch(
         setUser({
-          id: updated._id,
+          _id: updated._id,
           name: updated.name,
           email: updated.email,
           avatarUrl: updated.avatarUrl ?? user?.avatarUrl ?? null,
           createdAt: updated.createdAt,
           updatedAt: updated.updatedAt,
+          groups: updated.groups ?? user?.groups ?? [],
         })
       );
       setPwCurrent('');
@@ -115,7 +123,7 @@ export default function AccountScreen() {
     }
   };
 
-  // בחירת תמונה והעלאה
+  // בחירת תמונה + העלאה
   const onPickAndUploadAvatar = async () => {
     const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!granted) {
@@ -127,9 +135,10 @@ export default function AccountScreen() {
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 0.85,
     });
+
     if (res.canceled) return;
 
-    const id = (user as any)?.id || (user as any)?._id;
+    const id = getUserId();
     if (!id) return alert('No logged-in user');
 
     try {
@@ -143,16 +152,17 @@ export default function AccountScreen() {
 
       dispatch(
         setUser({
-          id: updated._id ?? id,
+          _id: updated._id ?? id,
           name: updated.name ?? user?.name ?? '',
           email: updated.email ?? user?.email ?? '',
           avatarUrl: updated.avatarUrl ?? user?.avatarUrl ?? null,
           createdAt: updated.createdAt ?? user?.createdAt,
           updatedAt: updated.updatedAt ?? user?.updatedAt,
+          groups: updated.groups ?? user?.groups ?? [],
         })
       );
 
-      setAvatarBust(Date.now()); // מרענן את התמונה ב-Image
+      setAvatarBust(Date.now());
     } catch (e: any) {
       alert(e?.data?.message || 'Failed to upload avatar');
     }
@@ -164,10 +174,10 @@ export default function AccountScreen() {
   };
 
   const onDeleteUser = async () => {
-    const id = (user as any)?.id || (user as any)?._id;
+    const id = getUserId();
     if (!id) return alert('No logged-in user');
 
-    Alert.alert('Delete User', 'Are you sure you want to delete your account? This action cannot be undone.', [
+    Alert.alert('Delete User', 'Are you sure?', [
       { text: 'Cancel', style: 'cancel' },
       {
         text: isDeleting ? 'Deleting...' : 'Delete',
@@ -190,19 +200,17 @@ export default function AccountScreen() {
       <View style={styles.container}>
         <TopNav />
         <ScrollView showsVerticalScrollIndicator={false}>
-          {/* Account */}
+
           <Title text="Account" />
           <Title text="Settings" />
 
           <View style={styles.accountRow}>
-            {/* אווטאר עם פלוס ולחיצה להחלפה */}
             <View style={styles.profileContainer}>
               <Pressable onPress={onPickAndUploadAvatar} style={styles.avatarWrap}>
                 {user?.avatarUrl ? (
                   <Image
                     source={{ uri: `${user.avatarUrl}?t=${avatarBust}` }}
                     style={styles.avatarImg}
-                    onError={(e) => console.log('avatar load error', e.nativeEvent.error)}
                   />
                 ) : (
                   <MaterialCommunityIcons name="account-circle" size={90} color="#197FF4" />
@@ -214,7 +222,6 @@ export default function AccountScreen() {
               {isUploading ? <ItimText size={12} color="#197FF4">Uploading...</ItimText> : null}
             </View>
 
-            {/* פרטים כלליים + עריכה */}
             <View style={{ flex: 1 }}>
               <ItimText size={14} color="#000" weight="bold">Account name</ItimText>
               {editName ? (
@@ -250,7 +257,6 @@ export default function AccountScreen() {
             </View>
           </View>
 
-          {/* Privacy */}
           <Title text="Privacy" />
 
           {changePwMode ? (
@@ -304,7 +310,6 @@ export default function AccountScreen() {
             </View>
           )}
 
-          {/* Others */}
           <Title text="Others" />
           <Pressable onPress={onLogout}>
             <ItimText size={16} color="#000" style={styles.otherText}>Log out</ItimText>
@@ -326,11 +331,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20 },
   accountRow: { flexDirection: 'row', alignItems: 'flex-start' },
   profileContainer: { alignItems: 'center', justifyContent: 'center', marginRight: 15 },
-
-  // עוטף של האווטאר (למיקום יחסי של הפלוס)
   avatarWrap: { position: 'relative' },
-
-  // תמונת פרופיל בעיגול
   avatarImg: {
     width: 90,
     height: 90,
@@ -339,7 +340,6 @@ const styles = StyleSheet.create({
     borderColor: '#197FF4',
     backgroundColor: '#eee',
   },
-
   addIcon: {
     position: 'absolute',
     bottom: 5,
@@ -351,7 +351,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   editIcons: { justifyContent: 'flex-start', alignItems: 'flex-start', marginLeft: 6 },
   privacyRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 },
   showPasswordBtn: { backgroundColor: '#EAF3FF', borderRadius: 10, paddingVertical: 4, paddingHorizontal: 10 },

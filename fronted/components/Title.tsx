@@ -25,6 +25,8 @@ export default function Title({
   weight = 'bold',
   align = 'left',
 }: TitleProps) {
+  
+
   return (
     <View
       style={[
