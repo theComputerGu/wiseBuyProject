@@ -9,7 +9,7 @@ export class GroupsService {
   constructor(
     @InjectModel(Group.name) private groupModel: Model<GroupDocument>,
     @InjectModel(User.name) private userModel: Model<UserDocument>,
-  ) {}
+  ) { }
 
   async create(data: { name: string; adminId: string }) {
     const groupcode = Math.floor(10000 + Math.random() * 90000).toString();
@@ -109,35 +109,34 @@ export class GroupsService {
 
 
   // ================================================
-  //  NEW: UPDATE ACTIVE SHOPPING LIST OF GROUP
+  //  UPDATE ACTIVE SHOPPING LIST OF GROUP (CORRECT)
   // ================================================
-  async updateActiveList(groupId: string, items: any[]) {
+  async updateActiveList(groupId: string, listId: Types.ObjectId | null) {
     const group = await this.groupModel.findById(groupId);
     if (!group) throw new NotFoundException('Group not found');
 
-    group.shoppingList = items;
+    group.activeshoppinglist = listId;  // either a listId or null
     await group.save();
 
-    return group.shoppingList;
+    return group;
   }
 
-  // ================================================
-  // NEW: ADD FINALIZED SHOPPING LIST TO HISTORY
-  // ================================================
-  async addToHistory(groupId: string, list: any) {
-    const group = await this.groupModel.findById(groupId);
-    if (!group) return;
+//  ADD SHOPPING LIST TO GROUP HISTORY 
+async addToHistory(groupId: string, list: any) {
+  const group = await this.groupModel.findById(groupId);
+  if (!group) throw new NotFoundException("Group not found");
 
-    group.history.push({
-      purchasedAt: list.purchasedAt,
-      items: list.items,
-      total: list.total,
-      storeId: list.storeId,
-    });
+  group.history.push({
+    shoppingListId: list._id,
+    purchasedAt: new Date(),
+    storeId: list.storeId,
+  });
 
-    // RESET active shopping list
-    group.shoppingList = [];
+  // Clear the active shopping list
+  group.activeshoppinglist = null;
 
-    await group.save();
-  }
+  await group.save();
+
+  return group;
+}
 }

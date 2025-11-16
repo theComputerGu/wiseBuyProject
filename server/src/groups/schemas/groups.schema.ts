@@ -17,45 +17,21 @@ export class Group {
   @Prop({ required: true, unique: true })
   groupcode: string;
 
-  @Prop({
-    type: [
-      {
-        productName: { type: String, required: true },
-        quantity: { type: Number, default: 1 },
-        price: { type: Number, default: 0 },
-        checked: { type: Boolean, default: false },
-      },
-    ],
-    default: [],
-  })
-  shoppingList: {
-    productName: string;
-    quantity: number;
-    price: number;
-    checked: boolean;
-  }[];
 
-  // ⭐⭐⭐ היסטוריית רכישות — נוספה תמיכה ב־shoppingListId ⭐⭐⭐
+  @Prop({ type: Types.ObjectId, ref: 'ShoppingList', default: null })
+  activeshoppinglist: Types.ObjectId | null;
+
+
   @Prop({
     type: [
       {
         shoppingListId: {
           type: Types.ObjectId,
           ref: 'ShoppingList',
-          required: true,   // <<< חשוב!
+          required: true,
         },
 
         purchasedAt: { type: Date, required: true },
-
-        items: [
-          {
-            productName: { type: String },
-            quantity: { type: Number },
-            price: { type: Number },
-          }
-        ],
-
-        total: { type: Number, default: 0 },
 
         storeId: {
           type: Types.ObjectId,
@@ -69,12 +45,6 @@ export class Group {
   history: {
     shoppingListId?: Types.ObjectId;
     purchasedAt: Date;
-    items: {
-      productName: string;
-      quantity: number;
-      price: number;
-    }[];
-    total: number;
     storeId?: Types.ObjectId;
   }[];
 }

@@ -29,7 +29,7 @@ export class User {
   updatedAt?: Date;
 
   @Prop()
-   avatarUrl?: string;
+  avatarUrl?: string;
 
 }
 

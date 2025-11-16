@@ -5,15 +5,31 @@ export type ProductDocument = HydratedDocument<Product>;
 
 @Schema({ timestamps: true })
 export class Product {
-  @Prop({ required: true }) title: string;
-  @Prop() brand?: string;
-  @Prop({ required: true, type: Number }) price: number;
-  @Prop({ default: 'ILS' }) currency?: string;
-  @Prop({ type: [String], default: [] }) images: string[];
-  @Prop({ default: true }) inStock: boolean;
-  @Prop() category?: string;
-  @Prop() description?: string;
-  @Prop({ type: [String], default: [] }) tags?: string[];
+  @Prop({ required: true , unique: true})
+  itemcode?: string;
+
+  @Prop({ required: true })
+  title: string;
+
+  @Prop({
+    type: String,
+    enum: ['unit', 'kg', 'gram', 'liter'],
+    default: 'unit',
+    required: true,
+  })
+  unit: 'unit' | 'kg' | 'gram' | 'liter';
+
+  @Prop()
+  brand?: string;
+
+  @Prop()
+  pricerange?: string;
+
+  @Prop()
+  image?: string;
+
+  @Prop()
+  category?: string;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

@@ -1,23 +1,43 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Product, ProductDocument } from './schemas/product.schema';
+import { Product } from './schemas/product.schema';
 
 @Injectable()
 export class ProductsService {
-  constructor(@InjectModel(Product.name) private readonly model: Model<ProductDocument>) {}
+  constructor(@InjectModel(Product.name) private model: Model<Product>) {}
 
-  async findAll(filter?: {
-    q?: string; category?: string; minPrice?: number; maxPrice?: number;
-  }) {
+  async findAll(filters: any = {}) {
     const query: any = {};
-    if (filter?.q) query.title = { $regex: filter.q, $options: 'i' };
-    if (filter?.category) query.category = filter.category;
-    if (filter?.minPrice != null || filter?.maxPrice != null) {
-      query.price = {};
-      if (filter.minPrice != null) query.price.$gte = filter.minPrice;
-      if (filter.maxPrice != null) query.price.$lte = filter.maxPrice;
+
+    if (filters.q) {
+      query.title = { $regex: filters.q, $options: 'i' };
     }
-    return this.model.find(query).lean().exec();
+
+    if (filters.category) {
+      query.category = filters.category;
+    }
+
+    if (filters.brand) {
+      query.brand = filters.brand;
+    }
+
+    return this.model.find(query).exec();
+  }
+
+  findOne(id: string) {
+    return this.model.findById(id).exec();
+  }
+
+  create(body: any) {
+    return this.model.create(body);
+  }
+
+  update(id: string, body: any) {
+    return this.model.findByIdAndUpdate(id, body, { new: true }).exec();
+  }
+
+  remove(id: string) {
+    return this.model.findByIdAndDelete(id).exec();
   }
 }

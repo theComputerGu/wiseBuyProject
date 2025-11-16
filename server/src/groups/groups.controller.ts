@@ -8,6 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { GroupsService } from './groups.service';
+import { Types } from 'mongoose';
 
 @Controller('groups')
 export class GroupsController {
@@ -62,8 +63,19 @@ export class GroupsController {
   @Patch(':id/shopping-list')
   updateActiveList(
     @Param('id') groupId: string,
-    @Body('items') items: any[],
+    @Body('list') list: Types.ObjectId | null,
   ) {
-    return this.groupsService.updateActiveList(groupId, items);
+    return this.groupsService.updateActiveList(groupId, list);
   }
+    // ---------------------------------------------
+  // ADD SHOPPING LIST TO GROUP HISTORY
+  // ---------------------------------------------
+  @Post(':id/history')
+  async addToHistory(
+    @Param('id') groupId: string,
+    @Body('shoppingListId') shoppingListId: Types.ObjectId | null,
+  ) {
+    return this.groupsService.addToHistory(groupId,  shoppingListId );
+  }
+
 }

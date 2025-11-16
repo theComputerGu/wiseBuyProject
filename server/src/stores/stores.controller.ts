@@ -19,7 +19,7 @@ export class StoresController {
       name,
       address,
       city,
-      coordinates: [lng, lat],
+ 
     });
   }
 

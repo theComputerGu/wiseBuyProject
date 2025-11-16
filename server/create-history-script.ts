@@ -1,4 +1,4 @@
-import { connect, model, Types } from "mongoose";
+/*import { connect, model, Types } from "mongoose";
 
 // === Import Schemas ===
 import { ShoppingListSchema } from "./src/shoppinglist/schemas/shopping-list.schema";
@@ -83,4 +83,4 @@ async function run() {
   process.exit(0);
 }
 
-run();
+run(); */

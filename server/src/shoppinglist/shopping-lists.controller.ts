@@ -1,65 +1,57 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Controller, Post, Get, Param, Patch, Body, Delete } from '@nestjs/common';
 import { ShoppingListsService } from './shopping-lists.service';
-import { CreateShoppingListDto } from './dto/create-shopping-list.dto';
-import { UpdateShoppingListDto } from './dto/update-shopping-list.dto';
-import { AddItemDto } from './dto/add-item.dto';
-import { UpdateItemDto } from './dto/update-item.dto';
-import { QueryShoppingListDto } from './dto/query-shopping-list.dto';
 
 @Controller('shopping-lists')
 export class ShoppingListsController {
   constructor(private readonly service: ShoppingListsService) {}
 
-@Get('group/:groupId/history')
-async getGroupHistory(@Param('groupId') groupId: string) {
-  return this.service.getGroupHistoryReal(groupId);
-}
-
-
+  // CREATE LIST
   @Post()
-  create(@Body() dto: CreateShoppingListDto) {
-    return this.service.create(dto);
+  create() {
+    return this.service.create();
   }
 
+  // GET ALL
   @Get()
-  find(@Query() q: QueryShoppingListDto) {
-    return this.service.find(q);
+  findAll() {
+    return this.service.findAll();
   }
 
+  // GET BY ID
   @Get(':id')
   findById(@Param('id') id: string) {
     return this.service.findById(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() dto: UpdateShoppingListDto) {
-    return this.service.update(id, dto);
+  // ADD ITEM
+  @Patch(':id/items')
+  addItem(
+    @Param('id') id: string,
+    @Body('productId') productId: string,
+    @Body('quantity') quantity: number,
+  ) {
+    return this.service.addItem(id, productId, quantity);
   }
 
+  // UPDATE ITEM
+  @Patch(':id/items/:index')
+  updateItem(
+    @Param('id') id: string,
+    @Param('index') index: number,
+    @Body('quantity') quantity: number,
+  ) {
+    return this.service.updateItem(id, index, quantity);
+  }
+
+  // REMOVE ITEM
+  @Delete(':id/items/:index')
+  removeItem(@Param('id') id: string, @Param('index') index: number) {
+    return this.service.removeItem(id, index);
+  }
+
+  // DELETE LIST
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.service.remove(id);
-  }
-
-  // Items
-  @Post(':id/items')
-  addItem(@Param('id') id: string, @Body() dto: AddItemDto) {
-    return this.service.addItem(id, dto);
-  }
-
-  @Patch(':id/items/:idx')
-  updateItem(@Param('id') id: string, @Param('idx') idx: string, @Body() dto: UpdateItemDto) {
-    return this.service.updateItem(id, Number(idx), dto);
-  }
-
-  @Delete(':id/items/:idx')
-  removeItem(@Param('id') id: string, @Param('idx') idx: string) {
-    return this.service.removeItem(id, Number(idx));
-  }
-
-  // Stats
-  @Get('stats/monthly')
-  monthly(@Query('groupId') groupId: string, @Query('storeId') storeId?: string) {
-    return this.service.monthlySpend(groupId, storeId);
+  delete(@Param('id') id: string) {
+    return this.service.delete(id);
   }
 }
