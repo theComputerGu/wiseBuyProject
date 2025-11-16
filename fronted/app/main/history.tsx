@@ -19,7 +19,7 @@ import {
   useGetGroupByIdQuery,
 } from '../../redux/svc/wisebuyApi';
 import { setActiveGroup } from '../../redux/slices/authSlice';
-import { setActiveList } from '../../redux/slices/shoppingSessionSlice'; // ⬅️ חדש
+import { setActiveList } from '../../redux/slices/activeshoppinglistSlice'; // ⬅️ חדש
 import { useRouter } from 'expo-router';
 
 export default function HistoryScreen() {

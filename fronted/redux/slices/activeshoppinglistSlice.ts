@@ -1,17 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface ShoppingSessionState {
+interface activeshoppinglist {
   activeListId: string | null;
   activePurchaseNumber: number | null;
 }
 
-const initialState: ShoppingSessionState = {
+const initialState: activeshoppinglist = {
   activeListId: null,
   activePurchaseNumber: null,
 };
 
-const shoppingSessionSlice = createSlice({
-  name: "shoppingSession",
+const activeshoppinglistSlice = createSlice({
+  name: "activeshoppinglist",
   initialState,
   reducers: {
     setActiveList(state, action: PayloadAction<{ listId: string; purchaseNumber: number }>) {
@@ -26,5 +26,5 @@ const shoppingSessionSlice = createSlice({
   },
 });
 
-export const { setActiveList, clearActiveList } = shoppingSessionSlice.actions;
-export default shoppingSessionSlice.reducer;
+export const { setActiveList, clearActiveList } = activeshoppinglistSlice.actions;
+export default activeshoppinglistSlice.reducer;

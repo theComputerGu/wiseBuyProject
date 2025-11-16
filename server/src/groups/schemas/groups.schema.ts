@@ -25,6 +25,8 @@ export class Group {
   @Prop({
     type: [
       {
+        name: { type: String },
+
         shoppingListId: {
           type: Types.ObjectId,
           ref: 'ShoppingList',
@@ -43,6 +45,7 @@ export class Group {
     default: [],
   })
   history: {
+    name: string;
     shoppingListId?: Types.ObjectId;
     purchasedAt: Date;
     storeId?: Types.ObjectId;

@@ -4,9 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import authReducer from '../slices/authSlice';
 import uiReducer from '../slices/uiSlice';
-import shoppingDraftReducer from '../slices/shoppingDraftSlice';
+import shoppingDraftReducer from '../slices/historySlice';
 import { wisebuyApi } from '../svc/wisebuyApi';
-import shoppingSessionReducer from "../slices/shoppingSessionSlice";
+import shoppingSessionReducer from "../slices/activeshoppinglistSlice";
 
 export const rootReducer = combineReducers({
   auth: authReducer,

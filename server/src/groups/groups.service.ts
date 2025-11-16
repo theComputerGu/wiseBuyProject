@@ -122,11 +122,12 @@ export class GroupsService {
   }
 
 //  ADD SHOPPING LIST TO GROUP HISTORY 
-async addToHistory(groupId: string, list: any) {
+async addToHistory(name :string ,groupId: string, list: any) {
   const group = await this.groupModel.findById(groupId);
   if (!group) throw new NotFoundException("Group not found");
 
   group.history.push({
+    name: name,
     shoppingListId: list._id,
     purchasedAt: new Date(),
     storeId: list.storeId,

@@ -74,8 +74,10 @@ export class GroupsController {
   async addToHistory(
     @Param('id') groupId: string,
     @Body('shoppingListId') shoppingListId: Types.ObjectId | null,
+      @Body('name') name: string,
+
   ) {
-    return this.groupsService.addToHistory(groupId,  shoppingListId );
+    return this.groupsService.addToHistory(name ,groupId,  shoppingListId );
   }
 
 }
