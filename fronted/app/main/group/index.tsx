@@ -10,7 +10,7 @@ import { useRouter } from "expo-router";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
 import { setActiveGroup } from "../../../redux/slices/authSlice";
-import { useGetUserGroupsQuery } from "../../../redux/svc/Wisebuyapi";
+import { useGetUserGroupsQuery } from "../../../redux/svc/usersApi";
 import { useState } from "react";
 
 import GroupAccordion from "../../../components/groupaccordion";

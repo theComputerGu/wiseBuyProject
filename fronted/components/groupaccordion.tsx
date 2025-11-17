@@ -4,14 +4,8 @@ import { View, Text, StyleSheet, Pressable, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/state/store";
-
-import {
-  useRemoveUserFromGroupMutation,
-  useDeleteGroupMutation,
-  useGetGroupUsersQuery,
-  useGetUserByIdQuery,
-} from "../redux/svc/Wisebuyapi";
-
+import {useGetUserByIdQuery,} from "../redux/svc/usersApi";
+import {useRemoveUserFromGroupMutation,useDeleteGroupMutation,useGetGroupUsersQuery} from "../redux/svc/groupsApi";
 import { setUser } from "../redux/slices/authSlice";
 
 export default function GroupAccordion({ group }: any) {
@@ -53,7 +47,7 @@ export default function GroupAccordion({ group }: any) {
         onPress: async () => {
           try {
             await removeUserFromGroup({
-              id: group._id,
+              groupId: group._id,
               userId: userId!,
             }).unwrap();
 

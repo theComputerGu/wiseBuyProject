@@ -2,7 +2,7 @@
 import React from "react";
 import { Stack, useRouter, useSegments } from "expo-router";
 import { Provider, useSelector } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
+import { PersistGate } from 'redux-persist/integration/react';
 import { View, ActivityIndicator } from "react-native";
 import { store, persistor } from "../redux/state/store";
 
