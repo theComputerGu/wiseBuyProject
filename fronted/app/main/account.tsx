@@ -14,7 +14,7 @@ import Button from '../../components/Button';
 
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../../redux/state/store';
-import { setUser, signOut } from '../../redux/slices/authSlice';
+import { setUser, signOut } from '../../redux/slices/activeuserSlice';
 import {
   useUpdateUserMutation,
   useDeleteUserMutation,

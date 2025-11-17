@@ -13,7 +13,7 @@ export class UsersService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(Group.name) private groupModel: Model<GroupDocument>,
-  ) {}
+  ) { }
 
 
   private toDto(user: UserDocument) {
@@ -25,7 +25,7 @@ export class UsersService {
       groups: (user.groups ?? []).map((g: any) => g.toString()),
       createdAt: user.createdAt?.toISOString() ?? '',
       updatedAt: user.updatedAt?.toISOString() ?? '',
-      defaultGroupId: user.groupID ?? null,
+      activeGroup: user.activeGroup ?? null,
     };
   }
 
@@ -47,49 +47,49 @@ export class UsersService {
     return this.toDto(user);
   }
 
-  async addGroup(userId: string, groupId: string) {
-  let user = await this.userModel
-    .findByIdAndUpdate(
-      userId,
-      { $addToSet: { groups: new Types.ObjectId(groupId) } },
-      { new: true }
-    )
-    .populate('groups')
-    .exec();
-
-  if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
-
-  await this.groupModel.findByIdAndUpdate(groupId, {
-    $addToSet: { users: new Types.ObjectId(userId) },
-  });
-
-  if (!user.groupID) {
-    const updated = await this.userModel
+  async addGroup(userId: string, activeGroup: string) {
+    let user = await this.userModel
       .findByIdAndUpdate(
         userId,
-        { defaultGroupId: groupId },
+        { $addToSet: { groups: new Types.ObjectId(activeGroup) } },
         { new: true }
       )
       .populate('groups')
       .exec();
 
-    if (!updated) {
-      throw new NotFoundException(`User with ID ${userId} not found`);
-    }
+    if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
 
-    user = updated;
-  }
-
-  return this.toDto(user);
-}
-
-
-  async removeGroup(userId: string, groupId: string) {
-    await this.userModel.findByIdAndUpdate(userId, {
-      $pull: { groups: new Types.ObjectId(groupId) },
+    await this.groupModel.findByIdAndUpdate(activeGroup, {
+      $addToSet: { users: new Types.ObjectId(userId) },
     });
 
-    await this.groupModel.findByIdAndUpdate(groupId, {
+    if (!user.activeGroup) {
+      const updated = await this.userModel
+        .findByIdAndUpdate(
+          userId,
+          { defaultactiveGroup: activeGroup },
+          { new: true }
+        )
+        .populate('groups')
+        .exec();
+
+      if (!updated) {
+        throw new NotFoundException(`User with ID ${userId} not found`);
+      }
+
+      user = updated;
+    }
+
+    return this.toDto(user);
+  }
+
+
+  async removeGroup(userId: string, activeGroup: string) {
+    await this.userModel.findByIdAndUpdate(userId, {
+      $pull: { groups: new Types.ObjectId(activeGroup) },
+    });
+
+    await this.groupModel.findByIdAndUpdate(activeGroup, {
       $pull: { users: new Types.ObjectId(userId) },
     });
 
@@ -101,15 +101,15 @@ export class UsersService {
 
 
   async findUserGroups(userId: string) {
-  const user = await this.userModel
-    .findById(userId)
-    .populate('groups')
-    .exec();
+    const user = await this.userModel
+      .findById(userId)
+      .populate('groups')
+      .exec();
 
-  if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
+    if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
 
-  return user.groups as any;
-}
+    return user.groups as any;
+  }
 
 
 
@@ -135,7 +135,7 @@ export class UsersService {
     if (typeof patch.email === 'string') allowed.email = patch.email;
     if (typeof patch.password === 'string') allowed.password = patch.password;
     if (typeof patch.avatarUrl === 'string') allowed.avatarUrl = patch.avatarUrl;
-    if (typeof patch.groupID === 'string') allowed.groupID = patch.groupID;
+    if (typeof patch.activeGroup === 'string') allowed.activeGroup = patch.activeGroup;
 
     const updated = await this.userModel
       .findByIdAndUpdate(id, allowed, {
@@ -149,4 +149,24 @@ export class UsersService {
 
     return this.toDto(updated);
   }
+
+
+
+  async setActiveGroup(userId: string, groupId: string) {
+    const user = await this.userModel.findById(userId);
+    if (!user) throw new NotFoundException('User not found');
+
+    user.activeGroup = groupId;
+    await user.save();
+
+    return { message: 'Active group updated', activeGroup: user.activeGroup };
+  }
+
+  async getActiveGroup(userId: string) {
+    const user = await this.userModel.findById(userId);
+    if (!user) throw new NotFoundException('User not found');
+
+    return { activeGroup: user.activeGroup };
+  }
+
 }

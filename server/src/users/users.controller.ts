@@ -115,4 +115,19 @@ removeGroup(
     const doc = await this.usersService.update(id, { avatarUrl: url });
     return doc;
   }
+
+ //set active group
+@Post(':id/activegroup')
+async setActiveGroup(
+  @Param('id') id: string,
+  @Body('groupId') groupId: string,
+) {
+  return this.usersService.setActiveGroup(id, groupId);
+}
+
+//get active group
+@Get(':id/activegroup')
+async getActiveGroup(@Param('id') id: string) {
+  return this.usersService.getActiveGroup(id);
+}
 }

@@ -18,7 +18,7 @@ import {
   useGetGroupsQuery,
   useGetGroupByIdQuery,
 } from '../../redux/svc/groupsApi';
-import { setActiveGroup } from '../../redux/slices/authSlice';
+import { setActiveGroup } from '../../redux/slices/activeuserSlice';
 import { setActiveList } from '../../redux/slices/activeshoppinglistSlice'; // ⬅️ חדש
 import { useRouter } from 'expo-router';
 

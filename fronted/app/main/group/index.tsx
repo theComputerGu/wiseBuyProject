@@ -9,7 +9,7 @@ import Title from "../../../components/Title";
 import { useRouter } from "expo-router";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
-import { setActiveGroup } from "../../../redux/slices/authSlice";
+import { setActiveGroup } from "../../../redux/slices/activeuserSlice";
 import { useGetUserGroupsQuery } from "../../../redux/svc/usersApi";
 import { useState } from "react";
 

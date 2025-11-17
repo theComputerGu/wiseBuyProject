@@ -11,7 +11,7 @@ import {useCreateGroupMutation,} from "../../../redux/svc/groupsApi";
 import {useAddGroupToUserMutation,} from "../../../redux/svc/usersApi";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
-import { setUser } from "../../../redux/slices/authSlice";
+import { setUser } from "../../../redux/slices/activeuserSlice";
 
 export default function CreateGroup() {
   const router = useRouter();

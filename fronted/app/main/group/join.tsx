@@ -14,7 +14,7 @@ import {useAddGroupToUserMutation} from "../../../redux/svc/usersApi";
 //import {useLazyGetGroupByCodeQuery} from "../../../redux/svc/groupsApi";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
-import { setUser } from "../../../redux/slices/authSlice";
+import { setUser } from "../../../redux/slices/activeuserSlice";
 
 export default function JoinGroup() {
   const router = useRouter();

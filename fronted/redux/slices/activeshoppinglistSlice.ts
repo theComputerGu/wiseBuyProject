@@ -1,30 +1,22 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface activeshoppinglist {
+interface ActiveListState {
   activeListId: string | null;
-  activePurchaseNumber: number | null;
 }
 
-const initialState: activeshoppinglist = {
+const initialState: ActiveListState = {
   activeListId: null,
-  activePurchaseNumber: null,
 };
 
-const activeshoppinglistSlice = createSlice({
-  name: "activeshoppinglist",
+const activeListSlice = createSlice({
+  name: 'activeShoppingList',
   initialState,
   reducers: {
-    setActiveList(state, action: PayloadAction<{ listId: string; purchaseNumber: number }>) {
-      state.activeListId = action.payload.listId;
-      state.activePurchaseNumber = action.payload.purchaseNumber;
-    },
-
-    clearActiveList(state) {
-      state.activeListId = null;
-      state.activePurchaseNumber = null;
+    setActiveList: (state, action: PayloadAction<string | null>) => {
+      state.activeListId = action.payload;
     },
   },
 });
 
-export const { setActiveList, clearActiveList } = activeshoppinglistSlice.actions;
-export default activeshoppinglistSlice.reducer;
+export const { setActiveList } = activeListSlice.actions;
+export default activeListSlice.reducer;

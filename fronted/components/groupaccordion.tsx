@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/state/store";
 import {useGetUserByIdQuery,} from "../redux/svc/usersApi";
 import {useRemoveUserFromGroupMutation,useDeleteGroupMutation,useGetGroupUsersQuery} from "../redux/svc/groupsApi";
-import { setUser } from "../redux/slices/authSlice";
+import { setUser } from "../redux/slices/activeuserSlice";
 
 export default function GroupAccordion({ group }: any) {
   const dispatch = useDispatch();

@@ -13,7 +13,7 @@ import Button from "../../components/Button";
 import Logo from "../../components/Logo";
 import { useCreateUserMutation, useUploadAvatarMutation } from "../../redux/svc/usersApi";
 import { useDispatch } from "react-redux";
-import { setUser /*, setToken*/ } from "../../redux/slices/authSlice";
+import { setUser /*, setToken*/ } from "../../redux/slices/activeuserSlice";
 
 const schema = z
   .object({

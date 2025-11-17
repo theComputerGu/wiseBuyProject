@@ -3,7 +3,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 
 import { baseApi } from "../svc/baseApi";
-import authReducer from "../slices/authSlice";
+import authReducer from "../slices/activeuserSlice";
 import shoppingDraftReducer from "../slices/activeshoppinglistSlice";
 import uiReducer from "../slices/uiSlice";
 

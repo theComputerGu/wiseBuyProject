@@ -8,7 +8,7 @@ export type UserDocument = HydratedDocument<User>;
 export class User {
 
   @Prop()
-  groupID?: string;
+  activeGroup: string;
 
   @Prop({ required: true, unique: true })
   name: string;
