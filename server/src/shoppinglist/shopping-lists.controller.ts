@@ -23,25 +23,15 @@ export class ShoppingListsController {
     return this.service.findById(id);
   }
 
-  // ADD ITEM
+  // add item update by plus one
   @Patch(':id/items')
   addItem(
     @Param('id') id: string,
     @Body('productId') productId: string,
-    @Body('quantity') quantity: number,
   ) {
-    return this.service.addItem(id, productId, quantity);
+    return this.service.addItem(id, productId);
   }
 
-  // UPDATE ITEM
-  @Patch(':id/items/:index')
-  updateItem(
-    @Param('id') id: string,
-    @Param('index') index: number,
-    @Body('quantity') quantity: number,
-  ) {
-    return this.service.updateItem(id, index, quantity);
-  }
 
   // REMOVE ITEM
   @Delete(':id/items/:index')

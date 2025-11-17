@@ -36,48 +36,56 @@ export class ShoppingListsService {
   }
 
   // ADD ITEM TO LIST
-  async addItem(listId: string, productId: string, quantity: number) {
-    const list = await this.shoppingListModel.findById(listId);
-    if (!list) throw new NotFoundException('Shopping list not found');
+async addItem(listId: string, productId: string) {
+  const list = await this.shoppingListModel.findById(listId);
+  if (!list) throw new NotFoundException('Shopping list not found');
 
+  // Convert productId once
+  const productObjectId = new Types.ObjectId(productId);
+
+  // 1. Check if the item already exists in the list
+  const existingItem = list.items.find(
+    (item) => item.productId.toString() === productId
+  );
+
+  if (existingItem) {
+    // 2. If exists → increment quantity
+    existingItem.quantity += 1;
+  } else {
+    // 3. If not exists → push new item
     list.items.push({
-      productId: new Types.ObjectId(productId),
-      quantity,
+      productId: productObjectId,
+      quantity: 1,
     });
-
-    await list.save();
-    return list;
   }
 
-  // UPDATE ITEM QUANTITY
-  async updateItem(listId: string, itemIndex: number, quantity: number) {
-    const list = await this.shoppingListModel.findById(listId);
-    if (!list) throw new NotFoundException('Shopping list not found');
+  // 4. Update total count (sum all quantities)
+  list.total = list.items.reduce((sum, item) => sum + item.quantity, 0);
 
-    if (!list.items[itemIndex]) {
-      throw new NotFoundException('Item index not found');
-    }
+  await list.save();
+  return list;
+}
 
-    list.items[itemIndex].quantity = quantity;
 
-    await list.save();
-    return list;
-  }
 
   // REMOVE ITEM
-  async removeItem(listId: string, itemIndex: number) {
-    const list = await this.shoppingListModel.findById(listId);
-    if (!list) throw new NotFoundException('Shopping list not found');
+async removeItem(listId: string, itemIndex: number) {
+  const list = await this.shoppingListModel.findById(listId);
+  if (!list) throw new NotFoundException('Shopping list not found');
 
-    if (!list.items[itemIndex]) {
-      throw new NotFoundException('Item index not found');
-    }
-
-    list.items.splice(itemIndex, 1);
-
-    await list.save();
-    return list;
+  if (!list.items[itemIndex]) {
+    throw new NotFoundException('Item index not found');
   }
+
+  // Remove the item
+  list.items.splice(itemIndex, 1);
+
+  // Update total (sum of all quantities)
+  list.total = list.items.reduce((sum, item) => sum + item.quantity, 0);
+
+  await list.save();
+  return list;
+}
 
   // DELETE LIST
   async delete(listId: string) {
