@@ -16,7 +16,8 @@ export const baseApi = createApi({
     'Stores',
     'Groups',
     'Users',
-    'ShoppingLists'
+    'ShoppingLists',
+    'StorePrices'
   ],
   endpoints: () => ({}), // Injected later
 });

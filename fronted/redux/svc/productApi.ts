@@ -1,22 +1,19 @@
 import { baseApi } from "./baseApi";
 
 export interface Product {
-    _id: string;
+    itemcode?: string;
     title: string;
-    brand?: string;
     unit?: "unit" | "kg" | "gram" | "liter";
+    brand?: string;
     pricerange?: string;
     image?: string;
     category?: string;
-    createdAt?: string;
-    updatedAt?: string;
 }
 
 
 export const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
 
-        // GET /products?q=milk&category=dairy&brand=Tnuva
         getProducts: builder.query<
             Product[],
             { q?: string; category?: string; brand?: string }
@@ -28,19 +25,17 @@ export const productsApi = baseApi.injectEndpoints({
             providesTags: (result) =>
                 result
                     ? [
-                        ...result.map((p) => ({ type: "Products" as const, id: p._id })),
+                        ...result.map((p) => ({ type: "Products" as const, id: p.itemcode })),
                         { type: "Products", id: "LIST" },
                     ]
                     : [{ type: "Products", id: "LIST" }],
         }),
 
-        // GET /products/:id
         getProductById: builder.query<Product, string>({
             query: (id) => `/products/${id}`,
             providesTags: (_, __, id) => [{ type: "Products", id }],
         }),
 
-        // POST /products
         createProduct: builder.mutation<Product, Partial<Product>>({
             query: (body) => ({
                 url: "/products",
@@ -50,7 +45,6 @@ export const productsApi = baseApi.injectEndpoints({
             invalidatesTags: [{ type: "Products", id: "LIST" }],
         }),
 
-        // PATCH /products/:id
         updateProduct: builder.mutation<
             Product,
             { id: string; patch: Partial<Product> }
@@ -66,7 +60,6 @@ export const productsApi = baseApi.injectEndpoints({
             ],
         }),
 
-        // DELETE /products/:id
         deleteProduct: builder.mutation<{ deleted: boolean }, string>({
             query: (id) => ({
                 url: `/products/${id}`,

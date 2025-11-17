@@ -25,7 +25,7 @@ export class UsersService {
       groups: (user.groups ?? []).map((g: any) => g.toString()),
       createdAt: user.createdAt?.toISOString() ?? '',
       updatedAt: user.updatedAt?.toISOString() ?? '',
-      defaultGroupId: user.defaultGroupId ?? null,
+      defaultGroupId: user.groupID ?? null,
     };
   }
 
@@ -63,7 +63,7 @@ export class UsersService {
     $addToSet: { users: new Types.ObjectId(userId) },
   });
 
-  if (!user.defaultGroupId) {
+  if (!user.groupID) {
     const updated = await this.userModel
       .findByIdAndUpdate(
         userId,
@@ -135,7 +135,7 @@ export class UsersService {
     if (typeof patch.email === 'string') allowed.email = patch.email;
     if (typeof patch.password === 'string') allowed.password = patch.password;
     if (typeof patch.avatarUrl === 'string') allowed.avatarUrl = patch.avatarUrl;
-    if (typeof patch.defaultGroupId === 'string') allowed.defaultGroupId = patch.defaultGroupId;
+    if (typeof patch.groupID === 'string') allowed.groupID = patch.groupID;
 
     const updated = await this.userModel
       .findByIdAndUpdate(id, allowed, {

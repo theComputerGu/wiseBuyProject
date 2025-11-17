@@ -1,4 +1,3 @@
-// src/prices/schemas/store-price.schema.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 
@@ -16,10 +15,9 @@ export class StorePrice {
     price: number;
 
     @Prop()
-    updatedAtXml?: Date; // Real XML government update
+    updatedAtXml?: Date;
 }
 
 export const StorePriceSchema = SchemaFactory.createForClass(StorePrice);
 
-// prevent duplicates
 StorePriceSchema.index({ productId: 1, storeId: 1 }, { unique: true });
