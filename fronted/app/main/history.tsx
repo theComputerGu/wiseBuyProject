@@ -17,7 +17,7 @@ import { RootState } from '../../redux/state/store';
 import {
   useGetGroupsQuery,
   useGetGroupByIdQuery,
-} from '../../redux/svc/Wisebuyapi';
+} from '../../redux/svc/groupsApi';
 import { setActiveGroup } from '../../redux/slices/authSlice';
 import { setActiveList } from '../../redux/slices/activeshoppinglistSlice'; // ⬅️ חדש
 import { useRouter } from 'expo-router';
