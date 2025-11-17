@@ -5,19 +5,19 @@ import { ShoppingListsService } from './shopping-lists.service';
 export class ShoppingListsController {
   constructor(private readonly service: ShoppingListsService) {}
 
-  // CREATE LIST
+  // create list
   @Post()
   create() {
     return this.service.create();
   }
 
-  // GET ALL
+  // get all
   @Get()
   findAll() {
     return this.service.findAll();
   }
 
-  // GET BY ID
+  // get by id
   @Get(':id')
   findById(@Param('id') id: string) {
     return this.service.findById(id);
@@ -33,13 +33,13 @@ export class ShoppingListsController {
   }
 
 
-  // REMOVE ITEM
-  @Delete(':id/items/:index')
-  removeItem(@Param('id') id: string, @Param('index') index: number) {
-    return this.service.removeItem(id, index);
+  // remove item
+  @Delete(':id/items/:itemId')
+  removeItem(@Param('id') id: string, @Param('itemId') itemId: string) {
+    return this.service.removeItem(id, itemId);
   }
 
-  // DELETE LIST
+  // delete list
   @Delete(':id')
   delete(@Param('id') id: string) {
     return this.service.delete(id);

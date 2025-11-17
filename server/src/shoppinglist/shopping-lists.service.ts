@@ -30,9 +30,7 @@ export class ShoppingListsService {
   // GET ALL
   async findAll() {
     return this.shoppingListModel
-      .find()
-      .sort({ createdAt: -1 })
-      .populate('items.productId');
+      .find().populate('items.productId');
   }
 
   // ADD ITEM TO LIST
@@ -68,24 +66,38 @@ async addItem(listId: string, productId: string) {
 
 
 
-  // REMOVE ITEM
-async removeItem(listId: string, itemIndex: number) {
+  // REMOVE ITEM BY ITEM ID
+async removeItem(listId: string, itemId: string) {
   const list = await this.shoppingListModel.findById(listId);
   if (!list) throw new NotFoundException('Shopping list not found');
 
-  if (!list.items[itemIndex]) {
-    throw new NotFoundException('Item index not found');
+  // Find the item by ID
+  const itemIndex = list.items.findIndex(
+    (item) => item.productId.toString() === itemId
+  );
+
+  if (itemIndex === -1) {
+    throw new NotFoundException('Item not found');
   }
 
-  // Remove the item
-  list.items.splice(itemIndex, 1);
+  const item = list.items[itemIndex];
 
-  // Update total (sum of all quantities)
+  // If quantity > 1 → decrease by 1
+  if (item.quantity > 1) {
+    item.quantity -= 1;
+  } 
+  // If quantity == 1 → remove item from list
+  else {
+    list.items.splice(itemIndex, 1);
+  }
+
+  // Update total (sum of quantities)
   list.total = list.items.reduce((sum, item) => sum + item.quantity, 0);
 
   await list.save();
   return list;
 }
+
 
   // DELETE LIST
   async delete(listId: string) {

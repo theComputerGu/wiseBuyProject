@@ -12,67 +12,86 @@ export interface ShoppingList {
 
 export const shoppingListApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-
-    getShoppingLists: builder.query<ShoppingList[], void>({
-      query: () => "/shopping-lists",
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map((l) => ({
-                type: "ShoppingLists" as const,
-                id: l._id,
-              })),
-              { type: "ShoppingLists", id: "LIST" },
-            ]
-          : [{ type: "ShoppingLists", id: "LIST" }],
-    }),
-
-    getShoppingListById: builder.query<ShoppingList, string>({
-      query: (id) => `/shopping-lists/${id}`,
-      providesTags: (_r, _e, id) => [{ type: "ShoppingLists", id }],
-    }),
-
-    createShoppingList: builder.mutation<
-      ShoppingList,
-      { items?: ShoppingListItem[]; total?: number }
-    >({
-      query: (body) => ({
-        url: "/shopping-lists",
-        method: "POST",
-        body,
+    // ---------------------------
+    // 1. Create list
+    // POST /shopping-lists
+    // ---------------------------
+    createList: builder.mutation({
+      query: () => ({
+        url: `/shopping-lists`,
+        method: 'POST',
       }),
-      invalidatesTags: [{ type: "ShoppingLists", id: "LIST" }],
+      invalidatesTags: ['ShoppingLists'],
     }),
 
-    updateShoppingList: builder.mutation<
-      ShoppingList,
-      { id: string; patch: Partial<ShoppingList> }
-    >({
-      query: ({ id, patch }) => ({
-        url: `/shopping-lists/${id}`,
-        method: "PATCH",
-        body: patch,
+    // ---------------------------
+    // 2. Get all lists
+    // GET /shopping-lists
+    // ---------------------------
+    getAllLists: builder.query({
+      query: () => `/shopping-lists`,
+      providesTags: ['ShoppingLists'],
+    }),
+
+    // ---------------------------
+    // 3. Get list by ID
+    // GET /shopping-lists/:id
+    // ---------------------------
+    getListById: builder.query({
+      query: (id: string) => `/shopping-lists/${id}`,
+      providesTags: (result, error, id) => [{ type: 'ShoppingLists', id }],
+    }),
+
+    // ---------------------------
+    // 4. Add or increment item  
+    // PATCH /shopping-lists/:id/items
+    // Body: { productId }
+    // ---------------------------
+    addItem: builder.mutation({
+      query: ({ listId, productId }) => ({
+        url: `/shopping-lists/${listId}/items`,
+        method: 'PATCH',
+        body: { productId },
       }),
-      invalidatesTags: (_r, _e, arg) => [
-        { type: "ShoppingLists", id: arg.id },
-        { type: "ShoppingLists", id: "LIST" },
+      invalidatesTags: (result, error, { listId }) => [
+        { type: 'ShoppingLists', id: listId },
       ],
     }),
 
-    deleteShoppingList: builder.mutation<{ deleted: boolean }, string>({
-      query: (id) => ({
-        url: `/shopping-lists/${id}`,
-        method: "DELETE",
+    // ---------------------------
+    // 5. Remove or decrease item  
+    // DELETE /shopping-lists/:id/items/:itemId
+    // ---------------------------
+    removeItem: builder.mutation({
+      query: ({ listId, itemId }) => ({
+        url: `/shopping-lists/${listId}/items/${itemId}`,
+        method: 'DELETE',
       }),
-      invalidatesTags: [{ type: "ShoppingLists", id: "LIST" }],
+      invalidatesTags: (result, error, { listId }) => [
+        { type: 'ShoppingLists', id: listId },
+      ],
+    }),
+
+    // ---------------------------
+    // 6. Delete entire list  
+    // DELETE /shopping-lists/:id
+    // ---------------------------
+    deleteList: builder.mutation({
+      query: (listId: string) => ({
+        url: `/shopping-lists/${listId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['ShoppingLists'],
     }),
   }),
 });
 
 export const {
-  useGetShoppingListsQuery,
-  useGetShoppingListByIdQuery,
-  useCreateShoppingListMutation,
-  useUpdateShoppingListMutation,
-  useDeleteShoppingListMutation,
+  useCreateListMutation,
+  useGetAllListsQuery,
+  useGetListByIdQuery,
+  useAddItemMutation,
+  useRemoveItemMutation,
+  useDeleteListMutation,
 } = shoppingListApi;
+
