@@ -14,7 +14,8 @@ export const baseApi = createApi({
   tagTypes: [
     'Products',
     'Stores',
-    'Groups',
+    "Groups",
+    'Groups[]',
     'Users',
     'ShoppingLists'
   ],

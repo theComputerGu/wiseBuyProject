@@ -3,63 +3,56 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Group, GroupDocument } from './schemas/groups.schema';
 import { User, UserDocument } from '../users/schemas/users.schema';
+import { ShoppingListsService } from '../shoppinglist/shopping-lists.service'
 
 @Injectable()
 export class GroupsService {
   constructor(
-    @InjectModel(Group.name) private groupModel: Model<GroupDocument>,
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
+    @InjectModel(Group.name)
+    private groupModel: Model<GroupDocument>,
+    @InjectModel(User.name)
+    private userModel: Model<UserDocument>,
+
+    private shoppingListService: ShoppingListsService,
   ) { }
 
   async create(data: { name: string; adminId: string }) {
+    // 1. Generate a 5-digit group code
     const groupcode = Math.floor(10000 + Math.random() * 90000).toString();
-    const
+
+    // 2. Create a default shopping list
+    const defaultList = await this.shoppingListService.create()
 
     const group = new this.groupModel({
       name: data.name,
       admin: data.adminId,
       users: [data.adminId],
       groupcode,
-      shoppingList: [],
+      activeshoppinglist: defaultList,
       history: [],
     });
-
     return group.save();
   }
 
   async findAll() {
-    return this.groupModel
-      .find()
-      .populate('users', 'name email avatarUrl')
-      .populate('admin', 'name email avatarUrl')
-      .exec();
+    return this.groupModel.find().exec();
   }
 
   async findOne(id: string) {
-    const group = await this.groupModel
-      .findById(id)
-      .populate('users', 'name email avatarUrl')
-      .populate('admin', 'name email avatarUrl')
-      .exec();
+    const group = await this.groupModel.findById(id).exec();
 
     if (!group) throw new NotFoundException('Group not found');
     return group;
   }
 
   async findUsers(id: string) {
-    const group = await this.groupModel
-      .findById(id)
-      .populate('users', 'name email avatarUrl')
-      .exec();
-    return group ? group.users : [];
+    const group = await this.groupModel.findById(id).exec();
+    return group?.users
   }
 
   async findByCode(code: string) {
     const group = await this.groupModel
-      .findOne({ groupcode: code })
-      .populate('users', 'name email avatarUrl')
-      .populate('admin', 'name email avatarUrl')
-      .exec();
+      .findOne({ groupcode: code }).exec();
 
     if (!group) throw new NotFoundException('Group not found');
     return group;
@@ -72,8 +65,6 @@ export class GroupsService {
         { $addToSet: { users: new Types.ObjectId(userId) } },
         { new: true },
       )
-      .populate('users', 'name email avatarUrl')
-      .populate('admin', 'name email avatarUrl')
       .exec();
   }
 

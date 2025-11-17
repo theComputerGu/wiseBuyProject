@@ -4,13 +4,14 @@ import { Group, GroupSchema } from './schemas/groups.schema';
 import { User, UserSchema } from '../users/schemas/users.schema';
 import { GroupsController } from './groups.controller';
 import { GroupsService } from './groups.service';
-
+import { ShoppingListsModule } from '../shoppinglist/shopping-lists.module';
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: Group.name, schema: GroupSchema },
       { name: User.name, schema: UserSchema },
     ]),
+    ShoppingListsModule,
   ],
   controllers: [GroupsController],
   providers: [GroupsService],

@@ -15,6 +15,7 @@ export class ShoppingListsService {
   async create() {
     const list = await this.shoppingListModel.create({
       items: [],
+      total: 0,
     });
     return list;
   }
@@ -38,7 +39,6 @@ export class ShoppingListsService {
   async addItem(listId: string, productId: string, quantity: number) {
     const list = await this.shoppingListModel.findById(listId);
     if (!list) throw new NotFoundException('Shopping list not found');
-    const item = await this.
 
     list.items.push({
       productId: new Types.ObjectId(productId),
