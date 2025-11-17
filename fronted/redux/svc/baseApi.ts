@@ -15,7 +15,6 @@ export const baseApi = createApi({
     'Products',
     'Stores',
     "Groups",
-    'Groups[]',
     'Users',
     'ShoppingLists'
   ],
