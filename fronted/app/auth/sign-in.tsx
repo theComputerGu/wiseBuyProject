@@ -11,7 +11,7 @@ import Button from "../../components/Button";
 import Logo from "../../components/Logo";
 import { useLoginMutation } from "../../redux/svc/usersApi";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../redux/slices/activeuserSlice";
+import { setUser } from "../../redux/slices/userSlice";
 
 
 const schema = z.object({

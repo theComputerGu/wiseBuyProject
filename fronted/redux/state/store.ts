@@ -1,37 +1,21 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
+import { configureStore } from '@reduxjs/toolkit';
 
-import { baseApi } from "../svc/baseApi";
-import authReducer from "../slices/activeuserSlice";
-import shoppingDraftReducer from "../slices/activeshoppinglistSlice";
-import uiReducer from "../slices/uiSlice";
-
-
-const persistConfig = {
-  key: "root",
-  storage: AsyncStorage,
-  whitelist: ["auth", "shoppingDraft"], // מה שאתה רוצה לשמור
-};
-
-const rootReducer = combineReducers({
-  [baseApi.reducerPath]: baseApi.reducer,
-  auth: authReducer,
-  shoppingDraft: shoppingDraftReducer,
-  ui: uiReducer,
-});
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+import userReducer from '../slices/userSlice';
+import groupReducer from '../slices/groupSlice';
+import shoppingListReducer from '../slices/shoppinglistSlice';
+import recommendedReducer from '../slices/recommendedSlice';
+import uiReducer from '../slices/uiSlice';
 
 export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefault) =>
-    getDefault({
-      serializableCheck: false,
-    }).concat(baseApi.middleware),
+  reducer: {
+    user: userReducer,
+    group: groupReducer,
+    shoppingList: shoppingListReducer,
+    recommended: recommendedReducer,
+    ui: uiReducer,
+  },
 });
 
-export const persistor = persistStore(store);
-
+// Types for useSelector and useDispatch
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

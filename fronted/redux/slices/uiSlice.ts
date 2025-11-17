@@ -1,4 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+/*
+note: slice for ui
+*/
 
 type Filters = { q?: string; category?: string; storeId?: string;
   priceRange?: [number, number]; sort?: 'price-asc' | 'price-desc' | 'rating' | 'new' };
