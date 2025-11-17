@@ -23,7 +23,8 @@ export class ShoppingList {
   }>;
 
   @Prop()
-  total: number //add function
+  total: number
+
 
 }
 
