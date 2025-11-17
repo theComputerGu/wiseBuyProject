@@ -38,7 +38,7 @@ const authSlice = createSlice({
         return;
       }
 
-      // לא לדרוס — אלא למזג
+      //merge
       s.user = {
         ...s.user,
         ...a.payload,
