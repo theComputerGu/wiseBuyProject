@@ -8,23 +8,22 @@ import {
   Body,
   Query,
 } from '@nestjs/common';
+
 import { ProductsService } from './products.service';
+import { CreateProductDto, UpdateProductDto } from '../products/dto/product.dto';
 
 @Controller('products')
 export class ProductsController {
+
   constructor(private readonly productsService: ProductsService) {}
 
-  // GET /products?q=milk&category=dairy
+  // GET /products
   @Get()
-  findAll(
-    @Query('q') q?: string,
-    @Query('category') category?: string,
-    @Query('brand') brand?: string,
-  ) {
-    return this.productsService.findAll({ q, category, brand });
+  findAll(@Query() query: any) {
+    return this.productsService.findAll(query);
   }
 
-  // GET /products/65a0...
+  // GET /products/:id
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);
@@ -32,17 +31,17 @@ export class ProductsController {
 
   // POST /products
   @Post()
-  create(@Body() body: any) {
-    return this.productsService.create(body);
+  create(@Body() dto: CreateProductDto) {
+    return this.productsService.create(dto);
   }
 
-  // PATCH /products/65a0...
+  // PATCH /products/:id
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body: any) {
-    return this.productsService.update(id, body);
+  update(@Param('id') id: string, @Body() dto: UpdateProductDto) {
+    return this.productsService.update(id, dto);
   }
 
-  // DELETE /products/65a0...
+  // DELETE /products/:id
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.productsService.remove(id);

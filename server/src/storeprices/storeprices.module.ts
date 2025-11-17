@@ -1,20 +1,18 @@
-
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
+import { StorePricesController } from './storeprices.controller';
 import { storePricesService } from './storeprices.service';
-import { storePricesController } from './storeprices.controller';
-
 import { StorePrice, StorePriceSchema } from './schemas/storeprices.schema';
 
 @Module({
-    imports: [
-        MongooseModule.forFeature([
-            { name: StorePrice.name, schema: StorePriceSchema },
-        ]),
-    ],
-    controllers: [storePricesController],
-    providers: [storePricesService],
-    exports: [storePricesService],
+  imports: [
+    MongooseModule.forFeature([
+      { name: StorePrice.name, schema: StorePriceSchema },
+    ]),
+  ],
+  controllers: [StorePricesController],
+  providers: [storePricesService],
+  exports: [storePricesService],
 })
-export class PricesModule { }
+export class StorePricesModule {}
