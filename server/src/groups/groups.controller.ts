@@ -9,11 +9,13 @@ import {
 } from '@nestjs/common';
 import { GroupsService } from './groups.service';
 import { Types } from 'mongoose';
+import { get, post } from 'axios';
 
 @Controller('groups')
 export class GroupsController {
-  constructor(private readonly groupsService: GroupsService) {}
+  constructor(private readonly groupsService: GroupsService) { }
 
+  //create group
   @Post()
   async create(
     @Body('name') name: string,
@@ -21,63 +23,77 @@ export class GroupsController {
   ) {
     return this.groupsService.create({ name, adminId });
   }
-
+  //get all groups
   @Get()
-  findAll() {
+  async findAll() {
     return this.groupsService.findAll();
   }
-
+  //get group by id
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.groupsService.findOne(id);
   }
-
+  //get group by code
   @Get('code/:groupcode')
-  findByCode(@Param('groupcode') code: string) {
+  async findByCode(@Param('groupcode') code: string) {
     return this.groupsService.findByCode(code);
   }
-
+  //get users of a specific group
   @Get(':id/users')
-  getUsers(@Param('id') id: string) {
+  async getUsers(@Param('id') id: string) {
     return this.groupsService.findUsers(id);
   }
-
+  //add user to group
   @Patch(':id/add-user')
-  addUser(@Param('id') id: string, @Body('userId') userId: string) {
+  async addUser(@Param('id') id: string, @Body('userId') userId: string) {
     return this.groupsService.addUserToGroup(id, userId);
   }
-
+  //remove user from group
   @Patch(':id/remove-user')
-  removeUser(@Param('id') id: string, @Body('userId') userId: string) {
+  async removeUser(@Param('id') id: string, @Body('userId') userId: string) {
     return this.groupsService.removeUserFromGroup(id, userId);
   }
-
+  //delete group
   @Delete(':id')
-  delete(@Param('id') id: string, @Body('requesterId') requesterId: string) {
+  async delete(@Param('id') id: string, @Body('requesterId') requesterId: string) {
     return this.groupsService.delete(id, requesterId);
   }
 
-  // ===================================================
-  // NEW: UPDATE ACTIVE SHOPPING LIST
-  // ===================================================
-  @Patch(':id/shopping-list')
-  updateActiveList(
+  // set active shopping list
+  @Patch(':id/activeshoppinglist')
+  async updateActiveList(
     @Param('id') groupId: string,
     @Body('list') list: Types.ObjectId | null,
   ) {
     return this.groupsService.updateActiveList(groupId, list);
   }
-    // ---------------------------------------------
-  // ADD SHOPPING LIST TO GROUP HISTORY
-  // ---------------------------------------------
+
+  //get active shopping list
+  @Get(':id/activeshoppinglist')
+  async getActiveShoppingList(@Param('id') groupId: string) {
+    return this.groupsService.getActiveShoppingList(groupId);
+  }
+  //get group admin
+  @Get(':id/admin')
+  async getAdmin(@Param('id') groupId: string) {
+    return this.groupsService.getAdmin(groupId);
+  }
+
+  //get history
+  @Get(':id/history')
+  async getHistory(@Param('id') groupId: string) {
+    return this.groupsService.getHistory(groupId);
+  }
+
+  // move active shopping list to history
   @Post(':id/history')
   async addToHistory(
     @Param('id') groupId: string,
     @Body('shoppingListId') shoppingListId: Types.ObjectId | null,
-      @Body('name') name: string,
+    @Body('name') name: string,
 
   ) {
-    return this.groupsService.addToHistory(name ,groupId,  shoppingListId );
+    return this.groupsService.addToHistory(name, groupId, shoppingListId);
   }
 
 }

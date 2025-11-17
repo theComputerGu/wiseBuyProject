@@ -13,6 +13,7 @@ export class GroupsService {
 
   async create(data: { name: string; adminId: string }) {
     const groupcode = Math.floor(10000 + Math.random() * 90000).toString();
+    const
 
     const group = new this.groupModel({
       name: data.name,
@@ -108,9 +109,7 @@ export class GroupsService {
   }
 
 
-  // ================================================
-  //  UPDATE ACTIVE SHOPPING LIST OF GROUP (CORRECT)
-  // ================================================
+  // update active shopping list
   async updateActiveList(groupId: string, listId: Types.ObjectId | null) {
     const group = await this.groupModel.findById(groupId);
     if (!group) throw new NotFoundException('Group not found');
@@ -121,23 +120,51 @@ export class GroupsService {
     return group;
   }
 
-//  ADD SHOPPING LIST TO GROUP HISTORY 
-async addToHistory(name :string ,groupId: string, list: any) {
-  const group = await this.groupModel.findById(groupId);
-  if (!group) throw new NotFoundException("Group not found");
+  //  ADD SHOPPING LIST TO GROUP HISTORY 
+  async addToHistory(name: string, groupId: string, list: any) {
+    const group = await this.groupModel.findById(groupId);
+    if (!group) throw new NotFoundException("Group not found");
 
-  group.history.push({
-    name: name,
-    shoppingListId: list._id,
-    purchasedAt: new Date(),
-    storeId: list.storeId,
-  });
+    group.history.push({
+      name: name,
+      shoppingListId: list._id,
+      purchasedAt: new Date(),
+      storeId: list.storeId,
+    });
 
-  // Clear the active shopping list
-  group.activeshoppinglist = null;
+    // Clear the active shopping list
+    group.activeshoppinglist = null;
 
-  await group.save();
+    await group.save();
 
-  return group;
-}
+    return group;
+  }
+
+  //get active shopping list
+  async getActiveShoppingList(groupId: string) {
+    const group = await this.groupModel.findById(groupId).populate('activeShoppingList');
+
+    if (!group) throw new NotFoundException('Group not found');
+
+    return group.activeshoppinglist;
+  }
+
+  //get Group Admin
+  async getAdmin(groupId: string) {
+    const group = await this.groupModel.findById(groupId).populate('admin');
+
+    if (!group) throw new NotFoundException('Group not found');
+
+    return group.admin;
+  }
+
+  //get group histroy
+  async getHistory(groupId: string) {
+    const group = await this.groupModel.findById(groupId).populate('history');
+
+    if (!group) throw new NotFoundException('Group not found');
+
+    return group.history;
+
+  }
 }

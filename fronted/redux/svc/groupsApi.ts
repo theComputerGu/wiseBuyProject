@@ -1,5 +1,22 @@
 import { baseApi } from "./baseApi";
 
+export interface Group {
+    _id: string;
+    name: string;
+    admin: string;
+    users: string[];
+    groupcode: string;
+    activeshoppinglist: string;
+    history: {
+        name: string;
+        shoppingListId?: string;
+        purchasedAt: Date;
+        storeId?: string;
+    }[];
+    createdAt?: string;
+    updatedAt?: string;
+}
+
 export const groupsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getGroups: builder.query<any[], void>({
