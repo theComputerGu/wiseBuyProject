@@ -4,8 +4,8 @@ interface DraftState { items: CartItem[] }
 
 const initialState: DraftState = { items: [] };
 
-const shoppingDraftSlice = createSlice({
-  name: 'shoppingDraft',
+const historySlice = createSlice({
+  name: 'historySlice',
   initialState,
   reducers: {
     addItem: (s, a: PayloadAction<CartItem>) => { s.items.push(a.payload); },
@@ -18,5 +18,5 @@ const shoppingDraftSlice = createSlice({
   },
 });
 
-export const { addItem, updateItem, removeItem, clearDraft } = shoppingDraftSlice.actions;
-export default shoppingDraftSlice.reducer;         
+export const { addItem, updateItem, removeItem, clearDraft } = historySlice.actions;
+export default historySlice.reducer;         

@@ -14,20 +14,7 @@ const baseQuery = fetchBaseQuery({
 
 
 
-export interface Product {
-  _id: string;
-  title: string;
-  brand?: string;
-  price: number;
-  currency?: string;
-  images?: string[];
-  inStock?: boolean;
-  category?: string;
-  description?: string;
-  tags?: string[];
-  createdAt?: string;
-  updatedAt?: string;
-}
+
 
 export interface Store {
   _id: string;

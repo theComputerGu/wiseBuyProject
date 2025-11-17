@@ -10,7 +10,7 @@ import {
   useDeleteGroupMutation,
   useGetGroupUsersQuery,
   useGetUserByIdQuery,
-} from "../redux/svc/wisebuyApi";
+} from "../redux/svc/Wisebuyapi";
 
 import { setUser } from "../redux/slices/authSlice";
 

@@ -14,7 +14,7 @@ import {
   useLazyGetGroupByCodeQuery,
   useAddUserToGroupMutation,
   useAddGroupToUserMutation
-} from "../../../redux/svc/wisebuyApi";
+} from "../../../redux/svc/Wisebuyapi";
 
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";

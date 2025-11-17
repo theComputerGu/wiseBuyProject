@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white', // fallback while video loads
+    backgroundColor: 'white',
   },
   video: {
     position: 'absolute',

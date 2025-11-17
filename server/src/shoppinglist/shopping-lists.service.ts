@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { ShoppingList, ShoppingListDocument } from './schemas/shopping-list.schema';
+import {ProductsModule} from '../products/products.module'
 
 @Injectable()
 export class ShoppingListsService {
@@ -37,6 +38,7 @@ export class ShoppingListsService {
   async addItem(listId: string, productId: string, quantity: number) {
     const list = await this.shoppingListModel.findById(listId);
     if (!list) throw new NotFoundException('Shopping list not found');
+    const item = await this.
 
     list.items.push({
       productId: new Types.ObjectId(productId),
