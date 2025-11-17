@@ -112,15 +112,15 @@ export class GroupsService {
   }
 
   //  ADD SHOPPING LIST TO GROUP HISTORY 
-  async addToHistory(name: string, groupId: string, list: any) {
+  async addToHistory(name: string, groupId: string) {
     const group = await this.groupModel.findById(groupId);
     if (!group) throw new NotFoundException("Group not found");
 
     group.history.push({
       name: name,
-      shoppingListId: list._id,
+      shoppingListId: group.activeshoppinglist?._id,
       purchasedAt: new Date(),
-      storeId: list.storeId,
+      storeId: group.activeshoppinglist?._id// will be added later
     });
 
     // Clear the active shopping list
@@ -133,7 +133,7 @@ export class GroupsService {
 
   //get active shopping list
   async getActiveShoppingList(groupId: string) {
-    const group = await this.groupModel.findById(groupId).populate('activeShoppingList');
+    const group = await this.groupModel.findById(groupId).populate('activeshoppinglist');
 
     if (!group) throw new NotFoundException('Group not found');
 

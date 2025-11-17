@@ -13,7 +13,7 @@ import { get, post } from 'axios';
 
 @Controller('groups')
 export class GroupsController {
-  constructor(private readonly groupsService: GroupsService) { }
+  constructor(private groupsService: GroupsService) { }
 
   //create group
   @Post()
@@ -89,11 +89,9 @@ export class GroupsController {
   @Post(':id/history')
   async addToHistory(
     @Param('id') groupId: string,
-    @Body('shoppingListId') shoppingListId: Types.ObjectId | null,
     @Body('name') name: string,
-
   ) {
-    return this.groupsService.addToHistory(name, groupId, shoppingListId);
+    return this.groupsService.addToHistory(name, groupId);
   }
 
 }
