@@ -19,7 +19,7 @@ import {
   useUpdateUserMutation,
   useDeleteUserMutation,
   useUploadAvatarMutation,
-} from '../../redux/svc/Wisebuyapi';
+} from '../../redux/svc/usersApi';
 import { useRouter } from 'expo-router';
 
 export default function AccountScreen() {

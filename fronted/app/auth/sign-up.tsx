@@ -11,7 +11,7 @@ import * as ImagePicker from "expo-image-picker";
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
-import { useCreateUserMutation, useUploadAvatarMutation } from "../../redux/svc/Wisebuyapi";
+import { useCreateUserMutation, useUploadAvatarMutation } from "../../redux/svc/usersApi";
 import { useDispatch } from "react-redux";
 import { setUser /*, setToken*/ } from "../../redux/slices/authSlice";
 

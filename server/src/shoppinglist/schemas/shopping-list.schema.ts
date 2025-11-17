@@ -7,7 +7,6 @@ export type ShoppingListDocument = HydratedDocument<ShoppingList>;
 @Schema({ timestamps: true, versionKey: false })
 export class ShoppingList {
 
-
   @Prop({
     type: [
       {

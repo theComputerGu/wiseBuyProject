@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
-import { useLoginMutation } from "../../redux/svc/Wisebuyapi";
+import { useLoginMutation } from "../../redux/svc/usersApi";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/slices/authSlice";
 

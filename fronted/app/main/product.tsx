@@ -41,7 +41,7 @@ export type Item = {
 
 export default function ProductScreen() {
   const { activeListId, activePurchaseNumber } = useSelector(
-    (s: RootState) => s.shoppingSession
+    (s: RootState) => s.shoppingDraft
   );
 
   const listId = activeListId;

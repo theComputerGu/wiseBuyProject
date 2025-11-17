@@ -9,13 +9,9 @@ import { useState } from "react";
 import Logo from "../../../components/Logo";
 import TextField from "../../../components/TextField";
 import Button from "../../../components/Button";
-
-import {
-  useLazyGetGroupByCodeQuery,
-  useAddUserToGroupMutation,
-  useAddGroupToUserMutation
-} from "../../../redux/svc/Wisebuyapi";
-
+import {useAddUserToGroupMutation,} from "../../../redux/svc/groupsApi";
+import {useAddGroupToUserMutation} from "../../../redux/svc/usersApi";
+//import {useLazyGetGroupByCodeQuery} from "../../../redux/svc/groupsApi";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
 import { setUser } from "../../../redux/slices/authSlice";
@@ -30,7 +26,7 @@ export default function JoinGroup() {
   const [code, setCode] = useState("");
 
   // שימוש נכון ב־Lazy Query
-  const [fetchGroupByCode] = useLazyGetGroupByCodeQuery();
+ // const [fetchGroupByCode] = useLazyGetGroupByCodeQuery();
 
   const [addUserToGroup] = useAddUserToGroupMutation();
   const [addGroupToUser] = useAddGroupToUserMutation();
@@ -41,21 +37,21 @@ export default function JoinGroup() {
 
     try {
       // 1️⃣ מביאים את הקבוצה לפי קוד
-      const group = await fetchGroupByCode(code.trim()).unwrap();
+     // const group = await fetchGroupByCode(code.trim()).unwrap();
 
-      if (!group?._id) return Alert.alert("Error", "Group not found");
+     // if (!group?._id) return Alert.alert("Error", "Group not found");
 
       // 2️⃣ מוסיפים משתמש לקבוצה
-      await addUserToGroup({
-        id: group._id,
-        userId
-      }).unwrap();
+     // await addUserToGroup({
+      //  groupId: group._id,
+      //  userId
+     // }).unwrap();
 
       // 3️⃣ מוסיפים קבוצה למשתמש
-      await addGroupToUser({
-        userId,
-        groupId: group._id
-      }).unwrap();
+     // await addGroupToUser({
+      //  userId,
+      //  groupId: group._id
+     // }).unwrap();
 
 
       Alert.alert("Success", "Joined group!", [
