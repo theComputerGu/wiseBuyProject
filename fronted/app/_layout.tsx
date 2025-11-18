@@ -2,31 +2,39 @@
 import React from "react";
 import { Stack, useRouter, useSegments } from "expo-router";
 import { Provider, useSelector } from "react-redux";
-import { PersistGate } from 'redux-persist/integration/react';
+import { PersistGate } from "redux-persist/integration/react";
 import { View, ActivityIndicator } from "react-native";
-import { store, persistor } from "../redux/state/store";
+import { store, persistor, RootState } from "../redux/state/store";
 
 
-// קומפוננטת Guard שמריצה הפניה אם אין משתמש ומנסים לצאת מ-/auth
+// 🔒 Auth Guard: ensures protected routes are locked when user is not logged in
 function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const segments = useSegments(); // למשל ["auth","sign-in"] או ["main","account"]
-  const user = useSelector((s: any) => s.auth?.user);
+  const segments = useSegments();         // example: ["auth","login"] or ["main","group"]
+
+  // ✔ FIXED: your slice name is `user`, not `auth`
+  const user = useSelector((s: RootState) => s.user.current);
 
   React.useEffect(() => {
-    // האם כרגע נמצאים בקבוצת /auth ?
-    const inAuth = segments[0] === "auth";
+    const inAuth = segments[0] === "auth";   // Is the current route group "/auth"?
 
-    // אם אין משתמש ומנסים להגיע למסכים שאינם ב-/auth → החזר ל-/auth/home
+    // ❗ If user NOT logged in AND trying to access non-auth screen → redirect
     if (!user && !inAuth) {
       router.replace("/auth/home");
+      return;
     }
-    // בכוונה לא מבצעים כאן הפניה הפוכה (משתמש מחובר שנמצא ב-/auth)
-    // כדי לשמור על ההתנהגות שרצית (Back וחיצים במסכי Auth נשארים)
+
+    // ✔ NOTE:
+    // We do NOT redirect logged-in users AWAY from /auth automatically.
+    // This allows them to go back with the top bar/back button.
+    // This is the behavior you wanted.
+
   }, [user, segments]);
 
   return <>{children}</>;
 }
+
+
 
 export default function RootLayout() {
   return (

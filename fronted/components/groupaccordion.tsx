@@ -4,16 +4,16 @@ import { View, Text, StyleSheet, Pressable, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/state/store";
-import {useGetUserByIdQuery,} from "../redux/svc/usersApi";
-import {useRemoveUserFromGroupMutation,useDeleteGroupMutation,useGetGroupUsersQuery} from "../redux/svc/groupsApi";
-import { setUser } from "../redux/slices/activeuserSlice";
+import { useGetUserByIdQuery, } from "../redux/svc/usersApi";
+import { useRemoveUserFromGroupMutation, useDeleteGroupMutation, useGetGroupUsersQuery } from "../redux/svc/groupsApi";
+import { setUser } from "../redux/slices/userSlice";
 
 export default function GroupAccordion({ group }: any) {
   const dispatch = useDispatch();
 
   // 🟦 נטען משתמש
-  const user = useSelector((s: RootState) => s.auth.user);
-  const userId = user?._id;
+  const user = useSelector((s: RootState) => s.user);
+  const userId = user.current?._id;
 
   if (!userId) return null;
 

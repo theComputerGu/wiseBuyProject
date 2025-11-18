@@ -13,7 +13,7 @@ import Button from "../../components/Button";
 import Logo from "../../components/Logo";
 import { useCreateUserMutation, useUploadAvatarMutation } from "../../redux/svc/usersApi";
 import { useDispatch } from "react-redux";
-import { setUser /*, setToken*/ } from "../../redux/slices/activeuserSlice";
+import { setUser } from "../../redux/slices/userSlice";
 
 const schema = z
   .object({
@@ -93,6 +93,7 @@ export default function SignUp() {
         email: finalUser.email,
         avatarUrl: finalUser.avatarUrl ?? null,
         groups: [],
+        defaultGroupId: null,
         createdAt: finalUser.createdAt ?? "",
         updatedAt: finalUser.updatedAt ?? "",
       })

@@ -11,36 +11,36 @@ import {useCreateGroupMutation,} from "../../../redux/svc/groupsApi";
 import {useAddGroupToUserMutation,} from "../../../redux/svc/usersApi";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
-import { setUser } from "../../../redux/slices/activeuserSlice";
+import { setUser } from "../../../redux/slices/userSlice";
+import { groupSlice, setActiveGroup } from "../../../redux/slices/groupSlice";
 
 export default function CreateGroup() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const user = useSelector((s: RootState) => s.auth.user);
-  const userId = user?._id;
+  const user = useSelector((s: RootState) => s.user);
+  const userId = user.current?._id;
 
-  const [groupName, setGroupName] = useState("");
+   const activeGroup = useSelector((s : RootState) => s.group)
+
 
   const [createGroup] = useCreateGroupMutation();
   const [addGroupToUser] = useAddGroupToUserMutation();
 
   const onCreateGroup = async () => {
-    if (!groupName.trim()) return Alert.alert("Missing name");
+    if (!activeGroup.activeGroup?.name.trim()) return Alert.alert("Missing name");
     if (!userId) return Alert.alert("Error", "User not found");
 
     try {
       // 1️⃣ יצירת קבוצה
       const group = await createGroup({
-        name: groupName.trim(),
+        name: activeGroup.activeGroup.name.trim(),
         adminId: userId,
       }).unwrap();
 
       // 2️⃣ הוספת למשתמש
       await addGroupToUser({ userId, groupId: group._id }).unwrap();
 
-      // 3️⃣ עדכון Redux
-      dispatch(setUser({ ...user, defaultGroupId: group._id }));
 
       Alert.alert("Success", "Group created!", [
         { text: "OK", onPress: () => router.replace("/main/group") },
@@ -64,11 +64,9 @@ export default function CreateGroup() {
         <Text style={s.title}>Create Group</Text>
 
         <Text style={s.label}>Group Name</Text>
-        <TextField
-          placeholder="e.g. Family groceries"
-          value={groupName}
-          onChangeText={setGroupName}
-        />
+        <Text>
+          {activeGroup.activeGroup?.name}
+        </Text>
 
         <View style={{ gap: 10, marginTop: 6 }}>
           <Button title="Create Group" onPress={onCreateGroup} />

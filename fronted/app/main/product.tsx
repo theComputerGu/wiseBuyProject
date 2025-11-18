@@ -40,12 +40,11 @@ export type Item = {
 //
 
 export default function ProductScreen() {
-  const { activeListId, activePurchaseNumber } = useSelector(
-    (s: RootState) => s.shoppingDraft
+  const shoppingList  = useSelector(
+    (s: RootState) => s.shoppingList
   );
 
-  const listId = activeListId;
-  const purchaseNumber = activePurchaseNumber;
+  const listId = shoppingList.activeList?._id;
 
   const [items, setItems] = useState<Item[]>([]);
   const [reco, setReco] = useState<Item[]>([]);
@@ -221,7 +220,7 @@ export default function ProductScreen() {
     <SafeAreaView style={styles.container}>
       <TopNav />
 
-      <Title text={listId ? `Purchase #${purchaseNumber}` : "Products"} />
+      <Title text={listId ? `Purchase #${shoppingList.activeList?._id}` : "Products"} />
 
       {err && <Text style={{ color: "red" }}>{err}</Text>}
 

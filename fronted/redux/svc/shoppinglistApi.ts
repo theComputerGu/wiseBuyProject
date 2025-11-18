@@ -6,6 +6,7 @@ export interface ShoppingListItem {
 }
 
 export interface ShoppingList {
+  _id : string
   items: ShoppingListItem[];
   total?: number;
 }

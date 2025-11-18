@@ -12,11 +12,13 @@ export interface ShoppingListItem {
 }
 
 export interface ShoppingList {
+     _id : string
     items: ShoppingListItem[];
     total?: number;
 }
 
 export interface ShoppingListState {
+   
     activeList: ShoppingList | null;
     isLoading: boolean;
 }

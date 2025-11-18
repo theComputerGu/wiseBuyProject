@@ -14,14 +14,14 @@ import {useAddGroupToUserMutation} from "../../../redux/svc/usersApi";
 //import {useLazyGetGroupByCodeQuery} from "../../../redux/svc/groupsApi";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
-import { setUser } from "../../../redux/slices/activeuserSlice";
+import { setUser } from "../../../redux/slices/userSlice";
 
 export default function JoinGroup() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const user = useSelector((s: RootState) => s.auth.user);
-  const userId = user?._id;
+  const user = useSelector((s: RootState) => s.user);
+  const userId = user.current?._id;
 
   const [code, setCode] = useState("");
 

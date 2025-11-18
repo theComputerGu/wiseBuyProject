@@ -26,7 +26,7 @@ export default function SignIn() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  
+
   const {
     control,
     handleSubmit,
@@ -39,24 +39,24 @@ export default function SignIn() {
   const [login, { isLoading }] = useLoginMutation();
 
   const onSubmit = async (data: Form) => {
-  try {
-    const u = await login({
-      email: data.email,
-      password: data.password,
-    }).unwrap();
+    try {
+      const u = await login({
+        email: data.email,
+        password: data.password,
+      }).unwrap();
 
-    dispatch(
-      setUser({
-        _id: u._id,
-        name: u.name,
-        email: u.email,
-        avatarUrl: u.avatarUrl ?? null,
-        groups: [],
-        defaultGroupId: undefined,
-        createdAt: "",
-        updatedAt: "",
-      })
-    );
+      dispatch(
+        setUser({
+          _id: u._id,
+          name: u.name,
+          email: u.email,
+          avatarUrl: u.avatarUrl ?? null,
+          groups: [],
+          defaultGroupId: u.defaultGroupId || null,
+          createdAt: u.createdAt,
+          updatedAt: u.updatedAt,
+        })
+      );
 
       router.replace("/main/product");
     } catch (e: any) {

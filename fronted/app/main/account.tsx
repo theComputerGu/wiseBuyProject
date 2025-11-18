@@ -14,7 +14,7 @@ import Button from '../../components/Button';
 
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../../redux/state/store';
-import { setUser, signOut } from '../../redux/slices/activeuserSlice';
+import { clearUser, setUser} from '../../redux/slices/userSlice';
 import {
   useUpdateUserMutation,
   useDeleteUserMutation,
@@ -26,20 +26,20 @@ export default function AccountScreen() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const user = useSelector((s: RootState) => s.auth.user);
+  const user = useSelector((s: RootState) => s.user);
 
   const [uploadAvatar, { isLoading: isUploading }] = useUploadAvatarMutation();
   const [avatarBust, setAvatarBust] = useState<number>(Date.now());
 
   const createdAtText = useMemo(() => {
-    if (!user?.createdAt) return '';
+    if (!user.current?.createdAt) return '';
     try {
-      const d = new Date(user.createdAt);
+      const d = new Date(user.current.createdAt);
       return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
     } catch {
       return '';
     }
-  }, [user?.createdAt]);
+  }, [user.current?.createdAt]);
 
   const [showPassword, setShowPassword] = useState(false);
   const [editName, setEditName] = useState(false);
@@ -50,14 +50,14 @@ export default function AccountScreen() {
   const [pwNew, setPwNew] = useState('');
   const [pwConfirm, setPwConfirm] = useState('');
 
-  const [name, setName] = useState(user?.name || '');
-  const [email, setEmail] = useState(user?.email || '');
+  const [name, setName] = useState(user.current?.name || '');
+  const [email, setEmail] = useState(user.current?.email || '');
 
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
 
   // ⬅⬅ FIX: always use _id
-  const getUserId = () => user?._id;
+  const getUserId = () => user.current?._id;
 
   // עדכון שם/אימייל
   const saveField = async (field: 'name' | 'email') => {
@@ -75,10 +75,10 @@ export default function AccountScreen() {
           _id: updated._id,
           name: updated.name,
           email: updated.email,
-          avatarUrl: updated.avatarUrl ?? user?.avatarUrl ?? null,
+          avatarUrl: updated.avatarUrl ?? user.current?.avatarUrl ?? null,
           createdAt: updated.createdAt,
           updatedAt: updated.updatedAt,
-          groups: updated.groups ?? user?.groups ?? [],
+          groups: updated.groups ?? user.current?.groups ?? [],
         })
       );
       if (field === 'name') setEditName(false);
@@ -107,10 +107,10 @@ export default function AccountScreen() {
           _id: updated._id,
           name: updated.name,
           email: updated.email,
-          avatarUrl: updated.avatarUrl ?? user?.avatarUrl ?? null,
+          avatarUrl: updated.avatarUrl ?? user.current?.avatarUrl ?? null,
           createdAt: updated.createdAt,
           updatedAt: updated.updatedAt,
-          groups: updated.groups ?? user?.groups ?? [],
+          groups: updated.groups ?? user.current?.groups ?? [],
         })
       );
       setPwCurrent('');
@@ -153,12 +153,12 @@ export default function AccountScreen() {
       dispatch(
         setUser({
           _id: updated._id ?? id,
-          name: updated.name ?? user?.name ?? '',
-          email: updated.email ?? user?.email ?? '',
-          avatarUrl: updated.avatarUrl ?? user?.avatarUrl ?? null,
-          createdAt: updated.createdAt ?? user?.createdAt,
-          updatedAt: updated.updatedAt ?? user?.updatedAt,
-          groups: updated.groups ?? user?.groups ?? [],
+          name: updated.name ?? user.current?.name ?? '',
+          email: updated.email ?? user.current?.email ?? '',
+          avatarUrl: updated.avatarUrl ?? user.current?.avatarUrl ?? null,
+          createdAt: updated.createdAt ?? user.current?.createdAt,
+          updatedAt: updated.updatedAt ?? user.current?.updatedAt,
+          groups: updated.groups ?? user.current?.groups ?? [],
         })
       );
 
@@ -169,7 +169,7 @@ export default function AccountScreen() {
   };
 
   const onLogout = () => {
-    dispatch(signOut());
+    dispatch(clearUser());
     router.replace('/auth/home');
   };
 
@@ -185,7 +185,7 @@ export default function AccountScreen() {
         onPress: async () => {
           try {
             await deleteUser({ id }).unwrap();
-            dispatch(signOut());
+            dispatch(clearUser());
             router.replace('/');
           } catch (e: any) {
             alert(e?.data?.message || 'Failed to delete user');
@@ -207,9 +207,9 @@ export default function AccountScreen() {
           <View style={styles.accountRow}>
             <View style={styles.profileContainer}>
               <Pressable onPress={onPickAndUploadAvatar} style={styles.avatarWrap}>
-                {user?.avatarUrl ? (
+                {user.current?.avatarUrl ? (
                   <Image
-                    source={{ uri: `${user.avatarUrl}?t=${avatarBust}` }}
+                    source={{ uri: `${user.current.avatarUrl}?t=${avatarBust}` }}
                     style={styles.avatarImg}
                   />
                 ) : (
@@ -230,7 +230,7 @@ export default function AccountScreen() {
                   <Button title={isLoading ? 'Saving...' : 'Save'} onPress={() => saveField('name')} />
                 </View>
               ) : (
-                <ItimText size={16}>{user?.name || '—'}</ItimText>
+                <ItimText size={16}>{user.current?.name || '—'}</ItimText>
               )}
 
               <ItimText size={14} color="#000" weight="bold">Created on</ItimText>
@@ -243,15 +243,15 @@ export default function AccountScreen() {
                   <Button title={isLoading ? 'Saving...' : 'Save'} onPress={() => saveField('email')} />
                 </View>
               ) : (
-                <ItimText size={16}>{user?.email || '—'}</ItimText>
+                <ItimText size={16}>{user.current?.email || '—'}</ItimText>
               )}
             </View>
 
             <View style={styles.editIcons}>
-              <Pressable onPress={() => { setName(user?.name || ''); setEditName(true); }}>
+              <Pressable onPress={() => { setName(user.current?.name || ''); setEditName(true); }}>
                 <MaterialCommunityIcons name="pencil" size={18} color="#197FF4" />
               </Pressable>
-              <Pressable style={{ marginTop: 40 }} onPress={() => { setEmail(user?.email || ''); setEditEmail(true); }}>
+              <Pressable style={{ marginTop: 40 }} onPress={() => { setEmail(user.current?.email || ''); setEditEmail(true); }}>
                 <MaterialCommunityIcons name="pencil" size={18} color="#197FF4" />
               </Pressable>
             </View>

@@ -18,34 +18,22 @@ import {
   useGetGroupsQuery,
   useGetGroupByIdQuery,
 } from '../../redux/svc/groupsApi';
-import { setActiveGroup } from '../../redux/slices/activeuserSlice';
-import { setActiveList } from '../../redux/slices/activeshoppinglistSlice'; // ⬅️ חדש
+import { setActiveGroup } from '../../redux/slices/groupSlice';
+import { setActiveList } from '../../redux/slices/shoppinglistSlice'; 
 import { useRouter } from 'expo-router';
 
 export default function HistoryScreen() {
 
-  const user = useSelector((s: RootState) => s.auth.user);
-  const activeGroupId = useSelector((s: RootState) => s.auth.activeGroupId);
-  const { data: groups = [] } = useGetGroupsQuery();
+  const user = useSelector((s: RootState) => s.user);
+  const activeGroup = useSelector((s: RootState) => s.group);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // בחירת קבוצה אוטומטית
-  if (!activeGroupId && groups.length > 0) {
-    dispatch(setActiveGroup(groups[0]._id));
-  }
 
-  const activeGroup = groups.find((g) => g._id === activeGroupId) || null;
 
-  const {
-    data: currentGroup,
-    isLoading,
-    error,
-  } = useGetGroupByIdQuery(activeGroupId!, { skip: !activeGroupId });
+  const history = activeGroup.activeGroup?.history?? [];
 
-  const history = currentGroup?.history ?? [];
-
-  if (!activeGroupId) {
+  if (!activeGroup) {
     return (
       <SafeAreaView style={styles.container}>
         <TopNav />
@@ -57,7 +45,7 @@ export default function HistoryScreen() {
     );
   }
 
-  if (isLoading) {
+  if (!activeGroup.isLoading) {
     return (
       <SafeAreaView style={styles.container}>
         <TopNav />
@@ -78,7 +66,7 @@ export default function HistoryScreen() {
         <View style={styles.groupRow}>
           <ItimText size={16} color="#197FF4">Group: </ItimText>
           <ItimText size={16} weight="bold" color="#197FF4">
-            {activeGroup?.name ?? 'No group'}
+            {activeGroup?.activeGroup?.name ?? 'No group'}
           </ItimText>
           <MaterialCommunityIcons name="chevron-down" size={22} color="#197FF4" />
         </View>
@@ -96,13 +84,6 @@ export default function HistoryScreen() {
               style={styles.purchaseCard}
               onPress={() => {
                 if (!item.shoppingListId) return;
-
-                dispatch(
-                  setActiveList({
-                    listId: item.shoppingListId,
-                    purchaseNumber: i + 1,
-                  })
-                );
 
                 router.push("/main/product");
               }}

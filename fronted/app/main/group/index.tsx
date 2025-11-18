@@ -9,7 +9,7 @@ import Title from "../../../components/Title";
 import { useRouter } from "expo-router";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
-import { setActiveGroup } from "../../../redux/slices/activeuserSlice";
+import { setActiveGroup } from "../../../redux/slices/groupSlice";
 import { useGetUserGroupsQuery } from "../../../redux/svc/usersApi";
 import { useState } from "react";
 
@@ -18,8 +18,8 @@ import GroupAccordion from "../../../components/groupaccordion";
 const BRAND = "#197FF4";
 
 export default function GroupPage() {
-  const user = useSelector((s: RootState) => s.auth.user);
-  const userId = user?._id;
+  const user = useSelector((s: RootState) => s.user);
+  const userId = user.current?._id;
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -27,7 +27,7 @@ export default function GroupPage() {
     skip: !userId,
   });
 
-  const activeGroupId = useSelector((s: RootState) => s.auth.activeGroupId);
+  const activeGroupId = useSelector((s: RootState) => s.group.activeGroup?._id);
 
   const [openGroupIds, setOpenGroupIds] = useState<string[]>([]);
 
@@ -67,7 +67,7 @@ export default function GroupPage() {
                 {/* כפתור בחירת קבוצה פעילה */}
                 <Pressable
                   style={s.selectButton}
-                  onPress={() => dispatch(setActiveGroup(item._id))}
+                  onPress={() => dispatch(setActiveGroup(item))}
                 >
                   <Text style={s.selectText}>
                     {activeGroupId === item._id ? "Active ✓" : "Select"}
