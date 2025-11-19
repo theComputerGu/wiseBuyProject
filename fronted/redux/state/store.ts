@@ -32,7 +32,7 @@ const rootReducer = combineReducers({
   recommended: recommendedReducer,
   ui: uiReducer,
 
-  // ❗ REQUIRED — add RTK Query reducer
+ 
   [baseApi.reducerPath]: baseApi.reducer,
 });
 
@@ -49,7 +49,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }).concat(baseApi.middleware),  // ❗ REQUIRED
+    }).concat(baseApi.middleware),  
 });
 
 // ----------------------

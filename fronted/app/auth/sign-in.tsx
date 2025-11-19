@@ -45,6 +45,8 @@ export default function SignIn() {
         password: data.password,
       }).unwrap();
 
+
+
       dispatch(
         setUser({
           _id: u._id,
@@ -57,6 +59,7 @@ export default function SignIn() {
           updatedAt: u.updatedAt,
         })
       );
+      setActiveGroup(u.defaultGroupId)
 
       router.replace("/main/product");
     } catch (e: any) {
