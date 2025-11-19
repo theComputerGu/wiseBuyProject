@@ -7,20 +7,23 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { User, UserDocument } from './schemas/users.schema';
 import { Group, GroupDocument } from '../groups/schemas/groups.schema';
+import { GroupsService } from 'src/groups/groups.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(Group.name) private groupModel: Model<GroupDocument>,
+    private groupsService: GroupsService,
   ) { }
 
 
   private toDto(user: UserDocument) {
     return {
-      _id: user._id.toString(),
+      _id: user._id,
       name: user.name,
       email: user.email,
+      password: user.password,
       avatarUrl: user.avatarUrl ?? null,
       groups: (user.groups ?? []).map((g: any) => g.toString()),
       createdAt: user.createdAt?.toISOString() ?? '',
@@ -31,8 +34,21 @@ export class UsersService {
 
 
   async create(data: Partial<User>) {
+    // 1️⃣ Create the user first
     const user = await new this.userModel(data).save();
-    return this.toDto(user);
+
+    // 2️⃣ Create a default group owned by this new user
+    const group = await this.groupsService.create({
+      name: `${user.name}'s Group`,
+      adminId: user._id.toString(),
+    });
+
+    // 3️⃣ Update the user with the new default group ID
+    user.activeGroup = group._id as Types.ObjectId;   
+    user.groups = [group._id as Types.ObjectId];
+    await user.save();
+
+    return user
   }
 
 
@@ -152,11 +168,11 @@ export class UsersService {
 
 
 
-  async setActiveGroup(userId: string, groupId: string) {
+  async setActiveGroup(userId: string, groupId: Types.ObjectId | null) {
     const user = await this.userModel.findById(userId);
     if (!user) throw new NotFoundException('User not found');
 
-    user.activeGroup = groupId;
+    user.activeGroup = groupId ;
     await user.save();
 
     return { message: 'Active group updated', activeGroup: user.activeGroup };

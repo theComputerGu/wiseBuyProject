@@ -7,9 +7,9 @@ import ItimText from './Itimtext';
 
 export default function TopNav() {
   const router = useRouter();
-  const user = useSelector((s: any) => s.auth?.user); 
+  const user = useSelector((s: any) => s?.user); 
 
-  const avatarUrl = user?.avatarUrl;
+  const avatarUrl = user.current?.avatarUrl;
 
   return (
     <View style={styles.container}>
@@ -17,6 +17,7 @@ export default function TopNav() {
         <Pressable onPress={() => router.push('/main/account')}>
           {avatarUrl ? (
             <Image
+             
               source={{ uri: avatarUrl }}
               style={styles.avatar}
             />

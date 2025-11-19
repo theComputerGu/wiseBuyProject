@@ -10,8 +10,12 @@ import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
 import { useLoginMutation } from "../../redux/svc/usersApi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
+import { setActiveGroup, } from "../../redux/slices/groupSlice";
+import { useGetGroupByIdQuery } from "../../redux/svc/groupsApi";
+import { useGetListByIdQuery } from "../../redux/svc/shoppinglistApi";
+import { setActiveList } from "../../redux/slices/shoppinglistSlice";
 
 
 const schema = z.object({
@@ -25,6 +29,9 @@ type Form = z.infer<typeof schema>;
 export default function SignIn() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const user = useSelector((s: any) => s?.user);
+  const ShoppingList = useSelector((s: any) => s?.ShoppingList);
+  const group = useSelector((s: any) => s?.group);
 
 
   const {
@@ -39,34 +46,38 @@ export default function SignIn() {
   const [login, { isLoading }] = useLoginMutation();
 
   const onSubmit = async (data: Form) => {
-    try {
-      const u = await login({
-        email: data.email,
-        password: data.password,
-      }).unwrap();
+
+    const u = await login({
+      email: data.email,
+      password: data.password,
+    }).unwrap();
 
 
+    dispatch(
+      setUser({
+        _id: u._id,
+        name: u.name,
+        password: u.password,
+        email: u.email,
+        avatarUrl: u.avatarUrl ?? null,
+        groups: u.groups,
+        defaultGroupId: u.defaultGroupId || null,
+        createdAt: u.createdAt,
+        updatedAt: u.updatedAt,
+      })
+    );
+    if (u.defaultGroupId) {
+      const groupData = await useGetGroupByIdQuery(u.defaultGroupId).refetch();
+      if (groupData.data) {
+        dispatch(setActiveGroup(groupData.data));
+        const shoppinglist = await useGetListByIdQuery(groupData.data._id).refetch();
+        dispatch(setActiveList(shoppinglist.data));
 
-      dispatch(
-        setUser({
-          _id: u._id,
-          name: u.name,
-          email: u.email,
-          avatarUrl: u.avatarUrl ?? null,
-          groups: [],
-          defaultGroupId: u.defaultGroupId || null,
-          createdAt: u.createdAt,
-          updatedAt: u.updatedAt,
-        })
-      );
-      setActiveGroup(u.defaultGroupId)
-
-      router.replace("/main/product");
-    } catch (e: any) {
-      const msg = e?.data?.message || e?.error || "Login failed";
-      alert(msg);
+      }
     }
-  };
+
+    router.replace("/main/product");
+  }
 
   // -------------------- Render --------------------
   return (

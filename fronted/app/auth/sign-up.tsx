@@ -12,8 +12,12 @@ import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
 import { useCreateUserMutation, useUploadAvatarMutation } from "../../redux/svc/usersApi";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
+import { setActiveGroup, } from "../../redux/slices/groupSlice";
+import { useGetGroupByIdQuery } from "../../redux/svc/groupsApi";
+import { useGetListByIdQuery } from "../../redux/svc/shoppinglistApi";
+import { setActiveList } from "../../redux/slices/shoppinglistSlice";
 
 const schema = z
   .object({
@@ -34,6 +38,10 @@ export default function SignUp() {
   const dispatch = useDispatch();
   const [remember, setRemember] = useState(false);
   const [pickedUri, setPickedUri] = useState<string | null>(null);
+
+  const user = useSelector((s: any) => s?.user);
+  const ShoppingList = useSelector((s: any) => s?.ShoppingList);
+  const group = useSelector((s: any) => s?.group);
 
   const {
     control,
@@ -66,38 +74,48 @@ export default function SignUp() {
   };
 
   const onSubmit = async (data: Form) => {
-  try {
-    const u = await createUser({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-    }).unwrap();
+    try {
+      const u = await createUser({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      }).unwrap();
 
-    let finalUser = u;
+      let finalUser = u;
 
-    if (pickedUri) {
-      const file = {
-        uri: pickedUri,
-        name: "avatar.jpg",
-        type: "image/jpeg",
-      } as any;
+      if (pickedUri) {
+        const file = {
+          uri: pickedUri,
+          name: "avatar.jpg",
+          type: "image/jpeg",
+        } as any;
 
-      const updated = await uploadAvatar({ id: u._id, file }).unwrap();
-      finalUser = updated;
-    }
-
-    dispatch(
-      setUser({
-        _id: finalUser._id,
-        name: finalUser.name,
-        email: finalUser.email,
-        avatarUrl: finalUser.avatarUrl ?? null,
-        groups: [],
-        defaultGroupId: null,
-        createdAt: finalUser.createdAt ?? "",
-        updatedAt: finalUser.updatedAt ?? "",
-      })
-    );
+        const updated = await uploadAvatar({ id: u._id, file }).unwrap();
+        finalUser = updated;
+      }
+      // Update all redux states
+      dispatch(
+        setUser({
+          _id: finalUser._id,
+          name: finalUser.name,
+          email: finalUser.email,
+          password : finalUser.password,
+          avatarUrl: finalUser.avatarUrl ?? null,
+          groups: finalUser.groups,
+          defaultGroupId: finalUser.defaultGroupId || null,
+          createdAt: finalUser.createdAt ?? "",
+          updatedAt: finalUser.updatedAt ?? "",
+        })
+      );
+       if (u.defaultGroupId) {
+            const groupData = await useGetGroupByIdQuery(u.defaultGroupId).refetch();
+            if (groupData.data) {
+              dispatch(setActiveGroup(groupData.data));
+              const shoppinglist = await useGetListByIdQuery(groupData.data._id).refetch();
+              dispatch(setActiveList(shoppinglist.data));
+      
+            }
+          }
 
       router.replace("/main/product");
 
@@ -107,7 +125,7 @@ export default function SignUp() {
     }
   };
 
-  
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={s.page}>

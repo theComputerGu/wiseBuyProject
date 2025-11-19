@@ -1,8 +1,10 @@
+import { Types } from "mongoose";
+
 export class UserDto {
-  _id: string;
+  _id: Types.ObjectId;      
   name: string;
   email: string;
-  groups: string[];
+  groups: Types.ObjectId[]; 
   createdAt?: string;
   updatedAt?: string;
   avatarUrl?: string;

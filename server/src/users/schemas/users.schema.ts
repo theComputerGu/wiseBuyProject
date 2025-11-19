@@ -7,8 +7,10 @@ export type UserDocument = HydratedDocument<User>;
 @Schema({ timestamps: true })
 export class User {
 
-  @Prop()
-  activeGroup: string;
+  // The user's currently active group (frontend + backend use this)
+  @Prop({ type: Types.ObjectId, ref: 'Group', default: null })
+  activeGroup: Types.ObjectId | null;
+
 
   @Prop({ required: true, unique: true })
   name: string;

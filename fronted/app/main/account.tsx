@@ -75,6 +75,7 @@ export default function AccountScreen() {
           _id: updated._id,
           name: updated.name,
           email: updated.email,
+          password: updated.password,
           avatarUrl: updated.avatarUrl ?? user.current?.avatarUrl ?? null,
           createdAt: updated.createdAt,
           updatedAt: updated.updatedAt,
@@ -107,6 +108,7 @@ export default function AccountScreen() {
           _id: updated._id,
           name: updated.name,
           email: updated.email,
+          password: updated.password,
           avatarUrl: updated.avatarUrl ?? user.current?.avatarUrl ?? null,
           createdAt: updated.createdAt,
           updatedAt: updated.updatedAt,
@@ -155,6 +157,7 @@ export default function AccountScreen() {
           _id: updated._id ?? id,
           name: updated.name ?? user.current?.name ?? '',
           email: updated.email ?? user.current?.email ?? '',
+          password: updated.password ?? user.current?.password ?? '',
           avatarUrl: updated.avatarUrl ?? user.current?.avatarUrl ?? null,
           createdAt: updated.createdAt ?? user.current?.createdAt,
           updatedAt: updated.updatedAt ?? user.current?.updatedAt,
@@ -302,7 +305,7 @@ export default function AccountScreen() {
             <View style={styles.privacyRow}>
               <View style={{ flex: 1 }}>
                 <ItimText size={16} color="#000" weight="bold">Password</ItimText>
-                <ItimText size={16} color="#000">********</ItimText>
+                <ItimText size={16} color="#000">{ user.current?.password || '*****'}</ItimText>
               </View>
               <Pressable style={styles.showPasswordBtn} onPress={() => setChangePwMode(true)}>
                 <ItimText size={14} color="#197FF4">Change password</ItimText>

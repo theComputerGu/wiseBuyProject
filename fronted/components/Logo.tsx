@@ -31,7 +31,7 @@ export default function Logo({
   return (
     <View style={[{ alignItems: "center", gap: 6 }, containerStyle]}>
       <Image
-        source={require("../assets/logo black.png")}  // שים לב: עדיף לשנות ל 'logo-black.png' בעתיד
+        source={require("../assets/logos/logo blue.png")}  // שים לב: עדיף לשנות ל 'logo-black.png' בעתיד
         style={[{ width: iconSize, height: iconSize, resizeMode: "contain" }, imageStyle]}
       />
       <Text style={[styles.brand, { fontSize: iconSize * textScale }, textStyle]}>

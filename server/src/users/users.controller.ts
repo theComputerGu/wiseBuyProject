@@ -18,6 +18,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 import { existsSync, mkdirSync } from 'fs';
+import { Types } from 'mongoose';
 
 @Controller('users')
 export class UsersController {
@@ -28,8 +29,10 @@ export class UsersController {
     @Body('name') name: string,
     @Body('email') email: string,
     @Body('password') password: string,
+    @Body('avatarUrl') avatarUrl?: string,
+    
   ) {
-    return this.usersService.create({ name, email, password });
+    return this.usersService.create({ name, email, password, avatarUrl });
   }
 
   @Get()
@@ -120,7 +123,7 @@ removeGroup(
 @Post(':id/activegroup')
 async setActiveGroup(
   @Param('id') id: string,
-  @Body('groupId') groupId: string,
+  @Body('groupId') groupId: Types.ObjectId | null,
 ) {
   return this.usersService.setActiveGroup(id, groupId);
 }
