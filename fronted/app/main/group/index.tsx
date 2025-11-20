@@ -1,5 +1,3 @@
-// app/main/group/index.tsx
-
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -10,9 +8,11 @@ import { useRouter } from "expo-router";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
 import { setActiveGroup } from "../../../redux/slices/groupSlice";
+import { setUser } from "../../../redux/slices/userSlice"; // ✅ חדש
 import { useGetUserGroupsQuery } from "../../../redux/svc/usersApi";
 import { useState } from "react";
-
+import { useSetActiveGroupMutation } from "../../../redux/svc/usersApi";
+import { useGetUserByIdQuery } from "../../../redux/svc/usersApi";
 import GroupAccordion from "../../../components/groupaccordion";
 
 const BRAND = "#197FF4";
@@ -21,13 +21,23 @@ export default function GroupPage() {
   const user = useSelector((s: RootState) => s.user);
   const userId = user.current?._id;
   const dispatch = useDispatch();
-  const router = useRouter();
 
-  const { data: groups = [], isLoading } = useGetUserGroupsQuery(userId!, {
+  const [updateActiveGroup] = useSetActiveGroupMutation();
+
+  const { refetch: refetchUser } = useGetUserByIdQuery(userId!, {
     skip: !userId,
   });
 
-  const activeGroupId = useSelector((s: RootState) => s.group.activeGroup?._id);
+  const router = useRouter();
+
+  const { data: groups = [], isLoading, refetch: refetchGroups } =
+    useGetUserGroupsQuery(userId!, {
+      skip: !userId,
+    });
+
+  const activeGroupId = useSelector(
+    (s: RootState) => s.group.activeGroup?._id
+  );
 
   const [openGroupIds, setOpenGroupIds] = useState<string[]>([]);
 
@@ -40,7 +50,7 @@ export default function GroupPage() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF", paddingHorizontal: 20 }}>
       <TopNav />
-      <Title text="Shopping lists" />
+      <Title text="My Groups:" />
 
       {!isLoading && groups.length === 0 && (
         <Text style={{ textAlign: "center", marginTop: 30, fontSize: 16, color: "#777" }}>
@@ -59,15 +69,29 @@ export default function GroupPage() {
           return (
             <>
               <View style={s.row}>
-                {/* פתיחה/סגירה */}
                 <Pressable style={{ flex: 1 }} onPress={() => toggleGroup(item._id)}>
                   <Text style={s.link}>{item.name}</Text>
                 </Pressable>
 
-                {/* כפתור בחירת קבוצה פעילה */}
                 <Pressable
                   style={s.selectButton}
-                  onPress={() => dispatch(setActiveGroup(item))}
+                  onPress={async () => {
+                    try {
+                      await updateActiveGroup({
+                        userId: userId!,
+                        groupId: item._id,
+                      }).unwrap();
+
+                      const freshUser = await refetchUser().unwrap();
+
+                      dispatch(setUser(freshUser));    // ✅ פה היה חסר
+                      dispatch(setActiveGroup(item)); // נשאר כפי שהיה
+
+                      refetchGroups(); // ✅ רענון רשימת קבוצות
+                    } catch (err) {
+                      console.log("ERROR SETTING ACTIVE GROUP:", err);
+                    }
+                  }}
                 >
                   <Text style={s.selectText}>
                     {activeGroupId === item._id ? "Active ✓" : "Select"}
@@ -158,7 +182,6 @@ const s = StyleSheet.create({
   pillSolid: { backgroundColor: BRAND },
   pillText: { fontSize: 14, fontWeight: "800" },
 
-  // 🎯 הכפתור החדש
   selectButton: {
     paddingHorizontal: 10,
     paddingVertical: 4,

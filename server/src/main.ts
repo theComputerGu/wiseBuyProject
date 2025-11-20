@@ -9,15 +9,9 @@ import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  // CORS כפי שהיה
   app.enableCors({ origin: true, credentials: true });
-
-  // ⬅️ חדש: הגשה סטטית של תיקיית uploads
-  // כל פנייה ל- /uploads/... תגיש קובץ מתוך התיקייה ../uploads
   app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
 
-  // ValidationPipe כפי שהיה
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
     forbidNonWhitelisted: true,

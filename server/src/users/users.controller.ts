@@ -8,82 +8,86 @@ import {
   Patch,
   UseInterceptors,
   UploadedFile,
-  Req,
   BadRequestException,
+  Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { LoginDto } from './dto/login.dto';
+import { Types } from 'mongoose';
 import type { Request } from 'express';
-import { FileInterceptor } from '@nestjs/platform-express'; 
+
+import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname, join } from 'path';
 import { existsSync, mkdirSync } from 'fs';
-import { Types } from 'mongoose';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  // -----------------------------
+  // CREATE
+  // -----------------------------
   @Post()
   async create(
     @Body('name') name: string,
     @Body('email') email: string,
-    @Body('password') password: string,
-    @Body('avatarUrl') avatarUrl?: string,
-    
+    @Body('passwordPlain') passwordPlain: string,
   ) {
-    return this.usersService.create({ name, email, password, avatarUrl });
+    return this.usersService.create({ name, email, passwordPlain });
   }
 
+  // -----------------------------
+  // LOGIN
+  // -----------------------------
+  @Post('login')
+  async login(@Body() dto: LoginDto) {
+    return this.usersService.login(dto.email, dto.passwordPlain);
+  }
+
+  // -----------------------------
+  // FIND ALL
+  // -----------------------------
   @Get()
   async findAll() {
     return this.usersService.findAll();
   }
 
-  @Patch(':userId/remove-group/:groupId')
-removeGroup(
-  @Param('userId') userId: string,
-  @Param('groupId') groupId: string
-) {
-  return this.usersService.removeGroup(userId, groupId);
-}
-
+  // -----------------------------
+  // FIND ONE
+  // -----------------------------
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
 
+  @Get(':id/groups')
+  async getUserGroups(@Param('id') userId: string) {
+  return this.usersService.findUserGroups(userId);
+  }
+
+  // -----------------------------
+  // UPDATE
+  // -----------------------------
   @Patch(':id')
   async updateUser(
     @Param('id') id: string,
-    @Body() patch: Partial<{ name: string; email: string; password: string; avatarUrl: string }>
+    @Body() patch: any,
   ) {
     return this.usersService.update(id, patch);
   }
 
-  @Patch(':userId/add-group/:groupId')
-  async addGroup(
-    @Param('userId') userId: string,
-    @Param('groupId') groupId: string,
-  ) {
-    return this.usersService.addGroup(userId, groupId);
-  }
-
-  @Get(':id/groups')
-  async getUserGroups(@Param('id') id: string) {
-    return this.usersService.findUserGroups(id);
-  }
-
+  // -----------------------------
+  // DELETE
+  // -----------------------------
   @Delete(':id')
   async delete(@Param('id') id: string) {
     return this.usersService.delete(id);
   }
 
-  @Post('login')
-  async login(@Body() dto: LoginDto) {
-    return this.usersService.login(dto.email, dto.password);
-  }
-
+  // -----------------------------
+  // UPLOAD AVATAR
+  // -----------------------------
   @Patch(':id/avatar')
   @UseInterceptors(
     FileInterceptor('file', {
@@ -104,33 +108,46 @@ removeGroup(
   async uploadAvatar(
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
-    @Req() req: Request, 
+    @Req() req: Request,
   ) {
     if (!file) throw new BadRequestException('No file provided');
 
-    const base =
-      process.env.PUBLIC_BASE_URL || `${req.protocol}://${req.get('host')}`;
+    const base = process.env.PUBLIC_BASE_URL || `${req.protocol}://${req.get('host')}`;
     const url = `${base}/uploads/avatars/${file.filename}`;
 
-    console.log('[uploadAvatar] saved:', file.path);
-    console.log('[uploadAvatar] url:', url);
-
-    const doc = await this.usersService.update(id, { avatarUrl: url });
-    return doc;
+    return this.usersService.update(id, { avatarUrl: url });
   }
 
- //set active group
-@Post(':id/activegroup')
+  // -----------------------------
+  // ACTIVE GROUP
+  // -----------------------------
+
+
+  @Get(':id/activegroup')
+  async getActiveGroup(@Param('id') id: string) {
+    return this.usersService.getActiveGroup(id);
+  }
+
+
+      // users.controller.ts
+    @Patch(':userId/add-group/:groupId')
+    async addGroupToUser(
+      @Param('userId') userId: string,
+      @Param('groupId') groupId: string,
+    ) {
+      return this.usersService.addGroupToUser(userId, groupId);
+    }
+
+  // SET ACTIVE GROUP
+@Patch(':id/set-active-group')
 async setActiveGroup(
-  @Param('id') id: string,
-  @Body('groupId') groupId: Types.ObjectId | null,
+  @Param('id') userId: string,
+  @Body('groupId') groupId: string | null,
 ) {
-  return this.usersService.setActiveGroup(id, groupId);
+  return this.usersService.setActiveGroup(
+    userId,
+    groupId ? new Types.ObjectId(groupId) : null,
+  );
 }
 
-//get active group
-@Get(':id/activegroup')
-async getActiveGroup(@Param('id') id: string) {
-  return this.usersService.getActiveGroup(id);
-}
 }

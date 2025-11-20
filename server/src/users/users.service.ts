@@ -8,6 +8,7 @@ import { Model, Types } from 'mongoose';
 import { User, UserDocument } from './schemas/users.schema';
 import { Group, GroupDocument } from '../groups/schemas/groups.schema';
 import { GroupsService } from 'src/groups/groups.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -15,174 +16,154 @@ export class UsersService {
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     @InjectModel(Group.name) private groupModel: Model<GroupDocument>,
     private groupsService: GroupsService,
-  ) { }
-
+  ) {}
 
   private toDto(user: UserDocument) {
     return {
-      _id: user._id,
+      _id: user._id.toString(),
       name: user.name,
       email: user.email,
-      password: user.password,
       avatarUrl: user.avatarUrl ?? null,
-      groups: (user.groups ?? []).map((g: any) => g.toString()),
+      groups: user.groups?.map((g) => g.toString()) ?? [],
+      activeGroup: user.activeGroup?.toString() ?? null,
       createdAt: user.createdAt?.toISOString() ?? '',
       updatedAt: user.updatedAt?.toISOString() ?? '',
-      activeGroup: user.activeGroup ?? null,
     };
   }
 
+  // --------------------------
+  // CREATE USER
+  // --------------------------
+  async create(data: { name: string; email: string; passwordPlain: string }) {
+    if (!data.passwordPlain) {
+      throw new Error('Password is required');
+    }
 
-  async create(data: Partial<User>) {
-    // 1️⃣ Create the user first
-    const user = await new this.userModel(data).save();
+    const hashed = await bcrypt.hash(data.passwordPlain, 10);
 
-    // 2️⃣ Create a default group owned by this new user
+    const user = await new this.userModel({
+      name: data.name,
+      email: data.email,
+      password: hashed, // 👉 שומר רק HASH
+      groups: [],
+    }).save();
+
+    // יצירת קבוצה ראשונית
     const group = await this.groupsService.create({
       name: `${user.name}'s Group`,
       adminId: user._id.toString(),
+      isDefault: true,   // <--- חדש
     });
 
-    // 3️⃣ Update the user with the new default group ID
-    user.activeGroup = group._id as Types.ObjectId;   
+    user.activeGroup = group._id as Types.ObjectId;
     user.groups = [group._id as Types.ObjectId];
     await user.save();
 
-    return user
-  }
-
-
-  async findAll() {
-    const users = await this.userModel.find().populate('groups').exec();
-    return users.map((u) => this.toDto(u));
-  }
-
-  async findOne(id: string) {
-    const user = await this.userModel.findById(id).populate('groups').exec();
-    if (!user) throw new NotFoundException(`User with ID ${id} not found`);
     return this.toDto(user);
   }
 
-  async addGroup(userId: string, activeGroup: string) {
-    let user = await this.userModel
-      .findByIdAndUpdate(
-        userId,
-        { $addToSet: { groups: new Types.ObjectId(activeGroup) } },
-        { new: true }
-      )
-      .populate('groups')
-      .exec();
+  // --------------------------
+  // LOGIN USER
+  // --------------------------
+  async login(email: string, passwordPlain: string) {
+    const user = await this.userModel.findOne({ email }).exec();
 
-    if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
+    if (!user) throw new UnauthorizedException('Invalid email or password');
+    if (!user.password) throw new UnauthorizedException('Invalid email or password');
 
-    await this.groupModel.findByIdAndUpdate(activeGroup, {
-      $addToSet: { users: new Types.ObjectId(userId) },
-    });
+    const ok = await bcrypt.compare(passwordPlain, user.password);
+    if (!ok) throw new UnauthorizedException('Invalid email or password');
 
-    if (!user.activeGroup) {
-      const updated = await this.userModel
-        .findByIdAndUpdate(
-          userId,
-          { defaultactiveGroup: activeGroup },
-          { new: true }
-        )
-        .populate('groups')
-        .exec();
+    return this.toDto(user);
+  }
 
-      if (!updated) {
-        throw new NotFoundException(`User with ID ${userId} not found`);
-      }
+  // --------------------------
+  // UPDATE USER
+  // --------------------------
+  async update(id: string, patch: any) {
+    const allowed: any = {};
 
-      user = updated;
+    if (patch.name) allowed.name = patch.name;
+    if (patch.email) allowed.email = patch.email;
+
+    if (patch.passwordPlain && patch.passwordPlain.trim().length > 0) {
+      allowed.password = await bcrypt.hash(patch.passwordPlain, 10);
     }
 
-    return this.toDto(user);
-  }
-
-
-  async removeGroup(userId: string, activeGroup: string) {
-    await this.userModel.findByIdAndUpdate(userId, {
-      $pull: { groups: new Types.ObjectId(activeGroup) },
-    });
-
-    await this.groupModel.findByIdAndUpdate(activeGroup, {
-      $pull: { users: new Types.ObjectId(userId) },
-    });
-
-    const user = await this.userModel.findById(userId).populate('groups').exec();
-    if (!user) throw new NotFoundException('User not found');
-
-    return this.toDto(user);
-  }
-
-
-  async findUserGroups(userId: string) {
-    const user = await this.userModel
-      .findById(userId)
-      .populate('groups')
-      .exec();
-
-    if (!user) throw new NotFoundException(`User with ID ${userId} not found`);
-
-    return user.groups as any;
-  }
-
-
-
-  async delete(userId: string) {
-    const deleted = await this.userModel.findByIdAndDelete(userId).exec();
-    return deleted ? this.toDto(deleted) : null;
-  }
-
-  async login(email: string, password: string) {
-    const user = await this.userModel.findOne({ email }).populate('groups').exec();
-
-    if (!user || user.password !== password) {
-      throw new UnauthorizedException('Invalid email or password');
-    }
-
-    return this.toDto(user);
-  }
-
-  async update(id: string, patch: Partial<User>) {
-    const allowed: Partial<User> = {};
-
-    if (typeof patch.name === 'string') allowed.name = patch.name;
-    if (typeof patch.email === 'string') allowed.email = patch.email;
-    if (typeof patch.password === 'string') allowed.password = patch.password;
-    if (typeof patch.avatarUrl === 'string') allowed.avatarUrl = patch.avatarUrl;
-    if (typeof patch.activeGroup === 'string') allowed.activeGroup = patch.activeGroup;
+    if (patch.avatarUrl) allowed.avatarUrl = patch.avatarUrl;
+    if (patch.activeGroup) allowed.activeGroup = patch.activeGroup;
 
     const updated = await this.userModel
-      .findByIdAndUpdate(id, allowed, {
-        new: true,
-        runValidators: true,
-      })
-      .populate('groups')
+      .findByIdAndUpdate(id, allowed, { new: true })
       .exec();
 
-    if (!updated) throw new NotFoundException(`User with ID ${id} not found`);
+    if (!updated) throw new NotFoundException(`User ${id} not found`);
 
     return this.toDto(updated);
   }
 
+  // --------------------------
+  async findAll() {
+    const users = await this.userModel.find().exec();
+    return users.map((u) => this.toDto(u));
+  }
 
+  async findOne(id: string) {
+    const user = await this.userModel.findById(id).exec();
+    if (!user) throw new NotFoundException(`User ${id} not found`);
+    return this.toDto(user);
+  }
 
+  async delete(id: string) {
+    const deleted = await this.userModel.findByIdAndDelete(id).exec();
+    return deleted ? this.toDto(deleted) : null;
+  }
+
+  // --------------------------
+  // ACTIVE GROUP
+  // --------------------------
   async setActiveGroup(userId: string, groupId: Types.ObjectId | null) {
-    const user = await this.userModel.findById(userId);
+    const user = await this.userModel.findById(userId).exec();
     if (!user) throw new NotFoundException('User not found');
 
-    user.activeGroup = groupId ;
+    user.activeGroup = groupId;
     await user.save();
 
     return { message: 'Active group updated', activeGroup: user.activeGroup };
   }
 
   async getActiveGroup(userId: string) {
-    const user = await this.userModel.findById(userId);
+    const user = await this.userModel.findById(userId).exec();
     if (!user) throw new NotFoundException('User not found');
-
     return { activeGroup: user.activeGroup };
   }
+
+
+  async findUserGroups(userId: string) {
+  const user = await this.userModel
+    .findById(userId)
+    .populate('groups')       // ✔ מביא את האובייקטים המלאים
+    .exec();
+
+  if (!user) throw new NotFoundException(`User ${userId} not found`);
+
+  return user.groups;          // ✔ מחזיר מערך של קבוצות
+}
+
+
+
+async addGroupToUser(userId: string, groupId: string) {
+  const user = await this.userModel.findById(userId);
+  if (!user) throw new NotFoundException('User not found');
+
+  // מוסיף רק אם לא קיים
+  if (!user.groups.includes(groupId as any)) {
+    user.groups.push(new Types.ObjectId(groupId));
+  }
+
+  await user.save();
+  return this.toDto(user);
+}
+
 
 }

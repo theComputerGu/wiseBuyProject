@@ -19,6 +19,7 @@ export interface Group {
     }[];
     createdAt?: string;
     updatedAt?: string;
+    isDefaultGroup?: boolean;  
 }
 
 export interface GroupState {

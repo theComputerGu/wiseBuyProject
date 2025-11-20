@@ -4,14 +4,12 @@ import { View, StyleSheet, Pressable, ScrollView, Alert, Image } from 'react-nat
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import BottomNav from '../../components/Bottomnavigation';
 import TopNav from '../../components/Topnav';
 import ItimText from '../../components/Itimtext';
 import Title from '../../components/Title';
 import TextField from '../../components/TextField';
 import Button from '../../components/Button';
-
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../../redux/state/store';
 import { clearUser, setUser} from '../../redux/slices/userSlice';
@@ -75,7 +73,7 @@ export default function AccountScreen() {
           _id: updated._id,
           name: updated.name,
           email: updated.email,
-          password: updated.password,
+          passwordLength: updated.passwordLength,
           avatarUrl: updated.avatarUrl ?? user.current?.avatarUrl ?? null,
           createdAt: updated.createdAt,
           updatedAt: updated.updatedAt,
@@ -108,7 +106,7 @@ export default function AccountScreen() {
           _id: updated._id,
           name: updated.name,
           email: updated.email,
-          password: updated.password,
+          passwordLength: updated.passwordLength,
           avatarUrl: updated.avatarUrl ?? user.current?.avatarUrl ?? null,
           createdAt: updated.createdAt,
           updatedAt: updated.updatedAt,
@@ -157,7 +155,7 @@ export default function AccountScreen() {
           _id: updated._id ?? id,
           name: updated.name ?? user.current?.name ?? '',
           email: updated.email ?? user.current?.email ?? '',
-          password: updated.password ?? user.current?.password ?? '',
+          passwordLength: updated.passwordLength ?? user.current?.passwordLength ?? 0,
           avatarUrl: updated.avatarUrl ?? user.current?.avatarUrl ?? null,
           createdAt: updated.createdAt ?? user.current?.createdAt,
           updatedAt: updated.updatedAt ?? user.current?.updatedAt,
@@ -305,7 +303,9 @@ export default function AccountScreen() {
             <View style={styles.privacyRow}>
               <View style={{ flex: 1 }}>
                 <ItimText size={16} color="#000" weight="bold">Password</ItimText>
-                <ItimText size={16} color="#000">{ user.current?.password || '*****'}</ItimText>
+                <ItimText size={16} color="#000">
+                  { "*".repeat(user.current?.passwordLength ?? 0) }
+                </ItimText>
               </View>
               <Pressable style={styles.showPasswordBtn} onPress={() => setChangePwMode(true)}>
                 <ItimText size={14} color="#197FF4">Change password</ItimText>

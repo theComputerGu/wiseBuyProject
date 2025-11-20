@@ -21,6 +21,9 @@ export class Group {
   @Prop({ type: Types.ObjectId, ref: 'ShoppingList', default: null })
   activeshoppinglist: Types.ObjectId | null;
 
+  @Prop({ default: false })
+  isDefault: boolean;
+
 
   @Prop({
     type: [

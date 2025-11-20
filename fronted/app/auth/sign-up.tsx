@@ -78,7 +78,7 @@ export default function SignUp() {
       const u = await createUser({
         name: data.name,
         email: data.email,
-        password: data.password,
+        passwordPlain: data.password,
       }).unwrap();
 
       let finalUser = u;
@@ -99,7 +99,7 @@ export default function SignUp() {
           _id: finalUser._id,
           name: finalUser.name,
           email: finalUser.email,
-          password : finalUser.password,
+          passwordLength : finalUser.passwordLength,
           avatarUrl: finalUser.avatarUrl ?? null,
           groups: finalUser.groups,
           defaultGroupId: finalUser.defaultGroupId || null,

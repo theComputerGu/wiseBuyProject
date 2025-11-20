@@ -46,18 +46,17 @@ export default function SignIn() {
   const [login, { isLoading }] = useLoginMutation();
 
   const onSubmit = async (data: Form) => {
-
+  try {
     const u = await login({
       email: data.email,
-      password: data.password,
+      passwordPlain: data.password,   // חשוב! תואם ל-LoginDto
     }).unwrap();
-
 
     dispatch(
       setUser({
         _id: u._id,
         name: u.name,
-        password: u.password,
+        passwordLength: u.passwordLength,
         email: u.email,
         avatarUrl: u.avatarUrl ?? null,
         groups: u.groups,
@@ -66,18 +65,34 @@ export default function SignIn() {
         updatedAt: u.updatedAt,
       })
     );
-    if (u.defaultGroupId) {
-      const groupData = await useGetGroupByIdQuery(u.defaultGroupId).refetch();
-      if (groupData.data) {
-        dispatch(setActiveGroup(groupData.data));
-        const shoppinglist = await useGetListByIdQuery(groupData.data._id).refetch();
-        dispatch(setActiveList(shoppinglist.data));
 
+    // טעינת קבוצה / רשימה
+    if (u.defaultGroupId) {
+      const groupQ = useGetGroupByIdQuery(u.defaultGroupId).refetch();
+      const groupData = (await groupQ).data;
+
+      if (groupData) {
+        dispatch(setActiveGroup(groupData));
+
+        const listQ = useGetListByIdQuery(groupData._id).refetch();
+        const list = (await listQ).data;
+
+        if (list) dispatch(setActiveList(list));
       }
     }
 
     router.replace("/main/product");
+
+  } catch (err: any) {
+    const msg =
+      err?.data?.message?.[0] ||
+      err?.data?.message ||
+      "Incorrect email or password";
+
+    alert(msg);
   }
+};
+
 
   // -------------------- Render --------------------
   return (

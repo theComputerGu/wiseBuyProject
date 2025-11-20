@@ -16,13 +16,10 @@ export class GroupsService {
     private shoppingListService: ShoppingListsService,
   ) { }
 
-  async create(data: { name: string; adminId: string }) {
-    // 1. Generate a 5-digit group code
+  async create(data: { name: string; adminId: string;isDefault?: boolean  }) {
+   
     const groupcode = Math.floor(10000 + Math.random() * 90000).toString();
-
-    // 2. Create a default shopping list
     const defaultList = await this.shoppingListService.create()
-
     const group = new this.groupModel({
       name: data.name,
       admin: data.adminId,
@@ -30,6 +27,7 @@ export class GroupsService {
       groupcode,
       activeshoppinglist: defaultList,
       history: [],
+      isDefault: data.isDefault ?? false,   // <----- חדש
     });
     return group.save();
   }
@@ -46,8 +44,8 @@ export class GroupsService {
   }
 
   async findUsers(id: string) {
-    const group = await this.groupModel.findById(id).exec();
-    return group?.users
+    const group = await this.groupModel.findById(id).populate("users").exec();
+  return group?.users;
   }
 
   async findByCode(code: string) {
@@ -59,14 +57,21 @@ export class GroupsService {
   }
 
   async addUserToGroup(groupId: string, userId: string) {
-    return this.groupModel
-      .findByIdAndUpdate(
-        groupId,
-        { $addToSet: { users: new Types.ObjectId(userId) } },
-        { new: true },
-      )
-      .exec();
-  }
+
+  const group = await this.groupModel.findByIdAndUpdate(
+    groupId,
+    { $addToSet: { users: new Types.ObjectId(userId) } },
+    { new: true },
+  );
+
+  await this.userModel.findByIdAndUpdate(
+    userId,
+    { $addToSet: { groups: new Types.ObjectId(groupId) } },
+  );
+
+  return group;
+}
+
 
   async removeUserFromGroup(groupId: string, userId: string) {
     await this.groupModel.findByIdAndUpdate(
@@ -85,7 +90,10 @@ export class GroupsService {
   async delete(groupId: string, requesterId: string) {
     const group = await this.groupModel.findById(groupId);
     if (!group) throw new NotFoundException('Group not found');
-
+    
+    if (group.isDefault) {
+    throw new Error('Default personal group cannot be deleted');
+  }
     if (group.admin.toString() !== requesterId) {
       throw new Error('Only admin can delete this group');
     }
@@ -99,8 +107,6 @@ export class GroupsService {
     return { deleted: true, groupId };
   }
 
-
-  // update active shopping list
   async updateActiveList(groupId: string, listId: Types.ObjectId | null) {
     const group = await this.groupModel.findById(groupId);
     if (!group) throw new NotFoundException('Group not found');
@@ -158,4 +164,9 @@ export class GroupsService {
     return group.history;
 
   }
+
+
+
+
+  
 }

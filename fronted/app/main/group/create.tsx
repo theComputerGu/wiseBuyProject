@@ -1,4 +1,3 @@
-// app/main/group/create.tsx
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, StyleSheet, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -7,12 +6,13 @@ import { useState } from "react";
 import Logo from "../../../components/Logo";
 import TextField from "../../../components/TextField";
 import Button from "../../../components/Button";
-import {useCreateGroupMutation,} from "../../../redux/svc/groupsApi";
-import {useAddGroupToUserMutation,} from "../../../redux/svc/usersApi";
+
+import { useCreateGroupMutation } from "../../../redux/svc/groupsApi";
+import { useAddGroupToUserMutation } from "../../../redux/svc/usersApi";
+
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
-import { setUser } from "../../../redux/slices/userSlice";
-import { groupSlice, setActiveGroup } from "../../../redux/slices/groupSlice";
+import { setActiveGroup } from "../../../redux/slices/groupSlice";
 
 export default function CreateGroup() {
   const router = useRouter();
@@ -21,26 +21,30 @@ export default function CreateGroup() {
   const user = useSelector((s: RootState) => s.user);
   const userId = user.current?._id;
 
-   const activeGroup = useSelector((s : RootState) => s.group)
-
+  const [groupName, setGroupName] = useState("");
 
   const [createGroup] = useCreateGroupMutation();
   const [addGroupToUser] = useAddGroupToUserMutation();
 
   const onCreateGroup = async () => {
-    if (!activeGroup.activeGroup?.name.trim()) return Alert.alert("Missing name");
-    if (!userId) return Alert.alert("Error", "User not found");
+    if (!groupName.trim()) 
+      return Alert.alert("Missing name", "Please enter a group name.");
+
+    if (!userId) 
+      return Alert.alert("Error", "User not found");
 
     try {
       // 1️⃣ יצירת קבוצה
       const group = await createGroup({
-        name: activeGroup.activeGroup.name.trim(),
+        name: groupName.trim(),
         adminId: userId,
       }).unwrap();
 
-      // 2️⃣ הוספת למשתמש
+      // 2️⃣ הוספת המשתמש לקבוצה
       await addGroupToUser({ userId, groupId: group._id }).unwrap();
 
+      // 3️⃣ הפיכת הקבוצה לאקטיבית
+      dispatch(setActiveGroup(group));
 
       Alert.alert("Success", "Group created!", [
         { text: "OK", onPress: () => router.replace("/main/group") },
@@ -64,9 +68,12 @@ export default function CreateGroup() {
         <Text style={s.title}>Create Group</Text>
 
         <Text style={s.label}>Group Name</Text>
-        <Text>
-          {activeGroup.activeGroup?.name}
-        </Text>
+
+        <TextField
+          placeholder="Enter group name"
+          value={groupName}
+          onChangeText={setGroupName}
+        />
 
         <View style={{ gap: 10, marginTop: 6 }}>
           <Button title="Create Group" onPress={onCreateGroup} />
