@@ -21,7 +21,6 @@ const screenWidth = Dimensions.get('window').width;
 export default function AddItemScreen() {
   const router = useRouter();
   const ShoppingList = useSelector((s: any) => s?.shoppingList);
-  console.log("ShoppingList in AddItemScreen:", ShoppingList);
 
   // 🚀 Fetch all products dynamically
   const { data: products = [], isLoading } = useGetProductsQuery({});

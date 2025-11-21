@@ -21,6 +21,7 @@ export default function ProductScreen() {
   const activeGroup = useSelector((s: RootState) => s.group);
 
   const items = shoppingList.activeList?.items ?? [];
+  console.log("Shopping List Items:", JSON.stringify(items, null, 2));
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,6 +30,7 @@ export default function ProductScreen() {
       <Title text={activeGroup.activeGroup?.name ?? ""} />
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
+        
         {items.length === 0 ? (
           <Text style={{ textAlign: "center", marginTop: 20, color: "#777" }}>
             No items in your shopping list yet.
@@ -36,7 +38,7 @@ export default function ProductScreen() {
         ) : (
           items.map((item: any) => (
             <ProductCard
-              key={item._id}
+              key={item.productId}
               name={item?.product?.name ?? "Unnamed"}
               quantity={item.quantity}
               price={item?.product?.price ?? 0}
