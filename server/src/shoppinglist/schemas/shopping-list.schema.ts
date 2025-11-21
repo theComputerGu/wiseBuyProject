@@ -10,14 +10,14 @@ export class ShoppingList {
   @Prop({
     type: [
       {
-        productId: { type: Types.ObjectId, ref: 'Product', required: true, index: true },
+        _id: { type: Types.ObjectId, ref: 'Product', required: true, index: true },
         quantity: { type: Number, min: 0, required: true },
       },
     ],
     default: [],
   })
   items: Array<{
-    productId: Types.ObjectId;
+    _id: Types.ObjectId;
     quantity: number;
   }>;
 

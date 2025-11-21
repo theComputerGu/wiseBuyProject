@@ -1,7 +1,7 @@
 import { baseApi } from "./baseApi";
 
 export interface ShoppingListItem {
-  productId: string;
+  _id: string;
   quantity: number;
 }
 
@@ -94,5 +94,6 @@ export const {
   useAddItemMutation,
   useRemoveItemMutation,
   useDeleteListMutation,
+  useLazyGetListByIdQuery,
 } = shoppingListApi;
 

@@ -13,46 +13,30 @@ import ItimText from '../../../components/Itimtext';
 import Title from '../../../components/Title';
 import SearchHeader from '../../../components/SearchHeader';
 import CategoryCard from '../../../components/categorycard';
-import { navigate } from 'expo-router/build/global-state/routing';
-import { API_URL } from '@env';
+import { useGetProductsQuery } from '../../../redux/svc/productApi';
+import { useSelector } from 'react-redux';
 
 const screenWidth = Dimensions.get('window').width;
 
-// ✅ Dummy Data
-const mostOrdered = [
-  {
-    id: '1',
-    name: 'חזה עוף טרי',
-    price: '52.40₪',
-    weight: '648₪/kg',
-    image: require('../../../assets/products/Chicken-breast.png'),
-  },
-  {
-    id: '2',
-    name: 'חזה עוף טרי',
-    price: '52.40₪',
-    weight: '648₪/kg',
-    image: require('../../../assets/products/Chicken-breast.png'),
-  },
-  {
-    id: '3',
-    name: 'חזה עוף טרי',
-    price: '52.40₪',
-    weight: '648₪/kg',
-    image: require('../../../assets/products/Chicken-breast.png'),
-  },
-];
-
-const categories = Array(12)
-  .fill(null)
-  .map((_, i) => ({
-    id: i.toString(),
-    name: 'בשרים',
-    image: require('../../../assets/products/ground-beef.png'),
-  }));
-
 export default function AddItemScreen() {
   const router = useRouter();
+  const ShoppingList = useSelector((s: any) => s?.shoppingList);
+  console.log("ShoppingList in AddItemScreen:", ShoppingList);
+
+  // 🚀 Fetch all products dynamically
+  const { data: products = [], isLoading } = useGetProductsQuery({});
+
+  // 🥇 "Most ordered" for now = first 10 items from backend
+  const mostOrdered = products.slice(0, 10);
+
+  // 🗂 Extract unique categories
+  const categories = Array.from(
+    new Map(
+      products
+        .filter((p) => p.category) // only valid categories
+        .map((p) => [p.category, p.category]) // remove duplicates
+    ).values()
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -63,52 +47,65 @@ export default function AddItemScreen() {
         onSearchChange={(text) => console.log('Searching:', text)}
       />
 
-      {/* 🧾 Scrollable Content */}
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* 🍗 Most Ordered */}
         <Title text="Most ordered" />
 
-        <FlatList
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          data={mostOrdered}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.mostList}
-          renderItem={({ item }) => (
-            <View style={styles.mostCard}>
-              <Image source={item.image} style={styles.mostImage} />
-              <ItimText size={14} color="#197FF4" weight="bold">
-                {item.price}
-              </ItimText>
-              <ItimText size={14} color="#000">
-                {item.name}
-              </ItimText>
-              <ItimText size={12} color="#555">
-                {item.weight}
-              </ItimText>
-            </View>
-          )}
-        />
+        {isLoading ? (
+
+          <ItimText size={16}>Loading...</ItimText>
+        ) : (
+
+          <FlatList
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={mostOrdered}
+            keyExtractor={(item) => item._id}
+            contentContainerStyle={styles.mostList}
+            renderItem={({ item }) => (
+              <View style={styles.mostCard}>
+                <Image
+                  source={{ uri: item.image }}
+                  style={styles.mostImage}
+                />
+                <ItimText size={14} color="#197FF4" weight="bold">
+                  {item.pricerange ?? "N/A"}
+                </ItimText>
+                <ItimText size={14} color="#000">
+                  {item.title}
+                </ItimText>
+                <ItimText size={12} color="#555">
+                  {item.unit ?? ""}
+                </ItimText>
+              </View>
+            )}
+          />
+        )}
 
         {/* 📂 Categories */}
         <Title text="Categories" />
+
         <View style={styles.categoriesGrid}>
-          {categories.map((cat) => (
+          {categories.map((catName, i) => (
             <CategoryCard
-              key={cat.id}
-              name={cat.name}
-              image={cat.image}
-              onPress={() => router.replace(`/main/additem/additemcategory?name=${cat.name}`)}
-              
+              key={i}
+              name={catName ?? "Uncategorized"}
+              image={require('../../../assets/products/ground-beef.png')} // TODO: dynamic images later
+              onPress={() =>
+                router.replace(
+                  `/main/additem/additemcategory?name=${catName}`
+                )
+              }
             />
           ))}
         </View>
       </ScrollView>
     </SafeAreaView>
   );
+
 }
 
-// ✅ Styles
+// STYLES
 const styles = StyleSheet.create({
   container: {
     flex: 1,

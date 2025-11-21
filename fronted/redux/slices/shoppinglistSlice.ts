@@ -7,7 +7,7 @@ note: contain active shopping list with its products
 // TYPES
 //
 export interface ShoppingListItem {
-    productId: string; // should contain the full proudct data not only the id
+    _id: string; // should contain the full proudct data not only the id
     quantity: number;
 }
 
@@ -52,7 +52,7 @@ export const shoppingListSlice = createSlice({
         ) => {
             if (!s.activeList) return;
             const i = s.activeList.items.findIndex(
-                (x) => x.productId === a.payload.productId
+                (x) => x._id === a.payload.productId
             );
             if (i >= 0)
                 s.activeList.items[i] = {
@@ -64,7 +64,7 @@ export const shoppingListSlice = createSlice({
         removeItem: (s, a: PayloadAction<string>) => {
             if (!s.activeList) return;
             s.activeList.items = s.activeList.items.filter(
-                (i) => i.productId !== a.payload
+                (i) => i._id !== a.payload
             );
         },
 

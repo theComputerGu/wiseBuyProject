@@ -45,17 +45,6 @@ export default function HistoryScreen() {
     );
   }
 
-  if (!activeGroup.isLoading) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <TopNav />
-        <View style={styles.center}>
-          <ActivityIndicator />
-        </View>
-        <BottomNav />
-      </SafeAreaView>
-    );
-  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -85,7 +74,7 @@ export default function HistoryScreen() {
               onPress={() => {
                 if (!item.shoppingListId) return;
 
-                router.push("/main/product");
+                router.replace("/main/product");
               }}
             >
               <View style={styles.leftCol}>

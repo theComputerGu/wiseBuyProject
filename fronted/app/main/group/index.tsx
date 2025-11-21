@@ -14,14 +14,18 @@ import { useState } from "react";
 import { useSetActiveGroupMutation } from "../../../redux/svc/usersApi";
 import { useGetUserByIdQuery } from "../../../redux/svc/usersApi";
 import GroupAccordion from "../../../components/groupaccordion";
+import { setActiveList } from "../../../redux/slices/shoppinglistSlice";
+import { useLazyGetListByIdQuery } from "../../../redux/svc/shoppinglistApi";
 
 const BRAND = "#197FF4";
 
 export default function GroupPage() {
   const user = useSelector((s: RootState) => s.user);
+  const shoppingList = useSelector((s: RootState) => s.shoppingList);
   const userId = user.current?._id;
   const dispatch = useDispatch();
 
+  const [triggerGetList] = useLazyGetListByIdQuery();
   const [updateActiveGroup] = useSetActiveGroupMutation();
 
   const { refetch: refetchUser } = useGetUserByIdQuery(userId!, {
@@ -84,8 +88,18 @@ export default function GroupPage() {
 
                       const freshUser = await refetchUser().unwrap();
 
+
                       dispatch(setUser(freshUser));    // ✅ פה היה חסר
                       dispatch(setActiveGroup(item)); // נשאר כפי שהיה
+                     
+
+
+                   
+
+                      const list = await triggerGetList(item.activeshoppinglist).unwrap();
+                       
+                      dispatch(setActiveList(list));
+                      
 
                       refetchGroups(); // ✅ רענון רשימת קבוצות
                     } catch (err) {

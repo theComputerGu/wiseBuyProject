@@ -1,6 +1,7 @@
 import { baseApi } from "./baseApi";
 
 export interface Product {
+    _id: string;
     itemcode?: string;
     title: string;
     unit?: "unit" | "kg" | "gram" | "liter";
@@ -68,9 +69,19 @@ export const productsApi = baseApi.injectEndpoints({
             invalidatesTags: [{ type: "Products", id: "LIST" }],
         }),
 
-    }),
-});
 
+         getProductByItemcode: builder.query<Product, string>({
+            query: (itemcode) => `/products/itemcode/${itemcode}`,
+            providesTags: (_, __, itemcode) => [
+                { type: "Products", id: itemcode },
+            ],
+        }),
+
+    }),
+    
+
+    
+});
 // Hooks export
 export const {
     useGetProductsQuery,
@@ -78,4 +89,5 @@ export const {
     useCreateProductMutation,
     useUpdateProductMutation,
     useDeleteProductMutation,
+    useGetProductByItemcodeQuery,
 } = productsApi;

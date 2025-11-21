@@ -44,6 +44,18 @@ export class ProductsService {
     return product;
   }
 
+  // GET /products/:itemcode
+  async finditemcode(itemcode: string): Promise<Product> {
+    const product = await this.productModel.findOne({ itemcode }).exec();
+
+    if (!product) {
+      throw new NotFoundException(
+        `Product with itemcode '${itemcode}' not found`,
+      );
+    }
+    return product;
+  }
+
   // UPDATE
   async update(id: string, dto: UpdateProductDto): Promise<Product> {
     const updated = await this.productModel

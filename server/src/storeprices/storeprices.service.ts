@@ -9,11 +9,11 @@ export class storePricesService {
     constructor(
         @InjectModel(StorePrice.name)
         private storePriceModel: Model<StorePriceDocument>,
-    ) {}
+    ) { }
 
 
     async addPrice(productId: string, storeId: string, price: number) {
-     
+
         const existing = await this.storePriceModel.findOne({
             productId: new Types.ObjectId(productId),
             storeId: new Types.ObjectId(storeId),
@@ -25,7 +25,7 @@ export class storePricesService {
             return existing.save();
         }
 
-      
+
         const created = new this.storePriceModel({
             productId: new Types.ObjectId(productId),
             storeId: new Types.ObjectId(storeId),
@@ -36,7 +36,7 @@ export class storePricesService {
         return created.save();
     }
 
-   
+
     async updatePrice(id: string, price: number) {
         const updated = await this.storePriceModel
             .findByIdAndUpdate(
@@ -65,7 +65,7 @@ export class storePricesService {
             .populate('storeId');
     }
 
-  
+
     async compare(productId: string) {
         const prices = await this.getPricesForProduct(productId);
 

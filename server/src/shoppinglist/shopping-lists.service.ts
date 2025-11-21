@@ -22,7 +22,7 @@ export class ShoppingListsService {
 
   // GET BY ID
   async findById(id: string) {
-    const list = await this.shoppingListModel.findById(id).populate('items.productId');
+    const list = await this.shoppingListModel.findById(id).populate('items._id');
     if (!list) throw new NotFoundException('Shopping list not found');
     return list;
   }
@@ -30,7 +30,7 @@ export class ShoppingListsService {
   // GET ALL
   async findAll() {
     return this.shoppingListModel
-      .find().populate('items.productId');
+      .find().populate('items._id');
   }
 
   // ADD ITEM TO LIST
@@ -43,7 +43,7 @@ async addItem(listId: string, productId: string) {
 
   // 1. Check if the item already exists in the list
   const existingItem = list.items.find(
-    (item) => item.productId.toString() === productId
+    (item) => item._id.toString() === productId
   );
 
   if (existingItem) {
@@ -52,7 +52,7 @@ async addItem(listId: string, productId: string) {
   } else {
     // 3. If not exists → push new item
     list.items.push({
-      productId: productObjectId,
+      _id: productObjectId,
       quantity: 1,
     });
   }
@@ -73,7 +73,7 @@ async removeItem(listId: string, itemId: string) {
 
   // Find the item by ID
   const itemIndex = list.items.findIndex(
-    (item) => item.productId.toString() === itemId
+    (item) => item._id.toString() === itemId
   );
 
   if (itemIndex === -1) {

@@ -29,6 +29,12 @@ export class ProductsController {
     return this.productsService.findOne(id);
   }
 
+  // GET /products/itemcode/:itemcode
+  @Get('/itemcode/:itemcode')
+  finditemcode(@Param('itemcode') itemcode: string) {
+    return this.productsService.finditemcode(itemcode);
+  }
+
   // POST /products
   @Post()
   create(@Body() dto: CreateProductDto) {
