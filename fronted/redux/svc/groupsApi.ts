@@ -15,6 +15,7 @@ export interface Group {
     }[];
     createdAt?: string;
     updatedAt?: string;
+    isDefaultGroup?: boolean;
 }
 export const groupsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
@@ -72,24 +73,36 @@ export const groupsApi = baseApi.injectEndpoints({
         }),
 
         // REMOVE USER FROM GROUP
-        removeUserFromGroup: builder.mutation<Group, { groupId: string; userId: string }>({
-            query: ({ groupId, userId }) => ({
-                url: `/groups/${groupId}/remove-user`,
-                method: "PATCH",
-                body: { userId },
-            }),
-            invalidatesTags: (_, __, { groupId }) => [{ type: "Groups", id: groupId }],
-        }),
+        removeUserFromGroup: builder.mutation<
+  Group,
+  { groupId: string; userId: string }
+>({
+  query: ({ groupId, userId }) => ({
+    url: `/groups/${groupId}/remove-user`,
+    method: "PATCH",
+    body: { userId },
+  }),
+
+  invalidatesTags: (_, __, { groupId, userId }) => [
+    { type: "Groups", id: groupId },   // הקבוצה
+    { type: "Groups", id: "LIST" },    // רשימת הקבוצות
+    { type: "Users", id: userId },     // המשתמש עצמו
+  ],
+}),
 
         // DELETE GROUP
         deleteGroup: builder.mutation<Group, { id: string; requesterId: string }>({
-            query: ({ id, requesterId }) => ({
-                url: `/groups/${id}`,
-                method: "DELETE",
-                body: { requesterId },
-            }),
-            invalidatesTags: [{ type: "Groups", id: "LIST" }],
-        }),
+  query: ({ id, requesterId }) => ({
+    url: `/groups/${id}`,
+    method: "DELETE",
+    body: { requesterId },
+  }),
+  invalidatesTags: (_r, _e, { requesterId, id }) => [
+    { type: "Users", id: requesterId },  // מרענן קבוצות של המשתמש
+    { type: "Groups", id: id },          // מרענן את הקבוצה עצמה
+    { type: "Groups", id: "LIST" },      // מרענן את כל רשימת הקבוצות
+  ],
+}),
 
         // SET ACTIVE SHOPPING LIST
         updateActiveList: builder.mutation<
@@ -153,6 +166,7 @@ export const {
     useGetGroupByCodeQuery,
     useGetGroupUsersQuery,
     useAddUserToGroupMutation,
+    useLazyGetGroupByCodeQuery,
     useRemoveUserFromGroupMutation,
     useDeleteGroupMutation,
     useUpdateActiveListMutation,

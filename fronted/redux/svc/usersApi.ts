@@ -6,7 +6,7 @@ export interface User {
   _id: string;
   name: string;
   email: string;
-  password: string;
+  passwordLength?: number
   avatarUrl?: string | null;
   groups: string[];                 
   defaultGroupId?: string | null|  undefined;     
@@ -19,7 +19,7 @@ export const usersApi = baseApi.injectEndpoints({
 
     login: builder.mutation<
       User,
-      { email: string; password: string }
+      { email: string; passwordPlain: string }
     >({
       query: (body) => ({
         url: "/users/login",
@@ -28,9 +28,25 @@ export const usersApi = baseApi.injectEndpoints({
       }),
     }),
 
+    setActiveGroup: builder.mutation<
+  User,
+  { userId: string; groupId: string }
+>({
+  query: ({ userId, groupId }) => ({
+    url: `/users/${userId}/set-active-group`,
+    method: "PATCH",
+    body: { groupId },
+  }),
+  invalidatesTags: (_r, _e, arg) => [
+    { type: "Users", id: arg.userId },
+    { type: "Users", id: "LIST" },
+  ],
+}),
+
+
     createUser: builder.mutation<
       User,
-      { name: string; email: string; password: string }
+      { name: string; email: string; passwordPlain: string }
     >({
       query: (body) => ({
         url: "/users",
@@ -119,6 +135,7 @@ export const usersApi = baseApi.injectEndpoints({
     }),
 
   }),
+  
 });
 
 
@@ -135,4 +152,5 @@ export const {
   useAddGroupToUserMutation,
   useRemoveGroupFromUserMutation,
   useGetUserGroupsQuery,
+  useSetActiveGroupMutation,
 } = usersApi;

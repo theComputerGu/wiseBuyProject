@@ -1,11 +1,13 @@
 import { Types } from "mongoose";
 
 export class UserDto {
-  _id: Types.ObjectId;      
+  _id: string;
   name: string;
   email: string;
-  groups: Types.ObjectId[]; 
+  passwordLength: number;
+  avatarUrl?: string | null;
+  groups: string[];
+  activeGroup?: string | null;
   createdAt?: string;
   updatedAt?: string;
-  avatarUrl?: string;
 }

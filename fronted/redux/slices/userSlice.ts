@@ -10,7 +10,7 @@ export interface User {
     _id: string;
     name: string;
     email: string;
-    password: string;
+    passwordLength?: number;
     avatarUrl?: string | null;
     groups: string[];
     defaultGroupId?: string | null | undefined;

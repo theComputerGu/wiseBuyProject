@@ -1,34 +1,48 @@
-// fronted/components/groupaccordion.tsx
-
 import { View, Text, StyleSheet, Pressable, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../redux/state/store";
-import { useGetUserByIdQuery, } from "../redux/svc/usersApi";
-import { useRemoveUserFromGroupMutation, useDeleteGroupMutation, useGetGroupUsersQuery } from "../redux/svc/groupsApi";
+
+import {
+  useGetUserByIdQuery,
+  useGetUserGroupsQuery,      // ✅ חדש – לרענון קבוצות של המשתמש
+} from "../redux/svc/usersApi";
+
+import {
+  useRemoveUserFromGroupMutation,
+  useDeleteGroupMutation,
+  useGetGroupUsersQuery,
+} from "../redux/svc/groupsApi";
+
 import { setUser } from "../redux/slices/userSlice";
+import { clearActiveGroup } from "../redux/slices/groupSlice";
 
 export default function GroupAccordion({ group }: any) {
   const dispatch = useDispatch();
 
-  // 🟦 נטען משתמש
+  // 🟦 משתמש מחובר
   const user = useSelector((s: RootState) => s.user);
   const userId = user.current?._id;
 
   if (!userId) return null;
 
-  // 🟦 נטען משתמש עדכני מהשרת
+  // 🟦 משתמש מעודכן מהשרת
   const { refetch: refetchUser } = useGetUserByIdQuery(userId, {
     skip: !userId,
   });
 
-  // 🟦 האם אדמין?
+  // 🟦 קבוצות של המשתמש – בשביל רענון UI
+  const { refetch: refetchUserGroups } = useGetUserGroupsQuery(userId, {
+    skip: !userId,
+  });
+
+  // 🟦 בדיקה אם אדמין
   const isAdmin =
     typeof group.admin === "string"
       ? group.admin === userId
       : group.admin?._id === userId;
 
-  // 🟦 API Hooks
+  // 🟦 Hooks לשרת
   const [removeUserFromGroup] = useRemoveUserFromGroupMutation();
   const [deleteGroup] = useDeleteGroupMutation();
 
@@ -36,7 +50,7 @@ export default function GroupAccordion({ group }: any) {
   const { data: members = [] } = useGetGroupUsersQuery(group._id);
 
   // ---------------------------------------------------------
-  // יציאה מהקבוצה
+  // יציאה מקבוצה
   // ---------------------------------------------------------
   const handleLeave = () => {
     Alert.alert("Leave group", `Are you sure you want to leave "${group.name}"?`, [
@@ -53,17 +67,18 @@ export default function GroupAccordion({ group }: any) {
 
             const freshUser = await refetchUser().unwrap();
 
-            // 🟦 תיקון TYPES — בלי לשנות לוגיקה
-            dispatch(
-              setUser({
-                ...freshUser,
-                avatarUrl: freshUser.avatarUrl ?? null,
-                groups: freshUser.groups ?? [],
-              })
-            );
+            dispatch(setUser({
+              ...freshUser,
+              avatarUrl: freshUser.avatarUrl ?? null,
+              groups: freshUser.groups ?? [],
+            }));
+
+            dispatch(clearActiveGroup());      // ✅ ניקוי קבוצה פעילה
+            await refetchUserGroups();        // ✅ רענון קבוצות המשתמש
 
             Alert.alert("Success", "You left the group");
           } catch (err) {
+            console.log("LEAVE ERROR:", err);
             Alert.alert("Error", "Could not leave group");
           }
         },
@@ -72,7 +87,7 @@ export default function GroupAccordion({ group }: any) {
   };
 
   // ---------------------------------------------------------
-  // מחיקת קבוצה (אדמין בלבד)
+  // מחיקת קבוצה (אם אדמין)
   // ---------------------------------------------------------
   const handleDelete = () => {
     Alert.alert("Delete group", `Delete "${group.name}" permanently?`, [
@@ -89,17 +104,18 @@ export default function GroupAccordion({ group }: any) {
 
             const freshUser = await refetchUser().unwrap();
 
-            // 🟦 תיקון TYPES — בלי affecting לוגיקה
-            dispatch(
-              setUser({
-                ...freshUser,
-                avatarUrl: freshUser.avatarUrl ?? null,
-                groups: freshUser.groups ?? [],
-              })
-            );
+            dispatch(setUser({
+              ...freshUser,
+              avatarUrl: freshUser.avatarUrl ?? null,
+              groups: freshUser.groups ?? [],
+            }));
+
+            dispatch(clearActiveGroup());      // ✅ ניקוי קבוצת default
+            await refetchUserGroups();        // ✅ רענון קבוצות המשתמש
 
             Alert.alert("Deleted", "Group removed successfully");
           } catch (err) {
+            console.log("DELETE ERROR:", err);
             Alert.alert("Error", "Could not delete group");
           }
         },
@@ -134,7 +150,8 @@ export default function GroupAccordion({ group }: any) {
         </Pressable>
       )}
 
-      {isAdmin && (
+      {/* לא לאפשר למחוק קבוצת ברירת מחדל */}
+      {isAdmin && !group.name.endsWith("'s Group") && (
         <Pressable onPress={handleDelete}>
           <Text style={styles.delete}>Delete Group</Text>
         </Pressable>
