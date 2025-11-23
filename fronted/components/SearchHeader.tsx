@@ -20,12 +20,10 @@ export default function SearchHeader({
 
   return (
     <View style={styles.topRow}>
-      {/* ✅ Circular Back Button */}
       <Pressable onPress={() => router.replace(backRoute)} style={styles.backButton}>
         <MaterialCommunityIcons name="arrow-left" size={20} color="#fff" />
       </Pressable>
 
-      {/* ✅ Search Input */}
       <View style={styles.searchBar}>
         <MaterialCommunityIcons name="magnify" size={22} color="#197FF4" />
         <TextInput

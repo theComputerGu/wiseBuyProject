@@ -35,14 +35,14 @@ export default function ProductScreen() {
           </Text>
         ) : (
           items.map((item: any) => (
-            <ProductCard
-              key={item._id}
-              name={item?.product?.name ?? "Unnamed"}
-              quantity={item.quantity}
-              price={item?.product?.price ?? 0}
-              image={item.imageUrl ?? null}
-            />
-          ))
+  <ProductCard
+    key={item._id._id}
+    name={item._id.title}
+    quantity={item.quantity}
+    price={item._id.pricerange}
+    image={{ uri: item._id.image }}
+  />
+))
         )}
       </ScrollView>
 
