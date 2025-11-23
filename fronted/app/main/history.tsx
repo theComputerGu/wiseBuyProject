@@ -14,13 +14,12 @@ import Title from '../../components/Title';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/state/store';
-import {
-  useGetGroupsQuery,
-  useGetGroupByIdQuery,
-} from '../../redux/svc/groupsApi';
+import {useGetGroupsQuery,useGetGroupByIdQuery,} from '../../redux/svc/groupsApi';
 import { setActiveGroup } from '../../redux/slices/groupSlice';
 import { setActiveList } from '../../redux/slices/shoppinglistSlice'; 
 import { useRouter } from 'expo-router';
+import { useGetListByIdQuery } from "../../redux/svc/shoppinglistApi";
+import { useRestorePurchaseMutation } from "../../redux/svc/groupsApi";
 
 export default function HistoryScreen() {
 
@@ -28,7 +27,7 @@ export default function HistoryScreen() {
   const activeGroup = useSelector((s: RootState) => s.group);
   const dispatch = useDispatch();
   const router = useRouter();
-
+  const [restorePurchase] = useRestorePurchaseMutation();
 
 
   const history = activeGroup.activeGroup?.history?? [];
@@ -67,27 +66,51 @@ export default function HistoryScreen() {
         )}
 
         <ScrollView showsVerticalScrollIndicator={false}>
-          {history.map((item: any, i: number) => (
-            <Pressable
-              key={i}
-              style={styles.purchaseCard}
-              onPress={() => {
-                if (!item.shoppingListId) return;
+          {history.map((item: any, i: number) => {
+  const { data: shoppingList } = useGetListByIdQuery(
+    item.shoppingListId,
+    { skip: !item.shoppingListId }
+  );
 
-                router.replace("/main/product");
-              }}
-            >
-              <View style={styles.leftCol}>
-                <ItimText size={16} weight="bold">
-                  Purchase #{i + 1}
-                </ItimText>
-                <ItimText size={13} color="#555">
-                  Items: {item.items.length} • Total: {item.total}₪ • Date:{' '}
-                  {new Date(item.purchasedAt).toLocaleDateString()}
-                </ItimText>
-              </View>
-            </Pressable>
-          ))}
+  return (
+    <Pressable
+      key={i}
+      style={styles.purchaseCard}
+      onPress={async () => {
+  if (!item.shoppingListId || !activeGroup.activeGroup) return;
+
+  try {
+    const updatedList = await restorePurchase({
+      groupId: activeGroup.activeGroup._id,
+      shoppingListId: item.shoppingListId,
+    }).unwrap();
+
+    dispatch(setActiveList(updatedList));
+
+    router.replace("/main/product");
+
+  } catch (err) {
+    console.error("Restore error:", err);
+  }
+}}
+
+
+    >
+      <View style={styles.leftCol}>
+        <ItimText size={16} weight="bold">
+          Purchase #{i + 1}
+        </ItimText>
+
+        <ItimText size={13} color="#555">
+          Items: {shoppingList?.total ?? 0}
+          {" • "}
+          Date: {new Date(item.purchasedAt).toLocaleDateString()}
+        </ItimText>
+      </View>
+    </Pressable>
+  );
+})}
+
 
           <View style={{ height: 120 }} />
         </ScrollView>

@@ -13,10 +13,18 @@ import TopNav from '../../components/Topnav'
 import Title from '../../components/Title'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { API_URL } from '@env';
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../redux/state/store";
+import { useAddToHistoryMutation } from "../../redux/svc/groupsApi";
+import { setActiveGroup } from "../../redux/slices/groupSlice";
+import { setActiveList } from "../../redux/slices/shoppinglistSlice"
 
 export default function CheckoutScreen() {
   const router = useRouter(); 
-
+  const dispatch = useDispatch();
+  const activeGroup = useSelector((s: RootState) => s.group.activeGroup);
+  const shoppingList = useSelector((s: RootState) => s.shoppingList.activeList);
+  const [addToHistory] = useAddToHistoryMutation();
   const stores = [
     {
       id: 1,
@@ -49,6 +57,27 @@ export default function CheckoutScreen() {
       address: 'Derech Yitshak Rabin 17, Petah Tikva, ישראל',
     },
   ];
+
+  const handleCheckout = async () => {
+  if (!activeGroup) return;
+
+  try {
+    const res = await addToHistory({
+      groupId: activeGroup._id,
+      name: `Checkout - ${new Date().toLocaleString()}`
+    }).unwrap();
+
+    // מעדכן Redux
+    dispatch(setActiveGroup(res.updatedGroup));
+    dispatch(setActiveList(res.newList));
+
+    router.replace("/main/history");
+
+  } catch (err) {
+    console.error("Checkout error:", err);
+  }
+};
+
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#ffffffff" , justifyContent: 'space-between' }}>
@@ -103,7 +132,7 @@ export default function CheckoutScreen() {
       {/* ✅ Mark as purchased button */}
       <Button
         title="Mark as purchased!"
-        onPress={() => router.replace('/main/history')}
+        onPress={handleCheckout}
       />
 
       <BottomNav />

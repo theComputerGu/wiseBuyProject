@@ -1,41 +1,58 @@
-import 'dotenv/config';
-import mongoose from 'mongoose';
-import { ProductSchema } from '../src/products/schemas/product.schema';
+import mongoose from "mongoose";
+import { ProductSchema, Product } from "../src/products/schemas/product.schema";
+import { model } from "mongoose";
+import dotenv from "dotenv";
 
-const Product = mongoose.model('Product', ProductSchema as any);
+dotenv.config();
 
-async function main() {
-  await mongoose.connect(process.env.MONGO_URI!);
+const ProductModel = model<Product>("Product", ProductSchema);
 
-  // כאן תדביק את הנתונים המקומיים שלך מ־ProductCard
-  const mock = [
-    {
-      title: 'Milk 3% 1L',
-      brand: 'Tnuva',
-      price: 6.9,
-      unit: '/unit',
-      rating: 4.3,
-      images: ['https://example.com/milk.png'],
-      category: 'Dairy',
-      tags: ['milk'],
-    },
+const DB_URI = process.env.DB_URI!;
+const API_URL = process.env.API_URL!;
 
+async function seed() {
+  try {
+    await mongoose.connect(DB_URI);
+    console.log("✅ Connected to MongoDB");
 
-    {
-      title: 'Milk 3% 1L',
-      brand: 'Tnuva',
-      price: 6.9,
-      unit: '/unit',
-      rating: 4.3,
-      images: ['https://example.com/milk.png'],
-      category: 'Dairy',
-      tags: ['milk'],
-    },
-  ];
+    const products = [
+      {
+        itemcode: "1001",
+        title: "Chicken Breast",
+        category: "meats",
+        pricerange: "45₪",
+        unit: "kg",
+        image: `${API_URL}/uploads/products/chicken-breast.png`,
+      },
+      {
+        itemcode: "2001",
+        title: "חלב תנובה",
+        category: "milk",
+        pricerange: "6₪",
+        unit: "liter",
+        image: `${API_URL}/uploads/products/milk.png`,
+      },
+      {
+        itemcode: "2002",
+        title: "חלב טרה",
+        category: "milk",
+        pricerange: "6₪",
+        unit: "liter",
+        image: `${API_URL}/uploads/products/milk2.png`,
+      },
+    ];
 
-  await Product.deleteMany({});
-  await Product.insertMany(mock);
-  console.log('Seeded', mock.length);
-  await mongoose.disconnect();
+    await ProductModel.deleteMany(); // ניקוי לפני הכנסת נתונים
+    await ProductModel.insertMany(products);
+
+    console.log("✅ Products seeded successfully using ENV");
+    console.log("✅ API URL used:", API_URL);
+
+    process.exit();
+  } catch (err) {
+    console.error("❌ Error while seeding:", err);
+    process.exit(1);
+  }
 }
-main();
+
+seed();

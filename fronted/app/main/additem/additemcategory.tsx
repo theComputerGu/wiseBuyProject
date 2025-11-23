@@ -1,12 +1,12 @@
 import React, { useState, useRef } from 'react';
 import {
-    View,
-    StyleSheet,
-    Image,
-    FlatList,
-    Dimensions,
-    Pressable,
-    Animated,
+  View,
+  StyleSheet,
+  Image,
+  FlatList,
+  Dimensions,
+  Pressable,
+  Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -22,8 +22,8 @@ import {
     removeItemLocal,
 } from '../../../redux/slices/shoppinglistSlice';
 import {
-    useAddItemMutation,
-    useRemoveItemMutation,
+  useAddItemMutation,
+  useRemoveItemMutation,
 } from '../../../redux/svc/shoppinglistApi';
 import { useGetProductsQuery } from '../../../redux/svc/productApi';
 
@@ -151,6 +151,85 @@ export default function AddItemCategoryScreen() {
             />
         </SafeAreaView>
     );
+
+    if (!listItem) return;
+
+    const itemId = listItem._id._id;
+    const newQty = listItem.quantity - 1;
+
+    try {
+      await removeItemFromBackend({ listId, itemId }).unwrap();
+
+      if (newQty <= 0) {
+        dispatch(removeItemLocal(productId));
+      } else {
+        dispatch(
+          updateItem({
+            productId,
+            patch: { quantity: newQty },
+          })
+        );
+      }
+
+    } catch (err) {
+      console.error("❌ Decrement failed:", err);
+    }
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      
+      <SearchHeader
+        placeholder="Search products..."
+        backRoute="/main/additem/additem"
+        value={search}
+        onSearchChange={setSearch}
+      />
+
+      <Title text={name ?? 'Category'} />
+
+      {isLoading ? (
+        <ItimText size={16}>Loading...</ItimText>
+      ) : (
+        <FlatList
+          data={products}
+          numColumns={2}
+          keyExtractor={(item) => String(item._id)}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.list}
+          renderItem={({ item }) => (
+            <Pressable
+              style={styles.itemCard}
+              onPress={() => openPopup(item)}
+            >
+              <Image
+                source={{ uri: item.image }}
+                style={styles.itemImage}
+              />
+
+              <ItimText size={16} color="#000" weight="bold">
+                {item.title}
+              </ItimText>
+
+              <ItimText size={14} color="#197FF4">
+                {item.pricerange ?? ''}
+              </ItimText>
+            </Pressable>
+          )}
+        />
+      )}
+
+      <ItemPopup
+        visible={!!selectedItem}
+        item={selectedItem}
+        slideAnim={slideAnim}
+        onClose={closePopup}
+        onIncrement={increment}
+        onDecrement={decrement}
+        getCurrentQty={getCurrentQty}
+      />
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
