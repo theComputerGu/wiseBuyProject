@@ -14,7 +14,10 @@ const API_URL = "http://192.168.199.122:3000"; // ✅ URL רגיל
 
 export default function AddItemScreen() {
   const router = useRouter();
-  const [search, setSearch] = useState("");
+  const ShoppingList = useSelector((s: any) => s?.shoppingList);
+
+  // 🚀 Fetch all products dynamically
+  const { data: products = [], isLoading } = useGetProductsQuery({});
 
   const categories = [
     {

@@ -34,6 +34,7 @@ export default function ProductScreen() {
   const activeGroup = useSelector((s: RootState) => s.group);
 
   const items = shoppingList.activeList?.items ?? [];
+  console.log("Shopping List Items:", JSON.stringify(items, null, 2));
 
   const [addItemToBackend] = useAddItemMutation();
   const [removeItemFromBackend] = useRemoveItemMutation();
@@ -117,6 +118,7 @@ export default function ProductScreen() {
       <Title text={activeGroup.activeGroup?.name ?? ""} />
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
+        
         {items.length === 0 ? (
           <Text style={{ textAlign: "center", marginTop: 20, color: "#777" }}>
             No items in your shopping list yet.
@@ -124,8 +126,8 @@ export default function ProductScreen() {
         ) : (
           items.map((item: any) => (
             <ProductCard
-              key={item._id._id}
-              name={item._id.title}
+              key={item.productId}
+              name={item?.product?.name ?? "Unnamed"}
               quantity={item.quantity}
               price={item._id.pricerange}
               image={{ uri: item._id.image }}

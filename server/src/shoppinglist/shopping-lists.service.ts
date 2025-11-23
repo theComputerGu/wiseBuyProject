@@ -67,13 +67,13 @@ async addItem(listId: string, productId: string) {
 
 
   // REMOVE ITEM BY ITEM ID
-async removeItem(listId: string, itemId: string) {
+async removeItem(listId: string, productId: string) {
   const list = await this.shoppingListModel.findById(listId);
   if (!list) throw new NotFoundException('Shopping list not found');
 
   // Find the item by ID
   const itemIndex = list.items.findIndex(
-    (item) => item._id.toString() === itemId
+    (item) => item._id.toString() === productId.toString()
   );
 
   if (itemIndex === -1) {
