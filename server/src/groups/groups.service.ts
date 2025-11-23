@@ -117,25 +117,41 @@ export class GroupsService {
     return group;
   }
 
-  //  ADD SHOPPING LIST TO GROUP HISTORY 
   async addToHistory(name: string, groupId: string) {
-    const group = await this.groupModel.findById(groupId);
-    if (!group) throw new NotFoundException("Group not found");
+  const group = await this.groupModel.findById(groupId);
+  if (!group) throw new NotFoundException("Group not found");
 
-    group.history.push({
-      name: name,
-      shoppingListId: group.activeshoppinglist?._id,
-      purchasedAt: new Date(),
-      storeId: group.activeshoppinglist?._id// will be added later
-    });
-
-    // Clear the active shopping list
-    group.activeshoppinglist = null;
-
-    await group.save();
-
-    return group;
+  if (!group.activeshoppinglist) {
+    throw new Error("No active shopping list");
   }
+
+  // מביאים את הרשימה עם הפריטים
+  const list = await this.shoppingListService.findById(
+    group.activeshoppinglist.toString()
+  );
+
+  // מוסיפים היסטוריה
+  group.history.push({
+    name,
+    shoppingListId: list._id,
+    purchasedAt: new Date(),
+    storeId: undefined, // תוכל להוסיף בעתיד
+  });
+
+  // יוצרים רשימה חדשה ריקה
+  const newList = await this.shoppingListService.create();
+
+  // מעדכנים לקבוצה רשימה פעילה חדשה
+  group.activeshoppinglist = newList._id;
+
+  await group.save();
+
+  return {
+    updatedGroup: group,
+    newList,
+  };
+}
+
 
   //get active shopping list
   async getActiveShoppingList(groupId: string) {
@@ -165,8 +181,46 @@ export class GroupsService {
 
   }
 
+  async restorePurchase(groupId: string, shoppingListId: string) {
+  const group = await this.groupModel.findById(groupId);
+  if (!group) throw new NotFoundException('Group not found');
 
+  if (!group.activeshoppinglist) {
+    throw new NotFoundException("No active shopping list");
+  }
 
+  const activeList = await this.shoppingListService.findById(
+    group.activeshoppinglist.toString()
+  );
 
-  
+  const oldList = await this.shoppingListService.findById(shoppingListId);
+
+  if (!oldList) throw new NotFoundException("Purchase list not found");
+
+  // ✅ מוסיף את הפריטים מהיסטוריה לרשימה הנוכחית
+  for (const oldItem of oldList.items) {
+    const existingItem = activeList.items.find(
+      (item) =>
+        item._id.toString() === oldItem._id.toString()
+    );
+
+    if (existingItem) {
+      existingItem.quantity += oldItem.quantity;
+    } else {
+      activeList.items.push({
+        _id: oldItem._id,
+        quantity: oldItem.quantity,
+      });
+    }
+  }
+
+  activeList.total = activeList.items.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+
+  await activeList.save();
+
+  return activeList;
+}
 }

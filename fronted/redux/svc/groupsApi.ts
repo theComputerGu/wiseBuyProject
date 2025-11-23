@@ -141,15 +141,32 @@ export const groupsApi = baseApi.injectEndpoints({
             ],
         }),
 
+
+        restorePurchase: builder.mutation<
+  any,
+  { groupId: string; shoppingListId: string }
+>({
+  query: ({ groupId, shoppingListId }) => ({
+    url: `/groups/${groupId}/restore-purchase`,
+    method: "POST",
+    body: { shoppingListId },
+  }),
+
+  invalidatesTags: (_, __, { groupId }) => [
+    { type: "Groups", id: groupId },
+  ],
+}),
+
+
         // ADD ACTIVE SHOPPING LIST → HISTORY
         addToHistory: builder.mutation<
-            any,
-            { groupId: string; shoppingListId: string | null; name: string }
+            { updatedGroup: Group; newList: any },
+            { groupId: string; name: string }
         >({
-            query: ({ groupId, shoppingListId, name }) => ({
+            query: ({ groupId, name }) => ({
                 url: `/groups/${groupId}/history`,
                 method: "POST",
-                body: { shoppingListId, name },
+                body: { name },
             }),
             invalidatesTags: (_, __, { groupId }) => [
                 { type: "Groups", id: groupId },
@@ -174,4 +191,5 @@ export const {
     useGetAdminQuery,
     useGetHistoryQuery,
     useAddToHistoryMutation,
+    useRestorePurchaseMutation,
 } = groupsApi;

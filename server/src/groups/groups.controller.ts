@@ -94,4 +94,13 @@ export class GroupsController {
     return this.groupsService.addToHistory(name, groupId);
   }
 
+  @Post(':id/restore-purchase')
+async restorePurchase(
+  @Param('id') groupId: string,
+  @Body('shoppingListId') shoppingListId: string,
+) {
+  return this.groupsService.restorePurchase(groupId, shoppingListId);
+}
+
+
 }
