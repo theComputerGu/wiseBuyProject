@@ -5,15 +5,17 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-
+import { useSelector } from "react-redux";
 import Title from '../../../components/Title';
 import SearchHeader from '../../../components/SearchHeader';
 import CategoryCard from '../../../components/categorycard';
+import { useGetProductsQuery } from "../../../redux/svc/productApi";
 
 const API_URL = "http://192.168.199.122:3000"; // ✅ URL רגיל
 
 export default function AddItemScreen() {
   const router = useRouter();
+  const [search, setSearch] = useState("");
   const ShoppingList = useSelector((s: any) => s?.shoppingList);
 
   // 🚀 Fetch all products dynamically
