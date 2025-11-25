@@ -34,9 +34,9 @@ export class ShoppingListsController {
 
 
   // remove item
-  @Delete(':id/items')
-  removeItem(@Param('id') id: string, @Body('productId') productId: string) {
-    return this.service.removeItem(id, productId);
+  @Delete(':id/items/:itemId')
+  removeItem(@Param('id') id: string, @Param('itemId') itemId: string) {
+    return this.service.removeItem(id, itemId);
   }
 
   // delete list

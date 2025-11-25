@@ -61,16 +61,15 @@ export const shoppingListApi = baseApi.injectEndpoints({
 
     // ---------------------------
     // 5. Remove or decrease item  
-    // DELETE /shopping-lists/:id/items/:productId
+    // DELETE /shopping-lists/:id/items/:itemId
     // ---------------------------
     removeItem: builder.mutation({
-      query: ({ listId, productId }) => ({
-        url: `/shopping-lists/${listId}/items`,
+      query: ({ listId, itemId }) => ({
+        url: `/shopping-lists/${listId}/items/${itemId}`,
         method: 'DELETE',
-        body: { productId },
       }),
       invalidatesTags: (result, error, { listId }) => [
-        { type: 'ShoppingLists', id: listId , },
+        { type: 'ShoppingLists', id: listId },
       ],
     }),
 
