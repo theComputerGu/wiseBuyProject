@@ -8,11 +8,11 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import TopNav from "../../components/Topnav";
-import Title from "../../components/Title";
 import BottomNav from "../../components/Bottomnavigation";
 import BottomSummary from "../../components/BottomSummary";
 import ProductCard from "../../components/productcard";
-
+import Title from "../../components/Title";
+import GroupSelector from "../../components/GroupSelector";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/state/store";
 
@@ -99,7 +99,7 @@ export default function ProductScreen() {
     }
   };
 
-  // 🔹 חישוב סכום כולל אמיתי
+  // 🔹 חישוב סכום כולל
   const totalPrice = items.reduce((sum, item: any) => {
     const price = parseFloat(
       item._id.pricerange?.replace(/[^\d.]/g, "") || "0"
@@ -114,7 +114,8 @@ export default function ProductScreen() {
     <SafeAreaView style={styles.container}>
       <TopNav />
 
-      <Title text={activeGroup.activeGroup?.name ?? ""} />
+      {/* ✅ במקום Title: בורר קבוצות עם חץ */}
+      <GroupSelector />
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {items.length === 0 ? (
