@@ -18,23 +18,58 @@ export default function AddItemScreen() {
 
   const categories = [
     {
-      name: "בשר",
+      name: "meats",
       key: "meats",
       image: { uri: `${API_URL}/uploads/products/MEAT.png` },
     },
     {
-      name: "חלב ומוצרי חלב",
-      key: "milk",
+      name: "dairy",
+      key: "dairy",
+      image: { uri: `${API_URL}/uploads/products/MEAT.png` },
+    },
+    {
+      name: "drinks",
+      key: "drinks",
+      image: { uri: `${API_URL}/uploads/products/MEAT.png` },
+    },
+    {
+      name: "snacks",
+      key: "snacks",
+      image: { uri: `${API_URL}/uploads/products/MEAT.png` },
+    },
+    {
+      name: "sauces",
+      key: "sauces",
+      image: { uri: `${API_URL}/uploads/products/MEAT.png` },
+    },
+    {
+      name:  "cosmetics",
+      key: "cosmetics",
       image: { uri: `${API_URL}/uploads/products/MILK.png` },
     },
     {
-      name: "ירקות",
-      key: "vegetables",
+      name: "hygiene",
+      key: "hygiene",
       image: { uri: `${API_URL}/uploads/products/VEGTABLE.png` },
     },
     {
-      name: "פירות",
+      name: "cereals",
+      key: "cereals",
+      image: { uri: `${API_URL}/uploads/products/FRUIT.png` },
+    },
+    {
+      name: "frozen",
+      key: "frozen",
+      image: { uri: `${API_URL}/uploads/products/FRUIT.png` },
+    },
+     {
+      name: "fruits",
       key: "fruits",
+      image: { uri: `${API_URL}/uploads/products/FRUIT.png` },
+    },
+    {
+      name: "other",
+      key: "other",
       image: { uri: `${API_URL}/uploads/products/FRUIT.png` },
     },
   ];

@@ -47,6 +47,12 @@ export default function AddItemCategoryScreen() {
     q: search, // ✅ חיפוש מהשרת
   });
 
+  // Change 127.0.0.1 to your computer LAN IP
+  const fixImageURL = (url: any) => {
+    if (!url) return "";
+    return url.replace("127.0.0.1", "192.168.1.156"); // <-- your real IP
+  };
+
   const [addItemToBackend] = useAddItemMutation();
   const [removeItemFromBackend] = useRemoveItemMutation();
 
@@ -150,7 +156,7 @@ export default function AddItemCategoryScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      
+
       <SearchHeader
         placeholder="Search products..."
         backRoute="/main/additem/additem"
@@ -175,7 +181,7 @@ export default function AddItemCategoryScreen() {
               onPress={() => openPopup(item)}
             >
               <Image
-                source={{ uri: item.image }}
+                source={{ uri: fixImageURL(item.image) }}
                 style={styles.itemImage}
               />
 
