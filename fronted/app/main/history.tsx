@@ -56,7 +56,6 @@ export default function HistoryScreen() {
           <ItimText size={16} weight="bold" color="#197FF4">
             {activeGroup?.activeGroup?.name ?? 'No group'}
           </ItimText>
-          <MaterialCommunityIcons name="chevron-down" size={22} color="#197FF4" />
         </View>
 
         {history.length === 0 && (
