@@ -1,3 +1,5 @@
+from random import random
+import unicodedata
 import xml.etree.ElementTree as ET
 import requests
 from bs4 import BeautifulSoup
@@ -122,6 +124,7 @@ def scrape_chp(barcode: str):
     try:
         city_encoded = urllib.parse.quote(CITY)
         url = f"{BASE_SITE}/{city_encoded}/0/0/{barcode}"
+        print(f"    [CHP] URL: {url}")
 
         r = SESSION.get(url, timeout=10)
         if r.status_code != 200:
@@ -141,38 +144,29 @@ def scrape_chp(barcode: str):
         else:
             print("    [CHP] No image found")
 
-        # --- PRICE extraction FIX (Now uses re.search for robustness) ---
+        
         soup = BeautifulSoup(html, "html.parser")
         prices = []
 
-        # Go over every row in the results table (each row is a branch/store price)
-        for tr in soup.select("#results-table tbody tr"):
+        # Select all rows in result table
+        rows = soup.select("table.table.results-table tbody tr")
+
+        for tr in rows:
             tds = tr.find_all("td")
             if not tds:
                 continue
 
-            # Assuming the price is in the LAST column (tds[-1])
-            if tds:
-                raw = tds[-1].get_text()
-                # Robustly find the first number (integer or decimal) in the text
-                # This fixes issues where the cell contains symbols/text like "= $0 21.90"
-                price_match = re.search(r"\d+\.\d+", raw)
+            # The last <td> is always the price column
+            raw = tds[-1].get_text()
 
-                if price_match:
-                    try:
-                        # Append the found number as a float
-                        price = float(price_match.group(1))
-                        
-                        # NEW FIX: Only append the price if it is greater than zero
-                        if price > 0:
-                            prices.append(price)
-                        else:
-                            print(f"    [CHP] Filtered out zero/negative price: {price}")
-                    except ValueError:
-                        # Safety check against bad conversions
-                        pass # Continue if conversion fails
+            # Clean unicode junk (NBSP, RTL marks)
+
+            # Match ONLY floats with dot (e.g. 21.90)
+            price_match = re.search(r"(\d+\.\d{2})", raw)
+            if price_match:
+                prices.append(float(price_match.group(1)))
         price_range = None
-        if price:
+        if prices:
             price_range = f"₪{min(prices):.2f} - ₪{max(prices):.2f}"
             print(f"    [CHP] Price range: {price_range}")
         else:
@@ -232,6 +226,7 @@ def download_image(external_url: str | None, base64_img: str | None, itemcode: s
     return None
 
 
+
 # --------------------------------------------
 # MAIN PROCESS
 # --------------------------------------------
@@ -244,6 +239,9 @@ def upload_products():
     failed = 0
 
     for item in items.findall("Item"):
+        delay = 5
+        time.sleep(delay )
+        print(f"[DELAY] Sleeping for {delay} seconds before processing next item...")
         itemcode = item.findtext("ItemCode")
         title = item.findtext("ItemName")
         manufacturer = item.findtext("ManufacturerName")
