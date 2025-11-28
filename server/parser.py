@@ -121,7 +121,7 @@ def scrape_chp(barcode: str):
 
     try:
         city_encoded = urllib.parse.quote(CITY)
-        url = f"{BASE_SITE}/{city_encoded}/0/0/{barcode}/{CHAIN_ID}_{barcode}"
+        url = f"{BASE_SITE}/{city_encoded}/0/0/{barcode}"
 
         r = SESSION.get(url, timeout=10)
         if r.status_code != 200:
@@ -129,6 +129,7 @@ def scrape_chp(barcode: str):
             return None, None, None
 
         html = r.text
+    
 
         # IMAGE extraction (supports data-uri AND src=)
         external_url, base64_img = extract_image_from_chp(html)
@@ -140,17 +141,38 @@ def scrape_chp(barcode: str):
         else:
             print("    [CHP] No image found")
 
-        # PRICE extraction
+        # --- PRICE extraction FIX (Now uses re.search for robustness) ---
         soup = BeautifulSoup(html, "html.parser")
         prices = []
 
-        for td in soup.find_all("td"):
-            text = td.get_text(strip=True)
-            if re.fullmatch(r"\d+(\.\d+)?", text):
-                prices.append(float(text))
+        # Go over every row in the results table (each row is a branch/store price)
+        for tr in soup.select("#results-table tbody tr"):
+            tds = tr.find_all("td")
+            if not tds:
+                continue
 
+            # Assuming the price is in the LAST column (tds[-1])
+            if tds:
+                raw = tds[-1].get_text()
+                # Robustly find the first number (integer or decimal) in the text
+                # This fixes issues where the cell contains symbols/text like "= $0 21.90"
+                price_match = re.search(r"\d+\.\d+", raw)
+
+                if price_match:
+                    try:
+                        # Append the found number as a float
+                        price = float(price_match.group(1))
+                        
+                        # NEW FIX: Only append the price if it is greater than zero
+                        if price > 0:
+                            prices.append(price)
+                        else:
+                            print(f"    [CHP] Filtered out zero/negative price: {price}")
+                    except ValueError:
+                        # Safety check against bad conversions
+                        pass # Continue if conversion fails
         price_range = None
-        if prices:
+        if price:
             price_range = f"₪{min(prices):.2f} - ₪{max(prices):.2f}"
             print(f"    [CHP] Price range: {price_range}")
         else:
