@@ -17,3 +17,6 @@ WiseBuy is a mobile app built with **React Native (Expo)** and a **NestJS + Mong
 
 **goverment prices site:**
 https://www.gov.il/he/pages/cpfta_prices_regulations
+
+**CHP price comparison site**
+https://chp.co.il/
