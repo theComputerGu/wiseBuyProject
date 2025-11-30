@@ -19,7 +19,7 @@ export default function AddItemScreen() {
     {
       name: "meats",
       key: "meats",
-      image: { uri: `${API_URL}/uploads/products/MEAT.png` },
+      image: { uri: `${API_URL}/uploads/products/meat.png` },
     },
     {
       name: "dairy",
@@ -64,7 +64,7 @@ export default function AddItemScreen() {
      {
       name: "fruits",
       key: "fruits",
-      image: { uri: `${API_URL}/uploads/products/FRUIT.png` },
+      image: { uri: `${API_URL}/uploads/products/fruit.png` },
     },
     {
       name: "other",
