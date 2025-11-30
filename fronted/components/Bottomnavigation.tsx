@@ -67,7 +67,7 @@ export default function BottomNav() {
       </Pressable>
 
       {/* 🛒 Checkout */}
-      <Pressable onPress={() => handleNavigate('/main/checkout')}>
+      <Pressable onPress={() => handleNavigate('/main/checkout/checkout')}>
         <MaterialCommunityIcons
           name="cart"
           size={28}
