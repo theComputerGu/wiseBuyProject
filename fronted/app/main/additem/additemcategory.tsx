@@ -8,9 +8,11 @@ import {
   Pressable,
   Animated,
 } from 'react-native';
+import axios from "axios";
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
+import { API_URL } from '@env'
 
 import ItimText from '../../../components/Itimtext';
 import Title from '../../../components/Title';
@@ -32,6 +34,7 @@ import {
   useRemoveItemMutation,
 } from '../../../redux/svc/shoppinglistApi';
 
+
 const screenHeight = Dimensions.get('window').height;
 
 export default function AddItemCategoryScreen() {
@@ -44,13 +47,20 @@ export default function AddItemCategoryScreen() {
 
   const { data: products = [], isLoading } = useGetProductsQuery({
     category: name,
-    q: search, // ✅ חיפוש מהשרת
+    q: search,
   });
 
-  // Change 127.0.0.1 to your computer LAN IP
   const fixImageURL = (url: any) => {
     if (!url) return "";
-    return url.replace("127.0.0.1", "192.168.1.156"); // <-- your real IP
+
+    try {
+      const original = new URL(url);
+      const backend = new URL(API_URL);
+      original.host = backend.host;
+      return original.toString();
+    } catch (e) {
+      return url;
+    }
   };
 
   const [addItemToBackend] = useAddItemMutation();
@@ -185,7 +195,15 @@ export default function AddItemCategoryScreen() {
                 style={styles.itemImage}
               />
 
-              <ItimText size={16} color="#000" weight="bold">
+              {/* FIXED TITLE */}
+              <ItimText
+                size={16}
+                color="#000"
+                weight="bold"
+                numberOfLines={2}
+                ellipsizeMode="tail"
+                style={styles.itemTitle}
+              >
                 {item.title}
               </ItimText>
 
@@ -219,6 +237,8 @@ const styles = StyleSheet.create({
   list: {
     paddingVertical: 12,
   },
+
+  /** PRODUCT CARD */
   itemCard: {
     flex: 1,
     backgroundColor: '#fff',
@@ -231,10 +251,19 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
+
+  /** FIXED IMAGE — SAME SIZE ALWAYS */
   itemImage: {
-    width: 100,
-    height: 100,
+    width: 110,
+    height: 110,
     resizeMode: 'contain',
     marginBottom: 8,
+  },
+
+  /** FIXED PRODUCT TITLE */
+  itemTitle: {
+    width: "90%",
+    textAlign: "center",
+    marginBottom: 4,
   },
 });

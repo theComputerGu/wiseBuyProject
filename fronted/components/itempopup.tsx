@@ -8,6 +8,7 @@ import {
     Image,
 } from "react-native";
 import ItimText from "./Itimtext";
+import { API_URL } from "@env";
 
 interface ItemPopupProps {
     visible: boolean;
@@ -43,11 +44,28 @@ export default function ItemPopup({
         // as the unique identifier for the product.
         const productId = item._id; // Ensure you use the correct product ID property
         const localQty = getCurrentQty(productId);
-        
+
         // Directly set the quantity from the synchronous function
         setQty(localQty);
 
     }, [item, visible, getCurrentQty]); // Added visible and getCurrentQty as dependencies
+
+    // Change 127.0.0.1 to your computer LAN IP
+    const fixImageURL = (url: any) => {
+        if (!url) return "";
+
+        try {
+            const original = new URL(url);
+            const backend = new URL(API_URL);
+
+            // Replace only host + port
+            original.host = backend.host;
+
+            return original.toString();
+        } catch (e) {
+            return url; // fallback
+        }
+    };
 
     // Update local visual qty immediately
     const handleIncrement = () => {
@@ -77,7 +95,7 @@ export default function ItemPopup({
                         <View style={styles.handleBar} />
 
                         {/* Image */}
-                        <Image source={{ uri: item.image }} style={styles.popupImage} />
+                        <Image source={{ uri: fixImageURL(item.image) }} style={styles.popupImage} />
 
                         {/* Counter */}
                         <View style={styles.counterRow}>

@@ -25,42 +25,42 @@ export default function AddItemScreen() {
     {
       name: "dairy",
       key: "dairy",
-      image: { uri: `${API_URL}/uploads/products/MEAT.png` },
+      image: { uri: `${API_URL}/uploads/products/dairy.png` },
     },
     {
       name: "drinks",
       key: "drinks",
-      image: { uri: `${API_URL}/uploads/products/MEAT.png` },
+      image: { uri: `${API_URL}/uploads/products/drinks.png` },
     },
     {
       name: "snacks",
       key: "snacks",
-      image: { uri: `${API_URL}/uploads/products/MEAT.png` },
+      image: { uri: `${API_URL}/uploads/products/snacks.png` },
     },
     {
       name: "sauces",
       key: "sauces",
-      image: { uri: `${API_URL}/uploads/products/MEAT.png` },
+      image: { uri: `${API_URL}/uploads/products/sauces.png` },
     },
     {
       name:  "cosmetics",
       key: "cosmetics",
-      image: { uri: `${API_URL}/uploads/products/MILK.png` },
+      image: { uri: `${API_URL}/uploads/products/cosmetics.png` },
     },
     {
       name: "hygiene",
       key: "hygiene",
-      image: { uri: `${API_URL}/uploads/products/VEGTABLE.png` },
+      image: { uri: `${API_URL}/uploads/products/hygiene.png` },
     },
     {
       name: "cereals",
       key: "cereals",
-      image: { uri: `${API_URL}/uploads/products/FRUIT.png` },
+      image: { uri: `${API_URL}/uploads/products/cereals.png` },
     },
     {
       name: "frozen",
       key: "frozen",
-      image: { uri: `${API_URL}/uploads/products/FRUIT.png` },
+      image: { uri: `${API_URL}/uploads/products/frozen.png` },
     },
      {
       name: "fruits",
@@ -70,7 +70,7 @@ export default function AddItemScreen() {
     {
       name: "other",
       key: "other",
-      image: { uri: `${API_URL}/uploads/products/FRUIT.png` },
+      image: { uri: `${API_URL}/uploads/products/other.png` },
     },
   ];
 
@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
   categoriesGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    gap: 12,
+    justifyContent: 'flex-start',
     marginTop: 8,
     paddingBottom: 60,
   },
