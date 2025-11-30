@@ -9,7 +9,6 @@ import {
   Animated,
 } from 'react-native';
 import axios from "axios";
-import { useEffect } from 'react';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -51,78 +50,16 @@ export default function AddItemCategoryScreen() {
     q: search,
   });
 
-  const formatRange = (range: string): string => {
-    if (!range) return "";
-
-    const parts = range.split("-").map(p => p.trim());
-    if (parts.length !== 2) return range;
-
-    const [min, max] = parts;
-    return `₪${min} - ₪${max}`;
-  };
-
-
-  // helper delay
-  const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
-  const addPrice = async (products: any[]) => {
-    if (!products || products.length === 0) return;
-
-    const city = "רחובות";
-
-    for (const product of products) {
-      try {
-        if (product.pricerange || product.price > 0) continue;
-
-        const scrapeRes = await axios.get(
-          `${API_URL}/scrape/price/${product.itemcode}/${city}`
-        );
-
-        const scraped =
-          scrapeRes.data?.prices ||
-          scrapeRes.data?.ranges?.[0] ||
-          null;
-
-        if (!scraped) continue;
-
-        // CASE B: RANGE FORMAT
-        const formatted = formatRange(String(scraped));
-
-        console.log(`💰 Formatted: ${formatted} for ${product._id}` );
-
-        await axios.patch(`${API_URL}/products/${product._id}`, {
-          pricerange: formatted,
-        });
-
-        await wait(800);
-
-      } catch (err) {
-        console.log(`⚠️ Failed updating price for ${product._id}`, err);
-      }
-    }
-
-    console.log("🎉 Done updating all product prices");
-  };
-
-  useEffect(() => {
-    if (products?.length > 0) {
-      addPrice(products);
-    }
-  }, [products]);
-
-  // Change 127.0.0.1 to your computer LAN IP
   const fixImageURL = (url: any) => {
     if (!url) return "";
 
     try {
       const original = new URL(url);
       const backend = new URL(API_URL);
-
-      // Replace only host + port
       original.host = backend.host;
-
       return original.toString();
     } catch (e) {
-      return url; // fallback
+      return url;
     }
   };
 
@@ -258,7 +195,15 @@ export default function AddItemCategoryScreen() {
                 style={styles.itemImage}
               />
 
-              <ItimText size={16} color="#000" weight="bold">
+              {/* FIXED TITLE */}
+              <ItimText
+                size={16}
+                color="#000"
+                weight="bold"
+                numberOfLines={2}
+                ellipsizeMode="tail"
+                style={styles.itemTitle}
+              >
                 {item.title}
               </ItimText>
 
@@ -292,6 +237,8 @@ const styles = StyleSheet.create({
   list: {
     paddingVertical: 12,
   },
+
+  /** PRODUCT CARD */
   itemCard: {
     flex: 1,
     backgroundColor: '#fff',
@@ -304,10 +251,19 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 3,
   },
+
+  /** FIXED IMAGE — SAME SIZE ALWAYS */
   itemImage: {
-    width: 100,
-    height: 100,
+    width: 110,
+    height: 110,
     resizeMode: 'contain',
     marginBottom: 8,
+  },
+
+  /** FIXED PRODUCT TITLE */
+  itemTitle: {
+    width: "90%",
+    textAlign: "center",
+    marginBottom: 4,
   },
 });
