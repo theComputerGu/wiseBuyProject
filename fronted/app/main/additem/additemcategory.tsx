@@ -8,9 +8,12 @@ import {
   Pressable,
   Animated,
 } from 'react-native';
+import axios from "axios";
+import { useEffect } from 'react';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
+import { API_URL } from '@env'
 
 import ItimText from '../../../components/Itimtext';
 import Title from '../../../components/Title';
@@ -32,6 +35,7 @@ import {
   useRemoveItemMutation,
 } from '../../../redux/svc/shoppinglistApi';
 
+
 const screenHeight = Dimensions.get('window').height;
 
 export default function AddItemCategoryScreen() {
@@ -44,13 +48,82 @@ export default function AddItemCategoryScreen() {
 
   const { data: products = [], isLoading } = useGetProductsQuery({
     category: name,
-    q: search, // ✅ חיפוש מהשרת
+    q: search,
   });
+
+  const formatRange = (range: string): string => {
+    if (!range) return "";
+
+    const parts = range.split("-").map(p => p.trim());
+    if (parts.length !== 2) return range;
+
+    const [min, max] = parts;
+    return `₪${min} - ₪${max}`;
+  };
+
+
+  // helper delay
+  const wait = (ms: number) => new Promise((res) => setTimeout(res, ms));
+  const addPrice = async (products: any[]) => {
+    if (!products || products.length === 0) return;
+
+    const city = "כרמיאל";
+
+    for (const product of products) {
+      try {
+        if (product.pricerange || product.price > 0) continue;
+
+        const scrapeRes = await axios.get(
+          `${API_URL}/scrape/price/${product.itemcode}/${city}`
+        );
+
+        const scraped =
+          scrapeRes.data?.prices ||
+          scrapeRes.data?.ranges?.[0] ||
+          null;
+
+        if (!scraped) continue;
+
+        // CASE B: RANGE FORMAT
+        const formatted = formatRange(String(scraped));
+
+        console.log(`💰 Formatted: ${formatted} for ${product._id}` );
+
+        await axios.patch(`${API_URL}/products/${product._id}`, {
+          pricerange: formatted,
+        });
+
+        await wait(800);
+
+      } catch (err) {
+        console.log(`⚠️ Failed updating price for ${product._id}`, err);
+      }
+    }
+
+    console.log("🎉 Done updating all product prices");
+  };
+
+  useEffect(() => {
+    if (products?.length > 0) {
+      addPrice(products);
+    }
+  }, [products]);
 
   // Change 127.0.0.1 to your computer LAN IP
   const fixImageURL = (url: any) => {
     if (!url) return "";
-    return url.replace("127.0.0.1", "192.168.1.156"); // <-- your real IP
+
+    try {
+      const original = new URL(url);
+      const backend = new URL(API_URL);
+
+      // Replace only host + port
+      original.host = backend.host;
+
+      return original.toString();
+    } catch (e) {
+      return url; // fallback
+    }
   };
 
   const [addItemToBackend] = useAddItemMutation();

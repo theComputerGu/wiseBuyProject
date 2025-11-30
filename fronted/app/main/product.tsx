@@ -15,6 +15,7 @@ import Title from "../../components/Title";
 import GroupSelector from "../../components/GroupSelector";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux/state/store";
+import { API_URL } from '@env'
 
 import {
   useAddItemMutation,
@@ -63,6 +64,23 @@ export default function ProductScreen() {
       console.error("❌ Increase failed:", err);
     }
   };
+
+    // Change 127.0.0.1 to your computer LAN IP
+    const fixImageURL = (url: any) => {
+      if (!url) return "";
+  
+      try {
+        const original = new URL(url);
+        const backend = new URL(API_URL);
+  
+        // Replace only host + port
+        original.host = backend.host;
+  
+        return original.toString();
+      } catch (e) {
+        return url; // fallback
+      }
+    };
 
   // 🔹 MINUS
   const handleDecrease = async (productId: string) => {
@@ -129,7 +147,7 @@ export default function ProductScreen() {
               name={item._id.title}
               quantity={item.quantity}
               price={item._id.pricerange}
-              image={{ uri: item._id.image }}
+              image={{ uri:  fixImageURL(item._id.image) }}
               onIncrease={() => handleIncrease(item._id._id)}
               onDecrease={() => handleDecrease(item._id._id)}
             />
