@@ -67,7 +67,7 @@ export default function AddItemCategoryScreen() {
   const addPrice = async (products: any[]) => {
     if (!products || products.length === 0) return;
 
-    const city = "כרמיאל";
+    const city = "רחובות";
 
     for (const product of products) {
       try {
