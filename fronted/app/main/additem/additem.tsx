@@ -9,8 +9,7 @@ import { useRouter } from 'expo-router';
 import Title from '../../../components/Title';
 import SearchHeader from '../../../components/SearchHeader';
 import CategoryCard from '../../../components/categorycard';
-
-const API_URL = "http://192.168.199.122:3000"; // ✅ URL רגיל
+import { API_URL } from '@env';
 
 export default function AddItemScreen() {
   const router = useRouter();
