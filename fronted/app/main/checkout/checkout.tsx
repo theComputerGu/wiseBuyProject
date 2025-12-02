@@ -30,11 +30,24 @@ export default function CheckoutScreen() {
   const activeGroup = useSelector((s: RootState) => s.group.activeGroup);
   const shoppingList = useSelector((s: RootState) => s.shoppingList.activeList);
   const [addToHistory] = useAddToHistoryMutation();
+  const API_KEY = "AIzaSyB_YwWsltrLfeFOImovl-CE6__nTWkN924"
 
   // ⭐ MAP STATE (Integrated directly)
   const [location, setLocation] = useState<null | Location.LocationObjectCoords>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [radius, setRadius] = useState<number>(5);
+
+  //function to convert an adress to a geocode
+  async function geocode(address: string) {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${API_KEY}`;
+
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.results[0].geometry.location;
+  }
+
+
+
 
   useEffect(() => {
     (async () => {
@@ -78,6 +91,7 @@ export default function CheckoutScreen() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={styles.container}>
+       
 
         <TopNav />
 
