@@ -87,23 +87,7 @@ export default function CheckoutScreen() {
     { id: 5, name: 'שופרסל דיל', price: '365.42₪', address: 'Derech Yitshak Rabin 17, Petah Tikva, ישראל' },
   ];
 
-  const handleCheckout = async () => {
-    if (!activeGroup) return;
 
-    try {
-      const res = await addToHistory({
-        groupId: activeGroup._id,
-        name: `Checkout - ${new Date().toLocaleString()}`
-      }).unwrap();
-
-      dispatch(setActiveGroup(res.updatedGroup));
-      dispatch(setActiveList(res.newList));
-      router.replace("/main/history");
-
-    } catch (err) {
-      console.error("Checkout error:", err);
-    }
-  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -166,7 +150,7 @@ export default function CheckoutScreen() {
           {stores.map((store) => (
             <Pressable
               key={store.id}
-              onPress={() => router.push(`/main/checkout/storecheckout?id=${store.id}`)}
+              onPress={() => router.replace(`/main/checkout/storecheckout?name=${store.name}`)}
               style={styles.storeCard}
             >
               <View style={styles.priceInfo}>
@@ -195,8 +179,6 @@ export default function CheckoutScreen() {
           <View style={{ height: 120 }} />
         </ScrollView>
 
-        {/* ⭐ Bottom CTA button */}
-        <Button title="Mark as purchased!" onPress={handleCheckout} />
 
         <BottomNav />
 

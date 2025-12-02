@@ -11,22 +11,55 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
 import { API_URL } from "@env";
 import ProductCard from "../../../components/productcard";
+import { setActiveGroup } from "../../../redux/slices/groupSlice";
+import { setActiveList } from "../../../redux/slices/shoppinglistSlice";
+import { useAddToHistoryMutation } from "../../../redux/svc/groupsApi";
+import CheckoutCard from "../../../components/CheckoutCard";
+
 
 
 export default function StoreCheckoutScreen() {
     const router = useRouter();
-    const { id } = useLocalSearchParams();
-    const storeName = "שופרסל דיל";
+    const { name } = useLocalSearchParams();
+    const storeName = name;
     const dispatch = useDispatch();
-
+    const activeGroup = useSelector((s: RootState) => s.group.activeGroup);
     const shoppingList = useSelector((s: RootState) => s.shoppingList);
+    const [addToHistory] = useAddToHistoryMutation();
     const items = shoppingList.activeList?.items ?? [];
 
-    // 🔹 חישוב סכום כולל
-    const totalPrice = items.reduce((sum, item: any) => {
-        const price = parseFloat(
-            item._id.pricerange?.replace(/[^\d.]/g, "") || "0"
-        );
+    const handleCheckout = async () => {
+        if (!activeGroup) return;
+
+        try {
+            const res = await addToHistory({
+                groupId: activeGroup._id,
+                name: `Checkout - ${new Date().toLocaleString()}`
+            }).unwrap();
+
+            dispatch(setActiveGroup(res.updatedGroup));
+            dispatch(setActiveList(res.newList));
+            router.replace("/main/history");
+
+        } catch (err) {
+            console.error("Checkout error:", err);
+        }
+    };
+
+    const extractPrice = (raw: string | undefined): number => {
+        if (!raw) return 0;
+
+        // Extract the FIRST decimal or integer number in the string
+        const match = raw.match(/\d+(\.\d+)?/);
+
+        if (!match) return 0;
+
+        return parseFloat(match[0]);
+    };
+
+    // 🔹 Calculate total price
+    const totalPrice = items.reduce((sum: number, item: any) => {
+        const price = extractPrice(item._id.pricerange);
         return sum + price * item.quantity;
     }, 0);
 
@@ -53,15 +86,14 @@ export default function StoreCheckoutScreen() {
 
                 {/* ---------- TOP BAR ---------- */}
                 <View style={styles.topBar}>
-                    <Pressable onPress={() => router.back()} style={styles.backButton}>
+                    <Pressable onPress={() => router.replace("/main/checkout/checkout")} style={styles.backButton}>
                         <MaterialCommunityIcons name="arrow-left" size={26} color="#197FF4" />
                     </Pressable>
 
                     <ItimText size={22} weight="bold" style={styles.storeTitle}>
                         {storeName}
                     </ItimText>
-
-                    <View style={{ width: 26 }} /> {/* placeholder for alignment */}
+                    
                 </View>
 
                 {/* ---------- ITEM LIST ---------- */}
@@ -72,20 +104,19 @@ export default function StoreCheckoutScreen() {
                         </ItimText>
                     ) : (
                         items.map((item: any) => (
-                            <ProductCard
+                            <CheckoutCard
                                 key={item._id._id}
                                 name={item._id.title}
                                 quantity={item.quantity}
                                 price={item._id.pricerange}
                                 image={{ uri: fixImageURL(item._id.image) }}
-
                             />
                         ))
                     )}
                 </ScrollView>
 
                 {/* ---------- CHECKOUT BUTTON ---------- */}
-                <Button title={`Confirm Purchase • ₪${totalPrice}`} onPress={() => { }} />
+                <Button title={`Confirm Purchase • ₪${totalPrice}`} onPress={handleCheckout} />
 
                 <BottomNav />
             </View>

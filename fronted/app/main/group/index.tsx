@@ -91,15 +91,15 @@ export default function GroupPage() {
 
                       dispatch(setUser(freshUser));    // ✅ פה היה חסר
                       dispatch(setActiveGroup(item)); // נשאר כפי שהיה
-                     
 
 
-                   
+
+
 
                       const list = await triggerGetList(item.activeshoppinglist).unwrap();
-                       
+
                       dispatch(setActiveList(list));
-                      
+
 
                       refetchGroups(); // ✅ רענון רשימת קבוצות
                     } catch (err) {
