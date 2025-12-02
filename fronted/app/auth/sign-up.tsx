@@ -12,11 +12,11 @@ import TextField from "../../components/TextField";
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
 import { useCreateUserMutation, useUploadAvatarMutation } from "../../redux/svc/usersApi";
-import { useDispatch , useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
 import { setActiveGroup, } from "../../redux/slices/groupSlice";
-import { useGetGroupByIdQuery } from "../../redux/svc/groupsApi";
-import { useGetListByIdQuery } from "../../redux/svc/shoppinglistApi";
+import { useGetGroupByIdQuery, useLazyGetGroupByIdQuery } from "../../redux/svc/groupsApi";
+import { useGetListByIdQuery, useLazyGetListByIdQuery } from "../../redux/svc/shoppinglistApi";
 import { setActiveList } from "../../redux/slices/shoppinglistSlice";
 
 const schema = z
@@ -54,6 +54,8 @@ export default function SignUp() {
 
   const [createUser, { isLoading }] = useCreateUserMutation();
   const [uploadAvatar, { isLoading: isUploading }] = useUploadAvatarMutation();
+  const [fetchGroup] = useLazyGetGroupByIdQuery();
+  const [fetchList] = useLazyGetListByIdQuery();
 
 
   const pickImage = async () => {
@@ -83,6 +85,7 @@ export default function SignUp() {
 
       let finalUser = u;
 
+      // Upload avatar (optional)
       if (pickedUri) {
         const file = {
           uri: pickedUri,
@@ -93,34 +96,41 @@ export default function SignUp() {
         const updated = await uploadAvatar({ id: u._id, file }).unwrap();
         finalUser = updated;
       }
-      // Update all redux states
-      dispatch(
-        setUser({
-          _id: finalUser._id,
-          name: finalUser.name,
-          email: finalUser.email,
-          passwordLength : finalUser.passwordLength,
-          avatarUrl: finalUser.avatarUrl ?? null,
-          groups: finalUser.groups,
-          defaultGroupId: finalUser.defaultGroupId || null,
-          createdAt: finalUser.createdAt ?? "",
-          updatedAt: finalUser.updatedAt ?? "",
-        })
-      );
-       if (u.defaultGroupId) {
-            const groupData = await useGetGroupByIdQuery(u.defaultGroupId).refetch();
-            if (groupData.data) {
-              dispatch(setActiveGroup(groupData.data));
-              const shoppinglist = await useGetListByIdQuery(groupData.data._id).refetch();
-              dispatch(setActiveList(shoppinglist.data));
-      
-            }
+
+      // Save user in Redux
+      dispatch(setUser({
+        _id: finalUser._id,
+        name: finalUser.name,
+        email: finalUser.email,
+        avatarUrl: finalUser.avatarUrl ?? null,
+        groups: finalUser.groups,
+        activeGroup: finalUser.activeGroup || null,
+        createdAt: finalUser.createdAt,
+        updatedAt: finalUser.updatedAt,
+      }));
+
+      // Load the active group
+      if (finalUser.activeGroup) {
+        const { data: groupData } = await fetchGroup(finalUser.activeGroup);
+
+        if (groupData) {
+          dispatch(setActiveGroup(groupData));
+
+          // Load active shopping list
+          const { data: listData } = await fetchList(
+            groupData.activeshoppinglist
+          );
+
+          if (listData) {
+            dispatch(setActiveList(listData));
           }
+        }
+      }
 
       router.replace("/main/product");
 
     } catch (e: any) {
-      const msg = e?.data?.message || e?.error || "Could not create account";
+      const msg = e?.data?.message || "Could not create account";
       alert(msg);
     }
   };

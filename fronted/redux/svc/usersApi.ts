@@ -9,7 +9,7 @@ export interface User {
   passwordLength?: number
   avatarUrl?: string | null;
   groups: string[];                 
-  defaultGroupId?: string | null|  undefined;     
+  activeGroup?: string | null|  undefined;     
   createdAt?: string;
   updatedAt?: string;
 }
