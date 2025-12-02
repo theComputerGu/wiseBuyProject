@@ -13,8 +13,8 @@ import { useLoginMutation } from "../../redux/svc/usersApi";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
 import { setActiveGroup, } from "../../redux/slices/groupSlice";
-import { useGetGroupByIdQuery } from "../../redux/svc/groupsApi";
-import { useGetListByIdQuery } from "../../redux/svc/shoppinglistApi";
+import { useGetGroupByIdQuery, useLazyGetGroupByIdQuery } from "../../redux/svc/groupsApi";
+import { useGetListByIdQuery, useLazyGetListByIdQuery } from "../../redux/svc/shoppinglistApi";
 import { setActiveList } from "../../redux/slices/shoppinglistSlice";
 
 
@@ -32,6 +32,9 @@ export default function SignIn() {
   const user = useSelector((s: any) => s?.user);
   const ShoppingList = useSelector((s: any) => s?.ShoppingList);
   const group = useSelector((s: any) => s?.group);
+  const [fetchGroupById] = useLazyGetGroupByIdQuery();
+  const [fetchListById] = useLazyGetListByIdQuery();
+
 
 
   const {
@@ -46,52 +49,43 @@ export default function SignIn() {
   const [login, { isLoading }] = useLoginMutation();
 
   const onSubmit = async (data: Form) => {
-  try {
-    const u = await login({
-      email: data.email,
-      passwordPlain: data.password,   // חשוב! תואם ל-LoginDto
-    }).unwrap();
+    try {
+      const u = await login({
+        email: data.email,
+        passwordPlain: data.password
+      }).unwrap();
 
-    dispatch(
-      setUser({
-        _id: u._id,
-        name: u.name,
-        passwordLength: u.passwordLength,
-        email: u.email,
-        avatarUrl: u.avatarUrl ?? null,
-        groups: u.groups,
-        defaultGroupId: u.defaultGroupId || null,
-        createdAt: u.createdAt,
-        updatedAt: u.updatedAt,
-      })
-    );
+      dispatch(setUser(u));
 
-    // טעינת קבוצה / רשימה
-    if (u.defaultGroupId) {
-      const groupQ = useGetGroupByIdQuery(u.defaultGroupId).refetch();
-      const groupData = (await groupQ).data;
+      // --- LOAD ACTIVE GROUP ---
+      if (u.activeGroup) {
+        const { data: groupData } = await fetchGroupById(u.activeGroup);
 
-      if (groupData) {
-        dispatch(setActiveGroup(groupData));
+        if (groupData) {
+          dispatch(setActiveGroup(groupData));
 
-        const listQ = useGetListByIdQuery(groupData._id).refetch();
-        const list = (await listQ).data;
+          // --- LOAD ACTIVE SHOPPING LIST ---
+          const { data: listData } = await fetchListById(
+            groupData.activeshoppinglist
+          );
 
-        if (list) dispatch(setActiveList(list));
+          if (listData) {
+            dispatch(setActiveList(listData));
+          }
+        }
       }
+
+      router.replace("/main/product");
+
+    } catch (err: any) {
+      const msg =
+        err?.data?.message?.[0] ||
+        err?.data?.message ||
+        "Incorrect email or password";
+
+      alert(msg);
     }
-
-    router.replace("/main/product");
-
-  } catch (err: any) {
-    const msg =
-      err?.data?.message?.[0] ||
-      err?.data?.message ||
-      "Incorrect email or password";
-
-    alert(msg);
-  }
-};
+  };
 
 
   // -------------------- Render --------------------

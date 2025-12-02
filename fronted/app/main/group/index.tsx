@@ -10,12 +10,13 @@ import { RootState } from "../../../redux/state/store";
 import { setActiveGroup } from "../../../redux/slices/groupSlice";
 import { setUser } from "../../../redux/slices/userSlice"; // ✅ חדש
 import { useGetUserGroupsQuery } from "../../../redux/svc/usersApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSetActiveGroupMutation } from "../../../redux/svc/usersApi";
 import { useGetUserByIdQuery } from "../../../redux/svc/usersApi";
 import GroupAccordion from "../../../components/groupaccordion";
 import { setActiveList } from "../../../redux/slices/shoppinglistSlice";
 import { useLazyGetListByIdQuery } from "../../../redux/svc/shoppinglistApi";
+import { API_URL } from "@env";
 
 const BRAND = "#197FF4";
 
@@ -50,6 +51,8 @@ export default function GroupPage() {
       prev.includes(id) ? prev.filter((g) => g !== id) : [...prev, id]
     );
   };
+
+
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF", paddingHorizontal: 20 }}>

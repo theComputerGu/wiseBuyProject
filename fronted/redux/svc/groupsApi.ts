@@ -192,4 +192,5 @@ export const {
     useGetHistoryQuery,
     useAddToHistoryMutation,
     useRestorePurchaseMutation,
+    useLazyGetGroupByIdQuery,
 } = groupsApi;
