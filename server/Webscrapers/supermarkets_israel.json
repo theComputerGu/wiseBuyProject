@@ -1,0 +1,6293 @@
+[
+  {
+    "name": "קרפור מרקט - בית וגן קריית אתא",
+    "address": "העצמאות 10, קרית אתא",
+    "location": {
+      "lat": 32.7983003,
+      "lng": 35.1027423
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוניברס",
+    "address": "דרך עכו 192, קריית ביאליק",
+    "location": {
+      "lat": 32.8453313,
+      "lng": 35.0919425
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "מתחם דובק, חיים וייצמן 20, צפת",
+    "location": {
+      "lat": 32.9576669,
+      "lng": 35.4979823
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "לוחמי הגטאות 36, נהריה",
+    "location": {
+      "lat": 33.0011199,
+      "lng": 35.09698059999999
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "הגדול מכולם",
+    "address": "חלוצי התעשיה 24, חיפה",
+    "location": {
+      "lat": 32.812486,
+      "lng": 35.066227
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל קצרין",
+    "address": "טיילת חרמון 7, קצרין",
+    "location": {
+      "lat": 32.99083,
+      "lng": 35.7086193
+    },
+    "types": [
+      "supermarket",
+      "pharmacy",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "health",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל",
+    "address": "א.ת. חוצות כרמיאל, כרמיאל",
+    "location": {
+      "lat": 32.9285549,
+      "lng": 35.3255507
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים- נהריה",
+    "address": "לוחמי הגטאות 9, נהריה",
+    "location": {
+      "lat": 33.0041876,
+      "lng": 35.098114
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים-כרמיאל",
+    "address": "היוצרים 7, כרמיאל",
+    "location": {
+      "lat": 32.923397,
+      "lng": 35.3072471
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל מצודות",
+    "address": "99, קרית שמונה",
+    "location": {
+      "lat": 33.2229286,
+      "lng": 35.5768722
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי סניף נהריה",
+    "address": "דרך היוצרים 2, נהריה",
+    "location": {
+      "lat": 33.0327904,
+      "lng": 35.1034588
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל קרית שמונה",
+    "address": "Building E, Be, קרית שמונה",
+    "location": {
+      "lat": 33.19169979999999,
+      "lng": 35.5707447
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יש חסד",
+    "address": "הנשיא וייצמן 1117, טבריה",
+    "location": {
+      "lat": 32.7795991,
+      "lng": 35.51695309999999
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר ספיר אילנות 2 קרית ים",
+    "address": "אילנות 2, קרית ים",
+    "location": {
+      "lat": 32.8599244,
+      "lng": 35.0831161
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - מעלות תרשיחא",
+    "address": "שלמה שרירא 3, מעלות תרשיחא",
+    "location": {
+      "lat": 33.0216764,
+      "lng": 35.28031600000001
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי",
+    "address": "המברג 1, טבריה",
+    "location": {
+      "lat": 32.7848782,
+      "lng": 35.4989141
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "שדרות ירושלים 1, קרית מוצקין",
+    "location": {
+      "lat": 32.8589577,
+      "lng": 35.0926671
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טיב טעם כרמיאל",
+    "address": "מתחם BIG, מעלה כמון 3, כרמיאל",
+    "location": {
+      "lat": 32.9269497,
+      "lng": 35.3225302
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מינימרקט מור",
+    "address": "יצחק שדה 1, קרית שמונה",
+    "location": {
+      "lat": 33.2005945,
+      "lng": 35.56883
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מעיין 2000",
+    "address": "מיכאל 7, טבריה",
+    "location": {
+      "lat": 32.7935338,
+      "lng": 35.5321579
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "זבולון 14, קרית אתא",
+    "location": {
+      "lat": 32.80528,
+      "lng": 35.1024201
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים עכו",
+    "address": "החרושת 2, עכו",
+    "location": {
+      "lat": 32.9229573,
+      "lng": 35.0813108
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שלומית מרקט",
+    "address": "אנפה 7, שלומי",
+    "location": {
+      "lat": 33.0793749,
+      "lng": 35.1507105
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי",
+    "address": "שפירא 28, עכו",
+    "location": {
+      "lat": 32.9380405,
+      "lng": 35.0781934
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל לב כרמיאל",
+    "address": "מורד הגיא 98-100, כרמיאל",
+    "location": {
+      "lat": 32.9075615,
+      "lng": 35.2938689
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "דבאח ביג מרקט",
+    "address": "תובל, מעלות תרשיחא",
+    "location": {
+      "lat": 33.0180438,
+      "lng": 35.2694409
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יש חסד",
+    "address": "קניון שערי העיר, הגדוד השלישי, צפת",
+    "location": {
+      "lat": 32.9715869,
+      "lng": 35.5050237
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "קניון גליל עליון, חצור הגלילית",
+    "location": {
+      "lat": 32.9813889,
+      "lng": 35.5561111
+    },
+    "types": [
+      "supermarket",
+      "shopping_mall",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל",
+    "address": "קרית אתא",
+    "location": {
+      "lat": 32.8127484,
+      "lng": 35.1153849
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "שלומי",
+    "location": {
+      "lat": 33.0754389,
+      "lng": 35.1450494
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "דרך חיפה 52, קרית אתא",
+    "location": {
+      "lat": 32.8087188,
+      "lng": 35.0754627
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל נהריה שלי",
+    "address": "הרצל 67, נהריה",
+    "location": {
+      "lat": 33.0067252,
+      "lng": 35.0964972
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "שלום הגליל 1, קומה 2, עכו",
+    "location": {
+      "lat": 32.9196813,
+      "lng": 35.0931063
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רוסמן מרקט כרמיאל",
+    "address": "החרושת 27, כרמיאל",
+    "location": {
+      "lat": 32.9224235,
+      "lng": 35.3122734
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט ראם",
+    "address": "כביש ראשי 98, מג'דל שמס",
+    "location": {
+      "lat": 33.2611535,
+      "lng": 35.7592604
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי שיווק השקמה",
+    "address": "בולטימור 2, עכו",
+    "location": {
+      "lat": 32.8990325,
+      "lng": 35.0914497
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי שיווק השיקמה",
+    "address": "היוצרים 7, כרמיאל",
+    "location": {
+      "lat": 32.9235,
+      "lng": 35.3080062
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מאי מרקט",
+    "address": "דרך הארבעה 16, עכו",
+    "location": {
+      "lat": 32.9235518,
+      "lng": 35.0787101
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סטופמרקט",
+    "address": "שדרות ההסתדרות 271, חיפה",
+    "location": {
+      "lat": 32.8123664,
+      "lng": 35.07064810000001
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוחננוף טבריה - יהודה הלוי",
+    "address": "יהודה הלוי 113, טבריה",
+    "location": {
+      "lat": 32.7908682,
+      "lng": 35.5318015
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Merkaza",
+    "address": "אזור תעשיה ירכא ירכא, ירכא",
+    "location": {
+      "lat": 32.9472259,
+      "lng": 35.1747824
+    },
+    "types": [
+      "shopping_mall",
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קופימרקט גורן",
+    "address": "גורן",
+    "location": {
+      "lat": 33.057227,
+      "lng": 35.2350855
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מינימרקט הגולן",
+    "address": "בוקעאתא",
+    "location": {
+      "lat": 33.1994001,
+      "lng": 35.7743932
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוחננוף טבריה - פוריה",
+    "address": "החרושת 10, טבריה",
+    "location": {
+      "lat": 32.77925889999999,
+      "lng": 35.5028939
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מרקט מור 7\\24",
+    "address": "Derech hagalil St 60, ראש פינה",
+    "location": {
+      "lat": 32.970632,
+      "lng": 35.5505833
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "עמר מרקט",
+    "address": "מרכז מסחרי איתן, זוויתן 128, קצרין",
+    "location": {
+      "lat": 32.9926256,
+      "lng": 35.6803409
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט וגלריה ברמות",
+    "address": "בתרא, רמות",
+    "location": {
+      "lat": 32.8544024,
+      "lng": 35.6670507
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "קניון כוכב, מעלות תרשיחא",
+    "location": {
+      "lat": 33.0191612,
+      "lng": 35.2829704
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מינימרקט אורי נהריה בע\"מ",
+    "address": "וייצמן 107, נהריה",
+    "location": {
+      "lat": 33.0002432,
+      "lng": 35.0915753
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני להב",
+    "address": "סיביניה, קרן היסוד 62, קריית ביאליק",
+    "location": {
+      "lat": 32.8341667,
+      "lng": 35.0883333
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט חוף הדקל",
+    "address": "העלייה 65, נהריה",
+    "location": {
+      "lat": 33.0180587,
+      "lng": 35.092247
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "שיאון 6, קצרין",
+    "location": {
+      "lat": 32.99383640000001,
+      "lng": 35.690623
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "היפר דודו",
+    "address": "אירוס 1, קרית ים",
+    "location": {
+      "lat": 32.843208,
+      "lng": 35.0710728
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט שקיר",
+    "address": "מג'דל שמס",
+    "location": {
+      "lat": 33.254553,
+      "lng": 35.7668822
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "כולל מרקט צפת",
+    "address": "דרך השוקולד 1, צפת",
+    "location": {
+      "lat": 32.9626528,
+      "lng": 35.483744
+    },
+    "types": [
+      "convenience_store",
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "יהודה הלוי 113, טבריה",
+    "location": {
+      "lat": 32.7895736,
+      "lng": 35.5318199
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קואופ שופ",
+    "address": "8, שדרות משה שרת 2, קרית ים",
+    "location": {
+      "lat": 32.8429252,
+      "lng": 35.0679145
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מ.ח. מרכז המזון בע\"מ",
+    "address": "אזור תעשיה ירכא ירכא",
+    "location": {
+      "lat": 32.947505,
+      "lng": 35.174836
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר גולדה המפגש",
+    "address": "גולדה מאיר, טבריה",
+    "location": {
+      "lat": 32.8014181,
+      "lng": 35.5214629
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "אל קוארה",
+    "address": "בית עלמין, בוקעאתא",
+    "location": {
+      "lat": 33.2063666,
+      "lng": 35.7815568
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים- קריית חיים",
+    "address": "האיצטדיון 5, חיפה",
+    "location": {
+      "lat": 32.8203996,
+      "lng": 35.0554228
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל קרית אליעזר",
+    "address": "כיכר מאירהוף 9, חיפה",
+    "location": {
+      "lat": 32.8253172,
+      "lng": 34.9834028
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל רמת הנשיא",
+    "address": "שונית 12, חיפה",
+    "location": {
+      "lat": 32.8124983,
+      "lng": 34.9608358
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר ארלוזורוב Продуктовый магазин Super-Arlozorov",
+    "address": "הרצל 50, חיפה",
+    "location": {
+      "lat": 32.8077427,
+      "lng": 35.0007601
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "liquor_store",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור סיטי - גרינברג חיפה",
+    "address": "גרינברג 20, חיפה",
+    "location": {
+      "lat": 32.7754412,
+      "lng": 34.9915007
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוניברס",
+    "address": "דרך בר יהודה 147, נשר",
+    "location": {
+      "lat": 32.7804467,
+      "lng": 35.0380194
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוניברס",
+    "address": "נחום חת 5, טירת כרמל",
+    "location": {
+      "lat": 32.7830105,
+      "lng": 34.9601418
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי - חורב",
+    "address": "קניון מרכז חורב, חורב 15, חיפה",
+    "location": {
+      "lat": 32.7843377,
+      "lng": 34.9870127
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור סיטי - יגאל אלון, חיפה",
+    "address": "יגאל אלון 31, חיפה",
+    "location": {
+      "lat": 32.7729988,
+      "lng": 35.0127334
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Rami Levy",
+    "address": "חלוצי התעשיה 73, חיפה",
+    "location": {
+      "lat": 32.8187067,
+      "lng": 35.0536682
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים- הדר",
+    "address": "שבתאי לוי 21-23, חיפה",
+    "location": {
+      "lat": 32.8145101,
+      "lng": 34.9931311
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים- קריית אליעזר",
+    "address": "תל אביב 11, חיפה",
+    "location": {
+      "lat": 32.8250643,
+      "lng": 34.98740100000001
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי צ'ק פוסט חיפה",
+    "address": "דרך ישראל בר יהודה 111, חיפה",
+    "location": {
+      "lat": 32.785978,
+      "lng": 35.0311156
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוחננוף חיפה - חוצות המפרץ",
+    "address": "הקיטור 34, חיפה",
+    "location": {
+      "lat": 32.8107072,
+      "lng": 35.0568101
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טיב טוב מרקט",
+    "address": "הפרחים 7, חיפה",
+    "location": {
+      "lat": 32.7837909,
+      "lng": 34.995444
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל אקספרס 127",
+    "address": "דולפין 1, טירת כרמל",
+    "location": {
+      "lat": 32.7660821,
+      "lng": 34.9641217
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "וינגייט מרקט",
+    "address": "שדרות וינגייט 6, חיפה",
+    "location": {
+      "lat": 32.8043347,
+      "lng": 34.9920973
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - חיפה",
+    "address": "הרצל 97, חיפה",
+    "location": {
+      "lat": 32.8049964,
+      "lng": 35.0036926
+    },
+    "types": [
+      "supermarket",
+      "bakery",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יש בשכונה",
+    "address": "חניתה 64, חיפה",
+    "location": {
+      "lat": 32.7900009,
+      "lng": 35.0136014
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "שמואל שלוסברג 1, חיפה",
+    "location": {
+      "lat": 32.8173664,
+      "lng": 34.9586672
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סטופ מרקט",
+    "address": "דרך משה פלימן 8, חיפה",
+    "location": {
+      "lat": 32.7880209,
+      "lng": 34.9681521
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מאי מרקט",
+    "address": "מגדל הנביאים, ח'ורי 2, חיפה",
+    "location": {
+      "lat": 32.8154005,
+      "lng": 34.9975424
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים- נשר",
+    "address": "הזית 1, נשר",
+    "location": {
+      "lat": 32.7733889,
+      "lng": 35.0387938
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Shufersal שופרסל אקספרס האילנות חיפה",
+    "address": "אילנות 2, חיפה",
+    "location": {
+      "lat": 32.8079208,
+      "lng": 34.9762486
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל אקספרס",
+    "address": "צה\"ל 2-14, נשר",
+    "location": {
+      "lat": 32.7738645,
+      "lng": 35.0301094
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי",
+    "address": "ליבריה 2, חיפה",
+    "location": {
+      "lat": 32.768596,
+      "lng": 35.003418
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - אודיטוריום חיפה",
+    "address": "אודיטוריום חיפה, שדרות הנשיא 134, חיפה",
+    "location": {
+      "lat": 32.803239,
+      "lng": 34.9858017
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יש בשכונה",
+    "address": "יציאת אירופה 10, חיפה",
+    "location": {
+      "lat": 32.8204286,
+      "lng": 34.9589282
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל כרמל שלי",
+    "address": "שדרות הנשיא 124, חיפה",
+    "location": {
+      "lat": 32.80463900000001,
+      "lng": 34.9873665
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "קרן היסוד 2, טירת כרמל",
+    "location": {
+      "lat": 32.76855020000001,
+      "lng": 34.968224
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "בזלת 4, כפר תבור",
+    "location": {
+      "lat": 32.6949958,
+      "lng": 35.41860580000001
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים-עפולה",
+    "address": "האומן 3, עפולה",
+    "location": {
+      "lat": 32.5986671,
+      "lng": 35.2967414
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל עפולה - כורש",
+    "address": "כורש 5, עפולה",
+    "location": {
+      "lat": 32.609979,
+      "lng": 35.29376999999999
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מעיין 2000",
+    "address": "מרגלית 2, חריש",
+    "location": {
+      "lat": 32.4653536,
+      "lng": 35.0478265
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי צמח",
+    "address": "ישראל",
+    "location": {
+      "lat": 32.7029522,
+      "lng": 35.5850662
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי שיווק השקמה - עפולה",
+    "address": "יהושע חנקין 14, עפולה",
+    "location": {
+      "lat": 32.6036506,
+      "lng": 35.2928868
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "שדרות מנחם בגין 79-89, עפולה",
+    "location": {
+      "lat": 32.6039055,
+      "lng": 35.2981465
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים- נוף הגליל",
+    "address": "עמל 1, נוף הגליל",
+    "location": {
+      "lat": 32.7033246,
+      "lng": 35.3225175
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מעיין 2000",
+    "address": "הזית 4, מגדל העמק",
+    "location": {
+      "lat": 32.6758634,
+      "lng": 35.2386237
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "בול מרקט - סניף ראש העין",
+    "address": "ניסים אלוני 2, ראש העין",
+    "location": {
+      "lat": 32.0855439,
+      "lng": 34.9790851
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - דליית אל כרמל",
+    "address": "אל-קארה, דרך ראשית 672, כיכר חמוד, דאלית אל-כרמל",
+    "location": {
+      "lat": 32.6869635,
+      "lng": 35.0596814
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "bakery",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל אקספרס",
+    "address": "שדרות רובע יזרעאל, עפולה",
+    "location": {
+      "lat": 32.6146526,
+      "lng": 35.3102353
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "הגלבוע 1 פינת, יהושע אביטן, בית שאן",
+    "location": {
+      "lat": 32.4966209,
+      "lng": 35.4998743
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יינות ביתן",
+    "address": "מרכז מסחרי צים סנטר, העמל 7, בית שאן",
+    "location": {
+      "lat": 32.51025,
+      "lng": 35.5013465
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "מרכז מסחרי, חלמית 2, רמת ישי",
+    "location": {
+      "lat": 32.7060336,
+      "lng": 35.1586366
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים- יקנעם",
+    "address": "ירדן 64 ב, יוקנעם עילית",
+    "location": {
+      "lat": 32.64258530000001,
+      "lng": 35.0861726
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי",
+    "address": "יהודה הנשיא 12, קרית טבעון",
+    "location": {
+      "lat": 32.7146231,
+      "lng": 35.1252462
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר מרקט סלאמה",
+    "address": "כפר קרע",
+    "location": {
+      "lat": 32.5026068,
+      "lng": 35.0598538
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טיב טעם קריות",
+    "address": "מתחם חוצות המפרץ, החרושת 10, חיפה",
+    "location": {
+      "lat": 32.8073578,
+      "lng": 35.0548125
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי",
+    "address": "דרך בר יהודה 96, נשר",
+    "location": {
+      "lat": 32.7705497,
+      "lng": 35.0478477
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט אחים דוד",
+    "address": "חורש האלונים 9, רמת ישי",
+    "location": {
+      "lat": 32.7083251,
+      "lng": 35.1732534
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוחננוף - קהילת ציון עפולה",
+    "address": "קהילת ציון 30, עפולה",
+    "location": {
+      "lat": 32.6065955,
+      "lng": 35.2974223
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי",
+    "address": "משה דיין 2, ראש העין",
+    "location": {
+      "lat": 32.0925903,
+      "lng": 34.9662017
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי",
+    "address": "רסקו, עצמון, נוף הגליל",
+    "location": {
+      "lat": 32.7084781,
+      "lng": 35.3250505
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שוק דלאל",
+    "address": "טשרניחובסקי 2, חיפה",
+    "location": {
+      "lat": 32.8172449,
+      "lng": 34.9786532
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יינות ביתן",
+    "address": "קק\"ל 16, קרית טבעון",
+    "location": {
+      "lat": 32.71097,
+      "lng": 35.1215433
+    },
+    "types": [
+      "supermarket",
+      "liquor_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "קניון ג׳י, התמר 2, יוקנעם",
+    "location": {
+      "lat": 32.6592373,
+      "lng": 35.1044823
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור היפר - כפר סבא",
+    "address": "רחוב השיטה 4, כפר סבא",
+    "location": {
+      "lat": 32.176463,
+      "lng": 34.9322373
+    },
+    "types": [
+      "supermarket",
+      "bakery",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יש בשכונה סניף חברון",
+    "address": "ירושלים 70, בני ברק",
+    "location": {
+      "lat": 32.0830496,
+      "lng": 34.8262445
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי בשכונה בן יהודה תל אביב",
+    "address": "בן יהודה 23, תל אביב-יפו",
+    "location": {
+      "lat": 32.0762671,
+      "lng": 34.7679687
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים",
+    "address": "הרב פינטו מסעוד אשר 19, פתח תקווה",
+    "location": {
+      "lat": 32.1009145,
+      "lng": 34.8942287
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי",
+    "address": "פינת, ברנשטיין 2, ראשון לציון",
+    "location": {
+      "lat": 31.9622222,
+      "lng": 34.8186111
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי שיווק השיקמה כפר סבא",
+    "address": "גלגלי הפלדה 5, כפר סבא",
+    "location": {
+      "lat": 32.1728401,
+      "lng": 34.9275245
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי פרס נובל ראשון לציון",
+    "address": "שמעון פרס 33, ראשון לציון",
+    "location": {
+      "lat": 31.9682049,
+      "lng": 34.763876
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "City Market 24/7 סיטי מרקט פתח תקווה",
+    "address": "יהודה לייב פינסקר 21, פתח תקווה",
+    "location": {
+      "lat": 32.0905112,
+      "lng": 34.8844366
+    },
+    "types": [
+      "atm",
+      "supermarket",
+      "liquor_store",
+      "home_goods_store",
+      "finance",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "אלמה מרקט",
+    "address": "דיזנגוף 253, תל אביב-יפו",
+    "location": {
+      "lat": 32.0932146,
+      "lng": 34.7763373
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סיטי מרקט",
+    "address": "הנשר 11, כפר סבא",
+    "location": {
+      "lat": 32.18527600000001,
+      "lng": 34.9274826
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל אקספרס",
+    "address": "יעקב 41, רחובות",
+    "location": {
+      "lat": 31.8970083,
+      "lng": 34.8161675
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סיטי מרקט ברכאל",
+    "address": "יוסף אהרונוביץ' 92, חולון",
+    "location": {
+      "lat": 32.0027073,
+      "lng": 34.7675277
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שוק העיר סניף רמלה",
+    "address": "קניון הרמבלס, דני מס 2, רמלה",
+    "location": {
+      "lat": 31.9291797,
+      "lng": 34.8674232
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "מגדלי עזריאלי, דרך מנחם בגין 132, תל אביב-יפו",
+    "location": {
+      "lat": 32.0749562,
+      "lng": 34.7920096
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל אחוזה שלי",
+    "address": "אחוזה 82, רעננה",
+    "location": {
+      "lat": 32.1797132,
+      "lng": 34.8791811
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טיב טעם נתניה",
+    "address": "בני גאון 2, נתניה",
+    "location": {
+      "lat": 32.274064,
+      "lng": 34.8625877
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טיב טעם",
+    "address": "דולב 14, קיסריה",
+    "location": {
+      "lat": 32.5127785,
+      "lng": 34.905156
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי",
+    "address": "עמישב 45, גבעתיים",
+    "location": {
+      "lat": 32.0617779,
+      "lng": 34.8064742
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שוק העיר",
+    "address": "הרב כהנמן 106, בני ברק",
+    "location": {
+      "lat": 32.0769081,
+      "lng": 34.8421936
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "הכל מהכל הסופר שלי",
+    "address": "צאלון 1, מודיעין מכבים רעות",
+    "location": {
+      "lat": 31.9085168,
+      "lng": 35.0138992
+    },
+    "types": [
+      "supermarket",
+      "meal_delivery",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי - סניף פתח תקווה",
+    "address": "הסיבים 37, פתח תקווה",
+    "location": {
+      "lat": 32.0877037,
+      "lng": 34.8573341
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל אקספרס",
+    "address": "המלך ג'ורג' 58, תל אביב-יפו",
+    "location": {
+      "lat": 32.0752118,
+      "lng": 34.7763521
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "מרכז הבמה, הכרמל 20, גני תקווה",
+    "location": {
+      "lat": 32.0589685,
+      "lng": 34.8800186
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "הילס מרקט",
+    "address": "אריק איינשטיין 3, הרצליה",
+    "location": {
+      "lat": 32.1635029,
+      "lng": 34.8152673
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור - נתניה הפלדה",
+    "address": "הפלדה 13, נתניה",
+    "location": {
+      "lat": 32.3184089,
+      "lng": 34.8785591
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יש בשכונה",
+    "address": "הרב ש. שאולזון 56, ירושלים",
+    "location": {
+      "lat": 31.786147,
+      "lng": 35.1737751
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טיב טעם",
+    "address": "שדרות בן גוריון 56, הרצליה",
+    "location": {
+      "lat": 32.1579441,
+      "lng": 34.8419514
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יש בשכונה",
+    "address": "רוטשילד 79, פתח תקווה",
+    "location": {
+      "lat": 32.0864591,
+      "lng": 34.8822887
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור סיטי - רווה רמת גן",
+    "address": "עוזיאל 113, רמת גן",
+    "location": {
+      "lat": 32.0684221,
+      "lng": 34.8219916
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר כרמים",
+    "address": "היקב 12, ראשון לציון",
+    "location": {
+      "lat": 31.9741501,
+      "lng": 34.7794718
+    },
+    "types": [
+      "supermarket",
+      "meal_delivery",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "AM:PM",
+    "address": "סוקולוב 10, הרצליה",
+    "location": {
+      "lat": 32.1668532,
+      "lng": 34.8399346
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - מודיעין שמשוני",
+    "address": "עמק בית שאן פינת, יחזקאל הנביא, מודיעין מכבים רעות",
+    "location": {
+      "lat": 31.9120129,
+      "lng": 35.0018308
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "AM:PM",
+    "address": "רחוב הנשיא יצחק בן צבי 75, הרצליה",
+    "location": {
+      "lat": 32.1804179,
+      "lng": 34.8113691
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר אופיר",
+    "address": "שדרות החוצבים 5, מבשרת ציון",
+    "location": {
+      "lat": 31.7923198,
+      "lng": 35.1440601
+    },
+    "types": [
+      "supermarket",
+      "convenience_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "City Market",
+    "address": "דרך לוי אשכול 121, קרית אונו",
+    "location": {
+      "lat": 32.0538203,
+      "lng": 34.864592
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי חולון",
+    "address": "שדרות קוגל 42, חולון",
+    "location": {
+      "lat": 32.0232319,
+      "lng": 34.7743272
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "אושר עד - תל אביב",
+    "address": "ולטר מוזס 6, תל אביב-יפו",
+    "location": {
+      "lat": 32.06734840000001,
+      "lng": 34.7942352
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי - קניון איילון - רמת גן",
+    "address": "קניון איילון, דרך אבא הלל, רמת גן",
+    "location": {
+      "lat": 32.1013734,
+      "lng": 34.8268328
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוחננוף מודיעין - כרמים",
+    "address": "תשרי 34, מודיעין מכבים רעות",
+    "location": {
+      "lat": 31.916163,
+      "lng": 35.009964
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי דיזינגוף",
+    "address": "דיזנגוף 224, תל אביב-יפו",
+    "location": {
+      "lat": 32.0886661,
+      "lng": 34.7755775
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שפע יששכר סניף יבנה",
+    "address": "התאנה 47, יבנה",
+    "location": {
+      "lat": 31.878141,
+      "lng": 34.7396541
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טריו מרקט חדרה",
+    "address": "הרב עובדיה יוסף 2, חדרה",
+    "location": {
+      "lat": 32.4414246,
+      "lng": 34.9115969
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "Ora Junction, ירושלים",
+    "location": {
+      "lat": 31.75494,
+      "lng": 35.1605834
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Seven Market",
+    "address": "אסירי ציון 22, הוד השרון",
+    "location": {
+      "lat": 32.1646227,
+      "lng": 34.9067175
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק רמת גן",
+    "address": "רחוב זאב ז'בוטינסקי 128, רמת גן",
+    "location": {
+      "lat": 32.0903051,
+      "lng": 34.8211636
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סיטי מרקט",
+    "address": "קריניצי 7, רמת גן",
+    "location": {
+      "lat": 32.0794896,
+      "lng": 34.8157407
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "שדרות בנימין 60, נתניה",
+    "location": {
+      "lat": 32.3199918,
+      "lng": 34.8551667
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "איה מרקט",
+    "address": "كفر قاسم, כפר קאסם",
+    "location": {
+      "lat": 32.1132381,
+      "lng": 34.9571444
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Victory ויקטורי",
+    "address": "הרצל 42 פינת, הרא\"ה, רמת גן",
+    "location": {
+      "lat": 32.0833435,
+      "lng": 34.8160324
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "home_goods_store",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי שיווק השקמה",
+    "address": "איזור התעשיה החדש, המחקר, נתניה",
+    "location": {
+      "lat": 32.2927627,
+      "lng": 34.8623046
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר דיל",
+    "address": "דרך חברון 28, ירושלים",
+    "location": {
+      "lat": 31.765686,
+      "lng": 35.2251663
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "הארבעה 6, תל אביב-יפו",
+    "location": {
+      "lat": 32.0703444,
+      "lng": 34.7831731
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "ירושלים",
+    "location": {
+      "lat": 31.7804105,
+      "lng": 35.1885692
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יילו מרקט",
+    "address": "Unnamed Road",
+    "location": {
+      "lat": 32.3233956,
+      "lng": 34.8984019
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שפע טעמים",
+    "address": "בר כוכבא 50, פתח תקווה",
+    "location": {
+      "lat": 32.0940788,
+      "lng": 34.8855916
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "אופן מרקט",
+    "address": "דוד שמעוני 40, חדרה",
+    "location": {
+      "lat": 32.4384553,
+      "lng": 34.9099145
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "יהודה גורודיסקי 31, רחובות",
+    "location": {
+      "lat": 31.8981815,
+      "lng": 34.8215989
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סטופ מרקט",
+    "address": "יורדי ים, הרצליה",
+    "location": {
+      "lat": 32.1624641,
+      "lng": 34.7967872
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל",
+    "address": "תרשיש 1, שוהם",
+    "location": {
+      "lat": 31.9938747,
+      "lng": 34.9458434
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי - סניף רב חן",
+    "address": "הפרסה 3, ירושלים",
+    "location": {
+      "lat": 31.7520144,
+      "lng": 35.20896949999999
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל אקסטרה",
+    "address": "הבושם 7, אשדוד",
+    "location": {
+      "lat": 31.8180465,
+      "lng": 34.6622085
+    },
+    "types": [
+      "supermarket",
+      "pharmacy",
+      "grocery_or_supermarket",
+      "health",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר שינקין בע\"מ",
+    "address": "שינקין 25, תל אביב-יפו",
+    "location": {
+      "lat": 32.0691402,
+      "lng": 34.7741175
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט הככר גוטמן (1985) בע\"מ",
+    "address": "וינגייט 42, הרצליה",
+    "location": {
+      "lat": 32.1786954,
+      "lng": 34.8055507
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Supermarket Shiroko",
+    "address": "הירקון 174, תל אביב-יפו",
+    "location": {
+      "lat": 32.0860499,
+      "lng": 34.7702606
+    },
+    "types": [
+      "supermarket",
+      "liquor_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר דקל",
+    "address": "הרצל 53, קרית אונו",
+    "location": {
+      "lat": 32.0657776,
+      "lng": 34.8554311
+    },
+    "types": [
+      "supermarket",
+      "atm",
+      "meal_delivery",
+      "finance",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ברלין לבונטין סופר מרקט",
+    "address": "לבונטין 28, תל אביב-יפו",
+    "location": {
+      "lat": 32.0629032,
+      "lng": 34.7766912
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יש חסד",
+    "address": "רבי ישראל נג'ארה 2, ירושלים",
+    "location": {
+      "lat": 31.7917774,
+      "lng": 35.1918151
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר דניה 24 - אודי גוזלן Super Denya",
+    "address": "אריה ל. קובובי 55, ירושלים",
+    "location": {
+      "lat": 31.761394,
+      "lng": 35.1809501
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שוק העיר סניף רמות",
+    "address": "שדרות גולדה מאיר 255, ירושלים",
+    "location": {
+      "lat": 31.8169201,
+      "lng": 35.1950949
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי סיטי",
+    "address": "דרך שלמה 53, תל אביב-יפו",
+    "location": {
+      "lat": 32.0552065,
+      "lng": 34.7670896
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר המושבה",
+    "address": "עמק רפאים 43, ירושלים",
+    "location": {
+      "lat": 31.76246,
+      "lng": 35.218521
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "איי.אם.פי.אם",
+    "address": "שלמה אבן גבירול 136, תל אביב-יפו",
+    "location": {
+      "lat": 32.0883128,
+      "lng": 34.782656
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט",
+    "address": "שלמה המלך, ירושלים",
+    "location": {
+      "lat": 31.7783081,
+      "lng": 35.2230233
+    },
+    "types": [
+      "convenience_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי קרית יובל",
+    "address": "אורוגואי 5, ירושלים",
+    "location": {
+      "lat": 31.7605693,
+      "lng": 35.1765134
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שוק העיר סניף אשדוד סיטי",
+    "address": "קניון הסיטי, שדרות מנחם בגין 1, אשדוד",
+    "location": {
+      "lat": 31.7906076,
+      "lng": 34.639391
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור היפר - בית שמש",
+    "address": "מרכז ביג, שדרות יגאל אלון, בית שמש",
+    "location": {
+      "lat": 31.7568123,
+      "lng": 34.9869711
+    },
+    "types": [
+      "supermarket",
+      "bakery",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים-אשדוד",
+    "address": "האורגים 6, אשדוד",
+    "location": {
+      "lat": 31.8119803,
+      "lng": 34.6611977
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "דרך אגודת ספורט בית\"ר 1, ירושלים",
+    "location": {
+      "lat": 31.751541,
+      "lng": 35.1871949
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרפרש",
+    "address": "הקרן הקימת לישראל 12, ירושלים",
+    "location": {
+      "lat": 31.7770564,
+      "lng": 35.2147919
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טיב טעם סטאר סנטר אשדוד",
+    "address": "מתחם סטאר סנטר, ז'בוטינסקי 45, אשדוד",
+    "location": {
+      "lat": 31.8103602,
+      "lng": 34.6561539
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי שיווק השקמה - באר שבע סניף קניון ביג",
+    "address": "חיל הנדסה 1, באר שבע",
+    "location": {
+      "lat": 31.24292,
+      "lng": 34.81391929999999
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור סיטי - רמת בית הכרם",
+    "address": "אביזוהר 1, ירושלים",
+    "location": {
+      "lat": 31.775454,
+      "lng": 35.1875473
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "סמטת הפלדה 8, שדרות",
+    "location": {
+      "lat": 31.5207314,
+      "lng": 34.5940671
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל רובע יב",
+    "address": "שבט לוי 12, אשדוד",
+    "location": {
+      "lat": 31.778083,
+      "lng": 34.6356393
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - אשקלון אפרידר",
+    "address": "שדרות ירושלים 5, אשקלון",
+    "location": {
+      "lat": 31.6778055,
+      "lng": 34.5753127
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל EXTRA",
+    "address": "שמריהו לוין 20, באר שבע",
+    "location": {
+      "lat": 31.2455237,
+      "lng": 34.7978529
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - אשדוד בסיטי ש.ש.ה.",
+    "address": "השייטים 9, אשדוד",
+    "location": {
+      "lat": 31.800285,
+      "lng": 34.6415622
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "bakery",
+      "liquor_store",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר דקל",
+    "address": "סולם אלדד 2, קרית ארבע",
+    "location": {
+      "lat": 31.5289079,
+      "lng": 35.1191101
+    },
+    "types": [
+      "supermarket",
+      "convenience_store",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "אקספרס מרקט",
+    "address": "מלכי ישראל 12, ירושלים",
+    "location": {
+      "lat": 31.7888624,
+      "lng": 35.217189
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור סיטי - דימונה",
+    "address": "מ. מסחרי, שדרות הנשיא 1, דימונה",
+    "location": {
+      "lat": 31.062615,
+      "lng": 35.029846
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "הר בוקר 17, באר שבע",
+    "location": {
+      "lat": 31.2726101,
+      "lng": 34.8105409
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שערי רווחה",
+    "address": "ירמיהו 25, ירושלים",
+    "location": {
+      "lat": 31.7919167,
+      "lng": 35.2045525
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Marketganhair Ashdod מרקט גן העיר",
+    "address": "דרך מנחם בגין, אשדוד",
+    "location": {
+      "lat": 31.7907031,
+      "lng": 34.63829320000001
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סיטי מרקט 24/7",
+    "address": "צאלה 44, גדרה",
+    "location": {
+      "lat": 31.8000198,
+      "lng": 34.7892554
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - ריינס ירושלים",
+    "address": "הרב ריינס 6, שכונת",
+    "location": {
+      "lat": 31.78976639999999,
+      "lng": 35.1966813
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "הכישור 8, גן יבנה",
+    "location": {
+      "lat": 31.7754364,
+      "lng": 34.7042045
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי גדרה",
+    "address": "פינס 3, גדרה",
+    "location": {
+      "lat": 31.8165241,
+      "lng": 34.7777441
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "הטיילת 20, אשדוד",
+    "location": {
+      "lat": 31.8105983,
+      "lng": 34.6409568
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוחננוף - סטאר סנטר אשדוד",
+    "address": "סטאר סנטר, ז'בוטינסקי 27, אשדוד",
+    "location": {
+      "lat": 31.8112446,
+      "lng": 34.6540808
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי קרית גת",
+    "address": "דרך הדרום 3, קרית גת",
+    "location": {
+      "lat": 31.6038516,
+      "lng": 34.7722626
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל הנביאים שלי",
+    "address": "הנביאים 3, אשדוד",
+    "location": {
+      "lat": 31.7835101,
+      "lng": 34.6474636
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר בר אילן (24)",
+    "address": "שמואל הנביא 104, ירושלים",
+    "location": {
+      "lat": 31.795446,
+      "lng": 35.2201721
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Dodo Supermarket - דודו סופרמרקט",
+    "address": "זאב ז'בוטינסקי 2, ירושלים",
+    "location": {
+      "lat": 31.7715082,
+      "lng": 35.2221811
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל",
+    "address": "ערד",
+    "location": {
+      "lat": 31.2597999,
+      "lng": 35.2088394
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל רמות הרכס",
+    "address": "שדרות הערים התאומות 28, באר שבע",
+    "location": {
+      "lat": 31.2825443,
+      "lng": 34.799297
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "דיל ערד- ישפרו המנוף",
+    "address": "מנוף 7, ערד",
+    "location": {
+      "lat": 31.24817109999999,
+      "lng": 35.1957737
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל צ'ורלי",
+    "address": "האורגים 1, באר שבע",
+    "location": {
+      "lat": 31.2543135,
+      "lng": 34.8148464
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - נווה זאב באר שבע",
+    "address": "שדרות יוהנה ז'בוטינסקי 32, באר שבע",
+    "location": {
+      "lat": 31.2395415,
+      "lng": 34.7740533
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Supermarket",
+    "address": "הלני המלכה 1, ירושלים",
+    "location": {
+      "lat": 31.7815663,
+      "lng": 35.2208486
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יינות ביתן",
+    "address": "האורגים 21, אשדוד",
+    "location": {
+      "lat": 31.8122249,
+      "lng": 34.6563563
+    },
+    "types": [
+      "supermarket",
+      "bakery",
+      "liquor_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "תהילה לדוד",
+    "address": "וינגייט 15-17, באר שבע",
+    "location": {
+      "lat": 31.2561111,
+      "lng": 34.8083333
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שוק העיר סניף אשקלון צפון",
+    "address": "נחושתן 10, אשקלון",
+    "location": {
+      "lat": 31.6690444,
+      "lng": 34.6029205
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טיב טעם",
+    "address": "מתחם מבנה, יצחק נפחא 25, באר שבע",
+    "location": {
+      "lat": 31.247881,
+      "lng": 34.8119871
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מינימרקט 7 בעיר - סניף מרכז הנגב / הבלוק",
+    "address": "ראובן רובין 5, באר שבע",
+    "location": {
+      "lat": 31.2592054,
+      "lng": 34.7967237
+    },
+    "types": [
+      "supermarket",
+      "convenience_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר ספיר",
+    "address": "הרב הרצוג 1, ירושלים",
+    "location": {
+      "lat": 31.7571641,
+      "lng": 35.1981377
+    },
+    "types": [
+      "supermarket",
+      "department_store",
+      "bakery",
+      "liquor_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קשת טעמים-באר שבע",
+    "address": "מרכז מסחרי ישפרו פלאנט, ויקטור ונטורה 222, באר שבע",
+    "location": {
+      "lat": 31.2234287,
+      "lng": 34.8025054
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יש חסד",
+    "address": "חנה סנש 9, אשדוד",
+    "location": {
+      "lat": 31.7998277,
+      "lng": 34.6623938
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "המסגר, אופקים",
+    "location": {
+      "lat": 31.321079,
+      "lng": 34.6230639
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Zol Uvegadol",
+    "address": "הרב אג\"ן 8, ירושלים",
+    "location": {
+      "lat": 31.7825081,
+      "lng": 35.2198196
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "באלדי",
+    "address": "ג'סר, חנינא בית-נטף, Jisr A-Natf st, ירושלים",
+    "location": {
+      "lat": 31.8421764,
+      "lng": 35.2286104
+    },
+    "types": [
+      "supermarket",
+      "bakery",
+      "electronics_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "הראל 1 קניון, הראל, מבשרת ציון",
+    "location": {
+      "lat": 31.8002473,
+      "lng": 35.149033
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סיטי מרקט אשקלון",
+    "address": "שפירא 33, אשקלון",
+    "location": {
+      "lat": 31.6531932,
+      "lng": 34.5551063
+    },
+    "types": [
+      "supermarket",
+      "home_goods_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "צבי בורנשטיין, ירוחם",
+    "location": {
+      "lat": 30.9883432,
+      "lng": 34.9272665
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "שדרות גולדה מאיר 1, דימונה",
+    "location": {
+      "lat": 31.074295,
+      "lng": 35.032371
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "רז סנטר, אדמונד רוטשילד 8, אשקלון",
+    "location": {
+      "lat": 31.6875,
+      "lng": 34.5791667
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שוק העיר",
+    "address": "בית גבריאל, דרך הדרום 13, קרית גת",
+    "location": {
+      "lat": 31.6045783,
+      "lng": 34.7738925
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי - סניף גוש עציון",
+    "address": "צומת גוש עציון, גוש עציון",
+    "location": {
+      "lat": 31.6425423,
+      "lng": 35.15158
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור סיטי -9 צפון ב\"ש",
+    "address": "מרכז אורן, אברהם אבינו 101, באר שבע",
+    "location": {
+      "lat": 31.2700224,
+      "lng": 34.7972186
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - אשקלון ברנע",
+    "address": "רחל לייפר מילר 17, אשקלון",
+    "location": {
+      "lat": 31.6990642,
+      "lng": 34.5831652
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוחננוף ירושלים - תלפיות",
+    "address": "האומן 10, ירושלים",
+    "location": {
+      "lat": 31.7492504,
+      "lng": 35.2115478
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "חת\"ם סופר 7, אשקלון",
+    "location": {
+      "lat": 31.67602089999999,
+      "lng": 34.6060491
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "שדרות דוד בן גוריון 17, אשקלון",
+    "location": {
+      "lat": 31.6643335,
+      "lng": 34.5632501
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור סיטי - לב אשקלון",
+    "address": "ההסתדרות 40, אשקלון",
+    "location": {
+      "lat": 31.6551177,
+      "lng": 34.5562909
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "יצחק בן צבי 8, אשקלון",
+    "location": {
+      "lat": 31.6764381,
+      "lng": 34.576329
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר לב",
+    "address": "אליעזר בן יהודה 14, באר שבע",
+    "location": {
+      "lat": 31.2542704,
+      "lng": 34.7929147
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "פארק אלון מרקט",
+    "address": "אשקלון",
+    "location": {
+      "lat": 31.6597196,
+      "lng": 34.5769314
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור היפר - אשקלון צפוני",
+    "address": "הפנינים 38, אשקלון",
+    "location": {
+      "lat": 31.6682713,
+      "lng": 34.6022108
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר צין",
+    "address": "מדרשת בן-גוריון",
+    "location": {
+      "lat": 30.8509462,
+      "lng": 34.7834619
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "צביה ויצחק 17, ירושלים",
+    "location": {
+      "lat": 31.7315747,
+      "lng": 35.1874096
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "היפר כהן - סניף רימון",
+    "address": "הרב צבאן 24, נתיבות",
+    "location": {
+      "lat": 31.4159322,
+      "lng": 34.5790165
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Best market בסט מרקט",
+    "address": "נחל דולב 19, בית שמש",
+    "location": {
+      "lat": 31.7136644,
+      "lng": 34.9982547
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "שדרות מלכי ישראל 178, קרית גת",
+    "location": {
+      "lat": 31.6031361,
+      "lng": 34.7574882
+    },
+    "types": [
+      "supermarket",
+      "pharmacy",
+      "grocery_or_supermarket",
+      "health",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "שדרות דויד בן גוריון 15, באר שבע",
+    "location": {
+      "lat": 31.2547739,
+      "lng": 34.8143596
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מכולת אדיר",
+    "address": "הרצל רוזנבלום 9, באר שבע",
+    "location": {
+      "lat": 31.2362511,
+      "lng": 34.76608969999999
+    },
+    "types": [
+      "supermarket",
+      "convenience_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "המלאכה 3, דימונה",
+    "location": {
+      "lat": 31.0615094,
+      "lng": 35.0241686
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "1, בית אשל, באר שבע",
+    "location": {
+      "lat": 31.239921,
+      "lng": 34.7939865
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר זול אסולין",
+    "address": "השיבולים 3, דימונה",
+    "location": {
+      "lat": 31.06317689999999,
+      "lng": 35.0301886
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - קניון אביה ב\"ש",
+    "address": "קניון אביה, שאול המלך 38, באר שבע",
+    "location": {
+      "lat": 31.2633917,
+      "lng": 34.7790219
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "גת מרקט",
+    "address": "א כרמי גת, הנרייטה סאלד 4, קרית גת",
+    "location": {
+      "lat": 31.6297404,
+      "lng": 34.77274209999999
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "הרצל 7, בית שמש",
+    "location": {
+      "lat": 31.7494502,
+      "lng": 34.987559
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שפע זול",
+    "address": "מרים הנביאה 1, בית שמש",
+    "location": {
+      "lat": 31.7043165,
+      "lng": 34.9938872
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "פוד מרקט",
+    "address": "הצבי 76, באר שבע",
+    "location": {
+      "lat": 31.2536907,
+      "lng": 34.772125
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "דיל בשפע",
+    "address": "סנונית 1, צור הדסה",
+    "location": {
+      "lat": 31.709925,
+      "lng": 35.098854
+    },
+    "types": [
+      "convenience_store",
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי",
+    "address": "קניון מול 7, הע\"ל, באר שבע",
+    "location": {
+      "lat": 31.2329273,
+      "lng": 34.7972873
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יינות ביתן",
+    "address": "קופנהגן פינת קהילת מילנו קניון פנינת הנגב, אזור תעשייה דרומי שדרות",
+    "location": {
+      "lat": 31.5238056,
+      "lng": 34.6056594
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - בית שמש",
+    "address": "נחל שורק 31, בית שמש",
+    "location": {
+      "lat": 31.7145524,
+      "lng": 34.9886899
+    },
+    "types": [
+      "supermarket",
+      "bakery",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יש חסד",
+    "address": "שדרות נחל צאלים 2, בית שמש",
+    "location": {
+      "lat": 31.7133116,
+      "lng": 34.98834739999999
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "סמטת הפלדה 3, שדרות",
+    "location": {
+      "lat": 31.5203128,
+      "lng": 34.5944841
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מיני שני",
+    "address": "בזל 8, באר שבע",
+    "location": {
+      "lat": 31.2487664,
+      "lng": 34.7894446
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי אשקלון צה\"ל 99",
+    "address": "צה\"ל 99, אשקלון",
+    "location": {
+      "lat": 31.6619129,
+      "lng": 34.5945205
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי",
+    "address": "רותם 1, עומר",
+    "location": {
+      "lat": 31.264335,
+      "lng": 34.846941
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי",
+    "address": "מיתר",
+    "location": {
+      "lat": 31.3274444,
+      "lng": 34.9392717
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "שדרות דוד בן גוריון 1, מצפה רמון",
+    "location": {
+      "lat": 30.6127257,
+      "lng": 34.8023984
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי נתיבות",
+    "address": "איזור תעשיה נ.ע.מ מול, בית הגדי",
+    "location": {
+      "lat": 31.4169349,
+      "lng": 34.6153717
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוחננוף באר שבע - דיזיין פלוס",
+    "address": "דרך חברון 48, באר שבע",
+    "location": {
+      "lat": 31.2415572,
+      "lng": 34.8093379
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מיקס מרקט",
+    "address": "עין בוקק",
+    "location": {
+      "lat": 31.1985925,
+      "lng": 35.3635469
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק עין יהב",
+    "address": "עין יהב",
+    "location": {
+      "lat": 30.6567034,
+      "lng": 35.2334266
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "ז'בוטינסקי 25, אופקים",
+    "location": {
+      "lat": 31.3182278,
+      "lng": 34.6253776
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל אקספרס",
+    "address": "שדרות שעורה 1, להבים",
+    "location": {
+      "lat": 31.3627392,
+      "lng": 34.8176973
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל אקספרס",
+    "address": "יעקב כהן 8, באר שבע",
+    "location": {
+      "lat": 31.2537417,
+      "lng": 34.7974667
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל אקספרס באר שבע גב ים",
+    "address": "האנרגיה 77, באר שבע",
+    "location": {
+      "lat": 31.2636026,
+      "lng": 34.8112207
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "food",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר מרקט פינתי",
+    "address": "נחל צין 37, ירוחם",
+    "location": {
+      "lat": 30.9869872,
+      "lng": 34.9221967
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר עין-בוקק Super Ein Bokek",
+    "address": "90",
+    "location": {
+      "lat": 31.2034587,
+      "lng": 35.3592262
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט 7 בעיר - סניף ביאליק מרכז חן",
+    "address": "חיים נחמן ביאליק 24, באר שבע",
+    "location": {
+      "lat": 31.25462,
+      "lng": 34.7916692
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני להב",
+    "address": "שדרות דוד טוביהו 125, קומה 2, באר שבע",
+    "location": {
+      "lat": 31.25055,
+      "lng": 34.7709754
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טאיו TAYO Asian Supermarket | באר שבע",
+    "address": "צמוד לזול פעמי, חיים יחיל 3, באר שבע",
+    "location": {
+      "lat": 31.2441491,
+      "lng": 34.8016164
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר טל - סופרמרקט שכונתי - שכונת רמות",
+    "address": "האנדרטה 1, באר שבע",
+    "location": {
+      "lat": 31.2749113,
+      "lng": 34.821216
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מרקט וגאס 24/6 | באר שבע",
+    "address": "דרך השלום 63, באר שבע",
+    "location": {
+      "lat": 31.252062,
+      "lng": 34.807137
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק, התאומים",
+    "address": "דרך המשחררים 100, באר שבע",
+    "location": {
+      "lat": 31.2487005,
+      "lng": 34.7834716
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר מרקט האחים",
+    "address": "כביש ראשי, 118, ערערה בנגב",
+    "location": {
+      "lat": 31.1615938,
+      "lng": 35.0145987
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "מרכז מסחרי להבים, להבים",
+    "location": {
+      "lat": 31.3733931,
+      "lng": 34.8092845
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מכולת העגלה - קואופרטיב צרכני",
+    "address": "נחל ציחור 10, מצפה רמון",
+    "location": {
+      "lat": 30.6096583,
+      "lng": 34.8028706
+    },
+    "types": [
+      "supermarket",
+      "convenience_store",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "אושר עד",
+    "address": "הקוצר 15, באר שבע",
+    "location": {
+      "lat": 31.2130222,
+      "lng": 34.811119
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ארץ ים המלח מרקט - לילולה",
+    "address": "חוף חמי זוהר, ים המלח ים המלח",
+    "location": {
+      "lat": 31.1701148,
+      "lng": 35.3673239
+    },
+    "types": [
+      "supermarket",
+      "convenience_store",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "دكان تيسير الزيادنة",
+    "address": "רהט",
+    "location": {
+      "lat": 31.3955575,
+      "lng": 34.7539971
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יוחננוף נתיבות - גלובוס סנטר",
+    "address": "בעלי המלאכה 2, נתיבות",
+    "location": {
+      "lat": 31.4182895,
+      "lng": 34.5973492
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "היפר כהן סניף המלאכה",
+    "address": "בעלי המלאכה 8, נתיבות",
+    "location": {
+      "lat": 31.4169471,
+      "lng": 34.5902352
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ויקטורי",
+    "address": "מתחם צים, בעלי המלאכה 5, נתיבות",
+    "location": {
+      "lat": 31.416317,
+      "lng": 34.5945039
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר ספיר",
+    "address": "באר שבע",
+    "location": {
+      "lat": 31.26188369999999,
+      "lng": 34.7687402
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר מרקט וירקות אלנור",
+    "address": "חורה אלסלאם אחרי כיכר רבעי מצד ימין, חורה",
+    "location": {
+      "lat": 31.2950347,
+      "lng": 34.9298245
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ביגדיל - סופר משתלם | סופר | באר שבע והסביבה | קניה מהירה | באר שבע",
+    "address": "באר שבע",
+    "location": {
+      "lat": 31.2463724,
+      "lng": 34.7972883
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Yellow market",
+    "address": "שדרות דוד בן גוריון 2, מצפה רמון",
+    "location": {
+      "lat": 30.6133503,
+      "lng": 34.8031224
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר במדבר",
+    "address": "מרכז חכמוב 1, מצפה רמון",
+    "location": {
+      "lat": 30.60779969999999,
+      "lng": 34.8015805
+    },
+    "types": [
+      "store",
+      "department_store",
+      "drugstore",
+      "liquor_store",
+      "health",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מרכולית שדה בוקר",
+    "address": "Unnamed Road, שדה בוקר",
+    "location": {
+      "lat": 30.8730711,
+      "lng": 34.7937939
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "הסלסלה",
+    "address": "עין עבדת 1, מצפה רמון",
+    "location": {
+      "lat": 30.611166,
+      "lng": 34.7988899
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "פונדק כושי הק\"מ 101",
+    "address": "כביש הערבה, צומת מנוחה",
+    "location": {
+      "lat": 30.3072644,
+      "lng": 35.1357409
+    },
+    "types": [
+      "supermarket",
+      "clothing_store",
+      "grocery_or_supermarket",
+      "lodging",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "הכפרייה - מינימרקט",
+    "address": "מגדלים",
+    "location": {
+      "lat": 31.046051,
+      "lng": 34.851612
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "פיטנגו מרקט",
+    "address": "קדש ברנע",
+    "location": {
+      "lat": 30.903428,
+      "lng": 34.396679
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "צרכניית פארן",
+    "address": "ליד הבריכה, פארן",
+    "location": {
+      "lat": 30.3620081,
+      "lng": 35.1545387
+    },
+    "types": [
+      "supermarket",
+      "convenience_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טבע בוקיש - שושקה",
+    "address": "כפר האמנים, צוקים",
+    "location": {
+      "lat": 30.491536,
+      "lng": 35.166954
+    },
+    "types": [
+      "convenience_store",
+      "clothing_store",
+      "grocery_or_supermarket",
+      "health",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "צרכניית צופר",
+    "address": "צופר",
+    "location": {
+      "lat": 30.5599308,
+      "lng": 35.1805084
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Grocery Store מיני מרקט פרגין",
+    "address": "ארץ הצבי, בת עין",
+    "location": {
+      "lat": 31.046051,
+      "lng": 34.851612
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "צרכניית ספיר",
+    "address": "נקרות 18, ספיר",
+    "location": {
+      "lat": 30.6142788,
+      "lng": 35.1854686
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר אשלים",
+    "address": "מרכז מסחרי ישוב, אשלים",
+    "location": {
+      "lat": 30.9644045,
+      "lng": 34.7020055
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מכולת פינתי",
+    "address": "יצחק שדה 630, ירוחם",
+    "location": {
+      "lat": 30.9896473,
+      "lng": 34.9335128
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Good gossip",
+    "address": "Yehuda Hanasi 34, מודיעין עילית",
+    "location": {
+      "lat": 31.0460536,
+      "lng": 34.8516134
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Grocery Store",
+    "address": "משאבי שדה",
+    "location": {
+      "lat": 31.0048828,
+      "lng": 34.7866211
+    },
+    "types": [
+      "convenience_store",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "צרכניה עידן",
+    "address": "עידן",
+    "location": {
+      "lat": 30.806291,
+      "lng": 35.299946
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "سوبر ماركت رمضان",
+    "address": "ישראל",
+    "location": {
+      "lat": 31.046051,
+      "lng": 34.851612
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "המכולת",
+    "address": "מרחב עם",
+    "location": {
+      "lat": 30.8875941,
+      "lng": 34.8286846
+    },
+    "types": [
+      "convenience_store",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "سوبر ماركت القدسي",
+    "address": "ישראל",
+    "location": {
+      "lat": 31.046051,
+      "lng": 34.851612
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ברכת ניסים לעד בע''מ",
+    "address": "הרב אוירבך 8 ביתר עילית",
+    "location": {
+      "lat": 31.046051,
+      "lng": 34.851612
+    },
+    "types": [
+      "drugstore",
+      "food",
+      "point_of_interest",
+      "health",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "The Path of Grace",
+    "address": "Emanuel Hatam Sofer 1, Emanuel",
+    "location": {
+      "lat": 31.046051,
+      "lng": 34.851612
+    },
+    "types": [
+      "convenience_store",
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קנטינה טעמים בערבה",
+    "address": "201, עין יהב",
+    "location": {
+      "lat": 30.6568652,
+      "lng": 35.2335516
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר חצבה",
+    "address": "חצבה",
+    "location": {
+      "lat": 30.767942,
+      "lng": 35.278498
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "הסתת 15, אילת",
+    "location": {
+      "lat": 29.5683498,
+      "lng": 34.9597588
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל דיל",
+    "address": "שדרות ירושלים השלמה 50, אילת",
+    "location": {
+      "lat": 29.564141,
+      "lng": 34.945589
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יינות ביתן",
+    "address": "שדרות חטיבת גולני 43, אילת",
+    "location": {
+      "lat": 29.5657337,
+      "lng": 34.9557374
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "הכל דבש",
+    "address": "דרך יותם 45, אילת",
+    "location": {
+      "lat": 29.5550778,
+      "lng": 34.9416009
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "יינות ביתן",
+    "address": "דרך יותם 43, אילת",
+    "location": {
+      "lat": 29.555675,
+      "lng": 34.9414235
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל שלי",
+    "address": "שדרות התמרים 37, אילת",
+    "location": {
+      "lat": 29.559796,
+      "lng": 34.9505008
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק אילת",
+    "address": "הספן 1, אילת",
+    "location": {
+      "lat": 29.5712356,
+      "lng": 34.9588279
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מחסני השוק",
+    "address": "ברקת 13, אילת",
+    "location": {
+      "lat": 29.5502464,
+      "lng": 34.9474577
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "רמי לוי",
+    "address": "הזגג 11, אילת",
+    "location": {
+      "lat": 29.5698833,
+      "lng": 34.9612922
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Super",
+    "address": "האגס 24, אילת",
+    "location": {
+      "lat": 29.544053,
+      "lng": 34.9390696
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור",
+    "address": "החרש 15, אילת",
+    "location": {
+      "lat": 29.5673012,
+      "lng": 34.9564457
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סטופמרקט",
+    "address": "פינת, אילות 70, אילת",
+    "location": {
+      "lat": 29.5579998,
+      "lng": 34.9465452
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט אלימלך בע\"מ",
+    "address": "החותרים 1, אילת",
+    "location": {
+      "lat": 29.5584565,
+      "lng": 34.9359479
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "שופרסל אקספרס",
+    "address": "שדרות ששת הימים 310, אילת",
+    "location": {
+      "lat": 29.5447791,
+      "lng": 34.931793
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר צאלים",
+    "address": "נירית 2, אילת",
+    "location": {
+      "lat": 29.5600754,
+      "lng": 34.9369211
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "המכולת שלי",
+    "address": "פיסטאני 2, אילת",
+    "location": {
+      "lat": 29.549695,
+      "lng": 34.9655579
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "המכולת שלי",
+    "address": "מרכז עינת, זהרון 5, אילת",
+    "location": {
+      "lat": 29.5569246,
+      "lng": 34.9342611
+    },
+    "types": [
+      "convenience_store",
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Ha-Macolet Sheli",
+    "address": "אילת",
+    "location": {
+      "lat": 29.5545563,
+      "lng": 34.953298
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "המכולת שלי",
+    "address": "הצאלון 12, אילת",
+    "location": {
+      "lat": 29.5512083,
+      "lng": 34.941241
+    },
+    "types": [
+      "convenience_store",
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "משב אילת סניף שחמון",
+    "address": "308, שדרות ששת הימים 300, אילת",
+    "location": {
+      "lat": 29.54531189999999,
+      "lng": 34.932585
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "name": "משב המלחים למלכות ולמלכים",
+    "address": "שדרות ששת הימים 182, אילת",
+    "location": {
+      "lat": 29.558528,
+      "lng": 34.9389847
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מרכז רזין - מעדניית דניאל - סופרמרקט באילת",
+    "address": "אילות 31, אילת",
+    "location": {
+      "lat": 29.5594629,
+      "lng": 34.9494351
+    },
+    "types": [
+      "supermarket",
+      "shopping_mall",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "בובו מרקט אילת BOBO Market",
+    "address": "מרכז התיירות, דרך יותם 5, אילת",
+    "location": {
+      "lat": 29.5515921,
+      "lng": 34.9518475
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט בית מאפה peppers פפרס מרכז גיא לי",
+    "address": "עין יהב 4, אילת",
+    "location": {
+      "lat": 29.5434775,
+      "lng": 34.9356877
+    },
+    "types": [
+      "supermarket",
+      "bakery",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "7Days Market",
+    "address": "שדרות ירושלים השלמה 1, אילת",
+    "location": {
+      "lat": 29.5591296,
+      "lng": 34.9477976
+    },
+    "types": [
+      "bakery",
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "המכולת שלי",
+    "address": "אילות 86, אילת",
+    "location": {
+      "lat": 29.5566483,
+      "lng": 34.9463623
+    },
+    "types": [
+      "convenience_store",
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמארקט חוף דרומי",
+    "address": "חוף אלמוג, אילת",
+    "location": {
+      "lat": 29.5149247,
+      "lng": 34.9250567
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר 10",
+    "address": "רות המואביה 52, אילת",
+    "location": {
+      "lat": 29.5423339,
+      "lng": 34.9267659
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט רויאל גרדן",
+    "address": "אילת",
+    "location": {
+      "lat": 29.5503167,
+      "lng": 34.9633841
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט סוזן",
+    "address": "נביעות 4, אילת",
+    "location": {
+      "lat": 29.5527979,
+      "lng": 34.94898209999999
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Supermarket",
+    "address": "אילת",
+    "location": {
+      "lat": 29.5487933,
+      "lng": 34.9531435
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "קרפור מרקט - אילת",
+    "address": "שדרות חטיבת גולני 41, אילת",
+    "location": {
+      "lat": 29.5658228,
+      "lng": 34.9551073
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מינימרקט אבי",
+    "address": "השחם 250/4, אילת",
+    "location": {
+      "lat": 29.5626271,
+      "lng": 34.9529317
+    },
+    "types": [
+      "convenience_store",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "גורמה",
+    "address": "הצלחה 5-13, אילת",
+    "location": {
+      "lat": 29.5600339,
+      "lng": 34.955955
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "המכולת שלי",
+    "address": "יהל 17, אילת",
+    "location": {
+      "lat": 29.560962,
+      "lng": 34.9339961
+    },
+    "types": [
+      "convenience_store",
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "משהו טוב שחמון",
+    "address": "שדרות ששת הימים 310, אילת",
+    "location": {
+      "lat": 29.5447791,
+      "lng": 34.931793
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "טופמרקט",
+    "address": "קאמן 12, אילת",
+    "location": {
+      "lat": 29.5539647,
+      "lng": 34.9619095
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "המכולת שלי",
+    "address": "צין 3, אילת",
+    "location": {
+      "lat": 29.5585189,
+      "lng": 34.9467746
+    },
+    "types": [
+      "convenience_store",
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט פון הום",
+    "address": "הבז, אילת",
+    "location": {
+      "lat": 29.5495262,
+      "lng": 34.9522328
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "KSP סניף אילת לגונה קראון פלזה",
+    "address": "לגונה קראון פלזה, קאמן 1, אילת",
+    "location": {
+      "lat": 29.5540076,
+      "lng": 34.9610457
+    },
+    "types": [
+      "clothing_store",
+      "electronics_store",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Эйлат Мотел",
+    "address": "14,, עופרים 2, אילת",
+    "location": {
+      "lat": 29.5585165,
+      "lng": 34.9525038
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "המכולת שלי",
+    "address": "קאמן 8, אילת",
+    "location": {
+      "lat": 29.55469089999999,
+      "lng": 34.9624342
+    },
+    "types": [
+      "convenience_store",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "המכולת שלי",
+    "address": "גרופית 10, אילת",
+    "location": {
+      "lat": 29.5590877,
+      "lng": 34.9413116
+    },
+    "types": [
+      "convenience_store",
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר-פארם שחמון אילת",
+    "address": "שדרות ששת הימים 290, אילת",
+    "location": {
+      "lat": 29.5465053,
+      "lng": 34.9337125
+    },
+    "types": [
+      "pharmacy",
+      "health",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "בייקרי קופי מרקט",
+    "address": "שדרות התמרים, אילת",
+    "location": {
+      "lat": 29.5581173,
+      "lng": 34.9512384
+    },
+    "types": [
+      "cafe",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Supermarket",
+    "address": "Dereh Mizraim 90, אילת",
+    "location": {
+      "lat": 29.614584,
+      "lng": 34.985017
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "המכולת שלי",
+    "address": "תחנת דלק ברגר, דרך הערבה, אילת",
+    "location": {
+      "lat": 29.5607337,
+      "lng": 34.9579544
+    },
+    "types": [
+      "convenience_store",
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר דנינו",
+    "address": "שדרות התמרים 9, אילת",
+    "location": {
+      "lat": 29.554944,
+      "lng": 34.953041
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופר בשכונה",
+    "address": "שדרות ששת הימים 182, אילת",
+    "location": {
+      "lat": 29.5585616,
+      "lng": 34.9389261
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Daniel's Deli Delicates | מעדניית דניאל",
+    "address": "אילות 23א, אילת",
+    "location": {
+      "lat": 29.5598004,
+      "lng": 34.9504866
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מיק מק משקאות",
+    "address": "תרשיש 7, אילת",
+    "location": {
+      "lat": 29.5515841,
+      "lng": 34.9577681
+    },
+    "types": [
+      "liquor_store",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Bakery Eilat",
+    "address": "שדרות התמרים, אילת",
+    "location": {
+      "lat": 29.5581164,
+      "lng": 34.9512352
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מגה ספורט",
+    "address": "טיילת הנפטון, אילת",
+    "location": {
+      "lat": 29.5504034,
+      "lng": 34.9562749
+    },
+    "types": [
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "מרכז מסחרי משל מערב",
+    "address": "שדרות ששת הימים 166, אילת",
+    "location": {
+      "lat": 29.5625475,
+      "lng": 34.9423825
+    },
+    "types": [
+      "shopping_mall",
+      "point_of_interest",
+      "establishment"
+    ]
+  },
+  {
+    "name": "משהו טוב שדרות התמרים 77",
+    "address": "שדרות התמרים 77, אילת",
+    "location": {
+      "lat": 29.5594148,
+      "lng": 34.9513506
+    },
+    "types": [
+      "convenience_store",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "ניצת הדובדבן",
+    "address": "המוצר 17, אילת",
+    "location": {
+      "lat": 29.5676655,
+      "lng": 34.9589893
+    },
+    "types": [
+      "health",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "Z מרקט",
+    "address": "שדרות יעלים 39, אילת",
+    "location": {
+      "lat": 29.5639119,
+      "lng": 34.9533629
+    },
+    "types": [
+      "convenience_store",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "פארק יטבתה",
+    "address": "יוטבתה",
+    "location": {
+      "lat": 29.893885,
+      "lng": 35.064302
+    },
+    "types": [
+      "restaurant",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט",
+    "address": "דרך פעמי השלום 19, אילת",
+    "location": {
+      "lat": 29.5500087,
+      "lng": 34.9609585
+    },
+    "types": [
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "name": "סופרמרקט בית מאפה peppers מרכז מור",
+    "address": "אנפה 1, אילת",
+    "location": {
+      "lat": 29.5542382,
+      "lng": 34.9447058
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  }
+]

@@ -1,0 +1,1022 @@
+[
+  {
+    "place_id": "ChIJU5jBMKlLHRURmlLieWulGPM",
+    "name": "קרפור סיטי - קניון גבעתיים",
+    "address": "קניון עזריאלי, וייצמן 71, גבעתיים",
+    "location": {
+      "lat": 32.0663446,
+      "lng": 34.8109297
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJw_J90E9NHRURSnloehVbjIM",
+    "name": "רמי לוי בשכונה בן יהודה תל אביב",
+    "address": "בן יהודה 23, תל אביב-יפו",
+    "location": {
+      "lat": 32.0762671,
+      "lng": 34.7679687
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ0UGDn6pLHRURVA8w6df8wcM",
+    "name": "אלמה מרקט",
+    "address": "דיזנגוף 253, תל אביב-יפו",
+    "location": {
+      "lat": 32.0932146,
+      "lng": 34.7763373
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJN3GDGgxLHRURccCt5ltbtrE",
+    "name": "קרפור מרקט - לה גוורדיה, תל אביב",
+    "address": "לה גווארדיה 76, תל אביב-יפו",
+    "location": {
+      "lat": 32.0588935,
+      "lng": 34.8009596
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJY2D3foBLHRURbTjuCYd8Pus",
+    "name": "קרפור סיטי - דיזנגוף סנטר",
+    "address": "דיזנגוף 50 דיזנגוף סנטר, תל אביב-יפו",
+    "location": {
+      "lat": 32.0753344,
+      "lng": 34.7750259
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJOQwd-YBLHRURSo4cg_TDPQ0",
+    "name": "שופרסל אקספרס",
+    "address": "המלך ג'ורג' 58, תל אביב-יפו",
+    "location": {
+      "lat": 32.0752118,
+      "lng": 34.7763521
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ2Qimwp9LHRURZrWi0Jiouu0",
+    "name": "אושר עד - תל אביב",
+    "address": "ולטר מוזס 6, תל אביב-יפו",
+    "location": {
+      "lat": 32.06734840000001,
+      "lng": 34.7942352
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ92QmIZBLHRURFmbQl4UHhws",
+    "name": "קרפור סיטי - מגדלי דוד, תל אביב",
+    "address": "לסר אורי 12, תל אביב-יפו",
+    "location": {
+      "lat": 32.0814732,
+      "lng": 34.7854416
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJQemjarBLHRURlzjcnaZwtYA",
+    "name": "שופרסל שלי",
+    "address": "וייצמן 20, גבעתיים",
+    "location": {
+      "lat": 32.0741055,
+      "lng": 34.8083823
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJN3pkawhLHRURVQmemeqeW88",
+    "name": "שופרסל שלי",
+    "address": "עמישב 45, גבעתיים",
+    "location": {
+      "lat": 32.0617779,
+      "lng": 34.8064742
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJh28TqmZNHRUR8CBu17Zp2oU",
+    "name": "ויקטורי סיטי אלנבי",
+    "address": "סיטי, אלנבי 65, תל אביב-יפו",
+    "location": {
+      "lat": 32.0681025,
+      "lng": 34.7711272
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJLSEVAI1LHRURIocffKxNJak",
+    "name": "איי.אם.פי.אם",
+    "address": "שלמה אבן גבירול 136, תל אביב-יפו",
+    "location": {
+      "lat": 32.0883128,
+      "lng": 34.782656
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJTWuSeohLHRURFoUE-XUijZc",
+    "name": "סופר יודה",
+    "address": "ריינס 62, תל אביב-יפו",
+    "location": {
+      "lat": 32.0831294,
+      "lng": 34.776354
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJqQpXcplLHRURF36RxL_-18k",
+    "name": "שופרסל דיל",
+    "address": "מגדלי עזריאלי, דרך מנחם בגין 132, תל אביב-יפו",
+    "location": {
+      "lat": 32.0749562,
+      "lng": 34.7920096
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJnVd8mYNLHRUR9Ac3atG4ISs",
+    "name": "מגה בעיר לונדון מיניסטור",
+    "address": "שלמה אבן גבירול 30, תל אביב-יפו",
+    "location": {
+      "lat": 32.0750419,
+      "lng": 34.7819586
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJO4Nes5xMHRUR4u7C8Q5jmmI",
+    "name": "AM:PM",
+    "address": "אחד העם 9, תל אביב-יפו",
+    "location": {
+      "lat": 32.0643692,
+      "lng": 34.7694206
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ0wj68-xLHRURW1iXJ6vIf1E",
+    "name": "קרפור סיטי - פנקס ת\"א",
+    "address": "פנקס 48, תל אביב-יפו",
+    "location": {
+      "lat": 32.0908031,
+      "lng": 34.7890126
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJTU7yyMFLHRURsJr2a-JC5lY",
+    "name": "קרפור סיטי - פארק צמרת",
+    "address": "ניסים אלוני 10, תל אביב-יפו",
+    "location": {
+      "lat": 32.0889848,
+      "lng": 34.7973924
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJOcwrAn9MHRURH0OU31WVeLs",
+    "name": "שופרסל אקספרס",
+    "address": "לוריא 2, תל אביב-יפו",
+    "location": {
+      "lat": 32.0769823,
+      "lng": 34.7714719
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ8ZP2L5RLHRURqFD9_paK8ZU",
+    "name": "טיב טעם",
+    "address": "ארלוזורוב 149, תל אביב-יפו",
+    "location": {
+      "lat": 32.0830913,
+      "lng": 34.7929328
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "store",
+      "point_of_interest",
+      "food",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJma_C5n1MHRURIc-5zwI20oM",
+    "name": "סופר קופיקס",
+    "address": "בן יהודה 23, תל אביב-יפו",
+    "location": {
+      "lat": 32.0762671,
+      "lng": 34.7679687
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJacDLs35MHRURodsHrei11ng",
+    "name": "AM:PM",
+    "address": "בן יהודה 61, תל אביב-יפו",
+    "location": {
+      "lat": 32.0794564,
+      "lng": 34.7692012
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJfxdWdnlLHRURaUwEDHwwOUg",
+    "name": "ויקטורי",
+    "address": "לינקולן 16, תל אביב-יפו",
+    "location": {
+      "lat": 32.0665624,
+      "lng": 34.7820469
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJOWOBlXdMHRURlpscXMDf_Ak",
+    "name": "Tiv Taam IN THE CITY",
+    "address": "בן יהודה 130, תל אביב-יפו",
+    "location": {
+      "lat": 32.0849868,
+      "lng": 34.7726424
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJtwNsHl9LHRURYNHF8ZWHQuU",
+    "name": "שופרסל אקספרס",
+    "address": "יהודה המכבי 81, תל אביב-יפו",
+    "location": {
+      "lat": 32.094182,
+      "lng": 34.7928439
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJufADRGBJHRURgVgdM875bGg",
+    "name": "סופר מרקט am:pm ברודצקי",
+    "address": "17, ברודצקי 15, תל אביב-יפו",
+    "location": {
+      "lat": 32.10761,
+      "lng": 34.7977547
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJj0gX3pNLHRURgsmYs1CHUjY",
+    "name": "קרפור סיטי - ויצמן תל אביב",
+    "address": "ויצמן‬ 20, תל אביב-יפו",
+    "location": {
+      "lat": 32.0832358,
+      "lng": 34.7892952
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJHWfW0gRLHRURvBgAgFRd6Yc",
+    "name": "שופרסל דיל",
+    "address": "יגאל אלון 76, תל אביב-יפו",
+    "location": {
+      "lat": 32.0654728,
+      "lng": 34.793731
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJZ5TJxkRLHRURCjqiyF4QXyA",
+    "name": "רמי לוי",
+    "address": "אסתר המלכה, תל אביב-יפו",
+    "location": {
+      "lat": 32.0790473,
+      "lng": 34.7744319
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJoToB0vJLHRUReibKpzpwhvQ",
+    "name": "טיב טעם בעיר",
+    "address": "שלמה אבן גבירול 64, תל אביב-יפו",
+    "location": {
+      "lat": 32.0797764,
+      "lng": 34.7815765
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJyb8d7rlLHRURqNA1LEbPY1c",
+    "name": "ויקטורי סיטי ויצמן",
+    "address": "סיטי, ויצמן‬ 53, תל אביב-יפו",
+    "location": {
+      "lat": 32.0849003,
+      "lng": 34.7891029
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJtyEE-eJLHRUR0iZp5HElR7o",
+    "name": "ברלין לבונטין סופר מרקט",
+    "address": "לבונטין 28, תל אביב-יפו",
+    "location": {
+      "lat": 32.0629032,
+      "lng": 34.7766912
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJaQTHeVhLHRURsAfunZdoDjA",
+    "name": "קרפור סיטי - כיכר דיזינגוף",
+    "address": "פינסקר 69, תל אביב-יפו",
+    "location": {
+      "lat": 32.0775795,
+      "lng": 34.7735856
+    },
+    "types": [
+      "grocery_or_supermarket",
+      "supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ3deQF7tLHRURMn_GXKo8MtE",
+    "name": "שופרסל אקספרס",
+    "address": "כצנלסון 19, גבעתיים",
+    "location": {
+      "lat": 32.0753775,
+      "lng": 34.8037801
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJC-dm3pNLHRUREFQ5c59SDe8",
+    "name": "ניו מרקט תל אביב",
+    "address": "ויצמן‬ 43, תל אביב-יפו",
+    "location": {
+      "lat": 32.0838985,
+      "lng": 34.7889552
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJkz_JF4pLHRURMm8Mo_7t228",
+    "name": "ויקטורי דיזינגוף",
+    "address": "דיזנגוף 224, תל אביב-יפו",
+    "location": {
+      "lat": 32.0886661,
+      "lng": 34.7755775
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ_4_DEXlMHRURVU2nnOJhxTI",
+    "name": "שופרסל שלי - בן יהודה - תל אביב",
+    "address": "בן יהודה 79, תל אביב-יפו",
+    "location": {
+      "lat": 32.0813121,
+      "lng": 34.7704048
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJeWE9l_pLHRURILvhxZnbwSY",
+    "name": "שופרסל אקספרס",
+    "address": "בוני העיר 9, תל אביב-יפו",
+    "location": {
+      "lat": 32.1010698,
+      "lng": 34.7833359
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJG38Pon5NHRURcWXRTNCe4CQ",
+    "name": "AM:PM",
+    "address": "אלנבי 56, תל אביב-יפו",
+    "location": {
+      "lat": 32.0706039,
+      "lng": 34.7699812
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJd9R7TbRLHRURj8p7Y47T_kc",
+    "name": "טיב טעם סניף סירקין גבעתיים",
+    "address": "סירקין 13, גבעתיים",
+    "location": {
+      "lat": 32.0780044,
+      "lng": 34.8146964
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ2wcN15VLHRURWa-J9fFeIF4",
+    "name": "סיטי מרקט",
+    "address": "תובל 19, רמת גן",
+    "location": {
+      "lat": 32.0844432,
+      "lng": 34.8022337
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJwR-gFYpLHRURMNOnf1WdEr4",
+    "name": "סופר יודה",
+    "address": "דיזנגוף 215, תל אביב-יפו",
+    "location": {
+      "lat": 32.0890444,
+      "lng": 34.775324
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ1eKLHLdLHRUR-ZhxYoNxyyE",
+    "name": "שופרסל בורוכוב שלי",
+    "address": "בורוכוב 54, גבעתיים",
+    "location": {
+      "lat": 32.078906,
+      "lng": 34.8096975
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ7-n7_hpLHRURAYj6dNzLeQo",
+    "name": "ויקטורי",
+    "address": "הארבעה 6, תל אביב-יפו",
+    "location": {
+      "lat": 32.0703444,
+      "lng": 34.7831731
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJg8TrSc9NHRUREne6S2bS7tI",
+    "name": "ויקטורי סיטי יהודה הלוי",
+    "address": "סיטי, יהודה הלוי 40, תל אביב-יפו",
+    "location": {
+      "lat": 32.0616314,
+      "lng": 34.7720178
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ-RTJZk9NHRUR3uHgMI3WESo",
+    "name": "ויקטורי סיטי רוטשילד",
+    "address": "שדרות רוטשילד 14, תל אביב-יפו",
+    "location": {
+      "lat": 32.062815,
+      "lng": 34.7709504
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJQwnJRWdJHRURhyfV2X_gX8Y",
+    "name": "שופרסל רמת אביב שלי",
+    "address": "ברזיל 15, תל אביב-יפו",
+    "location": {
+      "lat": 32.1117383,
+      "lng": 34.7963233
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ_7Wf-nNLHRURu4wgUBD_ptY",
+    "name": "יוחננוף",
+    "address": "יגאל אלון 57, תל אביב-יפו",
+    "location": {
+      "lat": 32.0626068,
+      "lng": 34.79160299999999
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJOVLuU7hLHRURCEYKkzGEOJE",
+    "name": "יאלי בשכונה",
+    "address": "שפירא 3, רמת גן",
+    "location": {
+      "lat": 32.0814447,
+      "lng": 34.8048491
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJLVfne3hLHRURbipqSwY0XdM",
+    "name": "טיב טעם",
+    "address": "החשמונאים 91, תל אביב-יפו",
+    "location": {
+      "lat": 32.0697613,
+      "lng": 34.7834402
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJjZgAXxdLHRURCG3cHtyV0_I",
+    "name": "7to7",
+    "address": "שלמה אבן גבירול 76, תל אביב-יפו",
+    "location": {
+      "lat": 32.0811839,
+      "lng": 34.7815723
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJPawSWQdLHRUR_UcCfZ_V0Wg",
+    "name": "שופרסל שלי",
+    "address": "ההסתדרות 27, גבעתיים",
+    "location": {
+      "lat": 32.06134670000001,
+      "lng": 34.811789
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJFWl_TolLHRURxO0ESwKidAA",
+    "name": "שופרסל שלי ארלוזורוב",
+    "address": "ארלוזורוב 53, תל אביב-יפו",
+    "location": {
+      "lat": 32.0860635,
+      "lng": 34.7787599
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJc3m-F3ZMHRUR6DCleoixc1o",
+    "name": "סופר קופיקס",
+    "address": "בן יהודה 174, תל אביב-יפו",
+    "location": {
+      "lat": 32.0875412,
+      "lng": 34.773397
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJTS54KL1LHRURzbTY5DJpj78",
+    "name": "קרפור סיטי - עמק ברכה ת\"א",
+    "address": "עמק ברכה 25, תל אביב-יפו",
+    "location": {
+      "lat": 32.076308,
+      "lng": 34.7989587
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJrzfg4oFMHRUR9lBAf8gTLhQ",
+    "name": "סופר שינקין בע\"מ",
+    "address": "שינקין 25, תל אביב-יפו",
+    "location": {
+      "lat": 32.0691402,
+      "lng": 34.7741175
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJAZ0wVXlLHRURFaFAKKit0Ro",
+    "name": "שופרסל אקספרס",
+    "address": "תוספתא 15, תל אביב-יפו",
+    "location": {
+      "lat": 32.0974616,
+      "lng": 34.7986012
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJW8VSsY5LHRURziWeoYWay7E",
+    "name": "בקס מרקט",
+    "address": "רחוב זאב ז'בוטינסקי 95, רמת גן",
+    "location": {
+      "lat": 32.0885684,
+      "lng": 34.81460879999999
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJ42kPp1lJHRURNeB5AgaySrg",
+    "name": "סופר יודה",
+    "address": "איינשטיין 7, תל אביב-יפו",
+    "location": {
+      "lat": 32.1124317,
+      "lng": 34.7872747
+    },
+    "types": [
+      "supermarket",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  },
+  {
+    "place_id": "ChIJNVVnFaFMHRURFYiwtyrVtPM",
+    "name": "Supermarket Shiroko",
+    "address": "הירקון 174, תל אביב-יפו",
+    "location": {
+      "lat": 32.0860499,
+      "lng": 34.7702606
+    },
+    "types": [
+      "supermarket",
+      "liquor_store",
+      "grocery_or_supermarket",
+      "food",
+      "point_of_interest",
+      "store",
+      "establishment"
+    ]
+  }
+]
