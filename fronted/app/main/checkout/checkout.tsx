@@ -30,7 +30,7 @@ export default function CheckoutScreen() {
   const activeGroup = useSelector((s: RootState) => s.group.activeGroup);
   const shoppingList = useSelector((s: RootState) => s.shoppingList.activeList);
   const [addToHistory] = useAddToHistoryMutation();
-  const API_KEY = "AIzaSyB_YwWsltrLfeFOImovl-CE6__nTWkN924"
+
 
   // ⭐ MAP STATE (Integrated directly)
   const [location, setLocation] = useState<null | Location.LocationObjectCoords>(null);
@@ -38,19 +38,36 @@ export default function CheckoutScreen() {
   const [radius, setRadius] = useState<number>(5);
 
   //function to convert an adress to a geocode
+  // Convert Hebrew address → geo coordinates using OpenStreetMap (Nominatim)
   async function geocode(address: string) {
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${API_KEY}`;
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+      address
+    )}&limit=1`;
 
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": "WiseBuy-App", // required by Nominatim policy
+      },
+    });
+
     const data = await res.json();
-    return data.results[0].geometry.location;
-  }
 
+    if (!data || data.length === 0) {
+      throw new Error("Address not found");
+    }
+
+    return {
+      latitude: parseFloat(data[0].lat),
+      longitude: parseFloat(data[0].lon),
+    };
+  }
 
 
 
   useEffect(() => {
     (async () => {
+      const geo = await geocode("נחל דן 11 , כרמיאל")
+      console.log(geo)
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         setErrorMsg("Location permission denied");
@@ -91,7 +108,7 @@ export default function CheckoutScreen() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={styles.container}>
-       
+
 
         <TopNav />
 
