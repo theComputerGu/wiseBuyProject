@@ -37,7 +37,7 @@ async function reverseGeocode(lat: number, lon: number) {
   try {
     const res = await fetch(url, {
       headers: {
-        "User-Agent": "WiseBuyApp/1.0 (tamir@example.com)",  
+        "User-Agent": "WiseBuyApp/1.0 (tamir@example.com)",
         "Accept-Language": "he",
       },
     });
@@ -187,9 +187,12 @@ export default function CheckoutScreen() {
                   title={store.chain}
                   description={store.address}
                   onPress={() =>
-                    router.push(
-                      `/main/checkout/storecheckout?id=${store.id}`
-                    )
+                    router.replace({
+                      pathname: "/main/checkout/storecheckout",
+                      params: {
+                        store: JSON.stringify(store),
+                      },
+                    })
                   }
                 />
               ))}
@@ -213,7 +216,12 @@ export default function CheckoutScreen() {
                 key={store.id}
                 style={styles.storeCard}
                 onPress={() =>
-                  router.push(`/main/checkout/storecheckout?id=${store.id}`)
+                  router.replace({
+                    pathname: "/main/checkout/storecheckout",
+                    params: {
+                      store: JSON.stringify(store),
+                    },
+                  })
                 }
               >
                 <View style={styles.priceInfo}>

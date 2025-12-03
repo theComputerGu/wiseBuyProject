@@ -21,5 +21,5 @@ https://www.gov.il/he/pages/cpfta_prices_regulations
 **CHP price comparison site**
 https://chp.co.il/
 
-** Jira **
+**Jira**
 https://marksheinberg01.atlassian.net/jira/software/projects/WB/boards/1
