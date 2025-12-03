@@ -13,13 +13,13 @@ export interface ShoppingListItem {
 }
 
 export interface ShoppingList {
-     _id : string
+    _id: string
     items: ShoppingListItem[];
     total?: number;
 }
 
 export interface ShoppingListState {
-   
+
     activeList: ShoppingList | null;
     isLoading: boolean;
 }
@@ -64,7 +64,7 @@ export const shoppingListSlice = createSlice({
 
         removeItem: (s, a: PayloadAction<string>) => {
             if (!s.activeList) return;
-                s.activeList!.items = s.activeList!.items.filter(
+            s.activeList!.items = s.activeList!.items.filter(
                 (i) => i._id._id !== a.payload
             );
         },

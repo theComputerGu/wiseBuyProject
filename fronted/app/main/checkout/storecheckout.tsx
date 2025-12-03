@@ -45,6 +45,7 @@ export default function StoreCheckoutScreen() {
   const activeGroup = useSelector((s: RootState) => s.group.activeGroup);
   const shoppingList = useSelector((s: RootState) => s.shoppingList);
   const [addToHistory] = useAddToHistoryMutation();
+  const items = shoppingList.activeList?.items ?? [];
 
   // -----------------------------
   // UTILS
@@ -63,9 +64,9 @@ export default function StoreCheckoutScreen() {
 
   const totalPrice = parsedStore
     ? parsedStore.products.reduce(
-        (sum, item) => sum + item.price * item.amount,
-        0
-      )
+      (sum, item) => sum + item.price * item.amount,
+      0
+    ).toFixed(2)
     : 0;
 
   // -----------------------------
@@ -83,7 +84,7 @@ export default function StoreCheckoutScreen() {
       dispatch(setActiveGroup(res.updatedGroup));
       dispatch(setActiveList(res.newList));
 
-      router.replace("/main/history");
+      router.replace("/main/history/history");
     } catch (err) {
       console.error("Checkout error:", err);
     }
@@ -148,15 +149,21 @@ export default function StoreCheckoutScreen() {
               No items to checkout.
             </ItimText>
           ) : (
-            parsedStore.products.map((item) => (
-              <CheckoutCard
-                key={item.itemcode}
-                name={`Item ${item.itemcode}`}
-                quantity={item.amount}
-                price={`₪${item.price}`}
-                image={{ uri: fixImageURL(item._id?.image) }}
-              />
-            ))
+            parsedStore.products.map((p) => {
+              const original = shoppingList.activeList?.items.find(
+                (i) => i._id.itemcode === p.itemcode
+              );
+
+              return (
+                <CheckoutCard
+                  key={p.itemcode}
+                  name={original?._id.title || `Item ${p.itemcode}`}
+                  quantity={p.amount}
+                  price={`₪${p.price}`}
+                  image={{ uri: fixImageURL(original?._id.image) }}
+                />
+              );
+            })
           )}
         </ScrollView>
 
