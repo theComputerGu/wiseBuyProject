@@ -58,11 +58,11 @@ export default function BottomNav() {
       </Pressable>
 
       {/* 📋 History */}
-      <Pressable onPress={() => handleNavigate('/main/history')}>
+      <Pressable onPress={() => handleNavigate('/main/history/history')}>
         <MaterialCommunityIcons
           name="clipboard-text-outline"
           size={28}
-          color={getIconColor('/main/history')}
+          color={getIconColor('/main/history/history')}
         />
       </Pressable>
 
@@ -71,7 +71,7 @@ export default function BottomNav() {
         <MaterialCommunityIcons
           name="cart"
           size={28}
-          color={getIconColor('/main/checkout')}
+          color={getIconColor('/main/checkout/checkout')}
         />
       </Pressable>
     </View>

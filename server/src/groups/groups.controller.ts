@@ -101,6 +101,13 @@ async restorePurchase(
 ) {
   return this.groupsService.restorePurchase(groupId, shoppingListId);
 }
+@Get(':id/history/:historyid')
+async gethistorybyid (
+  @Param('id') groupId: string,
+  @Param('historyid') shoppingListId: string,
+) {
+  return this.groupsService.gethistorybyid(groupId,shoppingListId)
+}
 
 
 }

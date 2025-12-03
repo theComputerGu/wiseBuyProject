@@ -7,19 +7,19 @@ import {
   Pressable,
 } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import ItimText from '../../components/Itimtext';
-import BottomNav from '../../components/Bottomnavigation';
-import TopNav from '../../components/Topnav';
-import Title from '../../components/Title';
+import ItimText from '../../../components/Itimtext';
+import BottomNav from '../../../components/Bottomnavigation';
+import TopNav from '../../../components/Topnav';
+import Title from '../../../components/Title';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../redux/state/store';
-import {useGetGroupsQuery,useGetGroupByIdQuery,} from '../../redux/svc/groupsApi';
-import { setActiveGroup } from '../../redux/slices/groupSlice';
-import { setActiveList } from '../../redux/slices/shoppinglistSlice'; 
+import { RootState } from '../../../redux/state/store';
+import { useGetGroupsQuery, useGetGroupByIdQuery, } from '../../../redux/svc/groupsApi';
+import { setActiveGroup } from '../../../redux/slices/groupSlice';
+import { setActiveList } from '../../../redux/slices/shoppinglistSlice';
 import { useRouter } from 'expo-router';
-import { useGetListByIdQuery } from "../../redux/svc/shoppinglistApi";
-import { useRestorePurchaseMutation } from "../../redux/svc/groupsApi";
+import { useGetListByIdQuery } from "../../../redux/svc/shoppinglistApi";
+import { useRestorePurchaseMutation } from "../../../redux/svc/groupsApi";
 
 export default function HistoryScreen() {
 
@@ -30,7 +30,7 @@ export default function HistoryScreen() {
   const [restorePurchase] = useRestorePurchaseMutation();
 
 
-  const history = activeGroup.activeGroup?.history?? [];
+  const history = activeGroup.activeGroup?.history ?? [];
 
   if (!activeGroup) {
     return (
@@ -66,49 +66,37 @@ export default function HistoryScreen() {
 
         <ScrollView showsVerticalScrollIndicator={false}>
           {history.map((item: any, i: number) => {
-  const { data: shoppingList } = useGetListByIdQuery(
-    item.shoppingListId,
-    { skip: !item.shoppingListId }
-  );
+            const { data: shoppingList } = useGetListByIdQuery(
+              item.shoppingListId,
+              { skip: !item.shoppingListId }
+            );
 
-  return (
-    <Pressable
-      key={i}
-      style={styles.purchaseCard}
-      onPress={async () => {
-  if (!item.shoppingListId || !activeGroup.activeGroup) return;
+            return (
+              <Pressable
+                key={i}
+                style={styles.purchaseCard}
+                onPress={async () => {
+                  // Navigate to history details screen WITH the historyId
+                  router.replace(`/main/history/historyitems?id=${item.shoppingListId}`);
 
-  try {
-    const updatedList = await restorePurchase({
-      groupId: activeGroup.activeGroup._id,
-      shoppingListId: item.shoppingListId,
-    }).unwrap();
-
-    dispatch(setActiveList(updatedList));
-
-    router.replace("/main/product");
-
-  } catch (err) {
-    console.error("Restore error:", err);
-  }
-}}
+                }}
 
 
-    >
-      <View style={styles.leftCol}>
-        <ItimText size={16} weight="bold">
-          Purchase #{i + 1}
-        </ItimText>
+              >
+                <View style={styles.leftCol}>
+                  <ItimText size={16} weight="bold">
+                    Purchase #{i + 1}
+                  </ItimText>
 
-        <ItimText size={13} color="#555">
-          Items: {shoppingList?.total ?? 0}
-          {" • "}
-          Date: {new Date(item.purchasedAt).toLocaleDateString()}
-        </ItimText>
-      </View>
-    </Pressable>
-  );
-})}
+                  <ItimText size={13} color="#555">
+                    Items: {shoppingList?.total ?? 0}
+                    {" • "}
+                    Date: {new Date(item.purchasedAt).toLocaleDateString()}
+                  </ItimText>
+                </View>
+              </Pressable>
+            );
+          })}
 
 
           <View style={{ height: 120 }} />
