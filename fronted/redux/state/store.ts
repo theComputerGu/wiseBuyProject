@@ -1,64 +1,45 @@
-// redux/state/store.ts
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// RTK Query API
 import { baseApi } from "../svc/baseApi";
+// ❌ אל תייבא reducerPath מהstoreApi
+// import { storeApi } from "../svc/storeApi";
 
-// Slices
 import userReducer from "../slices/userSlice";
 import groupReducer from "../slices/groupSlice";
 import shoppingListReducer from "../slices/shoppinglistSlice";
 import recommendedReducer from "../slices/recommendedSlice";
 import uiReducer from "../slices/uiSlice";
+import checkoutReducer from "../slices/checkoutSlice";
 
-// ----------------------
-// Persist config
-// ----------------------
 const persistConfig = {
   key: "root",
   storage: AsyncStorage,
-  whitelist: ["user"], // persist only user data
+  whitelist: ["user"],
 };
 
-// ----------------------
-// Combine reducers
-// ----------------------
 const rootReducer = combineReducers({
   user: userReducer,
   group: groupReducer,
   shoppingList: shoppingListReducer,
   recommended: recommendedReducer,
   ui: uiReducer,
+  checkout: checkoutReducer,
 
- 
-  [baseApi.reducerPath]: baseApi.reducer,
+  [baseApi.reducerPath]: baseApi.reducer,   // ⭐ היחיד שצריך!
 });
 
-// ----------------------
-// Persisted reducer
-// ----------------------
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persisted = persistReducer(persistConfig, rootReducer);
 
-// ----------------------
-// Store
-// ----------------------
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: persisted,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }).concat(baseApi.middleware),  
+    getDefaultMiddleware({ serializableCheck: false })
+      .concat(baseApi.middleware),   // ⭐ רק baseApi.middleware!
 });
 
-// ----------------------
-// Persistor
-// ----------------------
 export const persistor = persistStore(store);
 
-// ----------------------
-// Types
-// ----------------------
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

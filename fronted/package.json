@@ -40,7 +40,8 @@
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
     "redux-persist": "^6.0.0",
-    "zod": "^3.25.76"
+    "zod": "^3.25.76",
+    "expo-crypto": "~15.0.7"
   },
   "devDependencies": {
     "@react-native/dev-middleware": "^0.82.1",
