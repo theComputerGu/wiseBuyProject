@@ -1,141 +1,86 @@
+// =====================================================
+// BUILD STORES — batch + multi-product correct merge 🔥
+// =====================================================
+
 import * as Crypto from "expo-crypto";
-import { StoreEntry, StoreProduct } from "../types/Store";
 import { API_URL } from "@env";
+import { StoreEntry } from "../types/Store";
 
-// ----------------------------------------------------
-// Convert Hebrew address → GEO coordinates
-// ----------------------------------------------------
-async function geocode(address: string) {
-  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-    address
-  )}&limit=1`;
+type GeoPoint = { lat:number; lon:number };
+const geoCache:Record<string,GeoPoint> = {};
 
-  try {
-    const res = await fetch(url, {
-      headers: { "User-Agent": "WiseBuy-App" },
-    });
+async function geocode(address:string):Promise<GeoPoint>{
+  if(!address) return {lat:0,lon:0};
+  if(geoCache[address]) return geoCache[address];
 
-    const data = await res.json();
-
-    if (!data || data.length === 0) return { lat: 0, lon: 0 };
-
-    return {
-      lat: parseFloat(data[0].lat),
-      lon: parseFloat(data[0].lon),
-    };
-  } catch (err) {
-    console.log("GEO ERROR:", err);
-    return { lat: 0, lon: 0 };
+  try{
+    const url=`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1`;
+    const d=await (await fetch(url,{headers:{ "User-Agent":"WiseBuy-App" }})).json();
+    return geoCache[address]=d?.length?{lat:+d[0].lat,lon:+d[0].lon}:{lat:0,lon:0};
+  }catch{
+    return geoCache[address]={lat:0,lon:0};
   }
 }
 
-// ----------------------------------------------------
-// MAIN FUNCTION — Build store list from shopping list
-// ----------------------------------------------------
-export async function buildStores(shoppingItems: any[], city: string) {
-  console.log("📌 BUILD STORES — Starting…");
-  console.log("🌍 API_URL =", API_URL);
-  console.log("🏙 CITY =", city);
 
-  let storesMap: Record<string, StoreEntry> = {};
+// =====================================================
+// MAIN
+// =====================================================
+export async function buildStores(shopping:any[], city:string){
 
-  for (const item of shoppingItems) {
-    console.log("🟨 ITEM:", item);
+  console.log("📦 buildStores — /scrape/batch");
+  const aggregated:Record<string,number> = {};
 
-    // -----------------------------------------
-    // FIX: itemcode was WRONG (barcode ❌)
-    // -----------------------------------------
-    const itemcode = item._id?.itemcode;
-    const amount = item.quantity;
+  // count amount per barcode
+  shopping.forEach(i=>{
+    const code=i._id?.itemcode;
+    if(!code) return;
+    aggregated[code]=(aggregated[code]||0)+(i.quantity??1);
+  });
 
-    console.log("🟦 ITEMCODE =", itemcode);
+  const barcodes=Object.keys(aggregated);
+  console.log("🔍 ITEMS:",barcodes.length);
 
-    if (!itemcode) {
-      console.log("❌ SKIP — No itemcode for item:", item);
-      continue;
-    }
+  // 🔥 one batch request
+  const batch=await (await fetch(`${API_URL}/scrape/batch`,{
+    method:"POST",
+    headers:{ "Content-Type":"application/json"},
+    body:JSON.stringify({city,barcodes})
+  })).json();
 
-    const encodedCity = encodeURIComponent(city);
-    const url = `${API_URL}/scrape/stores/${itemcode}/${encodedCity}`;
 
-    console.log("📡 FETCHING URL:", url);
+  const stores:Record<string,StoreEntry> = {};
 
-    let text = "";
-    let data = null;
+  for(const barcode of barcodes){
+    const rows=batch[barcode];
+    if(!rows) continue;
 
-    try {
-      const res = await fetch(url);
+    for(const row of rows){
+      const chain=row[0], branch=row[1], address=row[2];
+      const price=+row[4]||0;
+      const amount=aggregated[barcode];
 
-      console.log("📡 RESPONSE STATUS:", res.status);
-
-      text = await res.text();
-      console.log("📡 RAW RESPONSE TEXT:", text);
-
-      data = JSON.parse(text);
-    } catch (err) {
-      console.log("❌ JSON PARSE ERROR:", err);
-      console.log("❌ RAW:", text);
-      continue;
-    }
-
-    if (!data?.stores) {
-      console.log("⚠ No stores returned for", itemcode);
-      continue;
-    }
-
-    console.log(`🟩 STORES returned for ${itemcode}:`, data.stores.length);
-
-    //------------------------------
-    // LOOP OVER RAW CHP ROWS
-    //------------------------------
-    for (const row of data.stores) {
-      console.log("➡ STORE ROW:", row);
-
-      const chain = row[0];
-      const branch = row[1];
-      const address = row[2];
-      const price = parseFloat(row[4] || "0");
-
-      const uniqueId = await Crypto.digestStringAsync(
+      const id=await Crypto.digestStringAsync(
         Crypto.CryptoDigestAlgorithm.MD5,
-        chain + branch + address
+        chain+branch+address
       );
 
-      if (!storesMap[uniqueId]) {
-        console.log("📍 Geocoding:", address);
-        const geo = await geocode(address);
-
-        storesMap[uniqueId] = {
-          id: uniqueId,
-          chain,
-          city: branch,
-          address,
-          geo,
-          products: [],
-          score: 0,
+      if(!stores[id]){
+        stores[id]={
+          id, chain, city:branch, address,
+          geo:await geocode(address),
+          products:[], score:0
         };
       }
 
-      storesMap[uniqueId].products.push({
-        itemcode,
-        price,
-        amount,
-      });
+      // ← FIX: לא מוחקים מוצרים קודמים, רק מוסיפים ברקוד נוסף 🔥
+      stores[id].products.push({ itemcode:barcode, price, amount });
     }
   }
 
-  //------------------------------
-  // FINAL — CALCULATE SCORE
-  //------------------------------
-  for (const store of Object.values(storesMap)) {
-    let total = 0;
-    for (const p of store.products) {
-      total += p.price * p.amount;
-    }
-    store.score = total;
-  }
+  Object.values(stores).forEach(s=>{
+    s.score=s.products.reduce((sum,p)=>sum+p.price*p.amount,0);
+  });
 
-  console.log("📦 FINAL STORES:", Object.values(storesMap));
-
-  return Object.values(storesMap);
+  return Object.values(stores);
 }
