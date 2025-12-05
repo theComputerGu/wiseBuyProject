@@ -274,7 +274,7 @@ export default function AccountScreen() {
               />
 
               <View style={{ flexDirection: 'row', gap: 10 }}>
-                <Button title={isLoading ? 'Saving...' : 'Save'} onPress={savePassword} />
+                <Button style={{ paddingVertical: 10, paddingHorizontal: 16, borderRadius: 10, backgroundColor: '#197FF4' }}title={isLoading ? 'Saving...' : 'Save'} onPress={savePassword} />
                 <Pressable
                   onPress={() => { setChangePwMode(false); setPwCurrent(''); setPwNew(''); setPwConfirm(''); }}
                   style={{ paddingVertical: 10, paddingHorizontal: 16, borderRadius: 10, backgroundColor: '#eee' }}
