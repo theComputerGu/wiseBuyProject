@@ -1,107 +1,76 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Post, Param, Body } from "@nestjs/common";
 import { exec } from "child_process";
 import * as path from "path";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+import { StoreCache, StoreCacheDocument } from "../stores/schemas/store-cache.schema"; // ← תיקון
 
-// ======================================================
-// AUTO-RESOLVE PROJECT ROOT
-// ======================================================
+
 const ROOT = process.cwd();
-
-// ======================================================
-// RELATIVE PYTHON EXECUTABLE (Windows venv)
-// ======================================================
 const PYTHON_PATH = path.join(ROOT, "venv", "Scripts", "python.exe");
+const SCRIPTS_DIR = path.join(ROOT, "Webscrapers");
 
-// ======================================================
-// RELATIVE SCRIPTS DIRECTORY
-// ======================================================
-const SCRIPTS_DIR = path.join(ROOT,  "Webscrapers");
+const TTL_HOURS = 24;
 
 @Controller("scrape")
 export class ScrapeController {
-  // ======================================================
-  // 1) GET PRICE
-  // ======================================================
+
+  constructor(
+    @InjectModel(StoreCache.name)
+    private cacheDB: Model<StoreCacheDocument> // ← תיקון
+  ) {}
+
+
   @Get("price/:barcode/:city")
-  async getPrice(
-    @Param("barcode") barcode: string,
-    @Param("city") city: string
-  ) {
-    console.log("🟦 RAW PARAM CITY =", city);
-
-    // decode twice because Expo double-encodes Hebrew
-    let decodedCity = decodeURIComponent(city);
-    try {
-      decodedCity = decodeURIComponent(decodedCity);
-    } catch {}
-
-    console.log("🟩 DECODED CITY =", decodedCity);
-
-    // FULL script path automatically correct
-    const script = path.join(SCRIPTS_DIR, "chpscrapperPrice.py");
-
-    const cmd = `"${PYTHON_PATH}" "${script}" "${barcode}" "${decodedCity}"`;
-    console.log("📌 Running PRICE script:", cmd);
-
-    return new Promise((resolve) => {
-      exec(cmd, { encoding: "utf8" }, (error, stdout) => {
-        if (error) {
-          console.log("🔴 Python PRICE Error:", error);
-          return resolve({ price: null, error: "python failed", raw: error });
-        }
-
-        try {
-          const json = JSON.parse(stdout);
-          resolve(json);
-        } catch (e) {
-          console.log("⚠ JSON Parse PRICE Error:", stdout);
-          resolve({ price: null, raw: stdout });
-        }
-      });
-    });
+  async getPrice(@Param("barcode") barcode,@Param("city") city) {
+    city = decodeURIComponent(city);
+    const cmd = `"${PYTHON_PATH}" "${path.join(SCRIPTS_DIR,"chpscrapperPrice.py")}" "${barcode}" "${city}"`;
+    return this.execPython(cmd);
   }
 
-  // ======================================================
-  // 2) GET STORES
-  // ======================================================
   @Get("stores/:barcode/:city")
-  async getStores(
-    @Param("barcode") barcode: string,
-    @Param("city") city: string
-  ) {
-    console.log("🟦 RAW PARAM CITY =", city);
+  async getStores(@Param("barcode") barcode,@Param("city") city) {
+    city = decodeURIComponent(city);
+    const cmd = `"${PYTHON_PATH}" "${path.join(SCRIPTS_DIR,"chpscrapperShops.py")}" "${barcode}" "${city}"`;
+    return this.execPython(cmd);
+  }
 
-    let decodedCity = decodeURIComponent(city);
-    try {
-      decodedCity = decodeURIComponent(decodedCity);
-    } catch {}
+  @Post("batch")
+  async batch(@Body() body:{city:string;barcodes:string[]}){
 
-    console.log("🟩 DECODED CITY =", decodedCity);
+    const {city, barcodes}= body;
+    if(!barcodes.length) return {stores:{}};
 
-    const script = path.join(SCRIPTS_DIR, "chpscrapperShops.py");
-    const cmd = `"${PYTHON_PATH}" "${script}" "${barcode}" "${decodedCity}"`;
+    const cached = await this.cacheDB.findOne({city});
+    if (cached) {
+  const ageHours = cached.updatedAt
+    ? (Date.now() - cached.updatedAt.getTime()) / 3600000
+    : Infinity;  // אם אין updatedAt → נכריח Scrape
 
-    console.log("📌 Running STORES script:", cmd);
+  if(ageHours < TTL_HOURS){
+    return cached.stores;   // 🔥 Cache תקין – מחזירים מיד
+  }
+}
 
-    return new Promise((resolve) => {
-      exec(cmd, { encoding: "utf8" }, (error, stdout) => {
-        if (error) {
-          console.log("🔴 Python STORES Error:", error);
-          return resolve({
-            stores: null,
-            error: "python failed",
-            raw: error,
-          });
-        }
 
-        try {
-          const json = JSON.parse(stdout);
-          resolve(json);
-        } catch (e) {
-          console.log("⚠ JSON Parse STORES Error:", stdout);
-          resolve({ stores: null, raw: stdout });
-        }
-      });
-    });
+    const cmd = `"${PYTHON_PATH}" "${path.join(SCRIPTS_DIR,"chpscrapperBatch.py")}" "${city}" ${barcodes.map(b=>`"${b}"`).join(" ")}`;
+    const scraped:any = await this.execPython(cmd);
+
+    await this.cacheDB.findOneAndUpdate(
+      {city},{city,stores:scraped,updatedAt:new Date()},{upsert:true}
+    );
+
+    return scraped;
+  }
+
+
+  private execPython(cmd:string){
+    return new Promise(resolve=>{
+      exec(cmd,(e,stdout)=>{
+        if(e) return resolve({error:"python failed"});
+        try { resolve(JSON.parse(stdout)) }
+        catch { resolve({error:"parse failed",raw:stdout}) }
+      })
+    })
   }
 }
