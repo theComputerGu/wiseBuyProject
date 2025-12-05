@@ -66,41 +66,48 @@ export default function HistoryScreen() {
 
         <ScrollView showsVerticalScrollIndicator={false}>
           {history.map((item: any, i: number) => {
-            const { data: shoppingList } = useGetListByIdQuery(
-              item.shoppingListId,
-              { skip: !item.shoppingListId }
-            );
-
             return (
               <Pressable
-                key={i}
-                style={styles.purchaseCard}
-                onPress={async () => {
-                  // Navigate to history details screen WITH the historyId
-                  router.replace(`/main/history/historyitems?id=${item.shoppingListId}`);
-
+                key={item._id || i}
+                style={styles.card}
+                onPress={() => {
+                  router.replace(
+                    `/main/history/historyitems?id=${item.shoppingListId}`
+                  );
                 }}
-
-
               >
-                <View style={styles.leftCol}>
-                  <ItimText size={16} weight="bold">
-                    Purchase #{i + 1}
-                  </ItimText>
+                <View style={styles.row}>
+                  {/* LEFT SIDE INFORMATION */}
+                  <View style={styles.left}>
+                    <ItimText size={16} weight="bold">
+                      {item.storename || "Unknown Store"}
+                    </ItimText>
 
-                  <ItimText size={13} color="#555">
-                    Items: {shoppingList?.total ?? 0}
-                    {" • "}
-                    Date: {new Date(item.purchasedAt).toLocaleDateString()}
-                  </ItimText>
+                    <ItimText size={13} color="#555">
+                      {item.storeadress || "Unknown address"}
+                    </ItimText>
+
+                    <ItimText size={13} color="#777" style={{ marginTop: 3 }}>
+                      {new Date(item.purchasedAt).toLocaleDateString()}
+                    </ItimText>
+                  </View>
+
+                  {/* RIGHT SIDE PRICE */}
+                  <View style={styles.right}>
+                    <ItimText size={17} weight="bold" color="#197FF4">
+                      ₪{item.totalprice ?? "0.00"}
+                    </ItimText>
+
+                    <ItimText size={13} color="#444">
+                      {item.itemcount ?? 0} items
+                    </ItimText>
+                  </View>
                 </View>
               </Pressable>
             );
           })}
-
-
-          <View style={{ height: 120 }} />
         </ScrollView>
+
 
         <BottomNav />
       </View>
@@ -123,4 +130,28 @@ const styles = StyleSheet.create({
   },
   leftCol: { flex: 1 },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  card: {
+    backgroundColor: "#fff",
+    padding: 15,
+    marginVertical: 6,
+    marginHorizontal: 10,
+    borderRadius: 14,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 3,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  left: {
+    flex: 1,
+  },
+  right: {
+    alignItems: "flex-end",
+    justifyContent: "center",
+  },
 });

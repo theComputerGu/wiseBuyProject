@@ -90,8 +90,12 @@ export class GroupsController {
   async addToHistory(
     @Param('id') groupId: string,
     @Body('name') name: string,
+    @Body('storename') storename: string,
+    @Body('storeadress') storeadress: string,
+    @Body('totalprice') totalprice: number,
+    @Body('itemcount') itemcount: number,
   ) {
-    return this.groupsService.addToHistory(name, groupId);
+    return this.groupsService.addToHistory(name, groupId,storename,storeadress,totalprice,itemcount);
   }
 
   @Post(':id/restore-purchase')

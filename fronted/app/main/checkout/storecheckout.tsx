@@ -73,12 +73,34 @@ export default function StoreCheckoutScreen() {
   // CHECKOUT HANDLER
   // -----------------------------
   const handleCheckout = async () => {
-    if (!activeGroup) return;
+    if (!activeGroup || !parsedStore) return;
+
+    // Store name (chain)
+    const storename = parsedStore.chain;
+
+    // Store address (fix: DO NOT use chain)
+    const storeadress = parsedStore.chain || "Unknown Address";
+
+    // Total price is NOW NUMBER, not string
+    const totalprice = parsedStore.products.reduce(
+      (sum, item) => sum + item.price * item.amount,
+      0
+    );
+
+    // Total item count (sum of quantities)
+    const itemcount = parsedStore.products.reduce(
+      (sum, item) => sum + item.amount,
+      0
+    );
 
     try {
       const res = await addToHistory({
         groupId: activeGroup._id,
         name: `Checkout - ${new Date().toLocaleString()}`,
+        storename,
+        storeadress,
+        totalprice,   
+        itemcount,   
       }).unwrap();
 
       dispatch(setActiveGroup(res.updatedGroup));

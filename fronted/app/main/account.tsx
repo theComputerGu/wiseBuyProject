@@ -236,23 +236,13 @@ export default function AccountScreen() {
 
               <ItimText size={14} color="#000" weight="bold">Created on</ItimText>
               <ItimText size={16}>{createdAtText || '—'}</ItimText>
-
               <ItimText size={14} color="#000" weight="bold">Email Address</ItimText>
-              {editEmail ? (
-                <View style={{ gap: 6 }}>
-                  <TextField value={email} onChangeText={setEmail} placeholder="Email" keyboardType="email-address" />
-                  <Button title={isLoading ? 'Saving...' : 'Save'} onPress={() => saveField('email')} />
-                </View>
-              ) : (
-                <ItimText size={16}>{user.current?.email || '—'}</ItimText>
-              )}
+              <ItimText size={16}>{user.current?.email || '—'}</ItimText>
+              
             </View>
 
             <View style={styles.editIcons}>
               <Pressable onPress={() => { setName(user.current?.name || ''); setEditName(true); }}>
-                <MaterialCommunityIcons name="pencil" size={18} color="#197FF4" />
-              </Pressable>
-              <Pressable style={{ marginTop: 40 }} onPress={() => { setEmail(user.current?.email || ''); setEditEmail(true); }}>
                 <MaterialCommunityIcons name="pencil" size={18} color="#197FF4" />
               </Pressable>
             </View>
@@ -267,7 +257,7 @@ export default function AccountScreen() {
               <TextField
                 value={pwCurrent}
                 onChangeText={setPwCurrent}
-                placeholder="Current password (optional)"
+                placeholder="Current password"
                 secure={!showPassword}
               />
               <TextField
@@ -282,12 +272,6 @@ export default function AccountScreen() {
                 placeholder="Confirm new password"
                 secure={!showPassword}
               />
-
-              <Pressable style={styles.showPasswordBtn} onPress={() => setShowPassword((p) => !p)}>
-                <ItimText size={14} color="#197FF4">
-                  {showPassword ? 'hide password' : 'show password'}
-                </ItimText>
-              </Pressable>
 
               <View style={{ flexDirection: 'row', gap: 10 }}>
                 <Button title={isLoading ? 'Saving...' : 'Save'} onPress={savePassword} />

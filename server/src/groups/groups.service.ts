@@ -118,7 +118,7 @@ export class GroupsService {
     return group;
   }
 
-  async addToHistory(name: string, groupId: string) {
+  async addToHistory(name: string, groupId: string ,storename: string,storeadress : string,totalprice: number, itemcount: number  ) {
     const group = await this.groupModel.findById(groupId);
     if (!group) throw new NotFoundException("Group not found");
 
@@ -133,10 +133,13 @@ export class GroupsService {
 
     // מוסיפים היסטוריה
     group.history.push({
-      name,
+      name:name,
       shoppingListId: list._id,
       purchasedAt: new Date(),
-      storeId: undefined, // תוכל להוסיף בעתיד
+      storename: storename,
+      storeadress: storeadress,
+      totalprice: totalprice ,
+      itemcount: itemcount,
     });
 
     // יוצרים רשימה חדשה ריקה
