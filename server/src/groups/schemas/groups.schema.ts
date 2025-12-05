@@ -37,6 +37,10 @@ export class Group {
         },
 
         purchasedAt: { type: Date, required: true },
+        storename: { type: String },
+        storeadress: { type: String },
+        totalprice: { type: Number },
+        itemcount: { type: Number },
 
         storeId: {
           type: Types.ObjectId,
@@ -51,7 +55,10 @@ export class Group {
     name: string;
     shoppingListId?: Types.ObjectId;
     purchasedAt: Date;
-    storeId?: Types.ObjectId;
+    storename: string;
+    storeadress: string;
+    totalprice: number;
+    itemcount: number;
   }[];
 }
 

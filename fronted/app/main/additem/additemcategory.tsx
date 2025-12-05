@@ -105,7 +105,7 @@ export default function AddItemCategoryScreen() {
     const newQty = currentQty + 1;
 
     try {
-      await addItemToBackend({ listId, productId }).unwrap();
+
 
       if (currentQty === 0) {
         dispatch(
@@ -122,6 +122,8 @@ export default function AddItemCategoryScreen() {
           })
         );
       }
+
+      await addItemToBackend({ listId, productId }).unwrap();
 
     } catch (err) {
       console.error("❌ Increment failed:", err);
@@ -146,7 +148,7 @@ export default function AddItemCategoryScreen() {
     const newQty = listItem.quantity - 1;
 
     try {
-      await removeItemFromBackend({ listId, itemId }).unwrap();
+
 
       if (newQty <= 0) {
         dispatch(removeItemLocal(productId));
@@ -158,6 +160,7 @@ export default function AddItemCategoryScreen() {
           })
         );
       }
+      await removeItemFromBackend({ listId, itemId }).unwrap();
 
     } catch (err) {
       console.error("❌ Decrement failed:", err);

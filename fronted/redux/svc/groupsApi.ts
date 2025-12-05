@@ -12,6 +12,10 @@ export interface Group {
         shoppingListId?: string;
         purchasedAt: Date;
         storeId?: string;
+        storename?: string,
+        storeadress?: string,
+        totalprice?: string,
+
     }[];
     createdAt?: string;
     updatedAt?: string;
@@ -167,13 +171,21 @@ export const groupsApi = baseApi.injectEndpoints({
         // ADD ACTIVE SHOPPING LIST → HISTORY
         addToHistory: builder.mutation<
             { updatedGroup: Group; newList: any },
-            { groupId: string; name: string }
+            {
+                groupId: string;
+                name: string;
+                storename: string;
+                storeadress: string;
+                totalprice: number;
+                itemcount: number;
+            }
         >({
-            query: ({ groupId, name }) => ({
+            query: ({ groupId, name, storename, storeadress, totalprice,itemcount }) => ({
                 url: `/groups/${groupId}/history`,
                 method: "POST",
-                body: { name },
+                body: { name, storename, storeadress, totalprice,itemcount },
             }),
+
             invalidatesTags: (_, __, { groupId }) => [
                 { type: "Groups", id: groupId },
                 { type: "Groups", id: `history-${groupId}` },
