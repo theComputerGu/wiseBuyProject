@@ -1,23 +1,31 @@
 import { Controller, Post, Body } from "@nestjs/common";
-import { StoreCacheService } from "./store-cache.service";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+import { StoreCache, StoreCacheDocument } from "./schemas/store-cache.schema";
 
-@Controller("stores/cache")
+@Controller("stores")
 export class StoreCacheController {
 
-  constructor(private cache: StoreCacheService) {}
+  constructor(
+    @InjectModel(StoreCache.name)
+    private model: Model<StoreCacheDocument>
+  ) {}
 
-  // === Check existing cache (<TTL hours)
-  @Post("check")
-  async check(@Body() body:{ barcodes:string[], ttl:number }) {
-    const cached = await this.cache.findValid(body.barcodes, body.ttl ?? 24);
-    const missing = body.barcodes.filter(b => !cached[b]);
-    return { cached, missing };
-  }
+  @Post("cache")
+  async getCache(@Body() body:{ city:string, barcodes:string[] }) {
 
-  // === Update cache with latest scraped batch
-  @Post("update")
-  async update(@Body() body:{ data:Record<string,string[][]> }) {
-    await this.cache.updateBatch(body.data);
-    return { updated:true };
+    const doc = await this.model.findOne({ city: body.city }).lean();
+
+    if (!doc) return { stores: [] };
+
+   const filteredStores = doc.stores
+  .map(store => ({
+    ...store,
+    products: store.products.filter(p => body.barcodes.includes(p.barcode))
+  }))
+  .filter(s => s.products.length > 0); // חנות נשארת רק אם יש מוצרים רלוונטיים
+
+
+    return { stores: filteredStores };
   }
 }

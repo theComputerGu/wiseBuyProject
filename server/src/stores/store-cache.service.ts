@@ -11,30 +11,52 @@ export class StoreCacheService {
     private model: Model<StoreCacheDocument>
   ) {}
 
-  // === Load records if fresh (<TTL hours)
-  async findValid(barcodes:string[], ttlHours:number) {
+
+  // 🟢 מחזיר מה־Cache רק מה שהיה שימושי ב־X שעות אחרונות
+  async findValid(barcodes: string[], ttlHours:number) {
+
     const since = new Date(Date.now() - ttlHours * 3600 * 1000);
 
     const docs = await this.model.find({
-      barcode: { $in: barcodes },
-      updatedAt:{ $gte: since }
-    }).lean();
+  "stores.products.barcode": { $in: barcodes },
+  updatedAt:{ $gte: since }
+}).lean();
 
-    return docs.reduce((acc,d)=>{
-      acc[d.barcode] = d.stores;
-      return acc;
-    },{} as Record<string,string[][]>);
+
+
+    // 🟢 מחזיר בצורה: { "barcodeA":[stores], "barcodeB":[stores] }
+    return docs.reduce((acc, d) => {
+  d.stores.forEach(store => {
+    store.products.forEach(p => {
+      if (!acc[p.barcode]) acc[p.barcode] = [];
+      acc[p.barcode].push({
+        storeId: store.storeId,
+        chain: store.chain,
+        address: store.address,
+        geo: store.geo,
+        price: p.price,
+        updatedAt: p.updatedAt
+      });
+    });
+  });
+  return acc;
+}, {} as Record<string, any[]>);
+
   }
 
-  // === Insert or update scraped results
+
+
+  // 🟢 שומר Batch — לא כפול ולא פעמיים!
   async updateBatch(data:Record<string,string[][]>) {
+
     const ops = Object.entries(data).map(([barcode,stores]) => ({
       updateOne:{
         filter:{ barcode },
-        update:{ barcode, stores },
+        update:{ barcode, stores, updatedAt:new Date()},
         upsert:true
       }
     }));
+
     return this.model.bulkWrite(ops);
   }
 }

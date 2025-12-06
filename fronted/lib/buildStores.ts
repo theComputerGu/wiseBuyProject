@@ -1,7 +1,3 @@
-// =====================================================
-// BUILD STORES — batch + multi-product correct merge 🔥
-// =====================================================
-
 import * as Crypto from "expo-crypto";
 import { API_URL } from "@env";
 import { StoreEntry } from "../types/Store";
@@ -23,63 +19,94 @@ async function geocode(address:string):Promise<GeoPoint>{
 }
 
 
-// =====================================================
-// MAIN
-// =====================================================
-export async function buildStores(shopping:any[], city:string){
+export async function buildStores(shopping:any[], city:string):Promise<StoreEntry[]>{
+  console.log("🚀 Building store list...");
 
-  console.log("📦 buildStores — /scrape/batch");
   const aggregated:Record<string,number> = {};
-
-  // count amount per barcode
   shopping.forEach(i=>{
     const code=i._id?.itemcode;
-    if(!code) return;
-    aggregated[code]=(aggregated[code]||0)+(i.quantity??1);
+    if(code) aggregated[code]=(aggregated[code]||0)+(i.quantity??1);
   });
 
   const barcodes=Object.keys(aggregated);
-  console.log("🔍 ITEMS:",barcodes.length);
 
-  // 🔥 one batch request
-  const batch=await (await fetch(`${API_URL}/scrape/batch`,{
+  // 🟢 1) בקשת Cache
+  const cacheRes = await fetch(`${API_URL}/stores/cache`,{
     method:"POST",
-    headers:{ "Content-Type":"application/json"},
-    body:JSON.stringify({city,barcodes})
-  })).json();
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({ city, barcodes })
+  });
 
+  const cache = await cacheRes.json();
+  let stores:Record<string,StoreEntry> = {};
 
-  const stores:Record<string,StoreEntry> = {};
+  if(cache && cache.stores?.length){
+    console.log("🟢 CACHE HIT!");
+    for(const s of cache.stores){
+      const id = await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.MD5,s.chain+s.address);
 
-  for(const barcode of barcodes){
-    const rows=batch[barcode];
-    if(!rows) continue;
-
-    for(const row of rows){
-      const chain=row[0], branch=row[1], address=row[2];
-      const price=+row[4]||0;
-      const amount=aggregated[barcode];
-
-      const id=await Crypto.digestStringAsync(
-        Crypto.CryptoDigestAlgorithm.MD5,
-        chain+branch+address
-      );
-
-      if(!stores[id]){
-        stores[id]={
-          id, chain, city:branch, address,
-          geo:await geocode(address),
-          products:[], score:0
-        };
+      stores[id] = {
+        id,
+        chain:s.chain,
+        address:s.address,
+        geo:s.geo ?? {lat:0,lon:0},
+        products:s.products.map((p:any)=>({
+          itemcode:p.barcode,
+          price:p.price,
+          amount:aggregated[p.barcode]??1
+        })),
+        score:0
       }
-
-      // ← FIX: לא מוחקים מוצרים קודמים, רק מוסיפים ברקוד נוסף 🔥
-      stores[id].products.push({ itemcode:barcode, price, amount });
     }
   }
 
+  // 🔥 2) אם חסרים מוצרים – Scrape
+  const missing = barcodes.filter(b =>
+    !Object.values(stores).some(s => s.products.some(p => p.itemcode===b))
+  );
+
+  if(missing.length>0){
+    console.log("🔴 CACHE MISS → scraping:",missing);
+
+    const scraped = await (await fetch(`${API_URL}/scrape/batch`,{
+      method:"POST",
+      headers:{ "Content-Type":"application/json"},
+      body:JSON.stringify({city,barcodes:missing})
+    })).json();
+
+    for(const barcode of missing){
+      const rows=scraped[barcode];
+      if(!rows) continue;
+
+      for(const row of rows){
+        const chain=row[0], address=row[2], price=+row[4]||0;
+        const id = await Crypto.digestStringAsync(
+          Crypto.CryptoDigestAlgorithm.MD5,chain+address
+        );
+
+        if(!stores[id]){
+          stores[id]={
+            id, chain, address,
+            geo:await geocode(address),
+            products:[],
+            score:0
+          }
+        }
+
+        stores[id].products.push({
+          itemcode:barcode,
+          price,
+          amount:aggregated[barcode]
+        })
+      }
+    }
+  }
+
+  // 🧠 3) לחשב מחיר סופי בצורה תקינה
   Object.values(stores).forEach(s=>{
-    s.score=s.products.reduce((sum,p)=>sum+p.price*p.amount,0);
+    s.score = s.products.reduce(
+      (sum:number,p:{price:number;amount:number})=> sum+p.price*p.amount
+    ,0);
   });
 
   return Object.values(stores);
