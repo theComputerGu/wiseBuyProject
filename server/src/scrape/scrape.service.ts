@@ -3,16 +3,18 @@ import { exec } from "child_process";
 import * as path from "path";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
+
 import { StoreCache, StoreCacheDocument } from "../stores/schemas/store-cache.schema";
-import { geocode } from "../utils/geocode"; // או נתיב נכון
-// קאש תקף לכמה שעות לפני רענון
-const TTL_HOURS = 24;
-const TTL_MS = TTL_HOURS * 60 * 60 * 1000;
+import { geocode } from "../utils/geocode";  // ודא נתיב נכון
 
+// ---- PATHS ------------------
 const ROOT = process.cwd();
-const PY = path.join(ROOT,"venv","Scripts","python.exe");
-const SCR = path.join(ROOT,"Webscrapers");
+const PY   = path.join(ROOT,"venv","Scripts","python.exe");
+const SCR  = path.join(ROOT,"Webscrapers");
 
+// =============================================================
+// 🔥 ScrapeService — Cache + Scraping + Merge Safe
+// =============================================================
 @Injectable()
 export class ScrapeService {
 
@@ -21,81 +23,74 @@ export class ScrapeService {
     private cacheDB: Model<StoreCacheDocument>
   ) {}
 
-  // ===============================
-  //  🚀 MAIN BATCH
-  // ===============================
+  // =============================================================
+  // 🚀 MAIN BATCH – Scrape Only Missing Barcodes
+  // =============================================================
   async batch(city:string, barcodes:string[]) {
 
-    // 1) נטען קאש עיר (או נייצר ריק)
-    let cache = await this.cacheDB.findOne({ city });
-    if(!cache){
-      cache = new this.cacheDB({ city, stores:[], updatedAt:new Date() });
-    }
+    // 1) נטען מסמך יחיד לעיר (אם אין — המשך ייצור דרך upsert)
+    const existing = await this.cacheDB.findOne({ city }).lean();
+    const currentStores = existing?.stores ?? [];
 
-    const missing:string[] = [];
+    // -------------------------------------------------------------
+    // 2) מציאת ברקודים שחסרים בחנויות הקיימות בקאש
+    const missing = barcodes.filter(bc =>
+      !currentStores.some(s => s.products.some(p => p.barcode === bc))
+    );
 
-    // 2) נבדוק אילו ברקודים כבר קיימים בקאש
-    for(const bc of barcodes){
-      const found = cache.stores.some(s =>
-        s.products.some(p => p.barcode === bc)
-      );
-      if(!found) missing.push(bc);
-    }
-
-    // 3) אם הכל קיים בקאש → נחזיר בלי Selenium
     if(missing.length === 0){
-      console.log("🟢 ALL DATA FROM CACHE", cache.stores.length, "stores");
-      return cache;
+      console.log(`🟢 CACHE HIT (${city}) — No scraping needed`);
+      return existing;
     }
 
-    // 4) אם חסר → נריץ Python רק על מה שצריך
-    console.log("🔴 Missing", missing.length,"products → scraping now…");
+    console.log(`🔴 Scraping ${missing.length} missing products for: ${city}`);
 
-    const scraped = await this.runPy("chpscrapperBatch.py", [city, ...missing]) as any;
-    if(!scraped || (scraped as any).error) return cache;
+    // -------------------------------------------------------------
+    // 3) Python Scraper — רק על מה שחסר
+    const scraped = await this.runPy("chpscrapperBatch.py",[city,...missing]) as Record<string, any[]>;
+    if(!scraped || scraped.error) return existing;
 
 
-    // 5) מיזוג התוצאות לתוך הקאש
+    // -------------------------------------------------------------
+    // 4) מיזוג תוצאות scraping לתוך מבנה הקאש הקיים
     for(const [barcode, rows] of Object.entries(scraped)){
 
-      for(const row of rows as any[]){
-        const chain = row[0], address = row[2];
+      for(const row of rows){
+        const [chain,,address,,price] = row;
         const storeId = chain+"_"+address;
 
-        // מציאת החנות בקאש
-        let store = cache.stores.find(s => s.storeId===storeId);
-
-        // אם לא קיימת → נוסיף חדשה
+        // --- Find/Insert store -----------------
+        let store = currentStores.find(s=>s.storeId===storeId);
         if(!store){
-          store = {
-            storeId,
-            chain,
-            address,
-            geo: await geocode(address),
-            products:[]
-          };
-          cache.stores.push(store);
+          store = { storeId, chain, address, geo: await geocode(address), products:[] };
+          currentStores.push(store);
         }
 
-        // הוספת מחיר חדש (ללא כפילות)
+        // --- Add product only if not exists ----
         if(!store.products.some(p=>p.barcode===barcode)){
           store.products.push({
             barcode,
-            price: +row[4]||0,
+            price:+price||0,
             updatedAt:new Date()
           });
         }
       }
     }
 
-    // 6) שמירת הקאש המעודכן כמסמך יחיד פר עיר
-    cache.updatedAt = new Date();
-    await cache.save();
+    // -------------------------------------------------------------
+    // 5) SAVE — Atomic Upsert (⚠ אין save() → אין כפילות!)
+    await this.cacheDB.updateOne(
+      { city },
+      { $set:{ stores:currentStores, updatedAt:new Date() }},
+      { upsert:true }
+    );
 
-    return cache;
+    return this.cacheDB.findOne({ city });
   }
 
-  // Python Wrapper
+  // =============================================================
+  // 🧠 PYTHON WRAPPER
+  // =============================================================
   private runPy(file:string,args:string[]){
     return new Promise(resolve=>{
       const cmd=`"${PY}" "${path.join(SCR,file)}" ${args.map(a=>`"${a}"`).join(" ")}`;

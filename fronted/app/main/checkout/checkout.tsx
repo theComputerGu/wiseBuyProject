@@ -102,7 +102,7 @@ export default function CheckoutScreen(){
       (async()=>{
         setLoadingStores(true);
         const city = await reverseGeocode(userLocation.lat,userLocation.lon);
-        const result = await buildStores(shoppingList,city);
+        const result = await buildStores(shoppingList,city,userLocation);
         dispatch(setStores(result));
         setLoadingStores(false);
       })();
@@ -184,9 +184,15 @@ export default function CheckoutScreen(){
                   <ItimText size={12} color="#000">Total Price</ItimText>
                 </View>
                 <View style={styles.storeInfo}>
-                  <ItimText size={16} weight="bold">{store.chain}</ItimText>
-                  <ItimText size={12} color="#444">{store.address}</ItimText>
-                </View>
+  <ItimText size={16} weight="bold">{store.chain}</ItimText>
+  <ItimText size={12} color="#444">{store.address}</ItimText>
+
+  {/* ⭐️ SHOW RATING */}
+  <Text style={{fontSize:14,color:"#f5b400",marginTop:4}}>
+   {"⭐".repeat(store.stars)} ({store.rating.toFixed(0)})
+</Text>
+</View>
+
               </Pressable>
             ))
           )}

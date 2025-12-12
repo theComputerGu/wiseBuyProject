@@ -1,62 +1,36 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { StoreCache, StoreCacheDocument } from "./schemas/store-cache.schema";
+import { StoreCache } from "./schemas/store-cache.schema";
 
 @Injectable()
 export class StoreCacheService {
-
   constructor(
-    @InjectModel(StoreCache.name)
-    private model: Model<StoreCacheDocument>
+    @InjectModel(StoreCache.name) private cacheModel: Model<StoreCache>
   ) {}
 
-
-  // 🟢 מחזיר מה־Cache רק מה שהיה שימושי ב־X שעות אחרונות
-  async findValid(barcodes: string[], ttlHours:number) {
-
-    const since = new Date(Date.now() - ttlHours * 3600 * 1000);
-
-    const docs = await this.model.find({
-  "stores.products.barcode": { $in: barcodes },
-  updatedAt:{ $gte: since }
-}).lean();
-
-
-
-    // 🟢 מחזיר בצורה: { "barcodeA":[stores], "barcodeB":[stores] }
-    return docs.reduce((acc, d) => {
-  d.stores.forEach(store => {
-    store.products.forEach(p => {
-      if (!acc[p.barcode]) acc[p.barcode] = [];
-      acc[p.barcode].push({
-        storeId: store.storeId,
-        chain: store.chain,
-        address: store.address,
-        geo: store.geo,
-        price: p.price,
-        updatedAt: p.updatedAt
-      });
-    });
-  });
-  return acc;
-}, {} as Record<string, any[]>);
-
+  // 📌 Retrieve cache for city + barcodes
+  async resolve(city: string, barcodes: string[]) {
+    return await this.cacheModel.aggregate([
+      { $match: { city } },
+      { $unwind: "$stores" },
+      { $unwind: "$stores.products" },
+      { $match: { "stores.products.barcode": { $in: barcodes } } },
+      {
+        $group: {
+          _id: "$city",
+          stores: { $push: "$stores" }
+        }
+      }
+    ]);
   }
 
-
-
-  // 🟢 שומר Batch — לא כפול ולא פעמיים!
-  async updateBatch(data:Record<string,string[][]>) {
-
-    const ops = Object.entries(data).map(([barcode,stores]) => ({
-      updateOne:{
-        filter:{ barcode },
-        update:{ barcode, stores, updatedAt:new Date()},
-        upsert:true
-      }
-    }));
-
-    return this.model.bulkWrite(ops);
+  // 📌 SAFE UPSERT → no duplicates, no version errors
+  async upsert(city: string, stores: any[]) {
+    return await this.cacheModel.findOneAndUpdate(
+      { city },
+      { $set: { stores } },      // לא עושים push – מחליפים רשימה אחת נקייה
+      { upsert: true, new: true }
+    );
   }
 }
