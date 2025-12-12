@@ -1,7 +1,3 @@
-// =====================================================
-// BUILD STORES — batch + multi-product correct merge 🔥
-// =====================================================
-
 import * as Crypto from "expo-crypto";
 import { API_URL } from "@env";
 import { StoreEntry } from "../types/Store";
@@ -22,65 +18,139 @@ async function geocode(address:string):Promise<GeoPoint>{
   }
 }
 
+// ========================
+// Distance calculator
+// ========================
+function distanceKm(lat1:number, lon1:number, lat2:number, lon2:number){
+  const R=6371;
+  const dLat=(lat2-lat1)*Math.PI/180;
+  const dLon=(lon2-lon1)*Math.PI/180;
+  const a=Math.sin(dLat/2)**2 +
+           Math.cos(lat1*Math.PI/180) *
+           Math.cos(lat2*Math.PI/180) *
+           Math.sin(dLon/2)**2;
+  return R*(2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a)));
+}
 
-// =====================================================
-// MAIN
-// =====================================================
-export async function buildStores(shopping:any[], city:string){
+// ========================
+// Raw score (un-normalized)
+// ========================
+function rawRating(store:StoreEntry, total:number, user:{lat:number,lon:number}){
+  const found = store.products.length;
+  const missing = total - found;
+  const price = store.products.reduce((s,p)=>s+p.price*p.amount,0);
+  const dist = distanceKm(user.lat,user.lon,store.geo.lat,store.geo.lon);
 
-  console.log("📦 buildStores — /scrape/batch");
-  const aggregated:Record<string,number> = {};
+  return (found*20) - (missing*25) - price*0.35 - dist*2.5;
+}
 
-  // count amount per barcode
-  shopping.forEach(i=>{
-    const code=i._id?.itemcode;
-    if(!code) return;
-    aggregated[code]=(aggregated[code]||0)+(i.quantity??1);
+// ========================
+// S-curve normalization → ⭐⭐⭐⭐⭐
+// ========================
+function normalizeRatings(stores:StoreEntry[]){
+  
+  const vals = stores.map(s=>s.rating);
+  const avg = vals.reduce((a,b)=>a+b,0)/vals.length;
+  const std = Math.sqrt(vals.reduce((a,b)=>a+(b-avg)**2,0)/vals.length) || 1;
+
+  stores.forEach(s=>{
+    const z = (s.rating - avg) / std;
+    const sigmoid = 1/(1+Math.exp(-z));  // 0–1
+    s.rating = Math.round(sigmoid*100);   // 0–100 בפועל
+    s.stars  = Math.max(1,Math.round((sigmoid*5)));  // 1–5 ⭐⭐⭐
   });
 
-  const barcodes=Object.keys(aggregated);
-  console.log("🔍 ITEMS:",barcodes.length);
+  return stores.sort((a,b)=> b.rating - a.rating);
+}
 
-  // 🔥 one batch request
-  const batch=await (await fetch(`${API_URL}/scrape/batch`,{
+
+
+// ========================
+// MAIN BUILD FUNCTION
+// ========================
+export async function buildStores(
+  shopping:any[], city:string, userLocation:{lat:number,lon:number}
+):Promise<StoreEntry[]>{
+
+  console.log("🚀 Building Store List...");
+
+  const aggregated:Record<string,number> = {};
+  shopping.forEach(i=>{
+    const code=i._id?.itemcode;
+    if(code) aggregated[code]=(aggregated[code]||0)+(i.quantity??1);
+  });
+
+  const barcodes = Object.keys(aggregated);
+  let stores:Record<string,StoreEntry> = {};
+
+
+  // 1) CACHE
+  const cacheRes = await fetch(`${API_URL}/stores/cache`,{
     method:"POST",
-    headers:{ "Content-Type":"application/json"},
-    body:JSON.stringify({city,barcodes})
-  })).json();
+    headers:{ "Content-Type":"application/json" },
+    body:JSON.stringify({ city, barcodes })
+  });
 
+  const cache = await cacheRes.json();
 
-  const stores:Record<string,StoreEntry> = {};
+  if(cache && cache.stores?.length){
+    console.log("🟢 CACHE HIT");
 
-  for(const barcode of barcodes){
-    const rows=batch[barcode];
-    if(!rows) continue;
+    for(const s of cache.stores){
+      const id=await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.MD5,s.chain+s.address);
 
-    for(const row of rows){
-      const chain=row[0], branch=row[1], address=row[2];
-      const price=+row[4]||0;
-      const amount=aggregated[barcode];
-
-      const id=await Crypto.digestStringAsync(
-        Crypto.CryptoDigestAlgorithm.MD5,
-        chain+branch+address
-      );
-
-      if(!stores[id]){
-        stores[id]={
-          id, chain, city:branch, address,
-          geo:await geocode(address),
-          products:[], score:0
-        };
+      stores[id]={
+        id,
+        chain:s.chain,
+        address:s.address,
+        geo:s.geo ?? {lat:0,lon:0},
+        products:s.products.map((p:any)=>({
+          itemcode:p.barcode,
+          price:p.price,
+          amount:aggregated[p.barcode] ?? 1
+        })),
+        score:0,rating:0,stars:0
       }
-
-      // ← FIX: לא מוחקים מוצרים קודמים, רק מוסיפים ברקוד נוסף 🔥
-      stores[id].products.push({ itemcode:barcode, price, amount });
     }
   }
 
+
+  // 2) SCRAPE missing only
+  const missing = barcodes.filter(
+    b=>!Object.values(stores).some(s=>s.products.some(p=>p.itemcode===b))
+  );
+
+  if(missing.length){
+    console.log("🔴 SCRAPE →", missing);
+
+    const scraped = await (await fetch(`${API_URL}/scrape/batch`,{
+      method:"POST",
+      headers:{ "Content-Type":"application/json"},
+      body:JSON.stringify({city,barcodes:missing})
+    })).json();
+
+    for(const barcode of missing){
+      const rows=scraped[barcode]; if(!rows) continue;
+
+      for(const row of rows){
+        const chain=row[0], address=row[2], price=+row[4]||0;
+        const id=await Crypto.digestStringAsync(Crypto.CryptoDigestAlgorithm.MD5,chain+address);
+
+        if(!stores[id]){
+          stores[id]={id,chain,address,geo:await geocode(address),products:[],score:0,rating:0,stars:0};
+        }
+
+        stores[id].products.push({itemcode:barcode,price,amount:aggregated[barcode]});
+      }
+    }
+  }
+
+
+  // 3) Final scoring
   Object.values(stores).forEach(s=>{
-    s.score=s.products.reduce((sum,p)=>sum+p.price*p.amount,0);
+    s.score = s.products.reduce((sum,p)=>sum+p.price*p.amount,0);
+    s.rating = rawRating(s,barcodes.length,userLocation);
   });
 
-  return Object.values(stores);
+  return normalizeRatings(Object.values(stores));
 }
