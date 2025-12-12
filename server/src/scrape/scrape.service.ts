@@ -1,104 +1,114 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { exec } from "child_process";
 import * as path from "path";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
+import { StoresService } from "../stores/stores.service";
 
-import { StoreCache, StoreCacheDocument } from "../stores/schemas/store-cache.schema";
-import { geocode } from "../utils/geocode";  // ודא נתיב נכון
-
-// ---- PATHS ------------------
-const ROOT = process.cwd();
-const PY   = path.join(ROOT,"venv","Scripts","python.exe");
-const SCR  = path.join(ROOT,"Webscrapers");
-
-// =============================================================
-// 🔥 ScrapeService — Cache + Scraping + Merge Safe
-// =============================================================
 @Injectable()
 export class ScrapeService {
+  constructor(private readonly storesService: StoresService) { }
 
-  constructor(
-    @InjectModel(StoreCache.name)
-    private cacheDB: Model<StoreCacheDocument>
-  ) {}
+  private readonly PYTHON = path.join(
+    process.cwd(),
+    "venv",
+    "Scripts",
+    "python.exe"
+  );
 
-  // =============================================================
-  // 🚀 MAIN BATCH – Scrape Only Missing Barcodes
-  // =============================================================
-  async batch(city:string, barcodes:string[]) {
+  private readonly SCRIPT = path.join(
+    process.cwd(),
+    "Webscrapers",
+    "chpscrapperShops.py"
+  );
 
-    // 1) נטען מסמך יחיד לעיר (אם אין — המשך ייצור דרך upsert)
-    const existing = await this.cacheDB.findOne({ city }).lean();
-    const currentStores = existing?.stores ?? [];
+  // -----------------------------
+  // Parse raw scraper output
+  // -----------------------------
+  private parseStores(raw: string[][]) {
+    const stores: { chain: string; address: string; price: number, }[] = [];
 
-    // -------------------------------------------------------------
-    // 2) מציאת ברקודים שחסרים בחנויות הקיימות בקאש
-    const missing = barcodes.filter(bc =>
-      !currentStores.some(s => s.products.some(p => p.barcode === bc))
-    );
+    for (const r of raw) {
+      if (r.length < 5) continue;
 
-    if(missing.length === 0){
-      console.log(`🟢 CACHE HIT (${city}) — No scraping needed`);
-      return existing;
+      const chain = r[0];
+      const address = r[2];
+
+      const priceText =
+        r[5] && r[5].trim() ? r[5] :
+          r[4] && r[4].trim() ? r[4] :
+            null;
+
+      if (!priceText) continue;
+
+      const match = priceText.match(/([\d.]+)/);
+      if (!match) continue;
+
+      stores.push({
+        chain,
+        address,
+        price: Number(match[1]),
+      });
     }
 
-    console.log(`🔴 Scraping ${missing.length} missing products for: ${city}`);
-
-    // -------------------------------------------------------------
-    // 3) Python Scraper — רק על מה שחסר
-    const scraped = await this.runPy("chpscrapperBatch.py",[city,...missing]) as Record<string, any[]>;
-    if(!scraped || scraped.error) return existing;
+    return stores;
+  }
 
 
-    // -------------------------------------------------------------
-    // 4) מיזוג תוצאות scraping לתוך מבנה הקאש הקיים
-    for(const [barcode, rows] of Object.entries(scraped)){
 
-      for(const row of rows){
-        const [chain,,address,,price] = row;
-        const storeId = chain+"_"+address;
-
-        // --- Find/Insert store -----------------
-        let store = currentStores.find(s=>s.storeId===storeId);
-        if(!store){
-          store = { storeId, chain, address, geo: await geocode(address), products:[] };
-          currentStores.push(store);
+  // -----------------------------
+  // Exec helper
+  // -----------------------------
+  private execScraper(cmd: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      exec(cmd, { maxBuffer: 10 * 1024 * 1024 }, (err, stdout, stderr) => {
+        if (err) {
+          console.error(stderr);
+          return reject(err);
         }
+        resolve(stdout);
+      });
+    });
+  }
 
-        // --- Add product only if not exists ----
-        if(!store.products.some(p=>p.barcode===barcode)){
-          store.products.push({
-            barcode,
-            price:+price||0,
-            updatedAt:new Date()
-          });
-        }
+  // -----------------------------
+  // Scrape single barcode
+  // -----------------------------
+  async scrapeOne(barcode: string, city: string) {
+    const cmd = `"${this.PYTHON}" "${this.SCRIPT}" "${barcode}" "${city}"`;
+
+    try {
+      const stdout = await this.execScraper(cmd);
+      const parsed = JSON.parse(stdout);
+
+      const stores = this.parseStores(parsed.stores);
+      if (!stores.length) {
+        throw new Error("No valid store prices found");
+      }
+      console.log("stores" ,stores)
+
+      await this.storesService.upsertStores(barcode, stores);
+
+      return { itemcode: barcode, stores };
+    } catch (e) {
+      throw new InternalServerErrorException(
+        "Scraping or parsing failed",
+      );
+    }
+  }
+
+  // -----------------------------
+  // Scrape multiple barcodes
+  // -----------------------------
+  async scrapeBatch(barcodes: string[], city: string) {
+    const results: any[] = [];
+
+    for (const barcode of barcodes) {
+      try {
+        results.push(await this.scrapeOne(barcode, city));
+      } catch {
+        results.push({ itemcode: barcode, error: true });
       }
     }
 
-    // -------------------------------------------------------------
-    // 5) SAVE — Atomic Upsert (⚠ אין save() → אין כפילות!)
-    await this.cacheDB.updateOne(
-      { city },
-      { $set:{ stores:currentStores, updatedAt:new Date() }},
-      { upsert:true }
-    );
-
-    return this.cacheDB.findOne({ city });
-  }
-
-  // =============================================================
-  // 🧠 PYTHON WRAPPER
-  // =============================================================
-  private runPy(file:string,args:string[]){
-    return new Promise(resolve=>{
-      const cmd=`"${PY}" "${path.join(SCR,file)}" ${args.map(a=>`"${a}"`).join(" ")}`;
-      exec(cmd,(err,stdout)=>{
-        if(err) return resolve({error:true});
-        try{ resolve(JSON.parse(stdout)); }
-        catch{ resolve({error:"parse"}); }
-      });
-    });
+    return results;
   }
 }

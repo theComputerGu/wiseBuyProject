@@ -3,12 +3,26 @@ import { ScrapeService } from "./scrape.service";
 
 @Controller("scrape")
 export class ScrapeController {
+  constructor(private readonly scrapeService: ScrapeService) {}
 
-  constructor(private readonly scrape: ScrapeService) {}
+  // =========================
+  // POST /scrape/one
+  // =========================
+  @Post("one")
+  async scrapeOne(
+    @Body() body: { barcode: string; city: string },
+  ) {
+    return this.scrapeService.scrapeOne(body.barcode, body.city);
+  }
 
-  // 🚀 בקשה אחת בלבד עם כל הברקודים
+  // =========================
+  // POST /scrape/batch
+  // =========================
   @Post("batch")
-  async batch(@Body() body:{ city:string; barcodes:string[] }) {
-    return this.scrape.batch(body.city, body.barcodes);
+  async scrapeBatch(
+    @Body()
+    body: { barcodes: string[]; city: string },
+  ) {
+    return this.scrapeService.scrapeBatch(body.barcodes, body.city);
   }
 }

@@ -1,45 +1,78 @@
-import { baseApi } from "./baseApi";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { API_URL } from "@env";
 
-export interface CHPStoreRow {
-  name: string;
-  branch: string;
+// --------------------
+// Types
+// --------------------
+export type StoreOffer = {
+  chain: string;
   address: string;
   price: number;
-}
+};
 
-export interface CHPStoresResponse {
-  stores: string[][];
-}
+export type ScrapeSuccess = {
+  itemcode: string;
+  stores: StoreOffer[];
+};
 
-export const storeApi = baseApi.injectEndpoints({
-  endpoints: (builder) => ({
-    getStoresForProduct: builder.query<
-      CHPStoreRow[],
-      { barcode: string; city: string }
+export type ScrapeFailure = {
+  itemcode: string;
+  error: true;
+};
+
+export type ScrapeResult = ScrapeSuccess | ScrapeFailure;
+
+export type StoresDoc = {
+  itemcode: string;
+  stores: StoreOffer[];
+};
+
+// --------------------
+// API
+// --------------------
+export const storeApi = createApi({
+  reducerPath: "storeApi",
+  baseQuery: fetchBaseQuery({
+    baseUrl: API_URL,
+  }),
+  endpoints: builder => ({
+
+    // 🔥 SCRAPE (side-effect only)
+    scrapeStores: builder.mutation<
+      ScrapeResult[],
+      { barcodes: string[]; city: string }
     >({
-      query: ({ barcode, city }) => {
-        const encodedCity = encodeURIComponent(city);
-        const url = `/scrape/stores/${barcode}/${encodedCity}`;
+      query: body => ({
+        url: "/scrape/batch",
+        method: "POST",
+        body,
+      }),
+    }),
 
-        console.log("🛰 RTK FETCH:", url);
-        return url;
-      },
+    // ✅ LOAD CACHE (THIS WAS MISSING)
+    getStoresBulk: builder.mutation<
+      StoresDoc[],
+      { itemcodes: string[] }
+    >({
+      query: body => ({
+        url: "/stores/bulk",
+        method: "POST",
+        body,
+      }),
+    }),
 
-      transformResponse: (res: CHPStoresResponse) => {
-        console.log("🛰 RTK RESPONSE RAW:", res);
-
-        if (!res?.stores) return [];
-
-        return res.stores.map((row) => ({
-          name: row[0],
-          branch: row[1],
-          address: row[2],
-          price: parseFloat(row[4] || "0"),
-        }));
-      },
+    // (optional, nice to have)
+    getStoresByItemcode: builder.query<
+      StoresDoc | null,
+      string
+    >({
+      query: itemcode => `/stores?itemcode=${itemcode}`,
     }),
   }),
 });
 
-export const { useGetStoresForProductQuery, useLazyGetStoresForProductQuery } =
-  storeApi;
+export const {
+  useScrapeStoresMutation,
+  useGetStoresBulkMutation,
+  useGetStoresByItemcodeQuery,
+} = storeApi;
