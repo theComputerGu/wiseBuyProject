@@ -1,17 +1,14 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import { baseApi } from "../svc/baseApi";
-// ❌ אל תייבא reducerPath מהstoreApi
-// import { storeApi } from "../svc/storeApi";
-
 import userReducer from "../slices/userSlice";
 import groupReducer from "../slices/groupSlice";
 import shoppingListReducer from "../slices/shoppinglistSlice";
 import recommendedReducer from "../slices/recommendedSlice";
 import uiReducer from "../slices/uiSlice";
 import checkoutReducer from "../slices/checkoutSlice";
+
 
 const persistConfig = {
   key: "root",
