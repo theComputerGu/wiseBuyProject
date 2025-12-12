@@ -37,6 +37,8 @@ type AggregatedStore = {
   id: string;
   chain: string;
   address: string;
+  lat: number;
+  lon: number;
   score: number;
   itemsFound: number;
   itemsMissing: number;
@@ -141,6 +143,8 @@ export default function CheckoutScreen() {
      AGGREGATE + SORT
   ========================= */
   const aggregatedStores = useMemo<AggregatedStore[]>(() => {
+    if (!userLocation) return [];
+
     const map: Record<string, AggregatedStore> = {};
     const totalItems = shoppingList.length;
 
@@ -161,6 +165,8 @@ export default function CheckoutScreen() {
             id: key,
             chain: o.chain,
             address: o.address,
+            lat: o.geo?.lat ?? userLocation.lat,
+            lon: o.geo?.lon ?? userLocation.lon,
             score: 0,
             itemsFound: 0,
             itemsMissing: totalItems,
@@ -222,18 +228,7 @@ export default function CheckoutScreen() {
         <TopNav />
         <Title text="Checkout" />
 
-        {/* Radius */}
-        <View style={{ alignItems: "center", marginVertical: 10 }}>
-          <ItimText>Radius: {radius} km</ItimText>
-          <Slider
-            value={radius}
-            minimumValue={1}
-            maximumValue={20}
-            step={1}
-            style={{ width: "80%" }}
-            onValueChange={setRadius}
-          />
-        </View>
+
 
         {/* MAP */}
         <View style={styles.mapContainer}>
@@ -256,8 +251,8 @@ export default function CheckoutScreen() {
                   title={s.chain}
                   description={`₪${s.score.toFixed(2)}`}
                   coordinate={{
-                    latitude: userLocation.lat,
-                    longitude: userLocation.lon,
+                    latitude: s.lat,
+                    longitude: s.lon,
                   }}
                 />
               ))}

@@ -4,10 +4,16 @@ import { API_URL } from "@env";
 // --------------------
 // Types
 // --------------------
+export type GeoPoint = {
+  lat: number;
+  lon: number;
+};
+
 export type StoreOffer = {
   chain: string;
   address: string;
   price: number;
+  geo?: GeoPoint;   
 };
 
 export type ScrapeSuccess = {
