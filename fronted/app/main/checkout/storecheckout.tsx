@@ -49,8 +49,9 @@ export default function StoreCheckoutScreen() {
 
   const [addToHistory] = useAddToHistoryMutation();
 
-
-  // Fix URLs for images
+  // -------------------------------------------------------
+  // Fix image URLs
+  // -------------------------------------------------------
   const fixImageURL = (url?: string) => {
     if (!url) return "";
     try {
@@ -64,16 +65,21 @@ export default function StoreCheckoutScreen() {
   };
 
   const totalPrice = storeData
-    ? storeData.products.reduce((sum, i) => sum + i.price * i.amount, 0).toFixed(2)
+    ? storeData.products
+        .reduce((sum, i) => sum + i.price * i.amount, 0)
+        .toFixed(2)
     : "0.00";
 
-  // Missing products
+  // -------------------------------------------------------
+  // Missing products (לוגיקה נשארה זהה)
+  // -------------------------------------------------------
   const missingProducts = items.filter(
     i => !storeData?.products.some(p => p.itemcode === i._id.itemcode)
   );
 
-
-  // SAVE HISTORY
+  // -------------------------------------------------------
+  // SAVE HISTORY (לא נוגע)
+  // -------------------------------------------------------
   const handleCheckout = async () => {
     if (!storeData || !activeGroup) return;
 
@@ -96,8 +102,9 @@ export default function StoreCheckoutScreen() {
     }
   };
 
-
-  // If store missing
+  // -------------------------------------------------------
+  // STORE NOT FOUND
+  // -------------------------------------------------------
   if (!storeData)
     return (
       <SafeAreaView style={styles.centerPage}>
@@ -108,7 +115,6 @@ export default function StoreCheckoutScreen() {
       </SafeAreaView>
     );
 
-
   // =======================================================
   //      UI
   // =======================================================
@@ -116,6 +122,7 @@ export default function StoreCheckoutScreen() {
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
 
+        {/* TOP BAR */}
         <View style={styles.top}>
           <Pressable onPress={() => router.replace("/main/checkout/checkout")}>
             <MaterialCommunityIcons name="arrow-left" size={26} color="#197FF4" />
@@ -123,8 +130,8 @@ export default function StoreCheckoutScreen() {
           <ItimText size={20} weight="bold">{storeData.chain}</ItimText>
         </View>
 
-
         <ScrollView showsVerticalScrollIndicator={false}>
+
           {/* AVAILABLE ITEMS */}
           {storeData.products.map(p => {
             const ref = items.find(i => i._id.itemcode === p.itemcode);
@@ -139,21 +146,17 @@ export default function StoreCheckoutScreen() {
             );
           })}
 
-          {/* MISSING ITEMS */}
-          {missingProducts.length > 0 && (
-            <View style={styles.missingBox}>
-              <ItimText size={16} weight="bold" color="#c40000">
-                ❗ מוצרים שלא נמצאו בסניף
-              </ItimText>
-
-              {missingProducts.map(m => (
-                <View style={styles.missingRow} key={m._id.itemcode}>
-                  <ItimText size={14}>{m._id.title}</ItimText>
-                  <ItimText size={14} color="#c40000" weight="bold">× {m.quantity}</ItimText>
-                </View>
-              ))}
-            </View>
-          )}
+          {/* MISSING ITEMS — אותו CheckoutCard בדיוק */}
+          {missingProducts.map(m => (
+            <CheckoutCard
+              key={`missing-${m._id.itemcode}`}
+              name={m._id.title}
+              quantity={m.quantity}
+              price={0}
+              image={{ uri: fixImageURL(m._id.image) }}
+              missing
+            />
+          ))}
 
           <View style={{ height: 25 }} />
         </ScrollView>
@@ -165,26 +168,19 @@ export default function StoreCheckoutScreen() {
   );
 }
 
-
+// =======================================================
+//       STYLES
 // =======================================================
 const styles = StyleSheet.create({
   wrapper: { flex: 1, backgroundColor: "#fff" },
   container: { flex: 1, paddingHorizontal: 20 },
   centerPage: { flex: 1, justifyContent: "center", alignItems: "center" },
 
-  top: { flexDirection: "row", alignItems: "center", gap: 15, marginBottom: 10, marginTop: 5 },
-
-  missingBox: {
-    marginTop: 18,
-    padding: 12,
-    borderRadius: 10,
-    backgroundColor: "#ffe5e5",
-    borderLeftWidth: 4,
-    borderLeftColor: "#c40000"
-  },
-  missingRow: {
+  top: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 6,
+    alignItems: "center",
+    gap: 15,
+    marginBottom: 10,
+    marginTop: 5,
   },
 });
