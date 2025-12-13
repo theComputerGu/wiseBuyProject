@@ -83,8 +83,6 @@ export class ScrapeService {
       if (!stores.length) {
         throw new Error("No valid store prices found");
       }
-      console.log("stores" ,stores)
-
       await this.storesService.upsertStores(barcode, stores);
 
       return { itemcode: barcode, stores };

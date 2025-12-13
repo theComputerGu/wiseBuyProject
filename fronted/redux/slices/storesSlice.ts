@@ -1,33 +1,87 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { storeApi, StoreOffer } from "../svc/storeApi";
 
-type StoresState = {
-    byItemcode: Record<string, StoreOffer[]>;
+/* ======================================================
+   TYPES — MATCH NESTJS BACKEND SCHEMA 1:1
+====================================================== */
+
+export type GeoPoint = {
+    lat: number;
+    lon: number;
+};
+
+export type StoreOffer = {
+    chain: string;          // "Shufersal", "Rami Levy"
+    address: string;        // full address
+    price: number;          // price in ILS
+    geo?: GeoPoint;         // optional
+    lastUpdated?: string;    // Date serialized as ISO string
+};
+
+export type StoresEntry = {
+    itemcode: string;       // barcode
+    stores: StoreOffer[];
+};
+
+/* ======================================================
+   STATE
+====================================================== */
+
+export type StoresState = {
+    stores: Record<string, StoresEntry>; // key = itemcode
+    signature: string | null;
 };
 
 const initialState: StoresState = {
-    byItemcode: {},
+    stores: {},
+    signature: null,
 };
+
+/* ======================================================
+   SLICE
+====================================================== */
 
 const storesSlice = createSlice({
     name: "stores",
     initialState,
     reducers: {
+        // 1️⃣ Clear everything
         clearStores(state) {
-            state.byItemcode = {};
+            state.stores = {};
+        },
+
+        // 2️⃣ Replace entire store object
+        setStores(
+            state,
+            action: PayloadAction<Record<string, StoresEntry>>
+        ) {
+            state.stores = action.payload;
+        },
+
+        setSignature(state, action: PayloadAction<string>) {
+            state.signature = action.payload;
+        },
+
+        // 3️⃣ Append / upsert single StoresEntry
+        appendStores(state, action: PayloadAction<StoresEntry>) {
+            const entry = action.payload;
+            state.stores[entry.itemcode] = entry;
         },
     },
-    extraReducers: builder => {
-        builder.addMatcher(
-            storeApi.endpoints.getStoresBulk.matchFulfilled,
-            (state, action) => {
-                for (const doc of action.payload) {
-                    state.byItemcode[doc.itemcode] = doc.stores;
-                }
-            }
-        );
-    }
 });
 
-export const { clearStores } = storesSlice.actions;
+/* ======================================================
+   ACTIONS
+====================================================== */
+
+export const {
+    clearStores,
+    setStores,
+    appendStores,
+    setSignature,
+} = storesSlice.actions;
+
+/* ======================================================
+   REDUCER
+====================================================== */
+
 export default storesSlice.reducer;

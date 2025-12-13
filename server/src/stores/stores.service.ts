@@ -26,7 +26,6 @@ export class StoresService {
     itemcode: string,
     offers: Omit<StoreOffer, "lastUpdated" | "geo">[],
   ) {
-    console.log("UPSERT ITEMCODE:", itemcode, typeof itemcode);
 
     let doc = await this.storesModel.findOne({ itemcode });
 
