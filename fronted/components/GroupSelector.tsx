@@ -12,6 +12,11 @@ import { useGetListByIdQuery } from "../redux/svc/shoppinglistApi";
 import { setActiveGroup } from "../redux/slices/groupSlice";
 import { setActiveList } from "../redux/slices/shoppinglistSlice";
 
+function capitalizeFirstLetter(name: string) {
+  if (!name) return name;
+  return name[0].toUpperCase() + name.slice(1);
+}
+
 export default function GroupSelector() {
   const dispatch = useDispatch();
 
@@ -70,7 +75,7 @@ export default function GroupSelector() {
       {/* כותרת עם חץ */}
       <Pressable style={styles.titleRow} onPress={() => setOpen(!open)}>
         <ItimText size={26} weight="bold" color="#197FF4">
-          {activeGroup?.name ?? "Group"}
+          {capitalizeFirstLetter(activeGroup?.name ?? "Group")}
         </ItimText>
 
         <Ionicons

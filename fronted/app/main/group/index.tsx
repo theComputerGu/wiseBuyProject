@@ -19,6 +19,10 @@ import { useLazyGetListByIdQuery } from "../../../redux/svc/shoppinglistApi";
 import { API_URL } from "@env";
 
 const BRAND = "#197FF4";
+function capitalizeFirstLetter(name: string) {
+  if (!name) return name;
+  return name[0].toUpperCase() + name.slice(1);
+}
 
 export default function GroupPage() {
   const user = useSelector((s: RootState) => s.user);
@@ -77,7 +81,9 @@ export default function GroupPage() {
             <>
               <View style={s.row}>
                 <Pressable style={{ flex: 1 }} onPress={() => toggleGroup(item._id)}>
-                  <Text style={s.link}>{item.name}</Text>
+                  <Text style={s.link}>
+                    {capitalizeFirstLetter(item.name)}
+                  </Text>
                 </Pressable>
 
                 <Pressable

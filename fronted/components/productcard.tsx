@@ -39,12 +39,12 @@ function ProductCard({
         <View style={s.headerRow}>
           <View style={{ flex: 1 }}>
             {/* 🔥 הופך תמיד למחרוזת */}
-            <ItimText size={16} color="#000" weight="bold">
+            <ItimText size={16} color="#000" weight="bold"  style={s.rtlText}>
               {String(name)}
             </ItimText>
 
             {/* 🔥 לעולם לא יחזיר undefined / null */}
-            <ItimText size={14} color="#555">
+            <ItimText size={14} color="#555" style={s.rtlText} >
               {String(`${price}${averageLabel ? ` (${averageLabel})` : ""}`)}
             </ItimText>
           </View>
@@ -55,7 +55,7 @@ function ProductCard({
 
         {/* --- Quantity controls --- */}
         <View style={s.row}>
-          <Pressable style={s.btn} onPress={onDecrease} hitSlop={8}>
+          <Pressable style={s.btn} onPress={onDecrease} hitSlop={8} >
             <MaterialCommunityIcons name="minus" size={18} color={BRAND} />
           </Pressable>
 
@@ -94,7 +94,7 @@ const s = StyleSheet.create({
     marginVertical: 8,
     alignItems: "center",
   },
-  img: { width: 64, height: 92, resizeMode: "contain", borderRadius: 8 },
+  img: { width: 70, height: 110, resizeMode: "contain" , marginLeft: 10,borderRadius: 8 },
   info: { flex: 1, marginLeft: 12 },
   headerRow: {
     flexDirection: "row",
@@ -108,7 +108,7 @@ const s = StyleSheet.create({
     marginLeft: 8,
     alignSelf: "center",
   },
-  row: { flexDirection: "row", alignItems: "center", marginTop: 6, gap: 8 },
+  row: { flexDirection: "row", alignItems: "center",justifyContent: "center", marginRight: 50, marginTop:20, gap: 8 },
   btn: {
     borderWidth: 1,
     borderColor: BRAND,
@@ -125,6 +125,13 @@ const s = StyleSheet.create({
     minWidth: 40,
     alignItems: "center",
   },
+
+  rtlText: {
+  textAlign: "right",
+  writingDirection: "rtl",
+},
+
+
 });
 
 export default memo(ProductCard);
