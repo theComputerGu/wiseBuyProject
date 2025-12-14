@@ -35,13 +35,13 @@ export default function Home() {
         <Image source={Logo} style={styles.img} />
 
         {/* ✅ Use Title component for consistency */}
-        <ItimText size={70} color="#197FF4"  family='Itim_400Regular'>
+        <ItimText size={70} color="#197FF4"  >
           WiseBuy
         </ItimText>
-        <ItimText size={30} color="#197FF4" style={{ marginTop: 6 }} family='Itim_400Regular'>
+        <ItimText size={30} color="#197FF4" style={{ marginTop: 6 }} >
           Shop smart. Stock right.
         </ItimText>
-        <ItimText size={30} color="#197FF4" family='Itim_400Regular'>
+        <ItimText size={30} color="#197FF4">
           Save big.
         </ItimText>
 

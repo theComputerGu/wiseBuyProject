@@ -27,6 +27,9 @@ import {
   removeItem,
 } from "../../redux/slices/shoppinglistSlice";
 
+
+
+
 export default function ProductScreen() {
   const dispatch = useDispatch();
 
@@ -160,7 +163,7 @@ export default function ProductScreen() {
 
       <BottomSummary
         amount={totalItems}
-        price={totalPrice.toFixed(2)}
+        price={totalPrice.toFixed(1)}
       />
 
       <BottomNav />

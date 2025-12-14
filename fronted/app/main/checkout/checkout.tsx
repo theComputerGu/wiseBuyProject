@@ -361,38 +361,49 @@ export default function CheckoutScreen() {
           ) : (
             aggregatedStores.map((s) => (
               <Pressable
-                key={s.id}
-                style={[
-                  styles.storeCard,
-                  s.itemsMissing > 0 && styles.partialStore,
-                ]}
-                onPress={() => {
-                  const payload = buildStoreCheckoutPayload(s);
-                  router.replace({
-                    pathname: "/main/checkout/storecheckout",
-                    params: { store: JSON.stringify(payload) },
-                  });
-                }}
-              >
-                <View>
-                  <ItimText weight="bold">{s.chain}</ItimText>
-                  <ItimText size={12}>{s.address}</ItimText>
+  key={s.id}
+  style={[
+    styles.storeCard,
+    s.itemsMissing > 0 && styles.partialStore,
+  ]}
+  onPress={() => {
+    const payload = buildStoreCheckoutPayload(s);
+    router.replace({
+      pathname: "/main/checkout/storecheckout",
+      params: { store: JSON.stringify(payload) },
+    });
+  }}
+>
+  {/* שמאל – מחיר */}
+  <View style={styles.leftCol}>
+    <ItimText
+      color="#197FF4"
+      weight="bold"
+      style={styles.price}
+    >
+      ₪{s.score.toFixed(2)}
+    </ItimText>
+  </View>
 
-                  {s.itemsMissing === 0 ? (
-                    <ItimText size={12} color="#2e7d32">
-                      ✔ All items available
-                    </ItimText>
-                  ) : (
-                    <ItimText size={12} color="#a00">
-                      Missing {s.itemsMissing} item
-                    </ItimText>
-                  )}
-                </View>
+  {/* ימין – טקסטים */}
+  <View style={styles.rightCol}>
+    <ItimText weight="bold">{s.chain}</ItimText>
+    <ItimText size={12}>{s.address}</ItimText>
 
-                <ItimText color="#197FF4" weight="bold">
-                  ₪{s.score.toFixed(2)}
-                </ItimText>
-              </Pressable>
+    {s.itemsMissing === 0 ? (
+      <ItimText size={12} color="#2e7d32">
+        כל המוצרים זמינים
+      </ItimText>
+    ) : (
+      <ItimText size={12} color="#a00">
+        חסרים {s.itemsMissing} מוצרים
+      </ItimText>
+    )}
+  </View>
+</Pressable>
+
+
+
             ))
           )}
           <View style={{ height: 120 }} />
@@ -404,11 +415,14 @@ export default function CheckoutScreen() {
   );
 }
 
-/* =========================
-   Styles
-========================= */
+
+
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: 20 },
+  /* ===== LAYOUT GENERAL ===== */
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+  },
 
   mapContainer: {
     height: 250,
@@ -417,20 +431,41 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 
-  map: { width: "100%", height: "100%" },
-
-  storeCard: {
-    backgroundColor: "#fff",
-    borderRadius: 14,
-    padding: 14,
-    marginBottom: 12,
-    borderWidth: 1,
-    borderColor: "#a1a1a1ff",
-    elevation: 4,
-    flexDirection: "row",
-    justifyContent: "space-between",
+  map: {
+    width: "100%",
+    height: "100%",
   },
 
+  /* ===== STORE CARD ===== */
+storeCard: {
+  backgroundColor: "#fff",
+  borderRadius: 14,
+  padding: 14,
+  marginBottom: 12,
+  borderWidth: 1,
+  borderColor: "#a1a1a1ff",
+  elevation: 4,
+
+  flexDirection: "row",          // לא row-reverse
+  justifyContent: "space-between",
+  alignItems: "flex-start",
+},
+
+leftCol: {
+  alignItems: "flex-start",      // מחיר שמאל
+},
+
+rightCol: {
+  flex: 1,
+  alignItems: "flex-end",        // טקסטים ימין
+},
+
+price: {
+  marginTop: 10,                 // הורדה קטנה של המחיר
+},
+
+
+  /* ===== PARTIAL STORE ===== */
   partialStore: {
     backgroundColor: "#f2f2f2",
     opacity: 0.65,
