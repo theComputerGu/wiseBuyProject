@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
+  ScrollView,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -17,58 +18,83 @@ export default function AddItemScreen() {
 
   const categories = [
     {
-      name: "meats",
-      key: "meats",
-      image: { uri: `${API_URL}/uploads/products/meat.png` },
+      name: "ירקות ופירות",
+      key: "ירקות ופירות",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
     },
     {
-      name: "dairy",
-      key: "dairy",
-      image: { uri: `${API_URL}/uploads/products/dairy.png` },
+      name: "מוצרי קירור וביצים",
+      key: "מוצרי קירור וביצים",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
     },
     {
-      name: "drinks",
-      key: "drinks",
-      image: { uri: `${API_URL}/uploads/products/drinks.png` },
+      name: "לחמים עוגות ועוגיות",
+      key: "לחמים עוגות ועוגיות",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
     },
     {
-      name: "snacks",
-      key: "snacks",
-      image: { uri: `${API_URL}/uploads/products/snacks.png` },
+      name: "עוף בשר ודגים",
+      key: "עוף בשר ודגים",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
     },
     {
-      name: "sauces",
-      key: "sauces",
-      image: { uri: `${API_URL}/uploads/products/sauces.png` },
+      name: "שימורים בישול ואפייה",
+      key: "שימורים בישול ואפייה",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
     },
     {
-      name:  "cosmetics",
-      key: "cosmetics",
-      image: { uri: `${API_URL}/uploads/products/cosmetics.png` },
+      name: "דגנים",
+      key: "דגנים",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
     },
     {
-      name: "hygiene",
-      key: "hygiene",
-      image: { uri: `${API_URL}/uploads/products/hygiene.png` },
+      name: "מעדנייה סלטים ונקניקים",
+      key: "מעדנייה סלטים ונקניקים",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
     },
     {
-      name: "cereals",
-      key: "cereals",
-      image: { uri: `${API_URL}/uploads/products/cereals.png` },
+      name: "קפואים",
+      key: "קפואים",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
     },
     {
-      name: "frozen",
-      key: "frozen",
-      image: { uri: `${API_URL}/uploads/products/frozen.png` },
-    },
-     {
-      name: "fruits",
-      key: "fruits",
-      image: { uri: `${API_URL}/uploads/products/fruit.png` },
+      name: "משקאות ויין",
+      key: "משקאות ויין",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
     },
     {
-      name: "other",
-      key: "other",
+      name: "בריאות ותזונה",
+      key: "בריאות ותזונה",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
+    },
+    {
+      name: "חטיפים וממתקים",
+      key: "חטיפים וממתקים",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
+    },
+    {
+      name: "נקיון",
+      key: "נקיון",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
+    },
+    {
+      name: "פארם ותינוקות",
+      key: "פארם ותינוקות",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
+    },
+    {
+      name: "פנאי ובעלי חיים",
+      key: "פנאי ובעלי חיים",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
+    },
+    {
+      name: "הכל לבית",
+      key: "הכל לבית",
+      image: { uri: `${API_URL}/uploads/products/other.png` },
+    },
+    {
+      name: "אחר",
+      key: "אחר",
       image: { uri: `${API_URL}/uploads/products/other.png` },
     },
   ];
@@ -81,7 +107,6 @@ export default function AddItemScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-
       <SearchHeader
         placeholder="Search category..."
         backRoute="/main/product"
@@ -91,7 +116,11 @@ export default function AddItemScreen() {
 
       <Title text="Categories" />
 
-      <View style={styles.categoriesGrid}>
+      {/* ✅ SCROLL VIEW */}
+      <ScrollView
+        contentContainerStyle={styles.categoriesGrid}
+        showsVerticalScrollIndicator={false}
+      >
         {filteredCategories.map((cat) => (
           <CategoryCard
             key={cat.key}
@@ -104,7 +133,7 @@ export default function AddItemScreen() {
             }
           />
         ))}
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -121,7 +150,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 12,
     justifyContent: 'flex-start',
-    marginTop: 8,
     paddingBottom: 60,
+    marginTop: 8,
   },
 });

@@ -102,7 +102,7 @@ export default function CheckoutScreen() {
   const currentSignature = shoppingSignature(shoppingList);
 
   const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
-  const [radius, setRadius] = useState(5);
+  const [radius, setRadius] = useState(3);
   const [isBuilding, setIsBuilding] = useState(false);
 
   const [scrapeStores, { isLoading: scraping }] = useScrapeStoresMutation();
@@ -301,12 +301,12 @@ export default function CheckoutScreen() {
 
         {/* Radius */}
         <View style={{ alignItems: "center", marginVertical: 10 }}>
-          <ItimText>Radius: {radius} km</ItimText>
+          <ItimText color="#197FF4">Radius: {radius} km</ItimText>
           <Slider
             value={radius}
             minimumValue={1}
-            maximumValue={20}
-            step={1}
+            maximumValue={3}
+            step={0.5}
             style={{ width: "80%" }}
             onValueChange={setRadius}
           />

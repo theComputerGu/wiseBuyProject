@@ -85,7 +85,7 @@
     "brand": "ג'\\נרל מילס",
     "pricerange": "₪26.90 - ₪29.90",
     "image": "http://127.0.0.1:3000/uploads/products/16000185517.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T17:38:44.148Z"
     },
@@ -807,7 +807,7 @@
     "brand": "סי. פי. צרפת",
     "pricerange": "₪18.00 - ₪23.90",
     "image": "http://127.0.0.1:3000/uploads/products/3387390320244.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T17:40:58.072Z"
     },
@@ -826,7 +826,7 @@
     "brand": "סי. פי. צרפת",
     "pricerange": "₪18.30 - ₪32.90",
     "image": "http://127.0.0.1:3000/uploads/products/3387390525960.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T17:41:03.044Z"
     },
@@ -845,7 +845,7 @@
     "brand": "סי. פי. צרפת",
     "pricerange": "₪28.90 - ₪28.90",
     "image": "http://127.0.0.1:3000/uploads/products/3387390730852.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T17:41:08.053Z"
     },
@@ -2574,7 +2574,7 @@
     "brand": "Schwartauer",
     "pricerange": "₪12.30 - ₪18.90",
     "image": "http://127.0.0.1:3000/uploads/products/4011800628512.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T17:47:33.434Z"
     },
@@ -2593,7 +2593,7 @@
     "brand": "Schwartauer",
     "pricerange": "₪12.30 - ₪18.90",
     "image": "http://127.0.0.1:3000/uploads/products/4011800630515.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T17:47:36.954Z"
     },
@@ -5519,7 +5519,7 @@
     "brand": "נסטלה פורינה",
     "pricerange": "₪5.10 - ₪7.50",
     "image": "http://127.0.0.1:3000/uploads/products/50000429646.png",
-    "category": "קפואים",
+    "category": "אחר",
     "createdAt": {
       "$date": "2025-11-28T17:57:23.823Z"
     },
@@ -6697,7 +6697,7 @@
     "brand": "ABBOT",
     "pricerange": "₪69.80 - ₪76.90",
     "image": "http://127.0.0.1:3000/uploads/products/5391523057936.png",
-    "category": "אחר",
+    "category": "פארם ותינוקות",
     "createdAt": {
       "$date": "2025-11-28T18:01:27.067Z"
     },
@@ -6716,7 +6716,7 @@
     "brand": "אבוט אירלנד",
     "pricerange": "₪69.80 - ₪74.90",
     "image": "http://127.0.0.1:3000/uploads/products/5391523057943.png",
-    "category": "אחר",
+    "category": "פארם ותינוקות",
     "createdAt": {
       "$date": "2025-11-28T18:01:30.697Z"
     },
@@ -7609,7 +7609,7 @@
     "brand": "סי.פי.פולין",
     "pricerange": "₪17.80 - ₪32.90",
     "image": "http://127.0.0.1:3000/uploads/products/5900020012814.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:04:39.832Z"
     },
@@ -7628,7 +7628,7 @@
     "brand": "סי. פי. פולין",
     "pricerange": "₪11.20 - ₪21.50",
     "image": "http://127.0.0.1:3000/uploads/products/5900020015174.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:04:44.648Z"
     },
@@ -7647,7 +7647,7 @@
     "brand": "סי. פי. פולין",
     "pricerange": "₪12.20 - ₪19.90",
     "image": "http://127.0.0.1:3000/uploads/products/5900020018908.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:04:47.737Z"
     },
@@ -7704,7 +7704,7 @@
     "brand": "סי. פי. פולין",
     "pricerange": "₪11.20 - ₪20.90",
     "image": "http://127.0.0.1:3000/uploads/products/5900020031877.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:04:59.853Z"
     },
@@ -7723,7 +7723,7 @@
     "brand": "סי. פי. פולין",
     "pricerange": "₪11.20 - ₪19.90",
     "image": "http://127.0.0.1:3000/uploads/products/5900020033314.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:05:02.971Z"
     },
@@ -7742,7 +7742,7 @@
     "brand": "סי. פי. פולין",
     "pricerange": "₪12.20 - ₪20.90",
     "image": "http://127.0.0.1:3000/uploads/products/5900020034021.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:05:06.939Z"
     },
@@ -7780,7 +7780,7 @@
     "brand": "סי. פי. פולין",
     "pricerange": "₪17.80 - ₪32.90",
     "image": "http://127.0.0.1:3000/uploads/products/5900020036407.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:05:16.132Z"
     },
@@ -7799,7 +7799,7 @@
     "brand": "סי פי פולין",
     "pricerange": "₪12.20 - ₪19.90",
     "image": "http://127.0.0.1:3000/uploads/products/5900020039590.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:05:18.856Z"
     },
@@ -13461,7 +13461,7 @@
     "brand": "",
     "pricerange": "₪7.90 - ₪9.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290000139227.png",
-    "category": "קפואים",
+    "category": "ירקות ופירות",
     "createdAt": {
       "$date": "2025-11-28T18:24:58.494Z"
     },
@@ -17413,7 +17413,7 @@
     "brand": "י.את.א.ברמן בע\\\"מ",
     "pricerange": "₪11.90 - ₪19.00",
     "image": "http://127.0.0.1:3000/uploads/products/7290000497570.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:39:02.342Z"
     },
@@ -22524,7 +22524,7 @@
     "brand": "מאפיית דוידוביץ ובניו בע",
     "pricerange": "₪11.90 - ₪18.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290002079033.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:58:25.868Z"
     },
@@ -22600,7 +22600,7 @@
     "brand": "מאפיית דוידוביץ",
     "pricerange": "₪13.90 - ₪16.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290002079927.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T18:58:40.946Z"
     },
@@ -23930,7 +23930,7 @@
     "brand": "דלידג בעמ",
     "pricerange": "₪26.90 - ₪32.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290002507451.png",
-    "category": "קפואים",
+    "category": "עוף בשר ודגים",
     "createdAt": {
       "$date": "2025-11-28T19:03:43.511Z"
     },
@@ -28395,7 +28395,7 @@
     "brand": "י.את.א.ברמן בע\"\\מ",
     "pricerange": "₪16.90 - ₪18.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290004685126.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T19:19:21.035Z"
     },
@@ -28433,7 +28433,7 @@
     "brand": "י.את.א.ברמן בע\"\\מ",
     "pricerange": "₪16.90 - ₪19.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290004685195.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T19:19:30.133Z"
     },
@@ -30485,7 +30485,7 @@
     "brand": "גידרון תעשיות בע\"מ",
     "pricerange": "₪19.90 - ₪21.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290006451514.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T19:26:53.548Z"
     },
@@ -32442,7 +32442,7 @@
     "brand": "פיוצר פוד גרופ",
     "pricerange": "₪25.90 - ₪27.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290008458832.jpg",
-    "category": "קפואים",
+    "category": "אחר",
     "createdAt": {
       "$date": "2025-11-28T19:33:57.746Z"
     },
@@ -33525,7 +33525,7 @@
     "brand": "דגת הארץ",
     "pricerange": "₪139.90 - ₪139.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290009013023.png",
-    "category": "קפואים",
+    "category": "עוף בשר ודגים",
     "createdAt": {
       "$date": "2025-11-28T19:38:03.566Z"
     },
@@ -33658,7 +33658,7 @@
     "brand": "דגת הארץ",
     "pricerange": "₪134.90 - ₪134.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290009391985.png",
-    "category": "קפואים",
+    "category": "עוף בשר ודגים",
     "createdAt": {
       "$date": "2025-11-28T19:38:34.175Z"
     },
@@ -34095,7 +34095,7 @@
     "brand": "גידרון תעשיות בע\"מ",
     "pricerange": "₪16.50 - ₪17.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290009952308.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T19:40:37.268Z"
     },
@@ -40384,7 +40384,7 @@
     "brand": "תבליני טעם וריח",
     "pricerange": "₪10.00 - ₪15.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290014217010.png",
-    "category": "קפואים",
+    "category": "אחר",
     "createdAt": {
       "$date": "2025-11-28T20:03:53.878Z"
     },
@@ -48744,7 +48744,7 @@
     "brand": "דאליאן הונגדאו",
     "pricerange": "₪9.90 - ₪24.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290019308683.png",
-    "category": "קפואים",
+    "category": "עוף בשר ודגים",
     "createdAt": {
       "$date": "2025-11-28T20:34:47.402Z"
     },
@@ -53323,7 +53323,7 @@
     "brand": "---",
     "pricerange": "₪6.20 - ₪8.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290102397617.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T20:51:18.579Z"
     },
@@ -56458,7 +56458,7 @@
     "brand": "יוניליוור שפע ישראל בע\"מ",
     "pricerange": "₪19.90 - ₪30.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290107647854.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T21:03:07.710Z"
     },
@@ -61246,7 +61246,7 @@
     "brand": "פרח תעשיות מזון בע\"מ",
     "pricerange": "₪9.90 - ₪16.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290111564277.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T21:19:39.538Z"
     },
@@ -62405,7 +62405,7 @@
     "brand": "פרח תעשיות מזון בע\"מ",
     "pricerange": "₪10.90 - ₪15.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290112340122.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T21:23:47.486Z"
     },
@@ -63431,7 +63431,7 @@
     "brand": "יוניליוור שפע ישראל בע\"מ",
     "pricerange": "₪21.90 - ₪29.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290112495433.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T21:27:12.256Z"
     },
@@ -65198,7 +65198,7 @@
     "brand": "",
     "pricerange": "₪33.50 - ₪37.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290115190472.jpg",
-    "category": "קפואים",
+    "category": "משקאות ויין",
     "createdAt": {
       "$date": "2025-11-28T21:33:10.707Z"
     },
@@ -66034,7 +66034,7 @@
     "brand": "בייגל את בייגל (1985) בע",
     "pricerange": "₪10.90 - ₪17.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290116533704.png",
-    "category": "קפואים",
+    "category": "חטיפים וממתקים",
     "createdAt": {
       "$date": "2025-11-28T21:36:05.607Z"
     },
@@ -66186,7 +66186,7 @@
     "brand": "יוניליוור שפע ישראל בע\"מ",
     "pricerange": "₪19.00 - ₪31.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290116536255.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T21:36:42.121Z"
     },
@@ -76351,7 +76351,7 @@
     "brand": "נטורל קייקס בע\"\\מ",
     "pricerange": "₪9.00 - ₪10.00",
     "image": "http://127.0.0.1:3000/uploads/products/7296073516019.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T22:15:00.398Z"
     },
@@ -76370,7 +76370,7 @@
     "brand": "נטורל קייקס בע\"\\מ",
     "pricerange": "₪9.00 - ₪10.00",
     "image": "http://127.0.0.1:3000/uploads/products/7296073516026.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T22:15:05.313Z"
     },
@@ -77814,7 +77814,7 @@
     "brand": "סררה פודס",
     "pricerange": "₪17.50 - ₪18.50",
     "image": "http://127.0.0.1:3000/uploads/products/7296073642022.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T22:19:49.998Z"
     },
@@ -79296,7 +79296,7 @@
     "brand": "סררה פודס",
     "pricerange": "₪14.90 - ₪14.90",
     "image": "http://127.0.0.1:3000/uploads/products/7296073705550.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T22:25:24.669Z"
     },
@@ -79315,7 +79315,7 @@
     "brand": "סררה פודס",
     "pricerange": "₪14.90 - ₪14.90",
     "image": "http://127.0.0.1:3000/uploads/products/7296073705567.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T22:25:28.188Z"
     },
@@ -79334,7 +79334,7 @@
     "brand": "סררה פודס",
     "pricerange": "₪14.90 - ₪14.90",
     "image": "http://127.0.0.1:3000/uploads/products/7296073705574.png",
-    "category": "קפואים",
+    "category": "שימורים בישול ואפייה",
     "createdAt": {
       "$date": "2025-11-28T22:25:31.339Z"
     },
@@ -84160,7 +84160,7 @@
     "brand": "ג'נרל מילס",
     "pricerange": "₪17.80 - ₪32.90",
     "image": "http://127.0.0.1:3000/uploads/products/7613030979647.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T22:42:25.306Z"
     },
@@ -84198,7 +84198,7 @@
     "brand": "סי. פי. צרפת",
     "pricerange": "₪20.90 - ₪28.90",
     "image": "http://127.0.0.1:3000/uploads/products/7613032045753.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T22:42:34.638Z"
     },
@@ -84521,7 +84521,7 @@
     "brand": "SPISAS",
     "pricerange": "₪14.90 - ₪25.90",
     "image": "http://127.0.0.1:3000/uploads/products/7613037276091.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T22:43:31.465Z"
     },
@@ -85680,7 +85680,7 @@
     "brand": "פררו אס.פי.אי",
     "pricerange": "₪9.90 - ₪13.90",
     "image": "http://127.0.0.1:3000/uploads/products/8000500167656.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T22:47:34.079Z"
     },
@@ -88359,7 +88359,7 @@
     "brand": "גואנגדונג מיניאנג",
     "pricerange": "₪8.90 - ₪12.90",
     "image": "http://127.0.0.1:3000/uploads/products/835811007494.png",
-    "category": "קפואים",
+    "category": "אחר",
     "createdAt": {
       "$date": "2025-11-28T22:56:47.786Z"
     },
@@ -88739,7 +88739,7 @@
     "brand": "גלאטס גולון",
     "pricerange": "₪17.10 - ₪18.90",
     "image": "http://127.0.0.1:3000/uploads/products/8410376042498.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T22:58:12.143Z"
     },
@@ -89081,7 +89081,7 @@
     "brand": "CUETARA",
     "pricerange": "₪10.90 - ₪11.90",
     "image": "http://127.0.0.1:3000/uploads/products/8434165652439.png",
-    "category": "קפואים",
+    "category": "אחר",
     "createdAt": {
       "$date": "2025-11-28T22:59:24.803Z"
     },
@@ -89271,7 +89271,7 @@
     "brand": "איטנקורט",
     "pricerange": "₪17.80 - ₪29.90",
     "image": "http://127.0.0.1:3000/uploads/products/8445290964595.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T23:00:09.562Z"
     },
@@ -91323,7 +91323,7 @@
     "brand": "---",
     "pricerange": "₪21.60 - ₪27.90",
     "image": "http://127.0.0.1:3000/uploads/products/884912129512.png",
-    "category": "קפואים",
+    "category": "דגנים",
     "createdAt": {
       "$date": "2025-11-28T23:07:24.448Z"
     },
@@ -91513,7 +91513,7 @@
     "brand": "---",
     "pricerange": "₪11.90 - ₪13.90",
     "image": "http://127.0.0.1:3000/uploads/products/8852633119039.png",
-    "category": "קפואים",
+    "category": "שימורים בישול ואפייה",
     "createdAt": {
       "$date": "2025-11-28T23:08:00.623Z"
     },

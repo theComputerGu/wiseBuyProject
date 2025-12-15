@@ -15,7 +15,7 @@ import ItimText from '../components/Itimtext';
 const BRAND_BLUE = '#197FF4';
 
 // לוגו
-import Logo from '../assets/logos/logo white.png';
+import Logo from '../assets/logos/logo blue.png';
 
 export default function Index() {
   const router = useRouter();
