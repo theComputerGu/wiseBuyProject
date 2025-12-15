@@ -231,12 +231,6 @@ export default function SignUp() {
         <Text style={s.switch}>
           Already have an account? <Link href="/auth/sign-in">Sign In</Link>
         </Text>
-
-        {/* 🧠 Remember me */}
-        <View style={s.remember}>
-          <Text style={{ color: "#6B7280" }}>Remember me</Text>
-          <Checkbox value={remember} onValueChange={setRemember} />
-        </View>
       </View>
     </SafeAreaView>
   );
@@ -255,7 +249,7 @@ const s = StyleSheet.create({
     gap: 10,
     marginTop: 10,
   },
-  preview: { width: 84, height: 84, borderRadius: 42, backgroundColor: "#eee" },
+  preview: { width: 50, height: 50, borderRadius: 42, backgroundColor: "#eee" },
   pickBtn: {
     alignSelf: "center",
     paddingVertical: 10,
