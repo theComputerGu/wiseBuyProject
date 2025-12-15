@@ -7,6 +7,7 @@ import { StoresModule } from './stores/stores.module';
 import { UsersModule } from './users/users.module';
 import { ShoppingListsModule } from './shoppinglist/shopping-lists.module';
 import { ScrapeModule } from './scrape/scrape.module';
+import { RecommendationsModule } from "./reccommendations/recommendations.module";
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -21,6 +22,7 @@ import { AppService } from './app.service';
     StoresModule,
     UsersModule,
     ShoppingListsModule,
+    RecommendationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

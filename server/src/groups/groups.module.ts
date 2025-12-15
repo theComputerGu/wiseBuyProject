@@ -15,6 +15,6 @@ import { ShoppingListsModule } from '../shoppinglist/shopping-lists.module';
   ],
   controllers: [GroupsController],
   providers: [GroupsService],
-  exports: [GroupsService],
+  exports: [GroupsService,MongooseModule],
 })
 export class GroupsModule {}

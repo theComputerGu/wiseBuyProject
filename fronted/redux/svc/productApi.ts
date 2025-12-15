@@ -90,4 +90,5 @@ export const {
     useUpdateProductMutation,
     useDeleteProductMutation,
     useGetProductByItemcodeQuery,
+    useLazyGetProductByIdQuery,
 } = productsApi;

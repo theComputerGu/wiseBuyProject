@@ -5,7 +5,7 @@ import { RootState } from "../redux/state/store";
 import { Ionicons } from "@expo/vector-icons";
 import ItimText from "./Itimtext";
 
-import { useGetUserGroupsQuery } from "../redux/svc/usersApi";
+import { useGetUserGroupsQuery, useSetActiveGroupMutation } from "../redux/svc/usersApi";
 import { useGetGroupByIdQuery } from "../redux/svc/groupsApi";
 import { useGetListByIdQuery } from "../redux/svc/shoppinglistApi";
 
@@ -26,6 +26,7 @@ export default function GroupSelector() {
   const [open, setOpen] = useState(false);
   const [selectedGroupId, setSelectedGroupId] = useState<string | null>(null);
   const [selectedListId, setSelectedListId] = useState<string | null>(null);
+  const [updateActiveGroup] = useSetActiveGroupMutation();
 
   // ✅ מביא את כל הקבוצות המלאות של המשתמש
   const { data: groups } = useGetUserGroupsQuery(user?._id!, {
@@ -62,12 +63,27 @@ export default function GroupSelector() {
     dispatch(setActiveList(listData));
   }, [listData]);
 
-  const handleSelect = (groupId: string) => {
+  const handleSelect = async (groupId: string) => {
+    if (!user?._id) return;
+
+    // same group → just close dropdown
     if (groupId === activeGroup?._id) {
       setOpen(false);
       return;
     }
-    setSelectedGroupId(groupId);
+
+    try {
+      // 🔥 PERSIST ACTIVE GROUP ON BACKEND
+      await updateActiveGroup({
+        userId: user._id,
+        groupId,
+      }).unwrap();
+
+      // 🔁 trigger data flow
+      setSelectedGroupId(groupId);
+    } catch (err) {
+      console.error("❌ Failed to update active group", err);
+    }
   };
 
   return (

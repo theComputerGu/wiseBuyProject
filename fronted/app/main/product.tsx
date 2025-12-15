@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import {
   View,
   StyleSheet,
@@ -7,15 +7,22 @@ import {
   Text,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useSelector, useDispatch } from "react-redux";
+
 import TopNav from "../../components/Topnav";
 import BottomNav from "../../components/Bottomnavigation";
 import BottomSummary from "../../components/BottomSummary";
 import ProductCard from "../../components/productcard";
 import Title from "../../components/Title";
 import GroupSelector from "../../components/GroupSelector";
-import { useSelector, useDispatch } from "react-redux";
+
+
 import { RootState } from "../../redux/state/store";
-import { API_URL } from '@env'
+import {
+  useLazyGetRecommendationsQuery,
+} from "../../redux/svc/recommendationsApi";
+import { setRecommendations } from "../../redux/slices/recommendedSlice";
+import { API_URL } from "@env";
 
 import {
   useAddItemMutation,
@@ -25,24 +32,72 @@ import {
 import {
   updateItem,
   removeItem,
+  addItem,
 } from "../../redux/slices/shoppinglistSlice";
-
-
-
+import RecoCard from "../../components/RecoCard";
+import { useLazyGetProductByIdQuery } from "../../redux/svc/productApi";
 
 export default function ProductScreen() {
   const dispatch = useDispatch();
 
+  /* =========================
+     REDUX STATE
+  ========================= */
   const shoppingList = useSelector((s: RootState) => s.shoppingList);
   const user = useSelector((s: RootState) => s.user);
-  const activeGroup = useSelector((s: RootState) => s.group);
+  const recommended = useSelector(
+    (s: RootState) => s.recommended.items
+  );
 
   const items = shoppingList.activeList?.items ?? [];
+  const userId = user.current?._id;
+  const [fetchProductById] = useLazyGetProductByIdQuery();
+
+  /* =========================
+     STABLE LIST SIGNATURE
+  ========================= */
+  const listSignature = useMemo(() => {
+    return (
+      shoppingList.activeList?.items
+        ?.filter(i => i && i._id && i._id._id)
+        .map(i => `${i._id._id}:${i.quantity}`)
+        .join("|") ?? ""
+    );
+  }, [shoppingList.activeList?.items]);
+
+  /* =========================
+     API (MANUAL)
+  ========================= */
+  const [
+    triggerRecommendations,
+    {
+      data: recommendationsData,
+      isFetching: recommendationsLoading,
+    },
+  ] = useLazyGetRecommendationsQuery();
 
   const [addItemToBackend] = useAddItemMutation();
   const [removeItemFromBackend] = useRemoveItemMutation();
 
-  // 🔹 PLUS
+  /* =========================
+     EFFECT A: TRIGGER FETCH
+  ========================= */
+  useEffect(() => {
+    if (!userId) return;
+    triggerRecommendations(userId);
+  }, [userId, listSignature, triggerRecommendations]);
+
+  /* =========================
+     EFFECT B: STORE RESULT
+  ========================= */
+  useEffect(() => {
+    if (!recommendationsData) return;
+    dispatch(setRecommendations(recommendationsData));
+  }, [recommendationsData, dispatch]);
+
+  /* =========================
+     HANDLERS
+  ========================= */
   const handleIncrease = async (productId: string) => {
     const listId = shoppingList.activeList?._id;
     if (!listId) return;
@@ -52,40 +107,29 @@ export default function ProductScreen() {
     );
 
     try {
-      await addItemToBackend({ listId, productId }).unwrap();
-
+      const res = await addItemToBackend({ listId, productId }).unwrap();
       if (currentItem) {
+        // 🔁 already exists → increase
         dispatch(
           updateItem({
             productId,
             patch: { quantity: currentItem.quantity + 1 },
           })
         );
+      } else {
+        const product = await fetchProductById(productId).unwrap();
+        dispatch(
+          addItem({
+            _id: product,
+            quantity: 1,
+          })
+        );
       }
-
     } catch (err) {
-      console.error("❌ Increase failed:", err);
+      console.error("❌ Add failed:", err);
     }
   };
 
-    // Change 127.0.0.1 to your computer LAN IP
-    const fixImageURL = (url: any) => {
-      if (!url) return "";
-  
-      try {
-        const original = new URL(url);
-        const backend = new URL(API_URL);
-  
-        // Replace only host + port
-        original.host = backend.host;
-  
-        return original.toString();
-      } catch (e) {
-        return url; // fallback
-      }
-    };
-
-  // 🔹 MINUS
   const handleDecrease = async (productId: string) => {
     const listId = shoppingList.activeList?._id;
     if (!listId) return;
@@ -114,13 +158,29 @@ export default function ProductScreen() {
           })
         );
       }
-
     } catch (err) {
       console.error("❌ Decrease failed:", err);
     }
   };
 
-  // 🔹 חישוב סכום כולל
+  /* =========================
+     IMAGE FIX
+  ========================= */
+  const fixImageURL = (url: any) => {
+    if (!url) return "";
+    try {
+      const original = new URL(url);
+      const backend = new URL(API_URL);
+      original.host = backend.host;
+      return original.toString();
+    } catch {
+      return url;
+    }
+  };
+
+  /* =========================
+     TOTALS
+  ========================= */
   const totalPrice = items.reduce((sum, item: any) => {
     const price = parseFloat(
       item._id.pricerange?.replace(/[^\d.]/g, "") || "0"
@@ -128,19 +188,23 @@ export default function ProductScreen() {
     return sum + price * item.quantity;
   }, 0);
 
-  // 🔹 חישוב כמות כללית
-  const totalItems = items.reduce((sum: number, i: any) => sum + i.quantity, 0);
+  const totalItems = items.reduce(
+    (sum: number, i: any) => sum + i.quantity,
+    0
+  );
 
+  /* =========================
+     UI
+  ========================= */
   return (
     <SafeAreaView style={styles.container}>
       <TopNav />
-
-      {/* ✅ במקום Title: בורר קבוצות עם חץ */}
       <GroupSelector />
 
+      {/* SHOPPING LIST */}
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {items.length === 0 ? (
-          <Text style={{ textAlign: "center", marginTop: 20, color: "#777" }}>
+          <Text style={styles.emptyText}>
             No items in your shopping list yet.
           </Text>
         ) : (
@@ -150,7 +214,7 @@ export default function ProductScreen() {
               name={item._id.title}
               quantity={item.quantity}
               price={item._id.pricerange}
-              image={{ uri:  fixImageURL(item._id.image) }}
+              image={{ uri: fixImageURL(item._id.image) }}
               onIncrease={() => handleIncrease(item._id._id)}
               onDecrease={() => handleDecrease(item._id._id)}
             />
@@ -158,8 +222,29 @@ export default function ProductScreen() {
         )}
       </ScrollView>
 
-      <Title text="Recommendation's" />
-      <ScrollView horizontal></ScrollView>
+      {/* RECOMMENDATIONS */}
+      <Title text="Recommendations" />
+
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={{ marginVertical: 10 }}
+        contentContainerStyle={{ paddingBottom: 80, paddingTop: 5 }}
+      >
+        {recommended.map((rec: any) => (
+          <RecoCard
+            key={rec.productId}
+            title={rec.title}
+            price={rec.pricerange}
+            image={{ uri: fixImageURL(rec.image) }}
+            reason={rec.reason}
+            onAdd={() => handleIncrease(rec.productId)}
+          />
+        ))}
+      </ScrollView>
+
+
 
       <BottomSummary
         amount={totalItems}
@@ -174,4 +259,16 @@ export default function ProductScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", paddingHorizontal: 20 },
   scrollContent: { paddingBottom: 0 },
+  emptyText: {
+    textAlign: "center",
+    marginTop: 20,
+    color: "#777",
+  },
+  reason: {
+    fontSize: 12,
+    color: "#777",
+    textAlign: "center",
+    marginTop: 4,
+    maxWidth: 140,
+  },
 });

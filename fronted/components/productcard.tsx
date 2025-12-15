@@ -14,6 +14,7 @@ type Props = {
   onDecrease?: () => void;
   uploaderAvatar?: ImageSourcePropType;
   uploaderName?: string;
+  disabledDecrease?: boolean;
 };
 
 const BRAND = "#197FF4";
@@ -28,6 +29,7 @@ function ProductCard({
   onDecrease,
   uploaderAvatar,
   uploaderName,
+  disabledDecrease = false,
 }: Props) {
 
   return (
@@ -39,7 +41,7 @@ function ProductCard({
         <View style={s.headerRow}>
           <View style={{ flex: 1 }}>
             {/* 🔥 הופך תמיד למחרוזת */}
-            <ItimText size={16} color="#000" weight="bold"  style={s.rtlText}>
+            <ItimText size={16} color="#000" weight="bold" style={s.rtlText}>
               {String(name)}
             </ItimText>
 
@@ -55,9 +57,21 @@ function ProductCard({
 
         {/* --- Quantity controls --- */}
         <View style={s.row}>
-          <Pressable style={s.btn} onPress={onDecrease} hitSlop={8} >
-            <MaterialCommunityIcons name="minus" size={18} color={BRAND} />
-          </Pressable>
+          {!disabledDecrease && (
+            <Pressable
+              style={[
+                s.btn,
+                disabledDecrease && { opacity: 0.3, borderColor: "#ccc" },
+              ]}
+              onPress={disabledDecrease ? undefined : onDecrease}
+            >
+              <MaterialCommunityIcons
+                name="minus"
+                size={18}
+                color={disabledDecrease ? "#ccc" : BRAND}
+              />
+            </Pressable>
+          )}
 
           <View style={s.qty}>
             {/* 🔥 לעולם לא נשבר - הכמות תמיד string */}
@@ -94,7 +108,7 @@ const s = StyleSheet.create({
     marginVertical: 8,
     alignItems: "center",
   },
-  img: { width: 70, height: 110, resizeMode: "contain" , marginLeft: 10,borderRadius: 8 },
+  img: { width: 70, height: 110, resizeMode: "contain", marginLeft: 10, borderRadius: 8 },
   info: { flex: 1, marginLeft: 12 },
   headerRow: {
     flexDirection: "row",
@@ -108,7 +122,7 @@ const s = StyleSheet.create({
     marginLeft: 8,
     alignSelf: "center",
   },
-  row: { flexDirection: "row", alignItems: "center",justifyContent: "center", marginRight: 50, marginTop:20, gap: 8 },
+  row: { flexDirection: "row", alignItems: "center", justifyContent: "center", marginRight: 50, marginTop: 20, gap: 8 },
   btn: {
     borderWidth: 1,
     borderColor: BRAND,
@@ -127,9 +141,9 @@ const s = StyleSheet.create({
   },
 
   rtlText: {
-  textAlign: "right",
-  writingDirection: "rtl",
-},
+    textAlign: "right",
+    writingDirection: "rtl",
+  },
 
 
 });

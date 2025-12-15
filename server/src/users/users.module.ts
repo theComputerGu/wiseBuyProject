@@ -16,6 +16,6 @@ import { GroupsModule } from 'src/groups/groups.module';
   ],
   controllers: [UsersController],
   providers: [UsersService],
-  exports: [UsersService],
+  exports: [UsersService,MongooseModule],
 })
 export class UsersModule {}

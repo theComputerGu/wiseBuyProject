@@ -1,72 +1,57 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-/*
-note: contain a list of about 100 products reccomneded from the server
-usefull for saving a small local state istead of pulling data from the server endlessley
-*/
 
-//
-// TYPES
-//
-export interface RecommendedItem {
-  _id : any
-  itemcode?: string;
+/* =========================
+   Types
+========================= */
+
+export type Recommendation = {
+  productId: string;
+  itemcode: string;
   title: string;
-  unit?: "unit" | "kg" | "gram" | "liter";
-  brand?: string;
-  pricerange?: string;
-  image?: string;
   category?: string;
-}
-
-export interface RecommendedState {
-  items: RecommendedItem[];
-  isLoading: boolean;
-}
-
-//
-// INITIAL STATE
-//
-const initialState: RecommendedState = {
-  items: [],
-  isLoading: false,
+  image?: string;      
+  pricerange?: string;   
+  brand?: string;
+  score: number;
+  reason: string;
 };
 
-//
-// SLICE
-//
-export const recommendedSlice = createSlice({
+/* =========================
+   State
+========================= */
+
+type RecommendedState = {
+  items: Recommendation[];
+};
+
+const initialState: RecommendedState = {
+  items: [],
+};
+
+/* =========================
+   Slice
+========================= */
+
+const recommendedSlice = createSlice({
   name: "recommended",
   initialState,
   reducers: {
-    setRecommendations: (s, a: PayloadAction<RecommendedItem[]>) => {
-      s.items = a.payload;
+    setRecommendations(
+      state,
+      action: PayloadAction<Recommendation[]>
+    ) {
+      state.items = action.payload;
     },
 
-    addRecommendation: (s, a: PayloadAction<RecommendedItem>) => {
-      s.items.push(a.payload);
+    clearRecommendations(state) {
+      state.items = [];
     },
-
-    removeRecommendation: (s, a: PayloadAction<any>) => {
-      s.items = s.items.filter((item) => item._id !== a.payload);
-    },
-
-    clearRecommendations: (s) => {
-      s.items = [];
-    },
-
-    setRecommendedLoading: (s, a: PayloadAction<boolean>) => {
-      s.isLoading = a.payload;
-    },
-
   },
 });
 
 export const {
   setRecommendations,
-  addRecommendation,
-  removeRecommendation,
   clearRecommendations,
-  setRecommendedLoading,
 } = recommendedSlice.actions;
 
 export default recommendedSlice.reducer;

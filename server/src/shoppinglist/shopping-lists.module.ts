@@ -16,6 +16,6 @@ import { Group, GroupSchema } from '../groups/schemas/groups.schema';  // ← ח
   ],
   providers: [ShoppingListsService],
   controllers: [ShoppingListsController],
-  exports: [ShoppingListsService],
+  exports: [ShoppingListsService,MongooseModule],
 })
 export class ShoppingListsModule {}

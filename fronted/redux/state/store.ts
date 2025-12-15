@@ -3,14 +3,15 @@ import { persistStore, persistReducer } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { baseApi } from "../svc/baseApi";
-import { storeApi } from "../svc/storeApi";          
+import { storeApi } from "../svc/storeApi";
 import userReducer from "../slices/userSlice";
 import groupReducer from "../slices/groupSlice";
 import shoppingListReducer from "../slices/shoppinglistSlice";
 import recommendedReducer from "../slices/recommendedSlice";
 import uiReducer from "../slices/uiSlice";
 import checkoutReducer from "../slices/checkoutSlice";
-import storesReducer from "../slices/storesSlice";   
+import storesReducer from "../slices/storesSlice";
+import { recommendationsApi } from "../svc/recommendationsApi";
 
 // ----------------------------
 // Persist config
@@ -32,10 +33,11 @@ const rootReducer = combineReducers({
   ui: uiReducer,
   checkout: checkoutReducer,
 
-  stores: storesReducer,                   
+  stores: storesReducer,
 
   [baseApi.reducerPath]: baseApi.reducer,
-  [storeApi.reducerPath]: storeApi.reducer,  
+  [storeApi.reducerPath]: storeApi.reducer,
+  [recommendationsApi.reducerPath]: recommendationsApi.reducer,
 });
 
 // ----------------------------
@@ -51,7 +53,8 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(
       baseApi.middleware,
-      storeApi.middleware                
+      storeApi.middleware,
+      recommendationsApi.middleware,
     ),
 });
 
