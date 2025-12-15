@@ -27,14 +27,14 @@ export default function GroupAccordion({ group }: any) {
   if (!userId) return null;
 
   // 🟦 משתמש מעודכן מהשרת
-  const { refetch: refetchUser } = useGetUserByIdQuery(userId, {
-    skip: !userId,
-  });
+  // const { refetch: refetchUser } = useGetUserByIdQuery(userId, {
+  //   skip: !userId,
+  // });
 
   // 🟦 קבוצות של המשתמש – בשביל רענון UI
-  const { refetch: refetchUserGroups } = useGetUserGroupsQuery(userId, {
-    skip: !userId,
-  });
+  // const { refetch: refetchUserGroups } = useGetUserGroupsQuery(userId, {
+  //   skip: !userId,
+  // });
 
   // 🟦 בדיקה אם אדמין
   const isAdmin =
@@ -65,16 +65,16 @@ export default function GroupAccordion({ group }: any) {
               userId: userId!,
             }).unwrap();
 
-            const freshUser = await refetchUser().unwrap();
+            // const freshUser = await refetchUser().unwrap();
 
-            dispatch(setUser({
-              ...freshUser,
-              avatarUrl: freshUser.avatarUrl ?? null,
-              groups: freshUser.groups ?? [],
-            }));
+            // dispatch(setUser({
+            //   ...freshUser,
+            //   avatarUrl: freshUser.avatarUrl ?? null,
+            //   groups: freshUser.groups ?? [],
+            // }));
 
             dispatch(clearActiveGroup());      // ✅ ניקוי קבוצה פעילה
-            await refetchUserGroups();        // ✅ רענון קבוצות המשתמש
+            // await refetchUserGroups();        // ✅ רענון קבוצות המשתמש
 
             Alert.alert("Success", "You left the group");
           } catch (err) {
@@ -102,16 +102,16 @@ export default function GroupAccordion({ group }: any) {
               requesterId: userId!,
             }).unwrap();
 
-            const freshUser = await refetchUser().unwrap();
+            // const freshUser = await refetchUser().unwrap();
 
-            dispatch(setUser({
-              ...freshUser,
-              avatarUrl: freshUser.avatarUrl ?? null,
-              groups: freshUser.groups ?? [],
-            }));
+            // dispatch(setUser({
+            //   ...freshUser,
+            //   avatarUrl: freshUser.avatarUrl ?? null,
+            //   groups: freshUser.groups ?? [],
+            // }));
 
             dispatch(clearActiveGroup());      // ✅ ניקוי קבוצת default
-            await refetchUserGroups();        // ✅ רענון קבוצות המשתמש
+            // await refetchUserGroups();        // ✅ רענון קבוצות המשתמש
 
             Alert.alert("Deleted", "Group removed successfully");
           } catch (err) {
