@@ -4,16 +4,16 @@ const fs = require("fs");
 // Load data
 // =======================
 const products = JSON.parse(
-  fs.readFileSync("wisebuy.products.updated3.json", "utf8")
+  fs.readFileSync("wisebuy.products.cleaned.json", "utf8")
 );
 
 // =======================
 // CONFIG – מה אנחנו משפרים עכשיו?
 // =======================
-const TARGET_CATEGORY = "חטיפים וממתקים";
+const TARGET_CATEGORY = "מוצרי קירור וביצים";
 
 const KEYWORDS = [
-  "מוצי"
+  "קוטג","נפולאון","קרמריה","סימפוניה","יוג","דנונה","פריל","מילקי","רויון","חלב בקרטון","מיונז"
 
 ];
 
@@ -61,7 +61,7 @@ const updated = products.map(p => {
 // Save
 // =======================
 fs.writeFileSync(
-  "wisebuy.products.updated3.json",
+  "wisebuy.products.updated2.json",
   JSON.stringify(updated, null, 2)
 );
 

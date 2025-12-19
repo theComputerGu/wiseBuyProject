@@ -5500,7 +5500,7 @@
     "brand": "פודליצקי ספ.ז.או.או,.",
     "pricerange": "₪10.00 - ₪19.90",
     "image": "http://127.0.0.1:3000/uploads/products/5000157143365.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T17:58:00.693Z"
     },
@@ -6513,25 +6513,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:01:20.015Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e37360ed9858898d683f"
-    },
-    "itemcode": "5208049015251",
-    "title": "קנט ארוך חפיסה",
-    "unit": "unit",
-    "brand": "BAT",
-    "pricerange": "₪45.50 - ₪47.00",
-    "image": "http://127.0.0.1:3000/uploads/products/5208049015251.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:01:23.991Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:01:23.991Z"
     },
     "__v": 0
   },
@@ -8266,25 +8247,6 @@
   },
   {
     "_id": {
-      "$oid": "6929e4d460ed9858898d68f9"
-    },
-    "itemcode": "710497311007",
-    "title": "אוכמניות יבוא 125 גרם",
-    "unit": "gram",
-    "brand": "HORTIFRUT",
-    "pricerange": "₪14.90 - ₪18.90",
-    "image": "http://127.0.0.1:3000/uploads/products/710497311007.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:07:16.649Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:07:16.649Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929e4d760ed9858898d68fb"
     },
     "itemcode": "7271730901261",
@@ -8323,443 +8285,6 @@
   },
   {
     "_id": {
-      "$oid": "6929e4de60ed9858898d68ff"
-    },
-    "itemcode": "7290000000022",
-    "title": "עגבניה",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪5.90 - ₪15.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000022.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:07:26.781Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:07:26.781Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e4e160ed9858898d6901"
-    },
-    "itemcode": "7290000000046",
-    "title": "מלפפון",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪5.90 - ₪16.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000046.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:07:29.751Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:07:29.751Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e4e660ed9858898d6903"
-    },
-    "itemcode": "7290000000053",
-    "title": "קישואים מובחר",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪7.90 - ₪17.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000053.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:07:34.486Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:07:34.486Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e4ea60ed9858898d6905"
-    },
-    "itemcode": "7290000000084",
-    "title": "פלפל ירוק בהיר",
-    "unit": "unit",
-    "brand": "שותפות מזרחי",
-    "pricerange": "₪6.90 - ₪10.90,",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000084.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T18:07:38.751Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:45:44.057Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e4ee60ed9858898d6907"
-    },
-    "itemcode": "7290000000091",
-    "title": "פלפל אדום",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪4.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000091.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T18:07:42.608Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:07:42.608Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e4f360ed9858898d6909"
-    },
-    "itemcode": "7290000000107",
-    "title": "פלפל ירוק כהה",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪7.90 - ₪8.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000107.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T18:07:47.484Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T11:29:09.054Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e4fe60ed9858898d690b"
-    },
-    "itemcode": "7290000000114",
-    "title": "חציל",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪2.90 - ₪14.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000114.jpg",
-    "category": "מעדנייה וסלטים",
-    "createdAt": {
-      "$date": "2025-11-28T18:07:58.522Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:07:58.522Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e50960ed9858898d690d"
-    },
-    "itemcode": "7290000000121",
-    "title": "גזר ארוז",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪2.90 - ₪12.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000121.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:09.689Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:08:09.689Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e50d60ed9858898d690f"
-    },
-    "itemcode": "7290000000138",
-    "title": "כרוב לבן",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪2.90 - ₪9.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000138.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:13.029Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:08:13.029Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e51060ed9858898d6911"
-    },
-    "itemcode": "7290000000145",
-    "title": "כרוב אדום",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪4.90 - ₪9.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000145.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:16.999Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:45:50.438Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e51460ed9858898d6913"
-    },
-    "itemcode": "7290000000176",
-    "title": "כרובית",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪10.90 - ₪24.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000176.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:20.258Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:08:20.258Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e51660ed9858898d6915"
-    },
-    "itemcode": "7290000000183",
-    "title": "סלק",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪2.90 - ₪3.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000183.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:22.693Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T11:29:21.392Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e51b60ed9858898d6917"
-    },
-    "itemcode": "7290000000220",
-    "title": "קולורבי",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪4.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000220.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:27.576Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:08:27.576Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e51f60ed9858898d6919"
-    },
-    "itemcode": "7290000000282",
-    "title": "חסה ערבית",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪4.90 - ₪7.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000282.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:31.569Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:08:31.569Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e52360ed9858898d691b"
-    },
-    "itemcode": "7290000000343",
-    "title": "במיה",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪19.90 - ₪24.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000343.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:35.611Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:08:35.611Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e52860ed9858898d691d"
-    },
-    "itemcode": "7290000000374",
-    "title": "פטריות שמפניון-בודד",
-    "unit": "gram",
-    "brand": "קטיף.",
-    "pricerange": ",",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000374.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:40.446Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T11:29:27.610Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e53760ed9858898d6921"
-    },
-    "itemcode": "7290000000411",
-    "title": "שום יבש",
-    "unit": "gram",
-    "brand": "קטיף.",
-    "pricerange": "₪7.90 - ₪7.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000411.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:55.676Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:08:55.676Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e53a60ed9858898d6923"
-    },
-    "itemcode": "7290000000428",
-    "title": "בטטה מובחרת",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪2.90 - ₪18.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000428.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:08:58.321Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:08:58.321Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e53f60ed9858898d6925"
-    },
-    "itemcode": "7290000000466",
-    "title": "בצל ירוק יחידה",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪5.90 - ₪8.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000466.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:03.075Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:09:03.075Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e54360ed9858898d6927"
-    },
-    "itemcode": "7290000000480",
-    "title": "בצל יבש",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪2.90 - ₪9.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000480.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:07.992Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:09:07.992Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e54860ed9858898d6929"
-    },
-    "itemcode": "7290000000503",
-    "title": "תפוח אדמה קטן ארוז",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪4.90 - ₪8.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000503.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:12.210Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:09:12.210Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e54b60ed9858898d692b"
-    },
-    "itemcode": "7290000000572",
-    "title": "שומר",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪7.90 - ₪15.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000572.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:15.291Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:09:15.291Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e54d60ed9858898d692d"
-    },
-    "itemcode": "7290000000589",
-    "title": "ארטישוק/תפו\"א ירושלמי",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪17.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000589.jpg",
-    "category": "חטיפים וממתקים",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:17.968Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:43:56.024Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929e55260ed9858898d692f"
     },
     "itemcode": "7290000000596",
@@ -8774,177 +8299,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:09:22.180Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e55760ed9858898d6931"
-    },
-    "itemcode": "7290000000619",
-    "title": "פלפל חריף",
-    "unit": "unit",
-    "brand": "שותפות מזרחי",
-    "pricerange": "₪8.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000619.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:27.029Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:09:27.029Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e55960ed9858898d6933"
-    },
-    "itemcode": "7290000000626",
-    "title": "ברוקולי",
-    "unit": "gram",
-    "brand": "קטיף.",
-    "pricerange": ",",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000626.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:29.810Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T11:29:39.647Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e55e60ed9858898d6935"
-    },
-    "itemcode": "7290000000633",
-    "title": "עירית יחידה",
-    "unit": "gram",
-    "brand": "קטיף.",
-    "pricerange": "₪5.90 - ₪6.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000633.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:34.637Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T11:29:45.659Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e56260ed9858898d6937"
-    },
-    "itemcode": "7290000000701",
-    "title": "פטריות שמפניון למילוי",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪39.90 - ₪39.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000701.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:38.819Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:09:38.819Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e56760ed9858898d6939"
-    },
-    "itemcode": "7290000000732",
-    "title": "דלורית",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪3.90 - ₪12.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000732.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:43.060Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:09:43.060Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e56960ed9858898d693b"
-    },
-    "itemcode": "7290000000749",
-    "title": "פלפל שישקה מתוק",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪9.90 - ₪29.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000749.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:45.841Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:09:45.841Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e56e60ed9858898d693d"
-    },
-    "itemcode": "7290000000824",
-    "title": "קשוא ירוק )זוקיני(",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪9.90 - ₪17.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000824.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:50.067Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:09:50.067Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e57060ed9858898d693f"
-    },
-    "itemcode": "7290000000848",
-    "title": "תירס קלוף ארוז",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪5.90 - ₪9.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000848.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:52.665Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T11:29:52.056Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e57460ed9858898d6941"
-    },
-    "itemcode": "7290000000855",
-    "title": "פלפל צהוב",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪7.90 - ₪14.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000855.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T18:09:56.740Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:46:02.789Z"
     },
     "__v": 0
   },
@@ -8969,44 +8323,6 @@
   },
   {
     "_id": {
-      "$oid": "6929e57b60ed9858898d6945"
-    },
-    "itemcode": "7290000000954",
-    "title": "רוקט יחידה",
-    "unit": "unit",
-    "brand": "---",
-    "pricerange": "₪13.90 - ₪14.90,",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000000954.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:10:03.796Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:46:09.072Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e58260ed9858898d6947"
-    },
-    "itemcode": "7290000001036",
-    "title": "בצל יבש אדום",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪4.90 - ₪9.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000001036.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:10:10.926Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:10:10.926Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929e58660ed9858898d6949"
     },
     "itemcode": "7290000001050",
@@ -9021,82 +8337,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:10:14.195Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e58860ed9858898d694b"
-    },
-    "itemcode": "7290000001104",
-    "title": "פטריות פורטובלו בודד",
-    "unit": "gram",
-    "brand": "קטיף.",
-    "pricerange": ",",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000001104.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:10:16.551Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T11:30:11.194Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e58c60ed9858898d694d"
-    },
-    "itemcode": "7290000001661",
-    "title": "גזר תפזורת",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪4.90 - ₪8.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000001661.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:10:20.898Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:10:20.898Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e59c60ed9858898d6951"
-    },
-    "itemcode": "7290000001715",
-    "title": "תפוח אדמה לבן ארוז",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪4.90 - ₪9.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000001715.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:10:36.241Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:10:36.241Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e5a160ed9858898d6953"
-    },
-    "itemcode": "7290000001722",
-    "title": "תפוח אדמה אדום תפזורת",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪5.90 - ₪9.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000001722.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:10:41.179Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:10:41.179Z"
     },
     "__v": 0
   },
@@ -9205,7 +8445,7 @@
     "brand": "מחלבת אלון תבור",
     "pricerange": "₪5.40 - ₪6.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290000040042.png",
-    "category": "חטיפים וממתקים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:11:04.893Z"
     },
@@ -9224,7 +8464,7 @@
     "brand": "תנובה בע\"מ",
     "pricerange": "₪5.40 - ₪6.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290000040080.png",
-    "category": "חטיפים וממתקים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:11:07.490Z"
     },
@@ -9319,7 +8559,7 @@
     "brand": "תנובה",
     "pricerange": "₪12.50 - ₪15.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290000043890.png",
-    "category": "עוף בשר ודגים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:11:24.367Z"
     },
@@ -9357,7 +8597,7 @@
     "brand": "תנובה בע\"מ",
     "pricerange": "₪7.90 - ₪9.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290000044248.png",
-    "category": "עוף בשר ודגים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:11:29.753Z"
     },
@@ -9395,7 +8635,7 @@
     "brand": "מחלבת אלון תבור",
     "pricerange": "₪33.70 - ₪34.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290000045771.png",
-    "category": "משקאות ויין",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:11:35.069Z"
     },
@@ -9661,7 +8901,7 @@
     "brand": "",
     "pricerange": "₪6.90 - ₪7.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290000052717.png",
-    "category": "ירקות ופירות",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:12:30.151Z"
     },
@@ -9718,7 +8958,7 @@
     "brand": "תנובה בע\"מ",
     "pricerange": "₪5.90 - ₪7.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290000055329.png",
-    "category": "משקאות ויין",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:12:42.260Z"
     },
@@ -9737,7 +8977,7 @@
     "brand": "תנובה בע\"מ",
     "pricerange": "₪5.90 - ₪7.40",
     "image": "http://127.0.0.1:3000/uploads/products/7290000055343.png",
-    "category": "משקאות ויין",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:12:45.649Z"
     },
@@ -12169,7 +11409,7 @@
     "brand": "יוניליוור ישראל מזון",
     "pricerange": "₪10.90 - ₪14.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290000111186.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:21:00.022Z"
     },
@@ -12378,7 +11618,7 @@
     "brand": "יוניליוור מפעל רקסדייל",
     "pricerange": "₪9.90 - ₪20.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290000120836.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:21:52.496Z"
     },
@@ -13201,25 +12441,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:24:50.048Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929e8f660ed9858898d6b09"
-    },
-    "itemcode": "7290000139135",
-    "title": "שלווה XL חיטה תפוחה320ג",
-    "unit": "gram",
-    "brand": "אשבול",
-    "pricerange": "₪11.90 - ₪13.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000139135.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:24:54.490Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:24:54.490Z"
     },
     "__v": 0
   },
@@ -16501,7 +15722,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪4.70 - ₪6.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290000408354.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T18:37:03.895Z"
     },
@@ -18317,101 +17538,6 @@
   },
   {
     "_id": {
-      "$oid": "6929ed4760ed9858898d6d29"
-    },
-    "itemcode": "7290000616780",
-    "title": "קוקטייל עוף טרי ארוז שלי",
-    "unit": "unit",
-    "brand": "עוף עוז",
-    "pricerange": "₪19.90 - ₪31.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000616780.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T18:43:19.890Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:43:19.890Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ed4b60ed9858898d6d2b"
-    },
-    "itemcode": "7290000616803",
-    "title": "כרעים עוף טרי ארוז שלי ל",
-    "unit": "unit",
-    "brand": "עוף עוז",
-    "pricerange": "₪19.90 - ₪31.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000616803.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:43:23.093Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:43:23.093Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ed4f60ed9858898d6d2d"
-    },
-    "itemcode": "7290000616810",
-    "title": "כנפיים עוף טרי ארוז",
-    "unit": "unit",
-    "brand": "עוף עוז",
-    "pricerange": "₪8.00 - ₪13.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000616810.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:43:27.604Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:43:27.604Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ed5260ed9858898d6d2f"
-    },
-    "itemcode": "7290000616841",
-    "title": "כבד עוף טרי ארוז שלי",
-    "unit": "unit",
-    "brand": "עוף עוז",
-    "pricerange": "₪14.90 - ₪24.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000616841.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:43:30.881Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:43:30.881Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ed5560ed9858898d6d31"
-    },
-    "itemcode": "7290000616889",
-    "title": "שניצל עוף טרי ארוז שלי",
-    "unit": "unit",
-    "brand": "עוף עוז",
-    "pricerange": "₪45.90 - ₪49.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000616889.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:43:33.225Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:43:33.225Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929ed5c60ed9858898d6d35"
     },
     "itemcode": "7290000663043",
@@ -18488,44 +17614,6 @@
   },
   {
     "_id": {
-      "$oid": "6929ed6c60ed9858898d6d3f"
-    },
-    "itemcode": "7290000907949",
-    "title": "משקה מצונן 500מל",
-    "unit": "unit",
-    "brand": "",
-    "pricerange": "₪7.50 - ₪10.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000907949.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T18:43:56.638Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:43:56.638Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ed7060ed9858898d6d41"
-    },
-    "itemcode": "7290000910994",
-    "title": "פסטרמה ונקניק-קצוות משקל",
-    "unit": "unit",
-    "brand": "שונות",
-    "pricerange": "₪29.00 - ₪29.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000910994.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:44:00.135Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:44:00.135Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929ed7360ed9858898d6d43"
     },
     "itemcode": "7290000928425",
@@ -18578,44 +17666,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:44:12.902Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ed8160ed9858898d6d49"
-    },
-    "itemcode": "7290000928708",
-    "title": "עצמות בקר טרי",
-    "unit": "unit",
-    "brand": "שונות",
-    "pricerange": "₪39.90 - ₪39.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000928708.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:44:17.177Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:44:17.177Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ed8560ed9858898d6d4b"
-    },
-    "itemcode": "7290000933184",
-    "title": "קשתית טרי מוכשר",
-    "unit": "unit",
-    "brand": "כללי",
-    "pricerange": "₪69.90 - ₪69.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000933184.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:44:21.947Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:44:21.947Z"
     },
     "__v": 0
   },
@@ -18754,25 +17804,6 @@
   },
   {
     "_id": {
-      "$oid": "6929eda760ed9858898d6d5b"
-    },
-    "itemcode": "7290000961552",
-    "title": "פלפל כתום",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪7.90 - ₪18.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000961552.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T18:44:55.345Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:44:55.345Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929edab60ed9858898d6d5d"
     },
     "itemcode": "7290000961606",
@@ -18787,25 +17818,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:44:59.662Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929edaf60ed9858898d6d5f"
-    },
-    "itemcode": "7290000961804",
-    "title": "דלעת ארוזה",
-    "unit": "unit",
-    "brand": "א.מ.תקומה עשבי תיבול",
-    "pricerange": "₪4.90 - ₪14.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000961804.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:45:03.798Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:45:03.798Z"
     },
     "__v": 0
   },
@@ -18906,63 +17918,6 @@
   },
   {
     "_id": {
-      "$oid": "6929edc660ed9858898d6d6b"
-    },
-    "itemcode": "7290000963082",
-    "title": "תפוח עץ מוזהב 70",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪12.90 - ₪17.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000963082.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:45:26.488Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:45:26.488Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929edcb60ed9858898d6d6d"
-    },
-    "itemcode": "7290000963150",
-    "title": "פינקליידי 70 צרפת*",
-    "unit": "unit",
-    "brand": "PAI",
-    "pricerange": "₪18.90 - ₪24.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000963150.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:45:31.410Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:45:31.410Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929edcf60ed9858898d6d6f"
-    },
-    "itemcode": "7290000963228",
-    "title": "תפוח עץ יונתן 65",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪13.90 - ₪18.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000963228.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:45:35.643Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:45:35.643Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929edd360ed9858898d6d71"
     },
     "itemcode": "7290000963280",
@@ -18996,63 +17951,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:45:43.359Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929eddb60ed9858898d6d75"
-    },
-    "itemcode": "7290000963426",
-    "title": "תפוח עץ גאלה 70",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪13.90 - ₪15.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000963426.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:45:47.441Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:45:47.441Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929eddd60ed9858898d6d77"
-    },
-    "itemcode": "7290000963518",
-    "title": "תפוח עץ סמיט 70",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪12.90 - ₪15.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000963518.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:45:49.961Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:44:28.322Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ede160ed9858898d6d79"
-    },
-    "itemcode": "7290000963839",
-    "title": "אבוקדו מובחר",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪9.90 - ₪14.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000963839.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:45:53.726Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:45:53.726Z"
     },
     "__v": 0
   },
@@ -19115,139 +18013,6 @@
   },
   {
     "_id": {
-      "$oid": "6929edf360ed9858898d6d81"
-    },
-    "itemcode": "7290000964379",
-    "title": "אשכולית לבנה",
-    "unit": "unit",
-    "brand": "זן - בר המכללה לטבעונות",
-    "pricerange": "₪6.90 - ₪9.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000964379.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:11.620Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:46:11.620Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929edf660ed9858898d6d83"
-    },
-    "itemcode": "7290000964393",
-    "title": "אשכולית אדומה",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪6.90 - ₪9.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000964393.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:14.459Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:46:33.606Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929edfb60ed9858898d6d85"
-    },
-    "itemcode": "7290000964423",
-    "title": "פומלה אדומה",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪6.90 - ₪14.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000964423.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:19.277Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:46:19.277Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929edfe60ed9858898d6d87"
-    },
-    "itemcode": "7290000964461",
-    "title": "פומלית",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪6.90 - ₪14.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000964461.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:22.830Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:46:22.830Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee0160ed9858898d6d89"
-    },
-    "itemcode": "7290000964492",
-    "title": "לימון",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪10.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000964492.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:25.753Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:46:25.753Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee0560ed9858898d6d8b"
-    },
-    "itemcode": "7290000964614",
-    "title": "קלמנטינה מובחרת",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪8.90 - ₪14.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000964614.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:29.208Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:46:29.208Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee0860ed9858898d6d8d"
-    },
-    "itemcode": "7290000964775",
-    "title": "בננה",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪9.90 - ₪17.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000964775.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:32.208Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:46:32.208Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929ee0c60ed9858898d6d8f"
     },
     "itemcode": "7290000964805",
@@ -19267,82 +18032,6 @@
   },
   {
     "_id": {
-      "$oid": "6929ee1060ed9858898d6d91"
-    },
-    "itemcode": "7290000964829",
-    "title": "אגס ספדונה 55",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪14.90 - ₪21.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000964829.jpg",
-    "category": "פארם ותינוקות",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:40.053Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:46:40.053Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee1360ed9858898d6d93"
-    },
-    "itemcode": "7290000964980",
-    "title": "אבוקדו",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪9.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000964980.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:43.968Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:46:43.968Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee1760ed9858898d6d95"
-    },
-    "itemcode": "7290000965024",
-    "title": "אבטיח בקרטון",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪8.90 - ₪14.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000965024.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:47.871Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:46:47.871Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee2160ed9858898d6d97"
-    },
-    "itemcode": "7290000965055",
-    "title": "מלון מובחר",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪5.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000965055.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:46:57.480Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:46:57.480Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929ee2460ed9858898d6d99"
     },
     "itemcode": "7290000965154",
@@ -19357,25 +18046,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:47:00.617Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee3460ed9858898d6d9d"
-    },
-    "itemcode": "7290000965611",
-    "title": "מלון גסטין",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪9.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000965611.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:47:16.955Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:47:16.955Z"
     },
     "__v": 0
   },
@@ -19419,101 +18089,6 @@
   },
   {
     "_id": {
-      "$oid": "6929ee4c60ed9858898d6da3"
-    },
-    "itemcode": "7290000966335",
-    "title": "אפרסמון 70",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪17.90 - ₪39.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000966335.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:47:40.587Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:47:40.587Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee5060ed9858898d6da5"
-    },
-    "itemcode": "7290000966496",
-    "title": "ראש אננס קוסטה ריקה",
-    "unit": "unit",
-    "brand": "כללי",
-    "pricerange": "₪14.90 - ₪49.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000966496.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:47:44.894Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:47:44.894Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee5360ed9858898d6da7"
-    },
-    "itemcode": "7290000966540",
-    "title": "תאנים טריות",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪34.90 - ₪49.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000966540.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:47:47.963Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:47:47.963Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee5b60ed9858898d6da9"
-    },
-    "itemcode": "7290000966564",
-    "title": "רימון מובחר",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪7.90 - ₪29.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000966564.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:47:55.109Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:47:55.109Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee5f60ed9858898d6dab"
-    },
-    "itemcode": "7290000966618",
-    "title": "גויאבות",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪29.90 - ₪34.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000966618.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:47:59.398Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:47:59.398Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929ee6460ed9858898d6dad"
     },
     "itemcode": "7290000966656",
@@ -19547,25 +18122,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-30T12:46:39.934Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee6b60ed9858898d6db1"
-    },
-    "itemcode": "7290000966809",
-    "title": "תות שדה יחידה",
-    "unit": "gram",
-    "brand": "קטיף.",
-    "pricerange": "₪14.90 - ₪39.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000966809.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:48:11.022Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:48:11.022Z"
     },
     "__v": 0
   },
@@ -19609,82 +18165,6 @@
   },
   {
     "_id": {
-      "$oid": "6929ee8160ed9858898d6db9"
-    },
-    "itemcode": "7290000986074",
-    "title": "נענע תפזורת",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪3.90 - ₪5.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000986074.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:48:33.323Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:48:33.323Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee8460ed9858898d6dbb"
-    },
-    "itemcode": "7290000986517",
-    "title": "תפוז מובחר",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪5.90 - ₪12.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000986517.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:48:36.731Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:48:36.731Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee8960ed9858898d6dbd"
-    },
-    "itemcode": "7290000987071",
-    "title": "שום בתפזורת",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪29.90 - ₪30.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000987071.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:48:41.630Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:48:41.630Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee8c60ed9858898d6dbf"
-    },
-    "itemcode": "7290000987255",
-    "title": "תפוח פינקליידי צרפת*",
-    "unit": "unit",
-    "brand": "קטיף.",
-    "pricerange": "₪18.90 - ₪24.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000987255.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:48:44.848Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:48:44.848Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929ee9160ed9858898d6dc1"
     },
     "itemcode": "7290000992204",
@@ -19718,44 +18198,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:48:58.571Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ee9f60ed9858898d6dc7"
-    },
-    "itemcode": "7290000993461",
-    "title": "עגבניה שרי צהוב",
-    "unit": "gram",
-    "brand": "קטיף.",
-    "pricerange": "₪14.90 - ₪18.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000993461.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T18:49:03.343Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:49:03.343Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929eea260ed9858898d6dc9"
-    },
-    "itemcode": "7290000993560",
-    "title": "עגבניה שרי שוקו",
-    "unit": "gram",
-    "brand": "קטיף.",
-    "pricerange": "₪7.50 - ₪9.90,,",
-    "image": "http://127.0.0.1:3000/uploads/products/7290000993560.jpg",
-    "category": "חטיפים וממתקים",
-    "createdAt": {
-      "$date": "2025-11-28T18:49:06.005Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T10:56:43.295Z"
     },
     "__v": 0
   },
@@ -19851,25 +18293,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:49:29.809Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929eebe60ed9858898d6dd7"
-    },
-    "itemcode": "7290001053645",
-    "title": "בשר ראש חב\"ד",
-    "unit": "unit",
-    "brand": "ויקטוריה",
-    "pricerange": "₪89.90 - ₪119.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290001053645.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:49:34.714Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:49:34.714Z"
     },
     "__v": 0
   },
@@ -19989,25 +18412,6 @@
   },
   {
     "_id": {
-      "$oid": "6929eed760ed9858898d6de5"
-    },
-    "itemcode": "7290001133552",
-    "title": "שריר בשר מס8' קפוא חלק",
-    "unit": "unit",
-    "brand": "בלדי",
-    "pricerange": "₪44.90 - ₪44.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290001133552.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:49:59.532Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:49:59.532Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929eedb60ed9858898d6de7"
     },
     "itemcode": "7290001164266",
@@ -20117,25 +18521,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-30T12:46:46.072Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929eeed60ed9858898d6df3"
-    },
-    "itemcode": "7290001201886",
-    "title": "ביצי חופש 12יח M",
-    "unit": "unit",
-    "brand": "---",
-    "pricerange": "₪20.90 - ₪23.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290001201886.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T18:50:21.294Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:50:21.294Z"
     },
     "__v": 0
   },
@@ -20616,63 +19001,6 @@
   },
   {
     "_id": {
-      "$oid": "6929ef6b60ed9858898d6e29"
-    },
-    "itemcode": "7290001303214",
-    "title": "פילה עוף קפוא ארוז",
-    "unit": "unit",
-    "brand": "עוף עוז",
-    "pricerange": "₪39.90 - ₪39.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290001303214.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:52:27.321Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:52:27.321Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ef6e60ed9858898d6e2b"
-    },
-    "itemcode": "7290001303245",
-    "title": "כנפיים עוף ארוז קפוא מחי",
-    "unit": "unit",
-    "brand": "עוף עוז",
-    "pricerange": "₪12.90 - ₪12.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290001303245.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:52:30.698Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:52:30.698Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929ef7360ed9858898d6e2d"
-    },
-    "itemcode": "7290001303269",
-    "title": "פרגיות פטם ארוז קפוא",
-    "unit": "unit",
-    "brand": "עוף עוז",
-    "pricerange": "₪59.90 - ₪64.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290001303269.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:52:35.011Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:52:35.011Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929ef7560ed9858898d6e2f"
     },
     "itemcode": "7290001305188",
@@ -20953,25 +19281,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:53:43.154Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929efbc60ed9858898d6e51"
-    },
-    "itemcode": "7290001527245",
-    "title": "גרון הודו קפוא",
-    "unit": "unit",
-    "brand": "יסכה",
-    "pricerange": "₪10.50 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290001527245.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:53:48.026Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:53:48.026Z"
     },
     "__v": 0
   },
@@ -21281,25 +19590,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f00360ed9858898d6e75"
-    },
-    "itemcode": "7290001770009",
-    "title": "פרגית ממולאת באורז מתקתק",
-    "unit": "unit",
-    "brand": "זהר בשר עופות ובשר בע\"מ",
-    "pricerange": "₪60.90 - ₪60.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290001770009.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:54:59.578Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:54:59.578Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f00760ed9858898d6e77"
     },
     "itemcode": "7290001780428",
@@ -21352,25 +19642,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:55:10.945Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f01660ed9858898d6e7f"
-    },
-    "itemcode": "7290001842850",
-    "title": "רגל עגל פרוס קפוא כשר",
-    "unit": "unit",
-    "brand": "בקר תנובה",
-    "pricerange": "₪59.90 - ₪69.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290001842850.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T18:55:18.816Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:55:18.816Z"
     },
     "__v": 0
   },
@@ -21485,25 +19756,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T18:55:45.478Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f03560ed9858898d6e8f"
-    },
-    "itemcode": "7290001989364",
-    "title": "מקרל פרוס בשמן משקל",
-    "unit": "unit",
-    "brand": "סלטי שמיר",
-    "pricerange": "₪100.00 - ₪110.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290001989364.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T18:55:49.876Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T18:55:49.876Z"
     },
     "__v": 0
   },
@@ -23333,25 +21585,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f1d660ed9858898d6f53"
-    },
-    "itemcode": "7290002447016",
-    "title": "מארז  רוסטביף א.א קג",
-    "unit": "unit",
-    "brand": "תנובה",
-    "pricerange": "₪129.90 - ₪129.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290002447016.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:02:46.699Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:02:46.699Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f1e160ed9858898d6f55"
     },
     "itemcode": "7290002447085",
@@ -23656,25 +21889,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f21e60ed9858898d6f75"
-    },
-    "itemcode": "7290002511571",
-    "title": "גב.מוצרלה בלוק 22% משקל",
-    "unit": "unit",
-    "brand": "מחלבת המושבה",
-    "pricerange": "₪92.00 - ₪100.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290002511571.jpg",
-    "category": "מוצרי קירור וביצים",
-    "createdAt": {
-      "$date": "2025-11-28T19:03:58.015Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:03:58.015Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f22060ed9858898d6f77"
     },
     "itemcode": "7290002512011",
@@ -23784,25 +21998,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T19:04:19.667Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f23760ed9858898d6f83"
-    },
-    "itemcode": "7290002621782",
-    "title": "בשר שריר מס8' קפוא מוכשר",
-    "unit": "unit",
-    "brand": "פריגול",
-    "pricerange": "₪44.90 - ₪44.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290002621782.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:04:23.828Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:04:23.828Z"
     },
     "__v": 0
   },
@@ -24682,25 +22877,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f2f260ed9858898d6fe3"
-    },
-    "itemcode": "7290002927044",
-    "title": "צלי כתף 5 קפוא מעובד",
-    "unit": "unit",
-    "brand": "זהר בשר עופות ובשר בע\"מ",
-    "pricerange": "₪59.90 - ₪69.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290002927044.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:07:30.433Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:07:30.433Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f2f560ed9858898d6fe5"
     },
     "itemcode": "7290002929642",
@@ -25488,31 +23664,12 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪4.70 - ₪6.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290003321155.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:10:33.882Z"
     },
     "updatedAt": {
       "$date": "2025-11-28T19:10:33.882Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f3ae60ed9858898d703b"
-    },
-    "itemcode": "7290003354559",
-    "title": "אנטריקוט דקדק טרי דנבר מ",
-    "unit": "unit",
-    "brand": "דנוור קאט רעננה",
-    "pricerange": "₪179.90 - ₪179.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290003354559.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:10:38.402Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:10:38.402Z"
     },
     "__v": 0
   },
@@ -26723,7 +24880,7 @@
     "brand": "מחלבת אלון תבור",
     "pricerange": "₪18.40 - ₪22.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290004119133.png",
-    "category": "משקאות ויין",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:14:56.327Z"
     },
@@ -27198,7 +25355,7 @@
     "brand": "מחלבת אלון תבור",
     "pricerange": "₪11.90 - ₪18.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290004129118.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:16:46.343Z"
     },
@@ -27217,7 +25374,7 @@
     "brand": "מחלבת אלון תבור",
     "pricerange": "₪7.40 - ₪18.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290004129156.png",
-    "category": "ירקות ופירות",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:16:50.531Z"
     },
@@ -27293,7 +25450,7 @@
     "brand": "---",
     "pricerange": "₪7.20 - ₪7.28",
     "image": "http://127.0.0.1:3000/uploads/products/7290004131074.png",
-    "category": "עוף בשר ודגים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:17:15.469Z"
     },
@@ -27608,25 +25765,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f57460ed9858898d7121"
-    },
-    "itemcode": "7290004329969",
-    "title": "אסאדו עם עצם -חב\"ד קפוא",
-    "unit": "unit",
-    "brand": "ויקטוריה",
-    "pricerange": "₪39.90 - ₪69.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290004329969.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:18:12.723Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:18:12.723Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f57760ed9858898d7123"
     },
     "itemcode": "7290004339401",
@@ -27722,44 +25860,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f58960ed9858898d712f"
-    },
-    "itemcode": "7290004480479",
-    "title": "קממבר צרפתי משקל",
-    "unit": "unit",
-    "brand": "סאסו פטוראגס",
-    "pricerange": "₪136.00 - ₪149.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290004480479.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:18:33.925Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:18:33.925Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f58e60ed9858898d7131"
-    },
-    "itemcode": "7290004480493",
-    "title": "משולש ברי צרפתי משקל",
-    "unit": "unit",
-    "brand": "סאסו פטוראגס",
-    "pricerange": "₪109.00 - ₪155.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290004480493.jpg",
-    "category": "מוצרי קירור וביצים",
-    "createdAt": {
-      "$date": "2025-11-28T19:18:38.550Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:18:38.550Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f59160ed9858898d7133"
     },
     "itemcode": "7290004537272",
@@ -27806,7 +25906,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪9.90 - ₪13.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290004584351.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:18:47.324Z"
     },
@@ -28368,25 +26468,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f61360ed9858898d7175"
-    },
-    "itemcode": "7290005082146",
-    "title": "עוגיות פרפריות משקל",
-    "unit": "unit",
-    "brand": "שלגל מזון בע\"מ",
-    "pricerange": "₪40.00 - ₪40.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290005082146.jpg",
-    "category": "חטיפים וממתקים",
-    "createdAt": {
-      "$date": "2025-11-28T19:20:51.002Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:20:51.002Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f61560ed9858898d7177"
     },
     "itemcode": "7290005095498",
@@ -28471,7 +26552,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪14.90 - ₪18.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290005174513.png",
-    "category": "מעדנייה וסלטים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:21:10.212Z"
     },
@@ -28509,7 +26590,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪4.90 - ₪6.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290005174568.png",
-    "category": "מעדנייה וסלטים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:21:25.435Z"
     },
@@ -28843,158 +26924,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f67d60ed9858898d71a7"
-    },
-    "itemcode": "7290005590207",
-    "title": "עוף שלם טרי ארוז שלי קג",
-    "unit": "unit",
-    "brand": "עוף הגליל",
-    "pricerange": "₪14.90 - ₪21.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290005590207.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:22:37.346Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:22:37.346Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f68160ed9858898d71a9"
-    },
-    "itemcode": "7290005590214",
-    "title": "כרעיים עוף טרי ארוז שלי",
-    "unit": "unit",
-    "brand": "עוף הגליל",
-    "pricerange": "₪19.90 - ₪31.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290005590214.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:22:41.014Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:22:41.014Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f68560ed9858898d71ab"
-    },
-    "itemcode": "7290005590221",
-    "title": "קוקטייל עוף ארוז שלי קג",
-    "unit": "unit",
-    "brand": "עוף הגליל",
-    "pricerange": "₪19.90 - ₪31.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290005590221.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T19:22:45.243Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:22:45.243Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f68a60ed9858898d71af"
-    },
-    "itemcode": "7290005590252",
-    "title": "שניצל עוף טרי ארוז שלי ק",
-    "unit": "unit",
-    "brand": "עוף הגליל",
-    "pricerange": "₪45.90 - ₪49.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290005590252.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:22:50.756Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:22:50.756Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f68e60ed9858898d71b1"
-    },
-    "itemcode": "7290005590269",
-    "title": "פילה עוף טרי ארוז שלי לק",
-    "unit": "unit",
-    "brand": "עוף הגליל",
-    "pricerange": "₪44.90 - ₪44.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290005590269.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:22:54.191Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:22:54.191Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f69260ed9858898d71b5"
-    },
-    "itemcode": "7290005590283",
-    "title": "שווארמה עוף טרי ארוז שלי",
-    "unit": "unit",
-    "brand": "עוף הגליל",
-    "pricerange": "₪64.90 - ₪64.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290005590283.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:22:58.915Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:22:58.915Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f69660ed9858898d71b7"
-    },
-    "itemcode": "7290005590290",
-    "title": "כנפיים עוף טרי ארוז שלי",
-    "unit": "unit",
-    "brand": "עוף הגליל",
-    "pricerange": "₪8.00 - ₪13.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290005590290.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:23:02.557Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:23:02.557Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f69960ed9858898d71b9"
-    },
-    "itemcode": "7290005590306",
-    "title": "כבד עוף טרי ארוז שלי קג",
-    "unit": "unit",
-    "brand": "עוף הגליל",
-    "pricerange": "₪14.90 - ₪24.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290005590306.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:23:05.746Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:23:05.746Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f69e60ed9858898d71bd"
     },
     "itemcode": "7290005610127",
@@ -29174,7 +27103,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪17.90 - ₪23.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290005839078.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:23:44.153Z"
     },
@@ -29193,7 +27122,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪9.90 - ₪13.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290005839108.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:23:48.760Z"
     },
@@ -29212,7 +27141,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪4.60 - ₪6.00",
     "image": "http://127.0.0.1:3000/uploads/products/7290005839313.png",
-    "category": "חטיפים וממתקים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:23:50.928Z"
     },
@@ -29983,44 +27912,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f76e60ed9858898d7225"
-    },
-    "itemcode": "7290006451477",
-    "title": "לחם מחמצת צרפתי 550 גרם",
-    "unit": "unit",
-    "brand": "גידרון תעשיות בע\"מ",
-    "pricerange": "₪19.90 - ₪21.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290006451477.jpg",
-    "category": "לחמים ומאפים",
-    "createdAt": {
-      "$date": "2025-11-28T19:26:38.350Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:26:38.350Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f77160ed9858898d7227"
-    },
-    "itemcode": "7290006451484",
-    "title": "לחם מחמצת אגוז+צימוק550ג",
-    "unit": "unit",
-    "brand": "גידרון תעשיות בע\"מ",
-    "pricerange": "₪19.90 - ₪21.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290006451484.jpg",
-    "category": "לחמים ומאפים",
-    "createdAt": {
-      "$date": "2025-11-28T19:26:41.466Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:26:41.466Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f77660ed9858898d7229"
     },
     "itemcode": "7290006451491",
@@ -30035,25 +27926,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T19:26:46.016Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f77960ed9858898d722b"
-    },
-    "itemcode": "7290006451507",
-    "title": "לחם מחמצת כוסמין 550גרם",
-    "unit": "unit",
-    "brand": "גידרון תעשיות בע\"מ",
-    "pricerange": "₪19.90 - ₪21.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290006451507.jpg",
-    "category": "הכל לבית",
-    "createdAt": {
-      "$date": "2025-11-28T19:26:49.043Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:26:49.043Z"
     },
     "__v": 0
   },
@@ -30092,25 +27964,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T19:26:56.462Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f78460ed9858898d7231"
-    },
-    "itemcode": "7290006451699",
-    "title": "לחם מחמצת עגבניות ובצל .",
-    "unit": "unit",
-    "brand": "גידרון תעשיות בע\"מ",
-    "pricerange": "₪19.90 - ₪21.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290006451699.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T19:27:00.611Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:27:00.611Z"
     },
     "__v": 0
   },
@@ -30428,7 +28281,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪3.80 - ₪5.30",
     "image": "http://127.0.0.1:3000/uploads/products/7290006664532.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:28:17.751Z"
     },
@@ -30466,7 +28319,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪3.80 - ₪5.30",
     "image": "http://127.0.0.1:3000/uploads/products/7290006664693.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:28:23.265Z"
     },
@@ -30485,7 +28338,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪17.90 - ₪23.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290006664990.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:28:26.240Z"
     },
@@ -30561,7 +28414,7 @@
     "brand": "סלטי משני",
     "pricerange": "₪18.10 - ₪24.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290006666345.png",
-    "category": "מעדנייה וסלטים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:28:49.052Z"
     },
@@ -30686,25 +28539,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f80b60ed9858898d726f"
-    },
-    "itemcode": "7290006708007",
-    "title": "חזה הודו נ.טרי ארוז",
-    "unit": "unit",
-    "brand": "עוף טוב",
-    "pricerange": "₪39.90 - ₪39.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290006708007.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:29:15.171Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:29:15.171Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f80d60ed9858898d7271"
     },
     "itemcode": "7290006708014",
@@ -30719,44 +28553,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T19:29:17.623Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f81160ed9858898d7273"
-    },
-    "itemcode": "7290006708045",
-    "title": "שוק הודו מפורק טרי ארוז",
-    "unit": "unit",
-    "brand": "עוף טוב",
-    "pricerange": "₪59.90 - ₪64.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290006708045.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:29:21.741Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:29:21.741Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f81560ed9858898d7275"
-    },
-    "itemcode": "7290006708076",
-    "title": "נתחי הודו טרי ארוז",
-    "unit": "unit",
-    "brand": "עוף טוב",
-    "pricerange": "₪29.90 - ₪29.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290006708076.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:29:25.313Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:29:25.313Z"
     },
     "__v": 0
   },
@@ -30890,63 +28686,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T19:29:52.359Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f83360ed9858898d7285"
-    },
-    "itemcode": "7290006748430",
-    "title": "זר דייט ראשון יחידה",
-    "unit": "unit",
-    "brand": "פרחי ליידי דיאן",
-    "pricerange": "₪39.00 - ₪39.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290006748430.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:29:55.988Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:29:55.988Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f83860ed9858898d7287"
-    },
-    "itemcode": "7290006748591",
-    "title": "זר נפלאות הטבע יחידה",
-    "unit": "unit",
-    "brand": "פרחי ליידי דיאן",
-    "pricerange": "₪33.00 - ₪33.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290006748591.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:30:00.507Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:30:00.507Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f83b60ed9858898d7289"
-    },
-    "itemcode": "7290006748669",
-    "title": "זר קשת בענן יחידה",
-    "unit": "unit",
-    "brand": "פרחי ליידי דיאן",
-    "pricerange": "₪69.00 - ₪69.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290006748669.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:30:03.712Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:30:03.712Z"
     },
     "__v": 0
   },
@@ -31978,63 +29717,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f91d60ed9858898d72f7"
-    },
-    "itemcode": "7290008458801",
-    "title": "בורגר מן הצומח 227 גרם",
-    "unit": "gram",
-    "brand": "פיוצר פוד גרופ",
-    "pricerange": "₪29.90 - ₪29.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008458801.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:33:49.881Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:33:49.881Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f92160ed9858898d72f9"
-    },
-    "itemcode": "7290008458818",
-    "title": "טחון מן הצומח 160 גרם",
-    "unit": "gram",
-    "brand": "פיוצר פוד גרופ",
-    "pricerange": "₪25.90 - ₪27.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008458818.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:33:53.217Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:33:53.217Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f92560ed9858898d72fb"
-    },
-    "itemcode": "7290008458832",
-    "title": "אצבעות דג מן הצומח",
-    "unit": "gram",
-    "brand": "פיוצר פוד גרופ",
-    "pricerange": "₪25.90 - ₪27.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008458832.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:33:57.746Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:33:57.746Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f92960ed9858898d72fd"
     },
     "itemcode": "7290008462310",
@@ -32296,139 +29978,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T19:34:53.546Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f96260ed9858898d7319"
-    },
-    "itemcode": "7290008606370",
-    "title": "פטינה בסגנון פטה22% משקל",
-    "unit": "unit",
-    "brand": "QUANTUM RUCKER",
-    "pricerange": "₪39.00 - ₪47.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008606370.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:34:58.153Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:34:58.153Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f96560ed9858898d731b"
-    },
-    "itemcode": "7290008606615",
-    "title": "גאודה+פסטו ירוק32% משקל",
-    "unit": "unit",
-    "brand": "וונדר",
-    "pricerange": "₪159.00 - ₪179.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008606615.jpg",
-    "category": "מוצרי קירור וביצים",
-    "createdAt": {
-      "$date": "2025-11-28T19:35:01.294Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:35:01.294Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f96960ed9858898d731d"
-    },
-    "itemcode": "7290008606622",
-    "title": "גאודה בקר כמהין במשקל32%",
-    "unit": "unit",
-    "brand": "וונדר",
-    "pricerange": "₪189.00 - ₪219.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008606622.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:35:05.039Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:35:05.039Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f97760ed9858898d731f"
-    },
-    "itemcode": "7290008606639",
-    "title": "גאודה עיזים 30.60% משקל",
-    "unit": "unit",
-    "brand": "וונדר",
-    "pricerange": "₪159.00 - ₪179.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008606639.jpg",
-    "category": "מוצרי קירור וביצים",
-    "createdAt": {
-      "$date": "2025-11-28T19:35:19.536Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:35:19.536Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f97b60ed9858898d7321"
-    },
-    "itemcode": "7290008606646",
-    "title": "גאודה בקר 35% במשקל",
-    "unit": "unit",
-    "brand": "וונדר",
-    "pricerange": "₪79.00 - ₪89.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008606646.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:35:23.549Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:35:23.549Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f97e60ed9858898d7323"
-    },
-    "itemcode": "7290008606950",
-    "title": "גאודה עשבי תיבול 32%משקל",
-    "unit": "unit",
-    "brand": "וונדר",
-    "pricerange": "₪159.00 - ₪179.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008606950.jpg",
-    "category": "מוצרי קירור וביצים",
-    "createdAt": {
-      "$date": "2025-11-28T19:35:26.871Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:35:26.871Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929f98360ed9858898d7325"
-    },
-    "itemcode": "7290008606974",
-    "title": "גאודה גוסט 30%במשקל",
-    "unit": "unit",
-    "brand": "וונדר",
-    "pricerange": "₪149.00 - ₪169.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008606974.jpg",
-    "category": "מוצרי קירור וביצים",
-    "createdAt": {
-      "$date": "2025-11-28T19:35:31.001Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:35:31.001Z"
     },
     "__v": 0
   },
@@ -32909,25 +30458,6 @@
   },
   {
     "_id": {
-      "$oid": "6929f9fa60ed9858898d735b"
-    },
-    "itemcode": "7290008866972",
-    "title": "גבינה גרוויר מחיר במשקל",
-    "unit": "unit",
-    "brand": "גבינות משק יעקבס",
-    "pricerange": "₪189.00 - ₪199.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290008866972.jpg",
-    "category": "מוצרי קירור וביצים",
-    "createdAt": {
-      "$date": "2025-11-28T19:37:30.425Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:37:30.425Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929f9fc60ed9858898d735d"
     },
     "itemcode": "7290008909853",
@@ -33061,25 +30591,6 @@
   },
   {
     "_id": {
-      "$oid": "6929fa1760ed9858898d736d"
-    },
-    "itemcode": "7290009011128",
-    "title": "נתחי סלמון טרי שופרסל לק",
-    "unit": "unit",
-    "brand": "דגת הארץ",
-    "pricerange": "₪149.90 - ₪149.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009011128.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:37:59.088Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:37:59.088Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929fa1b60ed9858898d736f"
     },
     "itemcode": "7290009013023",
@@ -33137,25 +30648,6 @@
   },
   {
     "_id": {
-      "$oid": "6929fa2960ed9858898d7375"
-    },
-    "itemcode": "7290009137446",
-    "title": "ארגום פילה סלמון ע.עקפוא",
-    "unit": "unit",
-    "brand": "אמפרסאס אקווהצ'ילה",
-    "pricerange": "₪69.90 - ₪84.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009137446.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T19:38:17.634Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:38:17.634Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929fa2c60ed9858898d7377"
     },
     "itemcode": "7290009137682",
@@ -33170,25 +30662,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T19:38:20.865Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929fa3060ed9858898d7379"
-    },
-    "itemcode": "7290009137866",
-    "title": "צ'דר כתומה34%מגורדת משקל",
-    "unit": "unit",
-    "brand": "כללי",
-    "pricerange": "₪139.00 - ₪159.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009137866.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:38:24.560Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:38:24.560Z"
     },
     "__v": 0
   },
@@ -33536,101 +31009,6 @@
   },
   {
     "_id": {
-      "$oid": "6929fa9d60ed9858898d73a7"
-    },
-    "itemcode": "7290009950106",
-    "title": "משקה אנרגיה250מל",
-    "unit": "unit",
-    "brand": "",
-    "pricerange": "₪7.00 - ₪7.50",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009950106.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T19:40:13.227Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:40:13.227Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929faa060ed9858898d73a9"
-    },
-    "itemcode": "7290009950137",
-    "title": "בירה גולדסטאר330",
-    "unit": "unit",
-    "brand": "",
-    "pricerange": "₪12.00 - ₪13.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009950137.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T19:40:16.847Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:40:16.847Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929faa360ed9858898d73ab"
-    },
-    "itemcode": "7290009951325",
-    "title": "מים מינרליים",
-    "unit": "unit",
-    "brand": "",
-    "pricerange": "₪7.00 - ₪7.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009951325.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T19:40:19.645Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:40:19.645Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929faa760ed9858898d73ad"
-    },
-    "itemcode": "7290009951899",
-    "title": "מאפה מלוח משקל",
-    "unit": "unit",
-    "brand": "סהרון",
-    "pricerange": "₪40.00 - ₪56.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009951899.jpg",
-    "category": "לחמים ומאפים",
-    "createdAt": {
-      "$date": "2025-11-28T19:40:23.623Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:40:23.623Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929faac60ed9858898d73af"
-    },
-    "itemcode": "7290009951912",
-    "title": "מאפה מתוק משקל",
-    "unit": "unit",
-    "brand": "סהרון",
-    "pricerange": "₪40.00 - ₪56.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009951912.jpg",
-    "category": "לחמים ומאפים",
-    "createdAt": {
-      "$date": "2025-11-28T19:40:28.064Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:40:28.064Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929fab060ed9858898d73b1"
     },
     "itemcode": "7290009952292",
@@ -33721,63 +31099,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-30T11:39:21.136Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929fac260ed9858898d73bb"
-    },
-    "itemcode": "7290009952674",
-    "title": "משקה מצונן 330 מ\"ל",
-    "unit": "unit",
-    "brand": "כללי",
-    "pricerange": "₪7.50 - ₪8.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009952674.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T19:40:50.602Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:40:50.602Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929fac660ed9858898d73bd"
-    },
-    "itemcode": "7290009952858",
-    "title": "משקה מצונן 1ל",
-    "unit": "liter",
-    "brand": "",
-    "pricerange": "₪10.00 - ₪11.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009952858.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T19:40:54.678Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:40:54.678Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929facb60ed9858898d73bf"
-    },
-    "itemcode": "7290009952995",
-    "title": "מים מינרליים",
-    "unit": "liter",
-    "brand": "",
-    "pricerange": "₪6.00 - ₪8.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009952995.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T19:40:59.330Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:40:59.330Z"
     },
     "__v": 0
   },
@@ -33878,82 +31199,6 @@
   },
   {
     "_id": {
-      "$oid": "6929fae660ed9858898d73cd"
-    },
-    "itemcode": "7290009954999",
-    "title": "מים מצוננים500מל",
-    "unit": "unit",
-    "brand": "",
-    "pricerange": "₪5.90 - ₪7.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009954999.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T19:41:26.560Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:41:26.560Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929fae960ed9858898d73cf"
-    },
-    "itemcode": "7290009955002",
-    "title": "מים מצוננים1.5ל",
-    "unit": "liter",
-    "brand": "",
-    "pricerange": "₪6.50 - ₪8.10",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009955002.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T19:41:29.556Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:41:29.556Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929faed60ed9858898d73d1"
-    },
-    "itemcode": "7290009955019",
-    "title": "משקה מצונן 1.5ל",
-    "unit": "liter",
-    "brand": "",
-    "pricerange": "₪11.00 - ₪13.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009955019.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T19:41:33.239Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:41:33.239Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929faef60ed9858898d73d3"
-    },
-    "itemcode": "7290009957129",
-    "title": "פטינה במשקל",
-    "unit": "unit",
-    "brand": "ארלה פודס אמבא",
-    "pricerange": "₪39.00 - ₪45.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009957129.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:41:35.694Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:48:03.117Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929faf260ed9858898d73d5"
     },
     "itemcode": "7290009957174",
@@ -33968,63 +31213,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T19:41:38.186Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929faf560ed9858898d73d7"
-    },
-    "itemcode": "7290009957525",
-    "title": "סופגניה מיני מצופה 4יח",
-    "unit": "unit",
-    "brand": "גידרון תעשיות בע\"מ",
-    "pricerange": "₪24.90 - ₪24.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009957525.jpg",
-    "category": "חטיפים וממתקים",
-    "createdAt": {
-      "$date": "2025-11-28T19:41:41.293Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:41:41.293Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929fafa60ed9858898d73db"
-    },
-    "itemcode": "7290009957549",
-    "title": "סופגניות גדולות מצופה3יח",
-    "unit": "unit",
-    "brand": "גידרון תעשיות בע\"מ",
-    "pricerange": "₪21.90 - ₪21.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009957549.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:41:46.389Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:41:46.389Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929fafe60ed9858898d73dd"
-    },
-    "itemcode": "7290009957556",
-    "title": "3 סופגניות גדולות + ריבה",
-    "unit": "unit",
-    "brand": "גידרון תעשיות בע\"מ",
-    "pricerange": "₪5.70 - ₪5.70",
-    "image": "http://127.0.0.1:3000/uploads/products/7290009957556.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:41:50.164Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:41:50.164Z"
     },
     "__v": 0
   },
@@ -34817,7 +32005,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪4.50 - ₪6.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290010471669.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T19:44:44.123Z"
     },
@@ -38210,44 +35398,6 @@
   },
   {
     "_id": {
-      "$oid": "6929feb360ed9858898d75a1"
-    },
-    "itemcode": "7290013215314",
-    "title": "צמד פטריות פורטובלו",
-    "unit": "unit",
-    "brand": "חוות הדרום בע\"מ",
-    "pricerange": "₪17.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290013215314.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T19:57:39.745Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:57:39.745Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "6929febe60ed9858898d75a3"
-    },
-    "itemcode": "7290013215369",
-    "title": "צמד פטריות מעורב",
-    "unit": "unit",
-    "brand": "חוות הדרום בע\"מ",
-    "pricerange": "₪17.70 - ₪24.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290013215369.jpg",
-    "category": "פארם ותינוקות",
-    "createdAt": {
-      "$date": "2025-11-28T19:57:50.353Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T19:57:50.353Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "6929fec260ed9858898d75a5"
     },
     "itemcode": "7290013268020",
@@ -39700,7 +36850,7 @@
     "brand": "ר.ס. חברה ליבוא וייצור מ",
     "pricerange": "₪7.80 - ₪10.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290014088900.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T20:02:58.540Z"
     },
@@ -42105,25 +39255,6 @@
   },
   {
     "_id": {
-      "$oid": "692a021260ed9858898d7743"
-    },
-    "itemcode": "7290015979122",
-    "title": "סלרי עלים יחידה",
-    "unit": "unit",
-    "brand": "זנזורי",
-    "pricerange": "₪6.90 - ₪6.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290015979122.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T20:12:02.282Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T20:12:02.282Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a021560ed9858898d7745"
     },
     "itemcode": "7290015979436",
@@ -42645,7 +39776,7 @@
     "brand": "סלטי שמיר פל דג",
     "pricerange": "₪16.90 - ₪23.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290016314823.png",
-    "category": "מעדנייה וסלטים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T20:13:51.602Z"
     },
@@ -43853,25 +40984,6 @@
   },
   {
     "_id": {
-      "$oid": "692a037f60ed9858898d77fd"
-    },
-    "itemcode": "7290017291390",
-    "title": "שורש כורכום יחידה",
-    "unit": "unit",
-    "brand": "POMMER",
-    "pricerange": "₪14.90 - ₪15.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290017291390.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T20:18:07.862Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:48:45.950Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a038260ed9858898d77ff"
     },
     "itemcode": "7290017291505",
@@ -43886,25 +40998,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T20:18:10.851Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a038660ed9858898d7801"
-    },
-    "itemcode": "7290017291949",
-    "title": "שום קלוף ארוז 170גרם",
-    "unit": "unit",
-    "brand": "JINING HARVEST INTERNATI",
-    "pricerange": "₪9.90 - ₪14.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290017291949.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T20:18:14.556Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T20:18:14.556Z"
     },
     "__v": 0
   },
@@ -46046,7 +43139,7 @@
     "brand": "---",
     "pricerange": "₪26.90 - ₪33.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290018652657.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T20:26:23.242Z"
     },
@@ -46223,25 +43316,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T20:26:55.082Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a059160ed9858898d7903"
-    },
-    "itemcode": "7290018825433",
-    "title": "תפוח אדמה אדום",
-    "unit": "unit",
-    "brand": "חבל מעון",
-    "pricerange": "₪4.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290018825433.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T20:26:57.928Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T20:26:57.928Z"
     },
     "__v": 0
   },
@@ -48155,7 +45229,7 @@
     "brand": "---",
     "pricerange": "₪18.50 - ₪27.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290019293798.png",
-    "category": "ירקות ופירות",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T20:34:36.885Z"
     },
@@ -49933,25 +47007,6 @@
   },
   {
     "_id": {
-      "$oid": "692a08e160ed9858898d7a89"
-    },
-    "itemcode": "7290019974314",
-    "title": "מארז לחמניית אצבע לל\"ג4י",
-    "unit": "gram",
-    "brand": "מולינו בייקרי",
-    "pricerange": "₪19.90 - ₪27.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290019974314.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T20:41:05.101Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T20:41:05.101Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a08e460ed9858898d7a8b"
     },
     "itemcode": "7290020002075",
@@ -50004,44 +47059,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T20:41:17.450Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a08ef60ed9858898d7a91"
-    },
-    "itemcode": "7290020130457",
-    "title": "כוס שתייה מעוטר כסף 50 י",
-    "unit": "unit",
-    "brand": "ר.שמאי",
-    "pricerange": "₪12.90 - ₪13.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290020130457.jpg",
-    "category": "הכל לבית",
-    "createdAt": {
-      "$date": "2025-11-28T20:41:19.925Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:49:25.743Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a08f460ed9858898d7a93"
-    },
-    "itemcode": "7290020130464",
-    "title": "כוס שתייה מעוטר זהב 50 י",
-    "unit": "unit",
-    "brand": "ר.שמאי",
-    "pricerange": "₪12.90 - ₪12.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290020130464.jpg",
-    "category": "הכל לבית",
-    "createdAt": {
-      "$date": "2025-11-28T20:41:24.739Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T20:41:24.739Z"
     },
     "__v": 0
   },
@@ -50910,7 +47927,7 @@
     "brand": "יוניליוור מפעל רקסדייל",
     "pricerange": "₪17.90 - ₪32.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290100243084.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T20:44:26.638Z"
     },
@@ -52468,7 +49485,7 @@
     "brand": "---",
     "pricerange": "₪5.80 - ₪7.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290102390465.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T20:50:13.437Z"
     },
@@ -54273,7 +51290,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪20.90 - ₪25.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290104726712.png",
-    "category": "חטיפים וממתקים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T20:56:53.544Z"
     },
@@ -54767,7 +51784,7 @@
     "brand": "רמיה סי.וי.הולנד",
     "pricerange": "₪10.90 - ₪16.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290105439499.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T20:58:28.280Z"
     },
@@ -54957,7 +51974,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪5.10 - ₪7.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290105965738.png",
-    "category": "משקאות ויין",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T20:59:17.894Z"
     },
@@ -55508,7 +52525,7 @@
     "brand": "בובארד איטליה אס.פי.איי",
     "pricerange": "₪20.50 - ₪23.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290106654099.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:01:42.218Z"
     },
@@ -55546,7 +52563,7 @@
     "brand": "בובארד איטליה אס.פי.איי",
     "pricerange": "₪3.20 - ₪4.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290106663121.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:01:49.296Z"
     },
@@ -55622,7 +52639,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪3.80 - ₪5.30",
     "image": "http://127.0.0.1:3000/uploads/products/7290106668713.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:02:02.328Z"
     },
@@ -55983,7 +53000,7 @@
     "brand": "גלידות נסטלה",
     "pricerange": "₪18.50 - ₪27.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290107875400.png",
-    "category": "חטיפים וממתקים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:03:18.295Z"
     },
@@ -56230,7 +53247,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪9.90 - ₪13.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290107944472.png",
-    "category": "ירקות ופירות",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:04:00.970Z"
     },
@@ -56401,7 +53418,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪20.20 - ₪25.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290107958035.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:04:43.967Z"
     },
@@ -59384,7 +56401,7 @@
     "brand": "תנובה בע\"מ",
     "pricerange": "₪5.00 - ₪7.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290110328627.png",
-    "category": "חטיפים וממתקים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:15:08.638Z"
     },
@@ -59441,7 +56458,7 @@
     "brand": "תנובה בע\"מ",
     "pricerange": "₪5.00 - ₪7.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290110328788.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:15:21.085Z"
     },
@@ -59745,7 +56762,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪3.70 - ₪4.20",
     "image": "http://127.0.0.1:3000/uploads/products/7290110557423.png",
-    "category": "חטיפים וממתקים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:16:32.360Z"
     },
@@ -59764,7 +56781,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪3.70 - ₪4.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290110557454.png",
-    "category": "חטיפים וממתקים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:16:35.410Z"
     },
@@ -59821,7 +56838,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪4.00 - ₪6.20",
     "image": "http://127.0.0.1:3000/uploads/products/7290110558284.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:16:43.630Z"
     },
@@ -59916,7 +56933,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪2.90 - ₪3.80",
     "image": "http://127.0.0.1:3000/uploads/products/7290110560836.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:17:08.026Z"
     },
@@ -59935,7 +56952,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪3.50 - ₪5.30",
     "image": "http://127.0.0.1:3000/uploads/products/7290110561352.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:17:12.575Z"
     },
@@ -60239,7 +57256,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪10.40 - ₪13.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290110573058.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:18:02.663Z"
     },
@@ -60277,7 +57294,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪4.80 - ₪6.00",
     "image": "http://127.0.0.1:3000/uploads/products/7290110573751.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:18:10.470Z"
     },
@@ -62025,7 +59042,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪3.50 - ₪4.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290112344724.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:24:21.951Z"
     },
@@ -62044,7 +59061,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪2.90 - ₪3.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290112344755.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:24:26.423Z"
     },
@@ -62120,7 +59137,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪4.70 - ₪6.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290112346629.png",
-    "category": "לחמים ומאפים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:24:42.390Z"
     },
@@ -62329,7 +59346,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪4.60 - ₪6.00",
     "image": "http://127.0.0.1:3000/uploads/products/7290112355812.png",
-    "category": "לחמים ומאפים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:25:21.963Z"
     },
@@ -63290,25 +60307,6 @@
   },
   {
     "_id": {
-      "$oid": "692a13fe60ed9858898d800d"
-    },
-    "itemcode": "7290112841858",
-    "title": "פטריות שמפניון יחידה",
-    "unit": "unit",
-    "brand": "פטריות ושורשים בע\"מ",
-    "pricerange": "₪9.90 - ₪11.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290112841858.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:28:30.548Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:28:30.548Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a140660ed9858898d8013"
     },
     "itemcode": "7290112962546",
@@ -64153,7 +61151,7 @@
     "brand": "טרה",
     "pricerange": "₪5.80 - ₪7.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290114313698.png",
-    "category": "ירקות ופירות",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:31:31.736Z"
     },
@@ -64172,7 +61170,7 @@
     "brand": "טרה",
     "pricerange": "₪5.80 - ₪7.50",
     "image": "http://127.0.0.1:3000/uploads/products/7290114313704.png",
-    "category": "ירקות ופירות",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:31:36.225Z"
     },
@@ -64324,7 +61322,7 @@
     "brand": "---",
     "pricerange": "₪13.70 - ₪21.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290114600941.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:32:06.595Z"
     },
@@ -64419,7 +61417,7 @@
     "brand": "---",
     "pricerange": "₪13.70 - ₪19.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290114606530.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:32:24.891Z"
     },
@@ -64449,44 +61447,6 @@
   },
   {
     "_id": {
-      "$oid": "692a14f260ed9858898d8093"
-    },
-    "itemcode": "7290115190014",
-    "title": "מרלבורו רד קצר חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪43.00 - ₪47.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190014.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:32:34.252Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:32:34.252Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a14f660ed9858898d8095"
-    },
-    "itemcode": "7290115190038",
-    "title": "מרלבורו רד קצר סופט חפ'",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪41.50 - ₪45.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190038.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:32:38.224Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:32:38.224Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a14f960ed9858898d8097"
     },
     "itemcode": "7290115190076",
@@ -64501,158 +61461,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T21:32:41.405Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a14fd60ed9858898d8099"
-    },
-    "itemcode": "7290115190090",
-    "title": "מרלבורו גולד קצר חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪43.00 - ₪47.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190090.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:32:45.206Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:32:45.206Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a14ff60ed9858898d809b"
-    },
-    "itemcode": "7290115190151",
-    "title": "מרלבורו גולד טאץ' חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪39.00 - ₪42.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190151.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:32:47.648Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T11:54:10.561Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a150260ed9858898d809d"
-    },
-    "itemcode": "7290115190212",
-    "title": "פרלמנט בלו ארוך חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪48.90 - ₪50.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190212.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:32:50.736Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:32:50.736Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a150560ed9858898d809f"
-    },
-    "itemcode": "7290115190236",
-    "title": "פרלמנט בלו קצר חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪49.00 - ₪52.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190236.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:32:53.435Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:32:53.435Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a150860ed9858898d80a1"
-    },
-    "itemcode": "7290115190250",
-    "title": "פרלמנט נייט קצר חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪48.50 - ₪55.50",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190250.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:32:56.217Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:32:56.217Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a150c60ed9858898d80a3"
-    },
-    "itemcode": "7290115190335",
-    "title": "אל אם בלו ארוך חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪39.00 - ₪41.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190335.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:33:00.175Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:33:00.175Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a151360ed9858898d80a5"
-    },
-    "itemcode": "7290115190359",
-    "title": "אל אם בלו קצר חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪39.00 - ₪43.50",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190359.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:33:07.564Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:33:07.564Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a151660ed9858898d80a7"
-    },
-    "itemcode": "7290115190472",
-    "title": "נקסט פיין אדג' חפיסה",
-    "unit": "unit",
-    "brand": "",
-    "pricerange": "₪33.50 - ₪37.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190472.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T21:33:10.707Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:33:10.707Z"
     },
     "__v": 0
   },
@@ -64677,25 +61485,6 @@
   },
   {
     "_id": {
-      "$oid": "692a151d60ed9858898d80ab"
-    },
-    "itemcode": "7290115190519",
-    "title": "נקסט פיין חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪36.00 - ₪41.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190519.png",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T21:33:17.634Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:33:17.634Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a152260ed9858898d80ad"
     },
     "itemcode": "7290115190533",
@@ -64710,63 +61499,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T21:33:22.124Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a152960ed9858898d80af"
-    },
-    "itemcode": "7290115190557",
-    "title": "נקסט ריסס קצר חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪32.50 - ₪36.00",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190557.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:33:29.370Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:33:29.370Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a152b60ed9858898d80b1"
-    },
-    "itemcode": "7290115190571",
-    "title": "נקסט לילך חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪34.00 - ₪38.50",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190571.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:33:31.539Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:33:31.539Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a152e60ed9858898d80b3"
-    },
-    "itemcode": "7290115190595",
-    "title": "נקסט אוריג'ינל חפיסה",
-    "unit": "unit",
-    "brand": "פיליפ מוריס",
-    "pricerange": "₪36.00 - ₪41.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290115190595.png",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:33:34.396Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:33:34.396Z"
     },
     "__v": 0
   },
@@ -65331,7 +62063,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪25.90 - ₪31.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290115678222.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:35:33.799Z"
     },
@@ -65977,7 +62709,7 @@
     "brand": "תנובה בע\"מ",
     "pricerange": "₪6.10 - ₪7.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290116934020.png",
-    "category": "משקאות ויין",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:37:57.539Z"
     },
@@ -66477,25 +63209,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T21:40:20.475Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a16d460ed9858898d816d"
-    },
-    "itemcode": "7290117860090",
-    "title": "מרכך מטפח לשיער רגיל650מ",
-    "unit": "unit",
-    "brand": "טרופיקל דגיל",
-    "pricerange": "₪8.33 - ₪15.90",
-    "image": null,
-    "category": "פארם ותינוקות",
-    "createdAt": {
-      "$date": "2025-11-28T21:40:36.220Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T11:22:32.738Z"
     },
     "__v": 0
   },
@@ -68067,7 +64780,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪11.20 - ₪16.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290119375233.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:46:05.827Z"
     },
@@ -68086,7 +64799,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪5.50 - ₪6.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290119375356.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:46:08.329Z"
     },
@@ -68105,7 +64818,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪12.90 - ₪16.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290119375370.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:46:10.464Z"
     },
@@ -68124,7 +64837,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪5.90 - ₪6.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290119376636.png",
-    "category": "ירקות ופירות",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:46:14.529Z"
     },
@@ -68314,7 +65027,7 @@
     "brand": "שטראוס גרופ בע\\\"מ",
     "pricerange": "₪3.60 - ₪4.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290119383535.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:47:03.411Z"
     },
@@ -68352,7 +65065,7 @@
     "brand": "שטראוס בריאות בע\"מ",
     "pricerange": "₪5.90 - ₪7.90",
     "image": "http://127.0.0.1:3000/uploads/products/7290119384242.png",
-    "category": "פארם ותינוקות",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:47:13.131Z"
     },
@@ -68743,25 +65456,6 @@
   },
   {
     "_id": {
-      "$oid": "692a18b360ed9858898d8265"
-    },
-    "itemcode": "7290121010436",
-    "title": "מאפינס יום הולדת5יח 200ג",
-    "unit": "gram",
-    "brand": "גידרון תעשיות בע\"מ",
-    "pricerange": "₪13.50 - ₪13.50",
-    "image": "http://127.0.0.1:3000/uploads/products/7290121010436.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:48:35.687Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:48:35.687Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a18b760ed9858898d8267"
     },
     "itemcode": "7290121161930",
@@ -68833,82 +65527,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T21:48:49.225Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a18c460ed9858898d826f"
-    },
-    "itemcode": "7290121223621",
-    "title": "עלי גפן ממולאים אורז400ג",
-    "unit": "gram",
-    "brand": "אל רהאב גרופ תעשיות מזון",
-    "pricerange": "₪15.90 - ₪17.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7290121223621.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T21:48:52.726Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:48:52.726Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a18c960ed9858898d8271"
-    },
-    "itemcode": "7290121290036",
-    "title": "וינסטון כחול בוקס חפיסה",
-    "unit": "unit",
-    "brand": "JTI",
-    "pricerange": "₪41.00 - ₪46.50",
-    "image": "http://127.0.0.1:3000/uploads/products/7290121290036.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:48:57.247Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:48:57.247Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a18cd60ed9858898d8273"
-    },
-    "itemcode": "7290121290180",
-    "title": "כאמל כחול חפיסה",
-    "unit": "unit",
-    "brand": "JTI",
-    "pricerange": "₪38.50 - ₪42.30",
-    "image": "http://127.0.0.1:3000/uploads/products/7290121290180.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:49:01.359Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:49:01.359Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a18d160ed9858898d8275"
-    },
-    "itemcode": "7290121290364",
-    "title": "וינסטון קוד חפיסה",
-    "unit": "unit",
-    "brand": "JTI",
-    "pricerange": "₪38.00 - ₪44.50",
-    "image": "http://127.0.0.1:3000/uploads/products/7290121290364.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T21:49:05.232Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T21:49:05.232Z"
     },
     "__v": 0
   },
@@ -69017,7 +65635,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪2.90 - ₪3.90",
     "image": "http://127.0.0.1:3000/uploads/products/72940754.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:49:35.305Z"
     },
@@ -69036,7 +65654,7 @@
     "brand": "שטראוס גרופ בע\"מ",
     "pricerange": "₪2.90 - ₪3.90",
     "image": "http://127.0.0.1:3000/uploads/products/72940761.png",
-    "category": "חטיפים וממתקים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:49:37.204Z"
     },
@@ -69055,7 +65673,7 @@
     "brand": "שטראוס גרופ בע\"מ.",
     "pricerange": "₪3.50 - ₪4.60",
     "image": "http://127.0.0.1:3000/uploads/products/72940952.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:49:42.071Z"
     },
@@ -69074,7 +65692,7 @@
     "brand": "שטראוס גרופ בע\"מ.",
     "pricerange": "₪2.10 - ₪2.90",
     "image": "http://127.0.0.1:3000/uploads/products/72941041.png",
-    "category": "חטיפים וממתקים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T21:49:44.323Z"
     },
@@ -72120,25 +68738,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T22:01:29.666Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a1bbc60ed9858898d83e5"
-    },
-    "itemcode": "7296073219330",
-    "title": "לחם אחיד פרוס",
-    "unit": "gram",
-    "brand": "",
-    "pricerange": "₪1.90 - ₪8.38",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073219330.jpg",
-    "category": "לחמים ומאפים",
-    "createdAt": {
-      "$date": "2025-11-28T22:01:32.372Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T11:57:47.493Z"
     },
     "__v": 0
   },
@@ -76134,25 +72733,6 @@
   },
   {
     "_id": {
-      "$oid": "692a1f4460ed9858898d85ad"
-    },
-    "itemcode": "7296073554394",
-    "title": "פלפל צילי יחידה",
-    "unit": "gram",
-    "brand": "בייבי של ירקות",
-    "pricerange": "₪6.90 - ₪14.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073554394.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T22:16:36.414Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:16:36.414Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a1f4760ed9858898d85af"
     },
     "itemcode": "7296073564560",
@@ -76655,7 +73235,7 @@
     "brand": "ר.ס. חברה ליבוא וייצור מ",
     "pricerange": "₪9.90 - ₪10.50",
     "image": "http://127.0.0.1:3000/uploads/products/7296073629146.png",
-    "category": "שימורים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T22:18:15.395Z"
     },
@@ -78243,25 +74823,6 @@
   },
   {
     "_id": {
-      "$oid": "692a210b60ed9858898d8691"
-    },
-    "itemcode": "7296073705192",
-    "title": "קרפלך במילוי בשר 400 גרם",
-    "unit": "gram",
-    "brand": "חטיפי אלקיים בע\"מ",
-    "pricerange": "₪14.90 - ₪15.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073705192.jpg",
-    "category": "עוף בשר ודגים",
-    "createdAt": {
-      "$date": "2025-11-28T22:24:11.765Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:24:11.765Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a210f60ed9858898d8693"
     },
     "itemcode": "7296073705208",
@@ -79687,25 +76248,6 @@
   },
   {
     "_id": {
-      "$oid": "692a224b60ed9858898d872f"
-    },
-    "itemcode": "7296073706779",
-    "title": "מקרוני 500 גרם PUMINO",
-    "unit": "gram",
-    "brand": "F.LLI PASTIFICIO",
-    "pricerange": "₪8.90 - ₪10.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073706779.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T22:29:31.901Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:29:31.901Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a224e60ed9858898d8731"
     },
     "itemcode": "7296073706793",
@@ -80865,44 +77407,6 @@
   },
   {
     "_id": {
-      "$oid": "692a233d60ed9858898d87ab"
-    },
-    "itemcode": "7296073723127",
-    "title": "צמרוני אוזניים פלסטיק300",
-    "unit": "unit",
-    "brand": "Z.K MEDICAL",
-    "pricerange": "₪6.00 - ₪7.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073723127.jpg",
-    "category": "פארם ותינוקות",
-    "createdAt": {
-      "$date": "2025-11-28T22:33:33.110Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:03:08.085Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a234160ed9858898d87ad"
-    },
-    "itemcode": "7296073723134",
-    "title": "צמרוני אוזניים מעץ 300י",
-    "unit": "unit",
-    "brand": "Z.K MEDICAL",
-    "pricerange": "₪5.90 - ₪7.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073723134.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T22:33:37.424Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:33:37.424Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a234460ed9858898d87af"
     },
     "itemcode": "7296073723356",
@@ -81302,25 +77806,6 @@
   },
   {
     "_id": {
-      "$oid": "692a238f60ed9858898d87dd"
-    },
-    "itemcode": "7296073723974",
-    "title": "ג'ל לאסלה לימוןLU 750",
-    "unit": "unit",
-    "brand": "גליל כימיקלים",
-    "pricerange": "₪10.90 - ₪11.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073723974.jpg",
-    "category": "הכל לבית",
-    "createdAt": {
-      "$date": "2025-11-28T22:34:55.105Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:34:55.105Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a239160ed9858898d87df"
     },
     "itemcode": "7296073723981",
@@ -81568,44 +78053,6 @@
   },
   {
     "_id": {
-      "$oid": "692a23bf60ed9858898d87f9"
-    },
-    "itemcode": "7296073724506",
-    "title": "מיץ לימון משומר 200 מ\"ל",
-    "unit": "unit",
-    "brand": "LIOTTI",
-    "pricerange": "₪5.90 - ₪5.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073724506.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T22:35:43.210Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:35:43.210Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a23c360ed9858898d87fb"
-    },
-    "itemcode": "7296073724537",
-    "title": "מיץ לימון משומר 500 מ\"ל",
-    "unit": "unit",
-    "brand": "LIOTTI",
-    "pricerange": "₪8.90 - ₪9.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073724537.jpg",
-    "category": "משקאות ויין",
-    "createdAt": {
-      "$date": "2025-11-28T22:35:47.725Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:35:47.725Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a23c760ed9858898d87fd"
     },
     "itemcode": "7296073724803",
@@ -81804,7 +78251,7 @@
     "brand": "---",
     "pricerange": "₪12.90 - ₪13.90",
     "image": "http://127.0.0.1:3000/uploads/products/7296073725411.png",
-    "category": "מעדנייה וסלטים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T22:36:30.462Z"
     },
@@ -81937,7 +78384,7 @@
     "brand": "---",
     "pricerange": "₪14.90 - ₪15.90",
     "image": "http://127.0.0.1:3000/uploads/products/7296073725480.png",
-    "category": "מעדנייה וסלטים",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T22:36:58.422Z"
     },
@@ -82309,25 +78756,6 @@
   },
   {
     "_id": {
-      "$oid": "692a245a60ed9858898d8847"
-    },
-    "itemcode": "7296073726302",
-    "title": "נרות חנוכה  44 יחידות",
-    "unit": "unit",
-    "brand": "מנורה",
-    "pricerange": "₪1.90 - ₪4.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073726302.jpg",
-    "category": "הכל לבית",
-    "createdAt": {
-      "$date": "2025-11-28T22:38:18.744Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-30T12:04:05.474Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a246160ed9858898d884b"
     },
     "itemcode": "7296073726326",
@@ -82385,44 +78813,6 @@
   },
   {
     "_id": {
-      "$oid": "692a246960ed9858898d8851"
-    },
-    "itemcode": "7296073726562",
-    "title": "שוקלד מריר ללתסDUBRO 100",
-    "unit": "gram",
-    "brand": "דליקה איי.ג'י",
-    "pricerange": "₪17.90 - ₪18.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073726562.jpg",
-    "category": "חטיפים וממתקים",
-    "createdAt": {
-      "$date": "2025-11-28T22:38:33.112Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:38:33.112Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a246c60ed9858898d8853"
-    },
-    "itemcode": "7296073726593",
-    "title": "שוקולד חלב+אגוז ללתס100ג",
-    "unit": "gram",
-    "brand": "דליקה איי.ג'י",
-    "pricerange": "₪17.90 - ₪18.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073726593.jpg",
-    "category": "חטיפים וממתקים",
-    "createdAt": {
-      "$date": "2025-11-28T22:38:36.983Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:38:36.983Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a246f60ed9858898d8855"
     },
     "itemcode": "7296073728313",
@@ -82475,25 +78865,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T22:38:48.824Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a247c60ed9858898d885d"
-    },
-    "itemcode": "7296073731634",
-    "title": "כעכים פריכים 400 גרם",
-    "unit": "gram",
-    "brand": "אנטיקוביץ",
-    "pricerange": "₪19.90 - ₪19.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7296073731634.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T22:38:52.527Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:38:52.527Z"
     },
     "__v": 0
   },
@@ -82678,7 +79049,7 @@
     "brand": "מחלבת אלון תבור",
     "pricerange": "₪3.60 - ₪5.60",
     "image": "http://127.0.0.1:3000/uploads/products/72961506.png",
-    "category": "ירקות ופירות",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T22:39:34.245Z"
     },
@@ -83102,25 +79473,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T22:41:25.643Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a251960ed9858898d88a1"
-    },
-    "itemcode": "745314505123",
-    "title": "סלק עלים )מנגולד( יחידה",
-    "unit": "unit",
-    "brand": "משק מלר",
-    "pricerange": "₪6.90 - ₪7.90",
-    "image": "http://127.0.0.1:3000/uploads/products/745314505123.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T22:41:29.007Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:41:29.007Z"
     },
     "__v": 0
   },
@@ -84198,7 +80550,7 @@
     "brand": "אלדור",
     "pricerange": "₪8.00 - ₪15.50",
     "image": "http://127.0.0.1:3000/uploads/products/7702174068833.png",
-    "category": "אחר",
+    "category": "מוצרי קירור וביצים",
     "createdAt": {
       "$date": "2025-11-28T22:45:14.750Z"
     },
@@ -84223,25 +80575,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-30T11:18:13.305Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a260460ed9858898d891f"
-    },
-    "itemcode": "7759152000194",
-    "title": "אוכמניות טריות 125 גרם",
-    "unit": "gram",
-    "brand": "AGROVISION",
-    "pricerange": "₪14.90 - ₪18.90",
-    "image": "http://127.0.0.1:3000/uploads/products/7759152000194.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T22:45:24.329Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:45:24.329Z"
     },
     "__v": 0
   },
@@ -84375,44 +80708,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T22:46:00.661Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a262c60ed9858898d8931"
-    },
-    "itemcode": "792649539972",
-    "title": "שמיר יחידה",
-    "unit": "unit",
-    "brand": "משק מלר",
-    "pricerange": "₪3.90 - ₪3.90",
-    "image": "http://127.0.0.1:3000/uploads/products/792649539972.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T22:46:04.427Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:46:04.427Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a262f60ed9858898d8933"
-    },
-    "itemcode": "792649539989",
-    "title": "נענע ארוז יחידה",
-    "unit": "unit",
-    "brand": "משק מלר",
-    "pricerange": "₪3.90 - ₪5.00",
-    "image": "http://127.0.0.1:3000/uploads/products/792649539989.jpg",
-    "category": "אחר",
-    "createdAt": {
-      "$date": "2025-11-28T22:46:07.273Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:46:07.273Z"
     },
     "__v": 0
   },
@@ -88237,25 +84532,6 @@
   },
   {
     "_id": {
-      "$oid": "692a294960ed9858898d8ad1"
-    },
-    "itemcode": "8434165503724",
-    "title": "קריט קרקר מלוח 100גרם",
-    "unit": "gram",
-    "brand": "CUETARA",
-    "pricerange": "₪5.90 - ₪5.90",
-    "image": "http://127.0.0.1:3000/uploads/products/8434165503724.jpg",
-    "category": "שימורים",
-    "createdAt": {
-      "$date": "2025-11-28T22:59:21.448Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T22:59:21.448Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
       "$oid": "692a294c60ed9858898d8ad3"
     },
     "itemcode": "8434165652439",
@@ -90151,25 +86427,6 @@
     },
     "updatedAt": {
       "$date": "2025-11-28T23:06:08.639Z"
-    },
-    "__v": 0
-  },
-  {
-    "_id": {
-      "$oid": "692a2ae460ed9858898d8b9d"
-    },
-    "itemcode": "8719324618991",
-    "title": "קוקוס לשתיה יחידה",
-    "unit": "unit",
-    "brand": "פלורה קפיטל סי או בע\"מ",
-    "pricerange": "₪24.90 - ₪25.90",
-    "image": "http://127.0.0.1:3000/uploads/products/8719324618991.jpg",
-    "category": "ירקות ופירות",
-    "createdAt": {
-      "$date": "2025-11-28T23:06:12.693Z"
-    },
-    "updatedAt": {
-      "$date": "2025-11-28T23:06:12.693Z"
     },
     "__v": 0
   },

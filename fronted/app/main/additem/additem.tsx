@@ -67,11 +67,11 @@ export default function AddItemScreen() {
       key: "הכל לבית",
       image: { uri: `${API_URL}/uploads/products/hygiene.png` },
     },
-    {
-      name: "אחר",
-      key: "אחר",
-      image: { uri: `${API_URL}/uploads/products/other.png` },
-    },
+    // {
+    //   name: "אחר",
+    //   key: "אחר",
+    //   image: { uri: `${API_URL}/uploads/products/other.png` },
+    // },
   ];
 
   // ✅ חיפוש בקטגוריות
