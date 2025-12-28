@@ -1,4 +1,5 @@
 import React, { useMemo, useEffect } from "react";
+import { useIsFocused } from "@react-navigation/native";
 import {
   View,
   StyleSheet,
@@ -83,7 +84,7 @@ function buildAddressKey(lat: number, lon: number) {
 export default function CheckoutScreen() {
   const router = useRouter();
   const dispatch = useAppDispatch();
-
+  const isFocused = useIsFocused();
   /* =========================
      REDUX STATE
   ========================= */
@@ -94,10 +95,6 @@ export default function CheckoutScreen() {
 
   const storesByItemcode = useAppSelector(
     (s) => s.stores.stores
-  );
-
-  const storesSignature = useAppSelector(
-    (s) => s.stores.signature
   );
 
   const radius = useAppSelector(
@@ -142,7 +139,7 @@ export default function CheckoutScreen() {
   }, [dispatch]);
 
   /* =========================
-     LIST SIGNATURE (כולל מיקום!)
+     LIST SIGNATURE
   ========================= */
 
   const listSignature = useMemo(() => {
@@ -161,33 +158,42 @@ export default function CheckoutScreen() {
   }, [shoppingItems, location]);
 
   /* =========================
+     MISSING ITEMCODES 🔑
+  ========================= */
+
+  const missingItemcodes = useMemo(() => {
+    return shoppingItems
+      .map((i) => i._id?.itemcode)
+      .filter((c): c is string => Boolean(c))
+      .filter((code) => {
+        const entry = storesByItemcode[code];
+        return !entry || entry.stores.length === 0;
+      });
+  }, [shoppingItems, storesByItemcode]);
+
+  /* =========================
      EFFECT: RESOLVE STORES
   ========================= */
 
   useEffect(() => {
+    if (!isFocused) return;
     if (!shoppingItems.length) return;
     if (!location) return;
-    if (storesSignature === listSignature) return;
-
-    const itemcodes = shoppingItems
-      .map((i) => i._id?.itemcode)
-      .filter((c): c is string => Boolean(c));
-
-    if (!itemcodes.length) return;
+    if (missingItemcodes.length === 0) return;
 
     const payload = {
       addressKey: buildAddressKey(location.lat, location.lon),
-      itemcodes,
+      itemcodes: missingItemcodes,
     };
 
-    console.log("RESOLVE STORES PAYLOAD", payload);
-    console.log("🚀 PAYLOAD TO API:", JSON.stringify(payload));
+    console.log("🚀 RESOLVE STORES PAYLOAD:", payload);
+
     resolveStores(payload)
       .unwrap()
       .then((results) => {
         console.log("✅ API RESULTS:", results);
+
         for (const r of results) {
-           console.log("➡️ dispatching item:", r.itemcode, r.stores);
           dispatch(
             appendStores({
               itemcode: r.itemcode,
@@ -195,16 +201,16 @@ export default function CheckoutScreen() {
             })
           );
         }
+
         dispatch(setSignature(listSignature));
       })
       .catch((err) => {
         console.error("❌ Resolve stores failed:", err);
       });
   }, [
-    shoppingItems,
     location,
+    missingItemcodes.join(","), // 🔑 מונע כפילויות
     listSignature,
-    storesSignature,
     resolveStores,
     dispatch,
   ]);
@@ -221,16 +227,11 @@ export default function CheckoutScreen() {
 
     for (const item of shoppingItems) {
       const itemcode = item._id?.itemcode;
-      console.log("🔍 itemcode:", itemcode);
       if (!itemcode) continue;
 
       const entry = storesByItemcode[itemcode];
-      console.log("📦 entry:", entry);
+      if (!entry?.stores?.length) continue;
 
-      if (!entry?.stores?.length) {
-        console.log("❌ no stores for", itemcode);
-        continue;
-      }
       const qty = item.quantity ?? 1;
 
       for (const offer of entry.stores) {
@@ -273,10 +274,6 @@ export default function CheckoutScreen() {
         return a.score - b.score;
       });
   }, [shoppingItems, storesByItemcode, location, radius]);
-
-  /* =========================
-     UI
-  ========================= */
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
