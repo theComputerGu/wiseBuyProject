@@ -343,14 +343,15 @@ export default function CheckoutScreen() {
               key={s.id}
               style={styles.storeCard}
               onPress={() =>
-                router.replace({
+                router.push({
                   pathname: "/main/checkout/storecheckout",
                   params: {
-                    store: JSON.stringify(s),
+                    chain: s.chain,
+                    address: s.address,
                   },
                 })
               }
-            >
+              >
               <ItimText weight="bold">{s.chain}</ItimText>
               <ItimText>{s.address}</ItimText>
               <ItimText color="#197FF4">

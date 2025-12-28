@@ -1,6 +1,4 @@
-// ===================== StoreCheckoutScreen.tsx =====================
-
-import React from "react";
+import React, { useMemo } from "react";
 import { View, StyleSheet, ScrollView, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -18,40 +16,88 @@ import { setActiveList } from "../../../redux/slices/shoppinglistSlice";
 import { useAddToHistoryMutation } from "../../../redux/svc/groupsApi";
 import { API_URL } from "@env";
 
-// =======================================================
-//       TYPES
-// =======================================================
+/* ======================================================
+   TYPES
+====================================================== */
+
 type Product = {
   itemcode: string;
   amount: number;
   price: number;
-  _id?: { image?: string; title?: string };
+  _id: {
+    title?: string;
+    image?: string;
+  };
 };
 
-type StoreData = {
-  chain: string;
-  products: Product[];
-};
+/* ======================================================
+   COMPONENT
+====================================================== */
 
-// =======================================================
-//       MAIN COMPONENT
-// =======================================================
 export default function StoreCheckoutScreen() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const { store } = useLocalSearchParams();
-  const storeData: StoreData | null = store ? JSON.parse(store as string) : null;
+  const { chain, address } = useLocalSearchParams<{
+    chain?: string;
+    address?: string;
+  }>();
 
   const activeGroup = useSelector((s: RootState) => s.group.activeGroup);
   const shoppingList = useSelector((s: RootState) => s.shoppingList.activeList);
+  const storesByItemcode = useSelector((s: RootState) => s.stores.stores);
+
   const items = shoppingList?.items ?? [];
 
   const [addToHistory] = useAddToHistoryMutation();
 
-  // -------------------------------------------------------
-  // Fix image URLs
-  // -------------------------------------------------------
+  /* =========================
+     BUILD PRODUCTS FROM REDUX
+  ========================= */
+
+  const products: Product[] = useMemo(() => {
+    if (!chain || !address) return [];
+
+    const result: Product[] = [];
+
+    for (const item of items) {
+      const itemcode = item._id?.itemcode;
+      if (!itemcode) continue;
+
+      const entry = storesByItemcode[itemcode];
+      if (!entry?.stores?.length) continue;
+
+      const offer = entry.stores.find(
+        (s) => s.chain === chain && s.address === address
+      );
+
+      if (!offer) continue;
+
+      result.push({
+        itemcode,
+        amount: item.quantity ?? 1,
+        price: offer.price,
+        _id: item._id,
+      });
+    }
+
+    return result;
+  }, [items, storesByItemcode, chain, address]);
+
+  /* =========================
+     TOTAL PRICE
+  ========================= */
+
+  const totalPrice = useMemo(() => {
+    return products
+      .reduce((sum, p) => sum + p.price * p.amount, 0)
+      .toFixed(2);
+  }, [products]);
+
+  /* =========================
+     IMAGE URL FIX
+  ========================= */
+
   const fixImageURL = (url?: string) => {
     if (!url) return "";
     try {
@@ -64,33 +110,21 @@ export default function StoreCheckoutScreen() {
     }
   };
 
-  const totalPrice = storeData
-    ? storeData.products
-        .reduce((sum, i) => sum + i.price * i.amount, 0)
-        .toFixed(2)
-    : "0.00";
+  /* =========================
+     CHECKOUT ACTION
+  ========================= */
 
-  // -------------------------------------------------------
-  // Missing products (לוגיקה נשארה זהה)
-  // -------------------------------------------------------
-  const missingProducts = items.filter(
-    i => !storeData?.products.some(p => p.itemcode === i._id.itemcode)
-  );
-
-  // -------------------------------------------------------
-  // SAVE HISTORY (לא נוגע)
-  // -------------------------------------------------------
   const handleCheckout = async () => {
-    if (!storeData || !activeGroup) return;
+    if (!activeGroup) return;
 
     try {
       const res = await addToHistory({
         groupId: activeGroup._id,
         name: `Checkout ${new Date().toLocaleString()}`,
-        storename: storeData.chain,
-        storeadress: storeData.chain,
+        storename: chain ?? "",
+        storeadress: address ?? "",
         totalprice: +totalPrice,
-        itemcount: storeData.products.reduce((s, i) => s + i.amount, 0),
+        itemcount: products.reduce((s, p) => s + p.amount, 0),
       }).unwrap();
 
       dispatch(setActiveGroup(res.updatedGroup));
@@ -102,75 +136,74 @@ export default function StoreCheckoutScreen() {
     }
   };
 
-  // -------------------------------------------------------
-  // STORE NOT FOUND
-  // -------------------------------------------------------
-  if (!storeData)
+  /* =========================
+     STORE NOT FOUND
+  ========================= */
+
+  if (!chain || !address) {
     return (
       <SafeAreaView style={styles.centerPage}>
         <ItimText size={18}>Store not found</ItimText>
         <Pressable onPress={() => router.back()}>
-          <ItimText size={15} color="#197FF4">← Go Back</ItimText>
+          <ItimText size={15} color="#197FF4">
+            ← Go Back
+          </ItimText>
         </Pressable>
       </SafeAreaView>
     );
+  }
 
-  // =======================================================
-  //      UI
-  // =======================================================
+  /* =========================
+     UI
+  ========================= */
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
 
         {/* TOP BAR */}
         <View style={styles.top}>
-          <Pressable onPress={() => router.replace("/main/checkout/checkout")}>
-            <MaterialCommunityIcons name="arrow-left" size={26} color="#197FF4" />
+          <Pressable onPress={() => router.back()}>
+            <MaterialCommunityIcons
+              name="arrow-left"
+              size={26}
+              color="#197FF4"
+            />
           </Pressable>
-          <ItimText size={20} weight="bold">{storeData.chain}</ItimText>
+          <ItimText size={20} weight="bold">
+            {chain}
+          </ItimText>
         </View>
 
         <ScrollView showsVerticalScrollIndicator={false}>
-
-          {/* AVAILABLE ITEMS */}
-          {storeData.products.map(p => {
-            const ref = items.find(i => i._id.itemcode === p.itemcode);
-            return (
-              <CheckoutCard
-                key={p.itemcode}
-                name={ref?._id.title || `Item ${p.itemcode}`}
-                quantity={p.amount}
-                price={`₪${p.price}`}
-                image={{ uri: fixImageURL(ref?._id.image) }}
-              />
-            );
-          })}
-
-          {/* MISSING ITEMS — אותו CheckoutCard בדיוק */}
-          {missingProducts.map(m => (
+          {products.map((p) => (
             <CheckoutCard
-              key={`missing-${m._id.itemcode}`}
-              name={m._id.title}
-              quantity={m.quantity}
-              price={0}
-              image={{ uri: fixImageURL(m._id.image) }}
-              missing
+              key={p.itemcode}
+              name={p._id.title || `Item ${p.itemcode}`}
+              quantity={p.amount}
+              price={`₪${p.price}`}
+              image={{ uri: fixImageURL(p._id.image) }}
             />
           ))}
 
           <View style={{ height: 25 }} />
         </ScrollView>
 
-        <Button title={`אישור קניה • ₪${totalPrice}`} onPress={handleCheckout} />
+        <Button
+          title={`אישור קניה • ₪${totalPrice}`}
+          onPress={handleCheckout}
+        />
+
         <BottomNav />
       </View>
     </SafeAreaView>
   );
 }
 
-// =======================================================
-//       STYLES
-// =======================================================
+/* ======================================================
+   STYLES
+====================================================== */
+
 const styles = StyleSheet.create({
   wrapper: { flex: 1, backgroundColor: "#fff" },
   container: { flex: 1, paddingHorizontal: 20 },
