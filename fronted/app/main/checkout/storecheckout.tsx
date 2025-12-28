@@ -85,6 +85,20 @@ export default function StoreCheckoutScreen() {
   }, [items, storesByItemcode, chain, address]);
 
   /* =========================
+     👉 NEW: MISSING PRODUCTS
+     (בלי שינוי לוגיקה קיימת)
+  ========================= */
+
+  const missingProducts = useMemo(() => {
+    return items.filter(
+      (item) =>
+        !products.some(
+          (p) => p.itemcode === item._id.itemcode
+        )
+    );
+  }, [items, products]);
+
+  /* =========================
      TOTAL PRICE
   ========================= */
 
@@ -176,6 +190,8 @@ export default function StoreCheckoutScreen() {
         </View>
 
         <ScrollView showsVerticalScrollIndicator={false}>
+
+          {/* AVAILABLE PRODUCTS */}
           {products.map((p) => (
             <CheckoutCard
               key={p.itemcode}
@@ -185,6 +201,30 @@ export default function StoreCheckoutScreen() {
               image={{ uri: fixImageURL(p._id.image) }}
             />
           ))}
+
+          {/* 👉 NEW: MISSING PRODUCTS */}
+          {missingProducts.length > 0 && (
+            <>
+              <ItimText
+                size={16}
+                weight="bold"
+                style={{ marginTop: 20, color: "#999" }}
+              >
+                מוצרים שלא זמינים בחנות
+              </ItimText>
+
+              {missingProducts.map((m) => (
+                <CheckoutCard
+                  key={`missing-${m._id.itemcode}`}
+                  name={m._id.title || `Item ${m._id.itemcode}`}
+                  quantity={m.quantity}
+                  price="—"
+                  image={{ uri: fixImageURL(m._id.image) }}
+                  missing
+                />
+              ))}
+            </>
+          )}
 
           <View style={{ height: 25 }} />
         </ScrollView>
