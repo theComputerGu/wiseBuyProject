@@ -4,40 +4,50 @@ import { StoreOffer } from "./schemas/stores.schema";
 
 @Controller("stores")
 export class StoresController {
-  constructor(private readonly storesService: StoresService) {}
+  constructor(
+    private readonly storesService: StoresService,
+  ) {}
 
-  // =========================
-  // GET /stores?itemcode=XXX
-  // =========================
-  @Get()
-  async getByItemcode(
-    @Query("itemcode") itemcode: string,
+ 
+  @Get("address")
+  async getAddress(
+    @Query("addressKey") addressKey: string,
   ) {
-    return this.storesService.getByItemcode(itemcode);
+    return this.storesService.getOrCreateAddress(addressKey);
   }
 
-  // =========================
-  // POST /stores/upsert
-  // =========================
-  @Post("upsert")
-  async upsertStores(
+  @Post("cached")
+  async getCachedProducts(
     @Body()
     body: {
+      addressKey: string;
+      itemcodes: string[];
+    },
+  ) {
+    const { addressKey, itemcodes } = body;
+    return this.storesService.getCachedProducts(
+      addressKey,
+      itemcodes,
+    );
+  }
+
+
+  @Post("upsert")
+  async upsertProduct(
+    @Body()
+    body: {
+      addressKey: string;
       itemcode: string;
       stores: StoreOffer[];
     },
   ) {
-    const { itemcode, stores } = body;
-    return this.storesService.upsertStores(itemcode, stores);
-  }
+    const { addressKey, itemcode, stores } = body;
+    await this.storesService.upsertProduct(
+      addressKey,
+      itemcode,
+      stores,
+    );
 
-  // =========================
-  // POST /stores/bulk
-  // =========================
-  @Post("bulk")
-  async getBulk(
-    @Body("itemcodes") itemcodes: string[],
-  ) {
-    return this.storesService.getMany(itemcodes);
+    return { ok: true };
   }
 }

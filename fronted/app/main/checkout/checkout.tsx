@@ -1,38 +1,42 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useEffect } from "react";
 import {
   View,
   StyleSheet,
   ScrollView,
-  ActivityIndicator,
   Pressable,
 } from "react-native";
 import MapView, { Circle, Marker, PROVIDER_GOOGLE } from "react-native-maps";
-import * as Location from "expo-location";
-import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Slider from "@react-native-community/slider";
-import { useIsFocused } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "expo-router";
+import * as Location from "expo-location";
 
-import ItimText from "../../../components/Itimtext";
-import BottomNav from "../../../components/Bottomnavigation";
 import TopNav from "../../../components/Topnav";
+import BottomNav from "../../../components/Bottomnavigation";
 import Title from "../../../components/Title";
-import type { StoresEntry } from "../../../redux/slices/storesSlice";
-import { RootState } from "../../../redux/state/store";
-import {
-  useScrapeStoresMutation,
-  useGetStoresBulkMutation,
-} from "../../../redux/svc/storeApi";
-import { clearStores, setStores, setSignature } from "../../../redux/slices/storesSlice";
+import ItimText from "../../../components/Itimtext";
 
-/* =========================
-   Types
-========================= */
-type UserLocation = {
-  lat: number;
-  lon: number;
-};
+import {
+  useAppSelector,
+  useAppDispatch,
+} from "../../../redux/state/hooks";
+
+import {
+  appendStores,
+  setSignature,
+} from "../../../redux/slices/storesSlice";
+
+import {
+  setRadius,
+  setUserLocation,
+} from "../../../redux/slices/checkoutSlice";
+
+import { useResolveStoresMutation } from "../../../redux/svc/storesApi";
+import { ShoppingListItem } from "../../../redux/slices/shoppinglistSlice";
+
+/* ======================================================
+   TYPES
+====================================================== */
 
 type AggregatedStore = {
   id: string;
@@ -45,284 +49,263 @@ type AggregatedStore = {
   itemsMissing: number;
 };
 
-/* =========================
-   Reverse Geocode
-========================= */
-async function reverseGeocode(lat: number, lon: number): Promise<string> {
-  try {
-    const res = await fetch(
-      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`,
-      {
-        headers: {
-          "User-Agent": "WiseBuyApp/1.0",
-          "Accept-Language": "he",
-        },
-      }
-    );
+/* ======================================================
+   HELPERS
+====================================================== */
 
-    const data = await res.json();
-    const a = data?.address ?? {};
+function distanceKm(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+) {
+  const R = 6371;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
 
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2;
 
-    return `${a.road}, ${a.town}`;
-  } catch {
-    return "תל אביב";
-  }
-}
-//calculate if shopping list changed
-export function shoppingSignature(shopping: any[]): string {
-  return shopping
-    .map(i => `${i._id?.itemcode}:${i.quantity ?? 1}`)
-    .sort()
-    .join("|");
+  return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 }
 
-/* =========================
-   MAIN
-========================= */
+function buildAddressKey(lat: number, lon: number) {
+  return `${lat.toFixed(4)},${lon.toFixed(4)}`;
+}
+
+/* ======================================================
+   COMPONENT
+====================================================== */
+
 export default function CheckoutScreen() {
-  const dispatch = useDispatch();
   const router = useRouter();
-  const isFocused = useIsFocused();
-
-  const shoppingList = useSelector(
-    (s: RootState) => s.shoppingList.activeList?.items ?? []
-  );
-
-
-  const storesByItemcode = useSelector((s: RootState) => s.stores.stores);
-
-
-  const lastSignature = useSelector(
-    (s: RootState) => s.stores.signature
-  );
-
-
-
-  const currentSignature = shoppingSignature(shoppingList);
-
-  const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
-  const [radius, setRadius] = useState(3);
-  const [isBuilding, setIsBuilding] = useState(false);
-
-  const [scrapeStores, { isLoading: scraping }] = useScrapeStoresMutation();
-  const [getStoresBulk, { isLoading: loadingStores }] =
-    useGetStoresBulkMutation();
+  const dispatch = useAppDispatch();
 
   /* =========================
-     BAR CODES (memoized)
+     REDUX STATE
   ========================= */
-  const barcodes = useMemo(
-    () =>
-      shoppingList
-        .map((i) => i._id?.itemcode)
-        .filter((b): b is string => typeof b === "string"),
-    [shoppingList]
+
+  const shoppingItems = useAppSelector(
+    (s) => s.shoppingList.activeList?.items ?? []
+  );
+
+  const storesByItemcode = useAppSelector(
+    (s) => s.stores.stores
+  );
+
+  const storesSignature = useAppSelector(
+    (s) => s.stores.signature
+  );
+
+  const radius = useAppSelector(
+    (s) => s.checkout.radius
+  );
+
+  const location = useAppSelector(
+    (s) => s.checkout.userLocation
   );
 
   /* =========================
-     LOCATION
+     API
   ========================= */
+
+  const [resolveStores] = useResolveStoresMutation();
+
+  /* =========================
+     EFFECT: GET USER LOCATION
+  ========================= */
+
   useEffect(() => {
-    if (!isFocused) return;
-
     (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") return;
+      const { status } =
+        await Location.requestForegroundPermissionsAsync();
 
-      const loc = await Location.getCurrentPositionAsync({});
-      setUserLocation({
-        lat: loc.coords.latitude,
-        lon: loc.coords.longitude,
+      if (status !== "granted") {
+        console.warn("❌ Location permission denied");
+        return;
+      }
+
+      const pos = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.Balanced,
       });
-    })();
-  }, [isFocused]);
 
-  useEffect(() => {
-    if (!isFocused || !userLocation) return;
-    if (lastSignature === currentSignature) return;
-
-    setIsBuilding(true);
-
-    (async () => {
-      dispatch(clearStores());
-
-      const city = await reverseGeocode(userLocation.lat, userLocation.lon);
-
-      await scrapeStores({ barcodes, city });
-
-      const res = await getStoresBulk({ itemcodes: barcodes }).unwrap();
-
-      const normalized = Object.fromEntries(
-        res.map(doc => [
-          doc.itemcode,
-          { itemcode: doc.itemcode, stores: doc.stores },
-        ])
+      dispatch(
+        setUserLocation({
+          lat: pos.coords.latitude,
+          lon: pos.coords.longitude,
+        })
       );
-
-      dispatch(setStores(normalized));
-      dispatch(setSignature(currentSignature));
-
-      setIsBuilding(false);
     })();
-  }, [isFocused, userLocation, currentSignature]);
-
-
+  }, [dispatch]);
 
   /* =========================
-     AGGREGATE + SORT
+     LIST SIGNATURE (כולל מיקום!)
   ========================= */
+
+  const listSignature = useMemo(() => {
+    const itemsSig = shoppingItems
+      .map(
+        (i: ShoppingListItem) =>
+          `${i._id.itemcode}:${i.quantity}`
+      )
+      .join("|");
+
+    const locSig = location
+      ? buildAddressKey(location.lat, location.lon)
+      : "noloc";
+
+    return `${itemsSig}@${locSig}`;
+  }, [shoppingItems, location]);
+
+  /* =========================
+     EFFECT: RESOLVE STORES
+  ========================= */
+
+  useEffect(() => {
+    if (!shoppingItems.length) return;
+    if (!location) return;
+    if (storesSignature === listSignature) return;
+
+    const itemcodes = shoppingItems
+      .map((i) => i._id?.itemcode)
+      .filter((c): c is string => Boolean(c));
+
+    if (!itemcodes.length) return;
+
+    const payload = {
+      addressKey: buildAddressKey(location.lat, location.lon),
+      itemcodes,
+    };
+
+    console.log("RESOLVE STORES PAYLOAD", payload);
+    console.log("🚀 PAYLOAD TO API:", JSON.stringify(payload));
+    resolveStores(payload)
+      .unwrap()
+      .then((results) => {
+        console.log("✅ API RESULTS:", results);
+        for (const r of results) {
+           console.log("➡️ dispatching item:", r.itemcode, r.stores);
+          dispatch(
+            appendStores({
+              itemcode: r.itemcode,
+              stores: r.stores,
+            })
+          );
+        }
+        dispatch(setSignature(listSignature));
+      })
+      .catch((err) => {
+        console.error("❌ Resolve stores failed:", err);
+      });
+  }, [
+    shoppingItems,
+    location,
+    listSignature,
+    storesSignature,
+    resolveStores,
+    dispatch,
+  ]);
+
+  /* =========================
+     AGGREGATION
+  ========================= */
+
   const aggregatedStores = useMemo<AggregatedStore[]>(() => {
-    if (!userLocation) return [];
+    if (!location) return [];
 
     const map: Record<string, AggregatedStore> = {};
-    const totalItems = shoppingList.length;
+    const totalItems = shoppingItems.length;
 
-    // -------------------------
-    // BUILD aggregation
-    // -------------------------
-    for (const item of shoppingList) {
-      const code = item._id?.itemcode;
-      if (!code) continue;
+    for (const item of shoppingItems) {
+      const itemcode = item._id?.itemcode;
+      console.log("🔍 itemcode:", itemcode);
+      if (!itemcode) continue;
 
-      const entry = storesByItemcode[code];
-      if (!entry?.stores?.length) continue;
+      const entry = storesByItemcode[itemcode];
+      console.log("📦 entry:", entry);
 
+      if (!entry?.stores?.length) {
+        console.log("❌ no stores for", itemcode);
+        continue;
+      }
       const qty = item.quantity ?? 1;
 
-      for (const o of entry.stores) {
-        if (!o.geo) continue;
+      for (const offer of entry.stores) {
+        if (!offer.geo) continue;
 
-        const key = `${o.chain}__${o.address}`;
+        const key = `${offer.chain}__${offer.address}`;
 
         if (!map[key]) {
           map[key] = {
             id: key,
-            chain: o.chain,
-            address: o.address,
-            lat: o.geo.lat,
-            lon: o.geo.lon,
+            chain: offer.chain,
+            address: offer.address,
+            lat: offer.geo.lat,
+            lon: offer.geo.lon,
             score: 0,
             itemsFound: 0,
             itemsMissing: totalItems,
           };
         }
 
-        map[key].score += o.price * qty;
+        map[key].score += offer.price * qty;
         map[key].itemsFound += 1;
         map[key].itemsMissing -= 1;
       }
     }
 
-    // -------------------------
-    // FILTER by radius + SORT
-    // -------------------------
     return Object.values(map)
-      .filter(store => {
+      .filter((store) => {
         const d = distanceKm(
-          userLocation.lat,
-          userLocation.lon,
+          location.lat,
+          location.lon,
           store.lat,
           store.lon
         );
         return d <= radius;
       })
       .sort((a, b) => {
-        // full stores first
         if (a.itemsMissing === 0 && b.itemsMissing > 0) return -1;
         if (a.itemsMissing > 0 && b.itemsMissing === 0) return 1;
-
-        // then cheapest
         return a.score - b.score;
       });
-  }, [shoppingList, storesByItemcode, userLocation, radius]);
-  /* =========================
-     BUILD PAYLOAD
-  ========================= */
-  function buildStoreCheckoutPayload(store: AggregatedStore) {
-    return {
-      chain: store.chain,
-      products: shoppingList
-        .map((item) => {
-          const code = item._id?.itemcode;
-          if (!code) return null;
-
-          const entry = storesByItemcode[code];
-          const offer = entry?.stores?.find(
-            (o) => o.chain === store.chain && o.address === store.address
-          );
-
-          if (!offer) return null;
-
-          return {
-            itemcode: code,
-            amount: item.quantity ?? 1,
-            price: offer.price,
-            _id: item._id,
-          };
-        })
-        .filter(Boolean),
-    };
-  }
-  // distance helper to calculate stores in radius
-  function distanceKm(
-    lat1: number,
-    lon1: number,
-    lat2: number,
-    lon2: number
-  ) {
-    const R = 6371; // km
-    const dLat = ((lat2 - lat1) * Math.PI) / 180;
-    const dLon = ((lon2 - lon1) * Math.PI) / 180;
-
-    const a =
-      Math.sin(dLat / 2) ** 2 +
-      Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLon / 2) ** 2;
-
-    return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-  }
-
-  /* =========================
-     LOADING (NON-BLOCKING)
-     - Show loader only if we have NOTHING to show yet.
-  ========================= */
-  const loading = isBuilding || loadingStores;
+  }, [shoppingItems, storesByItemcode, location, radius]);
 
   /* =========================
      UI
   ========================= */
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={styles.container}>
         <TopNav />
         <Title text="Checkout" />
 
-        {/* Radius */}
         <View style={{ alignItems: "center", marginVertical: 10 }}>
-          <ItimText color="#197FF4">Radius: {radius} km</ItimText>
+          <ItimText color="#197FF4">
+            Radius: {radius} km
+          </ItimText>
           <Slider
             value={radius}
             minimumValue={1}
             maximumValue={3}
             step={0.5}
             style={{ width: "80%" }}
-            onValueChange={setRadius}
+            onValueChange={(v) => dispatch(setRadius(v))}
           />
         </View>
 
-        {/* MAP */}
         <View style={styles.mapContainer}>
-          {!userLocation ? (
-            <ActivityIndicator />
-          ) : (
+          {location && (
             <MapView
-              provider={PROVIDER_GOOGLE}   
+              provider={PROVIDER_GOOGLE}
               style={styles.map}
               region={{
-                latitude: userLocation.lat,
-                longitude: userLocation.lon,
+                latitude: location.lat,
+                longitude: location.lon,
                 latitudeDelta: 0.05,
                 longitudeDelta: 0.05,
               }}
@@ -342,10 +325,10 @@ export default function CheckoutScreen() {
 
               <Circle
                 center={{
-                  latitude: userLocation.lat,
-                  longitude: userLocation.lon,
+                  latitude: location.lat,
+                  longitude: location.lon,
                 }}
-                radius={radius * 1000} // km → meters
+                radius={radius * 1000}
                 strokeWidth={2}
                 strokeColor="rgba(25,127,244,0.8)"
                 fillColor="rgba(25,127,244,0.15)"
@@ -354,58 +337,27 @@ export default function CheckoutScreen() {
           )}
         </View>
 
-        {/* LIST */}
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {loading ? (
-            <ActivityIndicator />
-          ) : (
-            aggregatedStores.map((s) => (
-              <Pressable
-  key={s.id}
-  style={[
-    styles.storeCard,
-    s.itemsMissing > 0 && styles.partialStore,
-  ]}
-  onPress={() => {
-    const payload = buildStoreCheckoutPayload(s);
-    router.replace({
-      pathname: "/main/checkout/storecheckout",
-      params: { store: JSON.stringify(payload) },
-    });
-  }}
->
-  {/* שמאל – מחיר */}
-  <View style={styles.leftCol}>
-    <ItimText
-      color="#197FF4"
-      weight="bold"
-      style={styles.price}
-    >
-      ₪{s.score.toFixed(2)}
-    </ItimText>
-  </View>
-
-  {/* ימין – טקסטים */}
-  <View style={styles.rightCol}>
-    <ItimText weight="bold">{s.chain}</ItimText>
-    <ItimText size={12}>{s.address}</ItimText>
-
-    {s.itemsMissing === 0 ? (
-      <ItimText size={12} color="#2e7d32">
-        כל המוצרים זמינים
-      </ItimText>
-    ) : (
-      <ItimText size={12} color="#a00">
-        חסרים {s.itemsMissing} מוצרים
-      </ItimText>
-    )}
-  </View>
-</Pressable>
-
-
-
-            ))
-          )}
+        <ScrollView>
+          {aggregatedStores.map((s) => (
+            <Pressable
+              key={s.id}
+              style={styles.storeCard}
+              onPress={() =>
+                router.replace({
+                  pathname: "/main/checkout/storecheckout",
+                  params: {
+                    store: JSON.stringify(s),
+                  },
+                })
+              }
+            >
+              <ItimText weight="bold">{s.chain}</ItimText>
+              <ItimText>{s.address}</ItimText>
+              <ItimText color="#197FF4">
+                ₪{s.score.toFixed(2)}
+              </ItimText>
+            </Pressable>
+          ))}
           <View style={{ height: 120 }} />
         </ScrollView>
 
@@ -415,59 +367,31 @@ export default function CheckoutScreen() {
   );
 }
 
-
+/* ======================================================
+   STYLES
+====================================================== */
 
 const styles = StyleSheet.create({
-  /* ===== LAYOUT GENERAL ===== */
   container: {
     flex: 1,
     paddingHorizontal: 20,
   },
-
   mapContainer: {
     height: 250,
     borderRadius: 15,
     overflow: "hidden",
     marginBottom: 15,
   },
-
   map: {
     width: "100%",
     height: "100%",
   },
-
-  /* ===== STORE CARD ===== */
-storeCard: {
-  backgroundColor: "#fff",
-  borderRadius: 14,
-  padding: 14,
-  marginBottom: 12,
-  borderWidth: 1,
-  borderColor: "#a1a1a1ff",
-  elevation: 4,
-
-  flexDirection: "row",          // לא row-reverse
-  justifyContent: "space-between",
-  alignItems: "flex-start",
-},
-
-leftCol: {
-  alignItems: "flex-start",      // מחיר שמאל
-},
-
-rightCol: {
-  flex: 1,
-  alignItems: "flex-end",        // טקסטים ימין
-},
-
-price: {
-  marginTop: 10,                 // הורדה קטנה של המחיר
-},
-
-
-  /* ===== PARTIAL STORE ===== */
-  partialStore: {
-    backgroundColor: "#f2f2f2",
-    opacity: 0.65,
+  storeCard: {
+    backgroundColor: "#fff",
+    borderRadius: 14,
+    padding: 14,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#ddd",
   },
 });

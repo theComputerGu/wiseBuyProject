@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
-// ----------------------------
-// Subdocument: GeoPoint
-// ----------------------------
+
+
+
+
 @Schema({ _id: false })
 export class GeoPoint {
   @Prop({ required: true })
@@ -13,42 +14,75 @@ export class GeoPoint {
   lon: number;
 }
 
-const GeoPointSchema = SchemaFactory.createForClass(GeoPoint);
 
-// ----------------------------
-// Subdocument: StoreOffer
-// ----------------------------
+
+
+
+
+export const GeoPointSchema =
+  SchemaFactory.createForClass(GeoPoint);
+
 @Schema({ _id: false })
 export class StoreOffer {
   @Prop({ required: true })
-  chain: string;          // e.g. "Shufersal", "Rami Levy"
+  chain: string;
 
   @Prop({ required: true })
-  address: string;        // full address
+  address: string;
 
-  @Prop({ required: true, min: 0 })
-  price: number;          // price in ILS
+  @Prop({ required: true })
+  price: number;
 
-  @Prop({ type: GeoPointSchema, required: false })
-  geo?: GeoPoint;         // coordinates (optional for now)
+  @Prop({ type: GeoPointSchema })
+  geo?: GeoPoint;
 
   @Prop({ default: Date.now })
-  lastUpdated: Date;      // scrape timestamp
+  lastUpdated: Date;
 }
 
-const StoreOfferSchema = SchemaFactory.createForClass(StoreOffer);
 
-// ----------------------------
-// Main Schema: Stores
-// ----------------------------
-@Schema({ timestamps: true })
-export class Stores {
-  @Prop({ required: true, index: true,})
-  itemcode: string;       // barcode
+
+
+
+
+export const StoreOfferSchema =
+  SchemaFactory.createForClass(StoreOffer);
+
+@Schema({ _id: false })
+export class ProductEntry {
+  @Prop({ required: true })
+  itemcode: string;
 
   @Prop({ type: [StoreOfferSchema], default: [] })
   stores: StoreOffer[];
+
+  @Prop({ default: Date.now })
+  lastUpdated: Date;
 }
 
+
+
+
+
+
+
+
+export const ProductEntrySchema =
+  SchemaFactory.createForClass(ProductEntry);
+
+@Schema({ timestamps: true })
+export class Stores {
+  @Prop({ required: true, unique: true, index: true })
+  addressKey: string;
+
+  @Prop({ type: [ProductEntrySchema], default: [] })
+  products: ProductEntry[];
+}
+
+
+
+
+
 export type StoresDocument = Stores & Document;
-export const StoresSchema = SchemaFactory.createForClass(Stores);
+export const StoresSchema =
+  SchemaFactory.createForClass(Stores);

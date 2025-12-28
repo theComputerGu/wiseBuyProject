@@ -3,7 +3,6 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { Stores, StoresDocument } from "./schemas/stores.schema";
 import { StoreOffer } from "./schemas/stores.schema";
-import { geocodeAddress } from "./geocode"; 
 
 @Injectable()
 export class StoresService {
@@ -12,65 +11,80 @@ export class StoresService {
     private readonly storesModel: Model<StoresDocument>,
   ) {}
 
-  // =========================
-  // Get stores for barcode
-  // =========================
-  async getByItemcode(itemcode: string) {
-    return this.storesModel.findOne({ itemcode }).lean();
-  }
 
-  // =========================
-  // Upsert store prices + geo
-  // =========================
-  async upsertStores(
-    itemcode: string,
-    offers: Omit<StoreOffer, "lastUpdated" | "geo">[],
-  ) {
-
-    let doc = await this.storesModel.findOne({ itemcode });
-
-    // ✅ If barcode doesn't exist — create EMPTY doc
+  async getOrCreateAddress(addressKey: string) {
+    let doc = await this.storesModel.findOne({ addressKey });
     if (!doc) {
       doc = await this.storesModel.create({
-        itemcode,
-        stores: [],
+        addressKey,
+        products: [],
       });
     }
+    return doc;
+  }
 
-    for (const offer of offers) {
-      const existing = doc.stores.find(
-        s =>
-          s.chain === offer.chain &&
-          s.address === offer.address,
-      );
 
-      // ✅ Existing store → update price only
-      if (existing) {
-        existing.price = offer.price;
-        existing.lastUpdated = new Date();
-        continue;
-      }
+  async getCachedProducts(
+  addressKey: string,
+  itemcodes: string[],
+): Promise<{
+  found: {
+    itemcode: string;
+    stores: StoreOffer[];
+  }[];
+  missing: string[];
+}> {
+  const doc = await this.storesModel.findOne({ addressKey }).lean();
 
-      // 🧠 New store → geocode ONCE
-      const geo = await geocodeAddress(offer.address);
+  if (!doc) {
+    return {
+      found: [],
+      missing: itemcodes,
+    };
+  }
 
-      doc.stores.push({
-        ...offer,
-        geo: geo ?? undefined,
+  const foundProducts = doc.products.filter(p =>
+    itemcodes.includes(p.itemcode),
+  );
+
+  const foundCodes = foundProducts.map(p => p.itemcode);
+
+  const missing = itemcodes.filter(
+    code => !foundCodes.includes(code),
+  );
+
+  return {
+    found: foundProducts.map(p => ({
+      itemcode: p.itemcode,
+      stores: p.stores,
+    })),
+    missing,
+  };
+}
+
+
+  async upsertProduct(
+    addressKey: string,
+    itemcode: string,
+    stores: StoreOffer[],
+  ) {
+    const doc = await this.getOrCreateAddress(addressKey);
+
+    const product = doc.products.find(
+      p => p.itemcode === itemcode,
+    );
+
+    if (product) {
+      product.stores = stores;
+      product.lastUpdated = new Date();
+    } else {
+      doc.products.push({
+        itemcode,
+        stores,
         lastUpdated: new Date(),
       });
     }
 
     await doc.save();
-    return doc;
-  }
-
-  // =========================
-  // Bulk get (used by checkout)
-  // =========================
-  async getMany(itemcodes: string[]) {
-    return this.storesModel
-      .find({ itemcode: { $in: itemcodes } })
-      .lean();
   }
 }
