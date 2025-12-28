@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 import re
 
 
@@ -13,7 +14,21 @@ import re
 # FUNCTION 2 — Get stores + prices table
 # -------------------------------------------------
 def get_stores_table(barcode: str, city: str):
-    driver = webdriver.Chrome()
+    # Configure Chrome for speed
+    options = Options()
+    options.add_argument('--headless=new')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-extensions')
+    options.add_argument('--disable-logging')
+    options.add_argument('--log-level=3')
+    options.add_argument('--blink-settings=imagesEnabled=false')
+    options.add_argument('--disable-infobars')
+    options.add_experimental_option('excludeSwitches', ['enable-logging'])
+    options.page_load_strategy = 'eager'  # Don't wait for all resources
+
+    driver = webdriver.Chrome(options=options)
     driver.get("https://chp.co.il/")
 
     # Fill inputs
