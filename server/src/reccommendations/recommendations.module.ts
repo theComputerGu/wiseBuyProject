@@ -10,6 +10,10 @@ import {
   ShoppingList,
   ShoppingListSchema,
 } from "../shoppinglist/schemas/shopping-list.schema";
+import {
+  Product,
+  ProductSchema,
+} from "../products/schemas/product.schema";
 
 @Module({
   imports: [
@@ -17,6 +21,7 @@ import {
       { name: User.name, schema: UserSchema },
       { name: Group.name, schema: GroupSchema },
       { name: ShoppingList.name, schema: ShoppingListSchema },
+      { name: Product.name, schema: ProductSchema },
     ]),
   ],
   controllers: [RecommendationsController],

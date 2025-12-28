@@ -1,0 +1,5183 @@
+[
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8c9f"
+    },
+    "name": "הבית של user1",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8c9e"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8c9e"
+      }
+    ],
+    "groupcode": "GRP001",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8cb0"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ca0"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 291,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 08/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ca1"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-08T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 440,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 16/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ca2"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-16T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 439,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 23/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ca3"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-23T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 509,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 27/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ca4"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-27T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 544,
+        "itemcount": 13
+      },
+      {
+        "name": "קניות 05/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ca5"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-05T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "ירושלים",
+        "totalprice": 431,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 15/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ca6"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-15T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 320,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 23/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ca7"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-23T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 558,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 28/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ca8"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-28T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 265,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 04/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ca9"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-04T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 459,
+        "itemcount": 14
+      },
+      {
+        "name": "קניות 14/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8caa"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-14T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 392,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 24/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cab"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-24T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 253,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 28/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cac"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-28T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "ירושלים",
+        "totalprice": 323,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 08/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cad"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-08T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 525,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 17/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cae"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-17T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 323,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 26/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8caf"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-26T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 478,
+        "itemcount": 12
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.129639Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8cb2"
+    },
+    "name": "הבית של user2",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8cb1"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8cb1"
+      }
+    ],
+    "groupcode": "GRP002",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8cc9"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cb3"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 267,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 08/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cb4"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-08T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 185,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 15/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cb5"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-15T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 296,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 20/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cb6"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-20T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 326,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 25/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cb7"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-25T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 168,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 01/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cb8"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-01T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 254,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 06/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cb9"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-06T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 401,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 11/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cba"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-11T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 371,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 14/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cbb"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-14T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 329,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 20/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cbc"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-20T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 326,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 26/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cbd"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-26T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 237,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 29/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cbe"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-29T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 221,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 01/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cbf"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-01T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 154,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 07/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cc0"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-07T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 244,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 12/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cc1"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-12T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "ירושלים",
+        "totalprice": 297,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 20/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cc2"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-20T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 355,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 23/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cc3"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-23T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 218,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 27/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cc4"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-27T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 244,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 04/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cc5"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-04T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 164,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 08/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cc6"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-08T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 253,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 16/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cc7"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-16T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 505,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 22/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cc8"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-22T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 300,
+        "itemcount": 8
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.130650Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8ccb"
+    },
+    "name": "הבית של user3",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8cca"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8cca"
+      }
+    ],
+    "groupcode": "GRP003",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8cd9"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ccc"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 827,
+        "itemcount": 20
+      },
+      {
+        "name": "קניות 07/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ccd"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-07T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 732,
+        "itemcount": 18
+      },
+      {
+        "name": "קניות 14/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cce"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-14T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 394,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 21/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ccf"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-21T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 436,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 28/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cd0"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-28T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 603,
+        "itemcount": 18
+      },
+      {
+        "name": "קניות 11/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cd1"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-11T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 325,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 23/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cd2"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-23T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 743,
+        "itemcount": 18
+      },
+      {
+        "name": "קניות 02/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cd3"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-02T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 772,
+        "itemcount": 19
+      },
+      {
+        "name": "קניות 09/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cd4"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-09T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 794,
+        "itemcount": 20
+      },
+      {
+        "name": "קניות 22/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cd5"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-22T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 750,
+        "itemcount": 19
+      },
+      {
+        "name": "קניות 04/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cd6"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-04T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 347,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 15/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cd7"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-15T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "ירושלים",
+        "totalprice": 658,
+        "itemcount": 20
+      },
+      {
+        "name": "קניות 22/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cd8"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-22T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 581,
+        "itemcount": 19
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.131632Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8cdb"
+    },
+    "name": "הבית של user4",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8cda"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8cda"
+      }
+    ],
+    "groupcode": "GRP004",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8ce8"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cdc"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 679,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 12/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cdd"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-12T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "תל אביב",
+        "totalprice": 304,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 23/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cde"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-23T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 646,
+        "itemcount": 19
+      },
+      {
+        "name": "קניות 01/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cdf"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-01T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 463,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 10/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ce0"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-10T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 570,
+        "itemcount": 13
+      },
+      {
+        "name": "קניות 17/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ce1"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-17T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 640,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 26/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ce2"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-26T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 345,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 07/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ce3"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-07T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 601,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 16/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ce4"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-16T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 634,
+        "itemcount": 19
+      },
+      {
+        "name": "קניות 27/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ce5"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-27T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 794,
+        "itemcount": 16
+      },
+      {
+        "name": "קניות 09/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ce6"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-09T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 416,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 22/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ce7"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-22T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 558,
+        "itemcount": 14
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.132632Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8cea"
+    },
+    "name": "הבית של user5",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8ce9"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8ce9"
+      }
+    ],
+    "groupcode": "GRP005",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8cf8"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ceb"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 745,
+        "itemcount": 20
+      },
+      {
+        "name": "קניות 06/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cec"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-06T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 869,
+        "itemcount": 20
+      },
+      {
+        "name": "קניות 17/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ced"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-17T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 431,
+        "itemcount": 18
+      },
+      {
+        "name": "קניות 25/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cee"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-25T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 412,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 08/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cef"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-08T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 549,
+        "itemcount": 14
+      },
+      {
+        "name": "קניות 21/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cf0"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-21T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 588,
+        "itemcount": 14
+      },
+      {
+        "name": "קניות 31/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cf1"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-31T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "ירושלים",
+        "totalprice": 563,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 10/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cf2"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-10T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "תל אביב",
+        "totalprice": 427,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 17/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cf3"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-17T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 560,
+        "itemcount": 17
+      },
+      {
+        "name": "קניות 24/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cf4"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-24T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 551,
+        "itemcount": 17
+      },
+      {
+        "name": "קניות 01/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cf5"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-01T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 593,
+        "itemcount": 17
+      },
+      {
+        "name": "קניות 10/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cf6"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-10T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 652,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 17/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cf7"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-17T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 841,
+        "itemcount": 18
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.132632Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8cfa"
+    },
+    "name": "הבית של user6",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8cf9"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8cf9"
+      }
+    ],
+    "groupcode": "GRP006",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8d07"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cfb"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 436,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 09/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cfc"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-09T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 386,
+        "itemcount": 13
+      },
+      {
+        "name": "קניות 16/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cfd"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-16T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 561,
+        "itemcount": 18
+      },
+      {
+        "name": "קניות 25/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cfe"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-25T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 552,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 04/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8cff"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-04T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 635,
+        "itemcount": 19
+      },
+      {
+        "name": "קניות 16/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d00"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-16T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 680,
+        "itemcount": 20
+      },
+      {
+        "name": "קניות 26/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d01"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-26T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "ירושלים",
+        "totalprice": 392,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 05/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d02"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-05T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "תל אביב",
+        "totalprice": 481,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 18/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d03"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-18T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 604,
+        "itemcount": 16
+      },
+      {
+        "name": "קניות 30/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d04"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-30T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 698,
+        "itemcount": 16
+      },
+      {
+        "name": "קניות 08/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d05"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-08T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "חיפה",
+        "totalprice": 691,
+        "itemcount": 16
+      },
+      {
+        "name": "קניות 21/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d06"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-21T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 431,
+        "itemcount": 12
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.135644Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d09"
+    },
+    "name": "הבית של user7",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8d08"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d08"
+      }
+    ],
+    "groupcode": "GRP007",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8d22"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d0a"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 277,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 07/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d0b"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-07T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "חיפה",
+        "totalprice": 113,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 12/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d0c"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-12T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "חיפה",
+        "totalprice": 203,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 14/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d0d"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-14T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 251,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 20/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d0e"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-20T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 335,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 24/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d0f"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-24T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 286,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 27/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d10"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-27T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 215,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 29/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d11"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-29T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 260,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 02/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d12"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-02T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 273,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 10/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d13"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-10T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 144,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 12/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d14"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-12T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 200,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 20/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d15"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-20T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "חיפה",
+        "totalprice": 336,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 22/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d16"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-22T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "תל אביב",
+        "totalprice": 124,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 27/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d17"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-27T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 180,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 02/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d18"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-02T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 129,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 08/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d19"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-08T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 275,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 15/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d1a"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-15T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "תל אביב",
+        "totalprice": 148,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 23/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d1b"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-23T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 234,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 29/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d1c"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-29T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 146,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 04/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d1d"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-04T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 320,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 07/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d1e"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-07T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 231,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 14/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d1f"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-14T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 203,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 18/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d20"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-18T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 155,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 23/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d21"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-23T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 202,
+        "itemcount": 4
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.135644Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d24"
+    },
+    "name": "הבית של user8",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8d23"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d23"
+      }
+    ],
+    "groupcode": "GRP008",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8d3b"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d25"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 291,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 04/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d26"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-04T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 332,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 07/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d27"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-07T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "חיפה",
+        "totalprice": 247,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 13/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d28"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-13T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "ירושלים",
+        "totalprice": 322,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 21/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d29"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-21T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 371,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 26/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d2a"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-26T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 360,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 04/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d2b"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-04T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 300,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 07/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d2c"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-07T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 156,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 10/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d2d"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-10T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 273,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 17/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d2e"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-17T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 500,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 24/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d2f"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-24T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 186,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 29/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d30"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-29T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 316,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 01/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d31"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-01T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 527,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 06/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d32"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-06T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 502,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 11/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d33"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-11T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 382,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 15/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d34"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-15T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 182,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 20/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d35"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-20T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 259,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 23/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d36"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-23T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 365,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 29/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d37"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-29T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 359,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 08/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d38"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-08T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 200,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 14/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d39"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-14T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 169,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 21/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d3a"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-21T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 351,
+        "itemcount": 11
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.136645Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d3d"
+    },
+    "name": "הבית של user9",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8d3c"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d3c"
+      }
+    ],
+    "groupcode": "GRP009",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8d50"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d3e"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 394,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 03/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d3f"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-03T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 522,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 09/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d40"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-09T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 191,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 15/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d41"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-15T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 337,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 24/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d42"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-24T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 529,
+        "itemcount": 14
+      },
+      {
+        "name": "קניות 03/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d43"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-03T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 415,
+        "itemcount": 13
+      },
+      {
+        "name": "קניות 09/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d44"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-09T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "חיפה",
+        "totalprice": 404,
+        "itemcount": 14
+      },
+      {
+        "name": "קניות 15/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d45"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-15T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "ירושלים",
+        "totalprice": 378,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 20/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d46"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-20T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 364,
+        "itemcount": 13
+      },
+      {
+        "name": "קניות 30/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d47"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-30T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 451,
+        "itemcount": 14
+      },
+      {
+        "name": "קניות 06/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d48"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-06T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 292,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 16/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d49"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-16T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 455,
+        "itemcount": 13
+      },
+      {
+        "name": "קניות 26/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d4a"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-26T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "ירושלים",
+        "totalprice": 322,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 04/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d4b"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-04T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 282,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 08/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d4c"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-08T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 403,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 12/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d4d"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-12T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 344,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 16/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d4e"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-16T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 174,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 22/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d4f"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-22T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "ירושלים",
+        "totalprice": 577,
+        "itemcount": 15
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.137647Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d52"
+    },
+    "name": "הבית של user10",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8d51"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d51"
+      }
+    ],
+    "groupcode": "GRP010",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8d60"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d53"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 559,
+        "itemcount": 16
+      },
+      {
+        "name": "קניות 11/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d54"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-11T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 484,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 21/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d55"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-21T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 484,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 03/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d56"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-03T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 460,
+        "itemcount": 14
+      },
+      {
+        "name": "קניות 12/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d57"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-12T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 538,
+        "itemcount": 16
+      },
+      {
+        "name": "קניות 19/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d58"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-19T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 519,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 26/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d59"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-26T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 705,
+        "itemcount": 20
+      },
+      {
+        "name": "קניות 08/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d5a"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-08T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 627,
+        "itemcount": 17
+      },
+      {
+        "name": "קניות 21/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d5b"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-21T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 768,
+        "itemcount": 18
+      },
+      {
+        "name": "קניות 28/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d5c"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-28T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 616,
+        "itemcount": 18
+      },
+      {
+        "name": "קניות 06/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d5d"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-06T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "ירושלים",
+        "totalprice": 405,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 16/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d5e"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-16T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "ירושלים",
+        "totalprice": 517,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 23/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d5f"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-23T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 439,
+        "itemcount": 16
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.137647Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d62"
+    },
+    "name": "הבית של user11",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8d61"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d61"
+      }
+    ],
+    "groupcode": "GRP011",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8d7e"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d63"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "ירושלים",
+        "totalprice": 269,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 06/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d64"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-06T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 210,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 14/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d65"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-14T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 105,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 16/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d66"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-16T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 272,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 19/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d67"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-19T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 117,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 22/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d68"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-22T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 275,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 26/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d69"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-26T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 167,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 02/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d6a"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-02T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "חיפה",
+        "totalprice": 128,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 05/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d6b"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-05T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 295,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 12/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d6c"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-12T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 301,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 16/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d6d"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-16T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 72,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 20/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d6e"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-20T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 174,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 23/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d6f"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-23T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 152,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 30/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d70"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-30T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "ירושלים",
+        "totalprice": 266,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 02/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d71"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-02T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 250,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 04/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d72"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-04T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 171,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 06/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d73"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-06T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 197,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 13/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d74"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-13T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 261,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 17/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d75"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-17T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 290,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 20/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d76"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-20T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "ירושלים",
+        "totalprice": 157,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 28/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d77"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-28T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 242,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 30/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d78"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-30T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 154,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 06/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d79"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-06T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 394,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 10/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d7a"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-10T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 217,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 13/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d7b"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-13T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 281,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 21/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d7c"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-21T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 201,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 26/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d7d"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-26T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "תל אביב",
+        "totalprice": 165,
+        "itemcount": 6
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.138637Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d80"
+    },
+    "name": "הבית של user12",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8d7f"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d7f"
+      }
+    ],
+    "groupcode": "GRP012",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8d9a"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d81"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 311,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 02/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d82"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-02T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 136,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 08/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d83"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-08T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 290,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 13/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d84"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-13T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 160,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 19/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d85"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-19T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 155,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 26/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d86"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-26T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "ירושלים",
+        "totalprice": 155,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 30/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d87"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-30T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 212,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 08/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d88"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-08T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 264,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 10/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d89"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-10T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 130,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 17/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d8a"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-17T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 299,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 21/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d8b"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-21T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 232,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 25/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d8c"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-25T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 212,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 02/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d8d"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-02T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 202,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 08/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d8e"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-08T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 102,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 16/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d8f"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-16T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 224,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 22/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d90"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-22T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 315,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 27/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d91"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-27T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 104,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 30/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d92"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-30T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 237,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 04/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d93"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-04T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 349,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 07/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d94"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-07T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "תל אביב",
+        "totalprice": 223,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 12/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d95"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-12T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 230,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 14/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d96"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-14T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 270,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 16/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d97"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-16T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 265,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 18/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d98"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-18T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 230,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 23/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d99"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-23T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 181,
+        "itemcount": 6
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.138637Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d9c"
+    },
+    "name": "הבית של user13",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8d9b"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d9b"
+      }
+    ],
+    "groupcode": "GRP013",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8dae"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d9d"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 135,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 08/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d9e"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-08T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "ירושלים",
+        "totalprice": 436,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 17/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8d9f"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-17T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 345,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 25/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8da0"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-25T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 157,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 04/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8da1"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-04T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 418,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 13/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8da2"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-13T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "ירושלים",
+        "totalprice": 218,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 21/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8da3"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-21T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 286,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 25/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8da4"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-25T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 264,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 31/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8da5"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-31T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 254,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 04/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8da6"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-04T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 489,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 13/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8da7"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-13T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 509,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 22/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8da8"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-22T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 234,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 28/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8da9"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-28T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 438,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 07/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8daa"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-07T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 307,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 14/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dab"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-14T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 368,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 20/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dac"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-20T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 416,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 24/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dad"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-24T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 124,
+        "itemcount": 6
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.140632Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8db0"
+    },
+    "name": "הבית של user14",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8daf"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8daf"
+      }
+    ],
+    "groupcode": "GRP014",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8dc3"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8db1"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 293,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 07/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8db2"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-07T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "תל אביב",
+        "totalprice": 546,
+        "itemcount": 14
+      },
+      {
+        "name": "קניות 14/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8db3"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-14T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 465,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 24/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8db4"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-24T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 568,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 29/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8db5"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-29T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 388,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 08/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8db6"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-08T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 429,
+        "itemcount": 13
+      },
+      {
+        "name": "קניות 16/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8db7"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-16T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "ירושלים",
+        "totalprice": 400,
+        "itemcount": 13
+      },
+      {
+        "name": "קניות 26/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8db8"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-26T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 583,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 30/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8db9"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-30T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "ירושלים",
+        "totalprice": 476,
+        "itemcount": 13
+      },
+      {
+        "name": "קניות 06/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dba"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-06T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 224,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 12/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dbb"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-12T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 271,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 16/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dbc"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-16T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "תל אביב",
+        "totalprice": 493,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 20/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dbd"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-20T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 394,
+        "itemcount": 14
+      },
+      {
+        "name": "קניות 28/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dbe"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-28T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 554,
+        "itemcount": 14
+      },
+      {
+        "name": "קניות 02/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dbf"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-02T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 377,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 12/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dc0"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-12T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 260,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 21/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dc1"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-21T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 357,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 25/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dc2"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-25T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 414,
+        "itemcount": 14
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.141636Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8dc5"
+    },
+    "name": "הבית של user15",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8dc4"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8dc4"
+      }
+    ],
+    "groupcode": "GRP015",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8dda"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dc6"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 312,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 03/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dc7"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-03T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 264,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 06/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dc8"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-06T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 292,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 10/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dc9"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-10T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 197,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 19/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dca"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-19T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 175,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 24/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dcb"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-24T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 321,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 29/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dcc"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-29T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 382,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 05/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dcd"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-05T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "רמת גן",
+        "totalprice": 399,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 14/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dce"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-14T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 105,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 23/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dcf"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-23T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 211,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 30/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dd0"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-30T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 355,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 03/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dd1"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-03T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 289,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 10/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dd2"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-10T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "ירושלים",
+        "totalprice": 178,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 19/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dd3"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-19T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 233,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 22/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dd4"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-22T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 145,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 28/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dd5"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-28T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 244,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 01/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dd6"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-01T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 262,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 10/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dd7"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-10T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 130,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 16/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dd8"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-16T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 370,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 23/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dd9"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-23T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "חיפה",
+        "totalprice": 361,
+        "itemcount": 9
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.141636Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8ddc"
+    },
+    "name": "הבית של user16",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8ddb"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8ddb"
+      }
+    ],
+    "groupcode": "GRP016",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8df4"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ddd"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 232,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 01/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dde"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-01T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 224,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 05/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ddf"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-05T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 393,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 12/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8de0"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-12T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "חיפה",
+        "totalprice": 110,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 20/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8de1"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-20T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "ירושלים",
+        "totalprice": 318,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 22/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8de2"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-22T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 153,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 29/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8de3"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-29T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 130,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 03/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8de4"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-03T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 121,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 08/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8de5"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-08T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 153,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 15/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8de6"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-15T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 187,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 22/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8de7"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-22T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 118,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 29/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8de8"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-29T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 129,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 06/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8de9"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-06T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 250,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 11/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dea"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-11T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 133,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 17/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8deb"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-17T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 232,
+        "itemcount": 4
+      },
+      {
+        "name": "קניות 24/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dec"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-24T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 292,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 28/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8ded"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-28T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 265,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 03/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dee"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-03T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "רמת גן",
+        "totalprice": 273,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 11/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8def"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-11T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 215,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 13/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8df0"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-13T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 249,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 16/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8df1"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-16T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 139,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 21/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8df2"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-21T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "ירושלים",
+        "totalprice": 199,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 26/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8df3"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-26T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 256,
+        "itemcount": 8
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.142649Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8df6"
+    },
+    "name": "הבית של user17",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8df5"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8df5"
+      }
+    ],
+    "groupcode": "GRP017",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8e03"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8df7"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 689,
+        "itemcount": 16
+      },
+      {
+        "name": "קניות 11/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8df8"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-11T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 574,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 19/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8df9"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-19T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 631,
+        "itemcount": 18
+      },
+      {
+        "name": "קניות 28/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dfa"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-28T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 569,
+        "itemcount": 17
+      },
+      {
+        "name": "קניות 11/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dfb"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-11T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 730,
+        "itemcount": 19
+      },
+      {
+        "name": "קניות 23/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dfc"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-23T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 433,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 01/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dfd"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-01T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 616,
+        "itemcount": 19
+      },
+      {
+        "name": "קניות 08/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dfe"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-08T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "רמת גן",
+        "totalprice": 428,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 21/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8dff"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-21T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 514,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 02/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e00"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-02T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "תל אביב",
+        "totalprice": 611,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 11/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e01"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-11T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 662,
+        "itemcount": 19
+      },
+      {
+        "name": "קניות 23/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e02"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-23T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 437,
+        "itemcount": 15
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.143638Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8e05"
+    },
+    "name": "הבית של user18",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8e04"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8e04"
+      }
+    ],
+    "groupcode": "GRP018",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8e13"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e06"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 685,
+        "itemcount": 20
+      },
+      {
+        "name": "קניות 11/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e07"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-11T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "ירושלים",
+        "totalprice": 507,
+        "itemcount": 16
+      },
+      {
+        "name": "קניות 20/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e08"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-20T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 601,
+        "itemcount": 17
+      },
+      {
+        "name": "קניות 30/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e09"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-30T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 521,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 08/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e0a"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-08T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "ירושלים",
+        "totalprice": 376,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 16/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e0b"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-16T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 442,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 29/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e0c"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-29T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 328,
+        "itemcount": 12
+      },
+      {
+        "name": "קניות 09/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e0d"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-09T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 443,
+        "itemcount": 13
+      },
+      {
+        "name": "קניות 19/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e0e"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-19T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 612,
+        "itemcount": 16
+      },
+      {
+        "name": "קניות 29/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e0f"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-29T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 694,
+        "itemcount": 20
+      },
+      {
+        "name": "קניות 06/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e10"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-06T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "ירושלים",
+        "totalprice": 574,
+        "itemcount": 15
+      },
+      {
+        "name": "קניות 18/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e11"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-18T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 453,
+        "itemcount": 16
+      },
+      {
+        "name": "קניות 26/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e12"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-26T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 467,
+        "itemcount": 16
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.143638Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8e15"
+    },
+    "name": "הבית של user19",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8e14"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8e14"
+      }
+    ],
+    "groupcode": "GRP019",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8e28"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e16"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "חיפה",
+        "totalprice": 342,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 07/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e17"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-07T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "באר שבע",
+        "totalprice": 342,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 14/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e18"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-14T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 226,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 22/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e19"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-22T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "ירושלים",
+        "totalprice": 206,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 28/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e1a"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-28T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "תל אביב",
+        "totalprice": 354,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 05/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e1b"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-05T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 327,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 10/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e1c"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-10T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 275,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 18/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e1d"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-18T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 157,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 25/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e1e"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-25T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 255,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 29/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e1f"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-29T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 189,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 06/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e20"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-06T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "תל אביב",
+        "totalprice": 239,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 10/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e21"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-10T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 312,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 19/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e22"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-19T20:07:59.128648Z"
+        },
+        "storename": "שופרסל",
+        "storeadress": "ירושלים",
+        "totalprice": 343,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 27/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e23"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-27T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 217,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 06/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e24"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-06T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 270,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 10/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e25"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-10T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 179,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 18/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e26"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-18T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 275,
+        "itemcount": 11
+      },
+      {
+        "name": "קניות 22/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e27"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-22T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 414,
+        "itemcount": 10
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.144637Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8e2a"
+    },
+    "name": "הבית של user20",
+    "admin": {
+      "$oid": "695171ff9c6d3a62162f8e29"
+    },
+    "users": [
+      {
+        "$oid": "695171ff9c6d3a62162f8e29"
+      }
+    ],
+    "groupcode": "GRP020",
+    "activeshoppinglist": {
+      "$oid": "695171ff9c6d3a62162f8e3e"
+    },
+    "isDefault": true,
+    "history": [
+      {
+        "name": "קניות 30/08",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e2b"
+        },
+        "purchasedAt": {
+          "$date": "2025-08-30T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "חיפה",
+        "totalprice": 162,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 08/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e2c"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-08T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "חיפה",
+        "totalprice": 304,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 16/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e2d"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-16T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 215,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 24/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e2e"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-24T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "רמת גן",
+        "totalprice": 213,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 29/09",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e2f"
+        },
+        "purchasedAt": {
+          "$date": "2025-09-29T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 188,
+        "itemcount": 5
+      },
+      {
+        "name": "קניות 05/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e30"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-05T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "חיפה",
+        "totalprice": 292,
+        "itemcount": 8
+      },
+      {
+        "name": "קניות 11/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e31"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-11T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "חיפה",
+        "totalprice": 201,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 14/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e32"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-14T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "באר שבע",
+        "totalprice": 322,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 22/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e33"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-22T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 307,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 31/10",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e34"
+        },
+        "purchasedAt": {
+          "$date": "2025-10-31T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "תל אביב",
+        "totalprice": 220,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 09/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e35"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-09T20:07:59.128648Z"
+        },
+        "storename": "ויקטורי",
+        "storeadress": "באר שבע",
+        "totalprice": 417,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 12/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e36"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-12T20:07:59.128648Z"
+        },
+        "storename": "רמי לוי",
+        "storeadress": "תל אביב",
+        "totalprice": 232,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 19/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e37"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-19T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "ירושלים",
+        "totalprice": 285,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 25/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e38"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-25T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "ירושלים",
+        "totalprice": 132,
+        "itemcount": 6
+      },
+      {
+        "name": "קניות 30/11",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e39"
+        },
+        "purchasedAt": {
+          "$date": "2025-11-30T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 349,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 07/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e3a"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-07T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "באר שבע",
+        "totalprice": 363,
+        "itemcount": 9
+      },
+      {
+        "name": "קניות 10/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e3b"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-10T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 305,
+        "itemcount": 7
+      },
+      {
+        "name": "קניות 19/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e3c"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-19T20:07:59.128648Z"
+        },
+        "storename": "מגה",
+        "storeadress": "באר שבע",
+        "totalprice": 365,
+        "itemcount": 10
+      },
+      {
+        "name": "קניות 22/12",
+        "shoppingListId": {
+          "$oid": "695171ff9c6d3a62162f8e3d"
+        },
+        "purchasedAt": {
+          "$date": "2025-12-22T20:07:59.128648Z"
+        },
+        "storename": "יוחננוף",
+        "storeadress": "רמת גן",
+        "totalprice": 233,
+        "itemcount": 9
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.144637Z"
+    }
+  }
+]

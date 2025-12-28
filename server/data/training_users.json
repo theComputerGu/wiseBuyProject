@@ -1,0 +1,442 @@
+[
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8c9e"
+    },
+    "name": "user1",
+    "email": "user1@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8c9f"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8c9f"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.128648Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8cb1"
+    },
+    "name": "user2",
+    "email": "user2@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8cb2"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8cb2"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.129639Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8cca"
+    },
+    "name": "user3",
+    "email": "user3@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8ccb"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8ccb"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.130650Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8cda"
+    },
+    "name": "user4",
+    "email": "user4@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8cdb"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8cdb"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.131632Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8ce9"
+    },
+    "name": "user5",
+    "email": "user5@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8cea"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8cea"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.132632Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8cf9"
+    },
+    "name": "user6",
+    "email": "user6@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8cfa"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8cfa"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.132632Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d08"
+    },
+    "name": "user7",
+    "email": "user7@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d09"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8d09"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.135644Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d23"
+    },
+    "name": "user8",
+    "email": "user8@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d24"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8d24"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.135644Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d3c"
+    },
+    "name": "user9",
+    "email": "user9@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d3d"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8d3d"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.136645Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d51"
+    },
+    "name": "user10",
+    "email": "user10@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d52"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8d52"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.137647Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d61"
+    },
+    "name": "user11",
+    "email": "user11@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d62"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8d62"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.137647Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d7f"
+    },
+    "name": "user12",
+    "email": "user12@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d80"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8d80"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.138637Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8d9b"
+    },
+    "name": "user13",
+    "email": "user13@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8d9c"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8d9c"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.139630Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8daf"
+    },
+    "name": "user14",
+    "email": "user14@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8db0"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8db0"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.140632Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8dc4"
+    },
+    "name": "user15",
+    "email": "user15@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8dc5"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8dc5"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.141636Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8ddb"
+    },
+    "name": "user16",
+    "email": "user16@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8ddc"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8ddc"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.141636Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8df5"
+    },
+    "name": "user17",
+    "email": "user17@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8df6"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8df6"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.142649Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8e04"
+    },
+    "name": "user18",
+    "email": "user18@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8e05"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8e05"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.143638Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8e14"
+    },
+    "name": "user19",
+    "email": "user19@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8e15"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8e15"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.143638Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "695171ff9c6d3a62162f8e29"
+    },
+    "name": "user20",
+    "email": "user20@wisebuy.test",
+    "password": "$2b$10$placeholder",
+    "groups": [
+      {
+        "$oid": "695171ff9c6d3a62162f8e2a"
+      }
+    ],
+    "activeGroup": {
+      "$oid": "695171ff9c6d3a62162f8e2a"
+    },
+    "createdAt": {
+      "$date": "2025-08-30T20:07:59.128648Z"
+    },
+    "updatedAt": {
+      "$date": "2025-12-28T20:07:59.144637Z"
+    }
+  }
+]
