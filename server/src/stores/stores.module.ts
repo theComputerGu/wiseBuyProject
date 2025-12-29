@@ -6,6 +6,7 @@ import { StoresController } from "./stores.controller";
 import { StoresResolveController } from "./stores-resolve.controller";
 import { StoresResolverService } from "./stores-resolver.service";
 import { ScrapeModule } from "../scrape/scrape.module"; // ✅ הוספה
+import { StoreScoringService } from "./scoring/store-scoring.service";
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { ScrapeModule } from "../scrape/scrape.module"; // ✅ הוספה
     ScrapeModule, // ✅ זה מה שחסר
   ],
   controllers: [StoresController, StoresResolveController],
-  providers: [StoresService, StoresResolverService],
+  providers: [StoresService, StoresResolverService,StoreScoringService],
   exports: [StoresService, StoresResolverService],
 })
 export class StoresModule {}
