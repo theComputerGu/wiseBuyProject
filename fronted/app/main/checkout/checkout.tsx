@@ -25,6 +25,7 @@ import {
 import {
   appendStores,
   setSignature,
+  setScoredStores,
 } from "../../../redux/slices/storesSlice";
 
 import {
@@ -34,21 +35,7 @@ import {
 
 import { useResolveStoresMutation } from "../../../redux/svc/storesApi";
 import { ShoppingListItem } from "../../../redux/slices/shoppinglistSlice";
-
-/* ======================================================
-   TYPES
-====================================================== */
-
-type AggregatedStore = {
-  id: string;
-  chain: string;
-  address: string;
-  lat: number;
-  lon: number;
-  score: number;
-  itemsFound: number;
-  itemsMissing: number;
-};
+import { ScoredStore } from "../../../types/Store";
 
 /* ======================================================
    HELPERS
@@ -77,6 +64,26 @@ function buildAddressKey(lat: number, lon: number) {
   return `${lat.toFixed(4)},${lon.toFixed(4)}`;
 }
 
+/* ===== NEW: QUALITY META ===== */
+
+function qualityMeta(v: number) {
+  if (v >= 75) {
+    return { label: "GOOD", color: "#2ecc71" }; // ירוק
+  }
+  if (v >= 45) {
+    return { label: "OK", color: "#f1c40f" }; // צהוב
+  }
+  return { label: "WEAK", color: "#e74c3c" }; // אדום
+}
+
+/* ===== NEW: CARD BACKGROUND BY SCORE ===== */
+
+function scoreCardBg(score: number) {
+  if (score >= 80) return "#eafaf1"; // ירקרק
+  if (score >= 60) return "#fff9e6"; // צהבהב
+  return "#fdecea"; // אדמדם
+}
+
 /* ======================================================
    COMPONENT
 ====================================================== */
@@ -85,6 +92,7 @@ export default function CheckoutScreen() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const isFocused = useIsFocused();
+
   /* =========================
      REDUX STATE
   ========================= */
@@ -93,8 +101,12 @@ export default function CheckoutScreen() {
     (s) => s.shoppingList.activeList?.items ?? []
   );
 
-  const storesByItemcode = useAppSelector(
-    (s) => s.stores.stores
+  const scoredStores = useAppSelector(
+    (s) => s.stores.scoredStores
+  );
+
+  const storedSignature = useAppSelector(
+    (s) => s.stores.signature
   );
 
   const radius = useAppSelector(
@@ -158,18 +170,14 @@ export default function CheckoutScreen() {
   }, [shoppingItems, location]);
 
   /* =========================
-     MISSING ITEMCODES 🔑
+     ALL ITEMCODES
   ========================= */
 
-  const missingItemcodes = useMemo(() => {
+  const allItemcodes = useMemo(() => {
     return shoppingItems
       .map((i) => i._id?.itemcode)
-      .filter((c): c is string => Boolean(c))
-      .filter((code) => {
-        const entry = storesByItemcode[code];
-        return !entry || entry.stores.length === 0;
-      });
-  }, [shoppingItems, storesByItemcode]);
+      .filter((c): c is string => Boolean(c));
+  }, [shoppingItems]);
 
   /* =========================
      EFFECT: RESOLVE STORES
@@ -179,21 +187,18 @@ export default function CheckoutScreen() {
     if (!isFocused) return;
     if (!shoppingItems.length) return;
     if (!location) return;
-    if (missingItemcodes.length === 0) return;
+    if (!allItemcodes.length) return;
+    if (storedSignature === listSignature) return;
 
     const payload = {
       addressKey: buildAddressKey(location.lat, location.lon),
-      itemcodes: missingItemcodes,
+      itemcodes: allItemcodes,
     };
-
-    console.log("🚀 RESOLVE STORES PAYLOAD:", payload);
 
     resolveStores(payload)
       .unwrap()
-      .then((results) => {
-        console.log("✅ API RESULTS:", results);
-
-        for (const r of results) {
+      .then((data) => {
+        for (const r of data.items) {
           dispatch(
             appendStores({
               itemcode: r.itemcode,
@@ -202,78 +207,43 @@ export default function CheckoutScreen() {
           );
         }
 
+        dispatch(setScoredStores(data.scoredStores));
         dispatch(setSignature(listSignature));
       })
-      .catch((err) => {
-        console.error("❌ Resolve stores failed:", err);
-      });
+      .catch(console.error);
   }, [
+    isFocused,
     location,
-    missingItemcodes.join(","), // 🔑 מונע כפילויות
+    allItemcodes.join(","),
     listSignature,
+    storedSignature,
     resolveStores,
     dispatch,
   ]);
 
   /* =========================
-     AGGREGATION
+     FILTER + SORT
   ========================= */
 
-  const aggregatedStores = useMemo<AggregatedStore[]>(() => {
+  const visibleStores = useMemo<ScoredStore[]>(() => {
     if (!location) return [];
 
-    const map: Record<string, AggregatedStore> = {};
-    const totalItems = shoppingItems.length;
-
-    for (const item of shoppingItems) {
-      const itemcode = item._id?.itemcode;
-      if (!itemcode) continue;
-
-      const entry = storesByItemcode[itemcode];
-      if (!entry?.stores?.length) continue;
-
-      const qty = item.quantity ?? 1;
-
-      for (const offer of entry.stores) {
-        if (!offer.geo) continue;
-
-        const key = `${offer.chain}__${offer.address}`;
-
-        if (!map[key]) {
-          map[key] = {
-            id: key,
-            chain: offer.chain,
-            address: offer.address,
-            lat: offer.geo.lat,
-            lon: offer.geo.lon,
-            score: 0,
-            itemsFound: 0,
-            itemsMissing: totalItems,
-          };
-        }
-
-        map[key].score += offer.price * qty;
-        map[key].itemsFound += 1;
-        map[key].itemsMissing -= 1;
-      }
-    }
-
-    return Object.values(map)
-      .filter((store) => {
+    return scoredStores
+      .filter((s) => {
         const d = distanceKm(
           location.lat,
           location.lon,
-          store.lat,
-          store.lon
+          s.lat,
+          s.lon
         );
         return d <= radius;
       })
-      .sort((a, b) => {
-        if (a.itemsMissing === 0 && b.itemsMissing > 0) return -1;
-        if (a.itemsMissing > 0 && b.itemsMissing === 0) return 1;
-        return a.score - b.score;
-      });
-  }, [shoppingItems, storesByItemcode, location, radius]);
+      .sort((a, b) => b.score - a.score);
+  }, [scoredStores, location, radius]);
+
+  /* =========================
+     RENDER
+  ========================= */
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -308,11 +278,11 @@ export default function CheckoutScreen() {
               }}
               showsUserLocation
             >
-              {aggregatedStores.map((s) => (
+              {visibleStores.map((s) => (
                 <Marker
-                  key={s.id}
+                  key={s.storeId}
                   title={s.chain}
-                  description={`₪${s.score.toFixed(2)}`}
+                  description={`Score: ${s.score}/100`}
                   coordinate={{
                     latitude: s.lat,
                     longitude: s.lon,
@@ -335,27 +305,52 @@ export default function CheckoutScreen() {
         </View>
 
         <ScrollView>
-          {aggregatedStores.map((s) => (
-            <Pressable
-              key={s.id}
-              style={styles.storeCard}
-              onPress={() =>
-                router.push({
-                  pathname: "/main/checkout/storecheckout",
-                  params: {
-                    chain: s.chain,
-                    address: s.address,
-                  },
-                })
-              }
+          {visibleStores.map((s) => {
+            const avail = qualityMeta(s.scoreBreakdown.availability);
+            const price = qualityMeta(s.scoreBreakdown.price);
+            const dist  = qualityMeta(s.scoreBreakdown.distance);
+
+            return (
+              <Pressable
+                key={s.storeId}
+                style={[
+                  styles.storeCard,
+                  { backgroundColor: scoreCardBg(s.score) },
+                ]}
+                onPress={() =>
+                  router.push({
+                    pathname: "/main/checkout/storecheckout",
+                    params: {
+                      chain: s.chain,
+                      address: s.address,
+                    },
+                  })
+                }
               >
-              <ItimText weight="bold">{s.chain}</ItimText>
-              <ItimText>{s.address}</ItimText>
-              <ItimText color="#197FF4">
-                ₪{s.score.toFixed(2)}
-              </ItimText>
-            </Pressable>
-          ))}
+                <ItimText weight="bold">{s.chain}</ItimText>
+                <ItimText>{s.address}</ItimText>
+
+                <ItimText color="#197FF4">
+                  Score: {s.score}/100
+                </ItimText>
+
+                <ItimText>
+                  Availability:{" "}
+                  <ItimText color={avail.color}>
+                    {avail.label}
+                  </ItimText>{" "}
+                  · Price:{" "}
+                  <ItimText color={price.color}>
+                    {price.label}
+                  </ItimText>{" "}
+                  · Distance:{" "}
+                  <ItimText color={dist.color}>
+                    {dist.label}
+                  </ItimText>
+                </ItimText>
+              </Pressable>
+            );
+          })}
           <View style={{ height: 120 }} />
         </ScrollView>
 
@@ -385,7 +380,6 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   storeCard: {
-    backgroundColor: "#fff",
     borderRadius: 14,
     padding: 14,
     marginBottom: 12,

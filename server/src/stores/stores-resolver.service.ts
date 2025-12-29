@@ -180,18 +180,23 @@
 
 
 
-
-
 import { Injectable } from "@nestjs/common";
 import { StoresService } from "./stores.service";
 import { ScrapeService } from "../scrape/scrape.service";
 import { StoreOffer } from "./schemas/stores.schema";
+
+// ➕ NEW
+import { StoreScoringService } from "./scoring/store-scoring.service";
+import { aggregateStoresByStore } from "./scoring/adapter";
 
 @Injectable()
 export class StoresResolverService {
   constructor(
     private readonly storesService: StoresService,
     private readonly scrapeService: ScrapeService,
+
+    // ➕ NEW
+    private readonly storeScoringService: StoreScoringService,
   ) {}
 
   /* ======================================================
@@ -239,13 +244,11 @@ export class StoresResolverService {
       );
     }
 
-    // 🔑 זה ה־addressKey החדש ל־DB
     return `${street}, ${city}`;
   }
 
   /* ======================================================
      Forward Geocoding: address -> lat/lon (לחנויות)
-     (רק לויזואליה ומרחקים)
   ====================================================== */
   private async geocodeAddress(
     address: string,
@@ -283,15 +286,29 @@ export class StoresResolverService {
      Main Resolver
   ====================================================== */
   async resolveStores(
-    addressKey: string, // עדיין מגיע כ־"lat,lon" מהפרונט
+    addressKey: string,
     itemcodes: string[],
-  ): Promise<
-    {
+  ): Promise<{
+    items: {
       itemcode: string;
       stores: StoreOffer[];
       source: "cache" | "scrape";
-    }[]
-  > {
+    }[];
+    scoredStores: {
+      storeId: string;
+      chain: string;
+      address: string;
+      lat: number;
+      lon: number;
+      score: number;
+      scoreBreakdown: {
+        availability: number;
+        price: number;
+        distance: number;
+        penalty: number;
+      };
+    }[];
+  }> {
     // 1️⃣ פירוק קואורדינטות של המשתמש
     const [lat, lon] = addressKey.split(",").map(Number);
 
@@ -310,8 +327,12 @@ export class StoresResolverService {
 
     console.log("📍 Normalized addressKey:", normalizedAddressKey);
 
-    // 3️⃣ בדיקת cache לפי כתובת (לא לפי GPS!)
-    const { found, missing } =await this.storesService.getCachedProducts(normalizedAddressKey,itemcodes,);
+    // 3️⃣ בדיקת cache לפי כתובת
+    const { found, missing } =
+      await this.storesService.getCachedProducts(
+        normalizedAddressKey,
+        itemcodes,
+      );
 
     const results: {
       itemcode: string;
@@ -349,7 +370,7 @@ export class StoresResolverService {
       }
 
       await this.storesService.upsertProduct(
-        normalizedAddressKey, // 🔑 כתובת, לא lat/lon
+        normalizedAddressKey,
         itemcode,
         stores,
       );
@@ -361,6 +382,36 @@ export class StoresResolverService {
       });
     }
 
-    return results;
+    // ======================================================
+    // ➕ Aggregation + Scoring (IN-MEMORY ONLY)
+    // ======================================================
+
+    const aggregatedStores =
+      aggregateStoresByStore(results, itemcodes);
+
+    const scoredStores =
+      this.storeScoringService.scoreStores(
+        aggregatedStores,
+        itemcodes.map(code => ({
+          itemcode: code,
+          quantity: 1,
+        })),
+        { lat, lon },
+      );
+
+    console.log(
+      "🏪 SCORED STORES:",
+      scoredStores.map(s => ({
+        store: s.chain,
+        score: s.score,
+        breakdown: s.scoreBreakdown,
+      })),
+    );
+
+    // ✅ NEW RESPONSE SHAPE
+    return {
+      items: results,
+      scoredStores,
+    };
   }
 }
