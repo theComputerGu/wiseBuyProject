@@ -110,9 +110,16 @@ export function scoreStore(
     finalScore = Math.min(finalScore, 95);
   }
 
+  // Calculate total price for all items in shopping list
+  const totalPrice = shoppingList.reduce((sum, item) => {
+    const itemPrice = storePriceMap.get(item.itemcode);
+    return sum + (itemPrice ?? 0) * (item.quantity || 1);
+  }, 0);
+
   return {
     rawScore,
     score: finalScore,
+    totalPrice: Math.round(totalPrice * 100) / 100, // Round to 2 decimals
     breakdown: {
       availability: Math.round(
         (availabilityScore /

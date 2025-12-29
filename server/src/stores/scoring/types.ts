@@ -39,6 +39,7 @@ export type StoreScoreBreakdown = {
 
 export type StoreScoreResult = {
   score: number; // 1–100
+  totalPrice: number;
   breakdown: StoreScoreBreakdown;
 };
 

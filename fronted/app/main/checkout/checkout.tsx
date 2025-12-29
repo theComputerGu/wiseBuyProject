@@ -76,12 +76,28 @@ function qualityMeta(v: number) {
   return { label: "WEAK", color: "#e74c3c" }; // אדום
 }
 
-/* ===== NEW: CARD BACKGROUND BY SCORE ===== */
+/* ===== NEW: CARD STYLING BY SCORE ===== */
 
-function scoreCardBg(score: number) {
-  if (score >= 80) return "#eafaf1"; // ירקרק
-  if (score >= 60) return "#fff9e6"; // צהבהב
-  return "#fdecea"; // אדמדם
+function getCardStyle(score: number) {
+  if (score >= 80) {
+    return {
+      bg: "#ffffff",
+      border: "#e2e8f0",
+      accent: "#10b981", // green accent for top stores
+    };
+  }
+  if (score >= 60) {
+    return {
+      bg: "#ffffff",
+      border: "#e5e7eb",
+      accent: "#f1c40f", // indigo accent for good stores
+    };
+  }
+  return {
+    bg: "#ffffff",
+    border: "#d4d4d8",
+    accent: "#e74c3c", // gray accent for lower stores
+  };
 }
 
 /* ======================================================
@@ -309,13 +325,19 @@ export default function CheckoutScreen() {
             const avail = qualityMeta(s.scoreBreakdown.availability);
             const price = qualityMeta(s.scoreBreakdown.price);
             const dist  = qualityMeta(s.scoreBreakdown.distance);
+            const cardStyle = getCardStyle(s.score);
 
             return (
               <Pressable
                 key={s.storeId}
                 style={[
                   styles.storeCard,
-                  { backgroundColor: scoreCardBg(s.score) },
+                  {
+                    backgroundColor: cardStyle.bg,
+                    borderColor: cardStyle.border,
+                    borderLeftWidth: 4,
+                    borderLeftColor: cardStyle.accent,
+                  },
                 ]}
                 onPress={() =>
                   router.push({
@@ -327,27 +349,41 @@ export default function CheckoutScreen() {
                   })
                 }
               >
-                <ItimText weight="bold">{s.chain}</ItimText>
-                <ItimText>{s.address}</ItimText>
+                <View style={styles.cardHeader}>
+                  <View style={{ flex: 1 }}>
+                    <ItimText weight="bold" color="#18181b" style={{ fontSize: 17 }}>
+                      {s.chain}
+                    </ItimText>
+                    <ItimText color="#71717a" style={{ fontSize: 13 }}>
+                      {s.address}
+                    </ItimText>
+                  </View>
+                  <View style={styles.priceContainer}>
+                    <ItimText color="#18181b" weight="bold" style={{ fontSize: 20 }}>
+                      {s.totalPrice > 0 ? `₪${s.totalPrice.toFixed(2)}` : "—"}
+                    </ItimText>
+                    <View style={[styles.scoreBadge, { backgroundColor: cardStyle.accent }]}>
+                      <ItimText color="#fff" style={{ fontSize: 12 }}>
+                        {s.score}
+                      </ItimText>
+                    </View>
+                  </View>
+                </View>
 
-                <ItimText color="#197FF4">
-                  Score: {s.score}/100
-                </ItimText>
-
-                <ItimText>
-                  Availability:{" "}
-                  <ItimText color={avail.color}>
-                    {avail.label}
-                  </ItimText>{" "}
-                  · Price:{" "}
-                  <ItimText color={price.color}>
-                    {price.label}
-                  </ItimText>{" "}
-                  · Distance:{" "}
-                  <ItimText color={dist.color}>
-                    {dist.label}
-                  </ItimText>
-                </ItimText>
+                <View style={styles.metricsRow}>
+                  <View style={styles.metricItem}>
+                    <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Availability</ItimText>
+                    <ItimText color={avail.color} weight="bold">{avail.label}</ItimText>
+                  </View>
+                  <View style={styles.metricItem}>
+                    <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Price</ItimText>
+                    <ItimText color={price.color} weight="bold">{price.label}</ItimText>
+                  </View>
+                  <View style={styles.metricItem}>
+                    <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Distance</ItimText>
+                    <ItimText color={dist.color} weight="bold">{dist.label}</ItimText>
+                  </View>
+                </View>
               </Pressable>
             );
           })}
@@ -380,10 +416,41 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   storeCard: {
-    borderRadius: 14,
-    padding: 14,
+    borderRadius: 12,
+    padding: 16,
     marginBottom: 12,
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: "#e5e7eb",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 2,
+  },
+  cardHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 4,
+  },
+  scoreBadge: {
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+  },
+  priceContainer: {
+    alignItems: "flex-end",
+    gap: 6,
+  },
+  metricsRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingTop: 10,
+    borderTopWidth: 1,
+    borderTopColor: "#f4f4f5",
+  },
+  metricItem: {
+    alignItems: "center",
+    flex: 1,
   },
 });
