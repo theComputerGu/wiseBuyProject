@@ -415,11 +415,18 @@ export default function CheckoutScreen() {
                   }
                 >
                   <View style={styles.cardHeader}>
-                    <View style={{ flex: 1 }}>
-                      <ItimText weight="bold" color="#18181b" style={{ fontSize: 17 }}>
+                    <View style={styles.storeTextContainer}>
+                      <ItimText
+                        weight="bold"
+                        color="#18181b"
+                        style={{ fontSize: 17, textAlign: "right" }}
+                      >
                         {s.chain}
                       </ItimText>
-                      <ItimText color="#71717a" style={{ fontSize: 13 }}>
+                      <ItimText
+                        color="#71717a"
+                        style={{ fontSize: 13, textAlign: "right" }}
+                      >
                         {s.address}
                       </ItimText>
                     </View>
@@ -571,7 +578,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   cardHeader: {
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 4,
@@ -582,7 +589,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   priceContainer: {
-    alignItems: "flex-end",
+    alignItems: "flex-start",
     gap: 6,
   },
   metricsRow: {
@@ -602,6 +609,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  storeTextContainer: {
+  flex: 1,
+  alignItems: "flex-end",   // הצמדה לימין
+},
   loadingCard: {
     backgroundColor: "#fff",
     borderRadius: 20,
@@ -615,3 +626,5 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
 });
+
+
