@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   missingCard: {
-    opacity: 0.6,
+    opacity: 0.7,
     borderColor: "#fecaca",
     backgroundColor: "#fef2f2",
   },

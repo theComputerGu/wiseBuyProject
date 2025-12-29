@@ -17,9 +17,11 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     const inAuth = segments[0] === "auth";   // Is the current route group "/auth"?
+    const isRoot = segments.length === 0;    // Is at root index (splash screen)?
 
     // ❗ If user NOT logged in AND trying to access non-auth screen → redirect
-    if (!user && !inAuth) {
+    // But allow the splash screen (root index) to show
+    if (!user && !inAuth && !isRoot) {
       router.replace("/auth/home");
       return;
     }

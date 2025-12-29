@@ -7,16 +7,17 @@ import {
   Dimensions,
   Pressable,
   Animated,
+  ActivityIndicator,
+  TextInput,
 } from 'react-native';
-import axios from "axios";
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import { API_URL } from '@env'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { API_URL } from '@env';
 
 import ItimText from '../../../components/Itimtext';
 import Title from '../../../components/Title';
-import SearchHeader from '../../../components/SearchHeader';
 
 import { useGetProductsQuery } from '../../../redux/svc/productApi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,7 +35,7 @@ import {
   useRemoveItemMutation,
 } from '../../../redux/svc/shoppinglistApi';
 
-
+const BRAND = '#197FF4';
 const screenHeight = Dimensions.get('window').height;
 
 export default function AddItemCategoryScreen() {
@@ -168,105 +169,246 @@ export default function AddItemCategoryScreen() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        {/* Top Bar */}
+        <View style={styles.topBar}>
+          <Pressable style={styles.backBtn} onPress={() => router.replace('/main/additem/additem')}>
+            <MaterialCommunityIcons name="arrow-left" size={24} color={BRAND} />
+          </Pressable>
+          <View style={styles.titleContainer}>
+            <Title text={name ?? 'Category'} color={BRAND} />
+          </View>
+          <View style={{ width: 40 }} />
+        </View>
 
-      <SearchHeader
-        placeholder="Search products..."
-        backRoute="/main/additem/additem"
-        value={search}
-        onSearchChange={setSearch}
-      />
-
-      <Title text={name ?? 'Category'} />
-
-      {isLoading ? (
-        <ItimText size={16}>Loading...</ItimText>
-      ) : (
-        <FlatList
-          data={products}
-          numColumns={2}
-          keyExtractor={(item) => String(item._id)}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.list}
-          renderItem={({ item }) => (
-            <Pressable
-              style={styles.itemCard}
-              onPress={() => openPopup(item)}
-            >
-              <Image
-                source={{ uri: fixImageURL(item.image) }}
-                style={styles.itemImage}
-              />
-
-              {/* FIXED TITLE */}
-              <ItimText
-                size={16}
-                color="#000"
-                weight="bold"
-                numberOfLines={2}
-                ellipsizeMode="tail"
-                style={styles.itemTitle}
-              >
-                {item.title}
-              </ItimText>
-
-              <ItimText size={14} color="#197FF4">
-                {item.pricerange ?? ''}
-              </ItimText>
+        {/* Search Bar */}
+        <View style={styles.searchBar}>
+          <MaterialCommunityIcons name="magnify" size={20} color={BRAND} />
+          <TextInput
+            placeholder="Search products..."
+            placeholderTextColor="#9ca3af"
+            style={styles.searchInput}
+            value={search}
+            onChangeText={setSearch}
+          />
+          {search.length > 0 && (
+            <Pressable onPress={() => setSearch('')}>
+              <MaterialCommunityIcons name="close-circle" size={18} color="#9ca3af" />
             </Pressable>
           )}
-        />
-      )}
+        </View>
 
-      <ItemPopup
-        visible={!!selectedItem}
-        item={selectedItem}
-        slideAnim={slideAnim}
-        onClose={closePopup}
-        onIncrement={increment}
-        onDecrement={decrement}
-        getCurrentQty={getCurrentQty}
-      />
+        {/* Section Header */}
+        <View style={styles.sectionHeader}>
+          <MaterialCommunityIcons name="package-variant" size={20} color={BRAND} />
+          <ItimText size={16} weight="600" color="#1a1a1a" style={{ marginLeft: 8 }}>
+            Products
+          </ItimText>
+          <View style={styles.countBadge}>
+            <ItimText size={12} color={BRAND} weight="bold">
+              {products.length}
+            </ItimText>
+          </View>
+        </View>
+
+        {isLoading ? (
+          <View style={styles.loadingContainer}>
+            <ActivityIndicator size="large" color={BRAND} />
+            <ItimText size={14} color="#71717a" style={{ marginTop: 12 }}>
+              Loading products...
+            </ItimText>
+          </View>
+        ) : products.length === 0 ? (
+          <View style={styles.emptyContainer}>
+            <MaterialCommunityIcons name="package-variant-remove" size={60} color="#d1d5db" />
+            <ItimText size={16} color="#71717a" style={{ marginTop: 12, textAlign: 'center' }}>
+              No products found
+            </ItimText>
+            <ItimText size={13} color="#9ca3af" style={{ marginTop: 4, textAlign: 'center' }}>
+              Try a different search term
+            </ItimText>
+          </View>
+        ) : (
+          <FlatList
+            data={products}
+            numColumns={2}
+            keyExtractor={(item) => String(item._id)}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.list}
+            columnWrapperStyle={styles.row}
+            renderItem={({ item }) => {
+              const qty = getCurrentQty(item._id);
+              return (
+                <Pressable
+                  style={styles.itemCard}
+                  onPress={() => openPopup(item)}
+                >
+                  {qty > 0 && (
+                    <View style={styles.qtyBadge}>
+                      <ItimText size={12} color="#fff" weight="bold">
+                        {qty}
+                      </ItimText>
+                    </View>
+                  )}
+                  <View style={styles.imageContainer}>
+                    <Image
+                      source={{ uri: fixImageURL(item.image) }}
+                      style={styles.itemImage}
+                    />
+                  </View>
+                  <ItimText
+                    size={14}
+                    color="#1a1a1a"
+                    weight="600"
+                    numberOfLines={2}
+                    ellipsizeMode="tail"
+                    style={styles.itemTitle}
+                  >
+                    {item.title}
+                  </ItimText>
+                  <ItimText size={14} color={BRAND} weight="bold">
+                    {item.pricerange ?? ''}
+                  </ItimText>
+                </Pressable>
+              );
+            }}
+          />
+        )}
+
+        <ItemPopup
+          visible={!!selectedItem}
+          item={selectedItem}
+          slideAnim={slideAnim}
+          onClose={closePopup}
+          onIncrement={increment}
+          onDecrement={decrement}
+          getCurrentQty={getCurrentQty}
+        />
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    paddingHorizontal: 16,
-  },
-  list: {
-    paddingVertical: 12,
-  },
-
-  /** PRODUCT CARD */
-  itemCard: {
+  safeArea: {
     flex: 1,
     backgroundColor: '#fff',
-    borderRadius: 12,
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+  },
+  topBar: {
+    flexDirection: 'row',
     alignItems: 'center',
-    margin: 8,
-    paddingVertical: 12,
+    marginVertical: 12,
+  },
+  titleContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  backBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    backgroundColor: '#eff6ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: '#e5e7eb',
+    borderWidth: 1,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    backgroundColor: '#fff',
+    marginBottom: 16,
+  },
+  searchInput: {
+    flex: 1,
+    marginLeft: 8,
+    fontSize: 15,
+    color: '#1a1a1a',
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  countBadge: {
+    backgroundColor: '#eff6ff',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+    marginLeft: 'auto',
+  },
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emptyContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 60,
+  },
+  list: {
+    paddingBottom: 20,
+  },
+  row: {
+    justifyContent: 'space-between',
+  },
+  itemCard: {
+    width: '48%',
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
+    alignItems: 'center',
+    padding: 12,
+    marginBottom: 12,
     shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
     elevation: 3,
+    position: 'relative',
   },
-
-  /** FIXED IMAGE — SAME SIZE ALWAYS */
+  qtyBadge: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: BRAND,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+  },
+  imageContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 12,
+    backgroundColor: '#f8fafc',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10,
+  },
   itemImage: {
-    width: 110,
-    height: 110,
+    width: 80,
+    height: 80,
     resizeMode: 'contain',
-    marginBottom: 8,
   },
-
-  /** FIXED PRODUCT TITLE */
   itemTitle: {
-    width: "90%",
-    textAlign: "center",
-    marginBottom: 4,
+    width: '100%',
+    textAlign: 'center',
+    writingDirection: 'rtl',
+    marginBottom: 6,
+    minHeight: 36,
   },
 });

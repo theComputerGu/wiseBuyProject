@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StyleSheet, Pressable } from 'react-native';
+import { Image, StyleSheet, Pressable } from 'react-native';
 import ItimText from './Itimtext';
 
 interface CategoryCardProps {
@@ -12,11 +12,11 @@ export default function CategoryCard({ name, image, onPress }: CategoryCardProps
   return (
     <Pressable style={styles.card} onPress={onPress}>
       <Image source={image} style={styles.image} />
-
       <ItimText
-        size={16}
-        color="#000"
-        style={styles.title}   // ⬅️ חשוב
+        size={13}
+        color="#1a1a1a"
+        weight="600"
+        style={styles.title}
         numberOfLines={2}
       >
         {name}
@@ -29,29 +29,28 @@ const styles = StyleSheet.create({
   card: {
     width: '30%',
     backgroundColor: '#fff',
-    borderRadius: 12,
-    alignItems: 'center',   // האייקון נשאר במרכז
-    marginBottom: 15,
-    paddingVertical: 10,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 8,
     shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
     elevation: 3,
   },
-
   image: {
-    width: 65,
-    height: 65,
+    width: 60,
+    height: 60,
     resizeMode: 'contain',
-    marginBottom: 6,
-    backgroundColor: 'transparent',
+    marginBottom: 8,
   },
-
   title: {
-  width: '100%',
-  textAlign: 'center',       // ⬅️ מרכז
-  writingDirection: 'rtl',   // ⬅️ עברית
-  paddingHorizontal: 8,
-  lineHeight: 20,
-},
+    width: '100%',
+    textAlign: 'center',
+    writingDirection: 'rtl',
+    lineHeight: 18,
+  },
 });

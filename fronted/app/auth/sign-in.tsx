@@ -1,41 +1,47 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { useRouter, Link } from "expo-router";
+import {
+  View,
+  StyleSheet,
+  ActivityIndicator,
+  Pressable,
+  Dimensions,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TextField from "../../components/TextField";
-import Button from "../../components/Button";
-import Logo from "../../components/Logo";
+import ItimText from "../../components/Itimtext";
+import Logo from "../../assets/logos/logo blue.png";
 import { useLoginMutation } from "../../redux/svc/usersApi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
-import { setActiveGroup, } from "../../redux/slices/groupSlice";
-import { useGetGroupByIdQuery, useLazyGetGroupByIdQuery } from "../../redux/svc/groupsApi";
-import { useGetListByIdQuery, useLazyGetListByIdQuery } from "../../redux/svc/shoppinglistApi";
+import { setActiveGroup } from "../../redux/slices/groupSlice";
+import { useLazyGetGroupByIdQuery } from "../../redux/svc/groupsApi";
+import { useLazyGetListByIdQuery } from "../../redux/svc/shoppinglistApi";
 import { setActiveList } from "../../redux/slices/shoppinglistSlice";
 
+const { height: screenHeight } = Dimensions.get("window");
+const BRAND = "#197FF4";
 
 const schema = z.object({
   email: z.string().email("Please enter a valid email address"),
   password: z.string().min(6, "Password must be at least 6 characters long"),
 });
 
-
 type Form = z.infer<typeof schema>;
 
 export default function SignIn() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const user = useSelector((s: any) => s?.user);
-  const ShoppingList = useSelector((s: any) => s?.ShoppingList);
-  const group = useSelector((s: any) => s?.group);
   const [fetchGroupById] = useLazyGetGroupByIdQuery();
   const [fetchListById] = useLazyGetListByIdQuery();
-
-
 
   const {
     control,
@@ -52,19 +58,17 @@ export default function SignIn() {
     try {
       const u = await login({
         email: data.email,
-        passwordPlain: data.password
+        passwordPlain: data.password,
       }).unwrap();
 
       dispatch(setUser(u));
 
-      // --- LOAD ACTIVE GROUP ---
       if (u.activeGroup) {
         const { data: groupData } = await fetchGroupById(u.activeGroup);
 
         if (groupData) {
           dispatch(setActiveGroup(groupData));
 
-          // --- LOAD ACTIVE SHOPPING LIST ---
           const { data: listData } = await fetchListById(
             groupData.activeshoppinglist
           );
@@ -76,112 +80,287 @@ export default function SignIn() {
       }
 
       router.replace("/main/product");
-
     } catch (err: any) {
-      const msg =
-        "Incorrect email or password";
-
+      const msg = "Incorrect email or password";
       alert(msg);
     }
   };
 
-
-  // -------------------- Render --------------------
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-      <View style={s.page}>
-        {/* 🔙 Back Button */}
-        <Ionicons
-          name="arrow-back"
-          size={24}
-          onPress={() => router.replace('/auth/home')}
-          style={s.back}
-          color="#197FF4"
-        />
+    <SafeAreaView style={styles.container}>
+      {/* Decorative background elements */}
+      <View style={styles.decorCircle1} />
+      <View style={styles.decorCircle2} />
+      <View style={styles.decorCircle3} />
 
-        {/* 🧠 Logo & Title */}
-        <Logo sizeMultiplier={0.7} textScale={0.15} />
-        <Text style={s.title}>Sign In</Text>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.keyboardView}
+      >
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+        >
+          {/* Back Button */}
+          <Pressable
+            style={styles.backBtn}
+            onPress={() => router.replace("/auth/home")}
+          >
+            <MaterialCommunityIcons name="arrow-left" size={24} color={BRAND} />
+          </Pressable>
 
-        {/* 📧 Email Field */}
-        <Controller
-          name="email"
-          control={control}
-          render={({ field: { value, onChange }, fieldState: { error } }) => (
-            <>
-              <TextField
-                value={value}
-                onChangeText={onChange}
-                placeholder="Email"
-                keyboardType="email-address"
+          {/* Logo Section */}
+          <View style={styles.logoSection}>
+            <View style={styles.logoContainer}>
+              <Image source={Logo} style={styles.logo} />
+            </View>
+            <ItimText size={32} color={BRAND} weight="bold">
+              Welcome Back
+            </ItimText>
+            <ItimText size={15} color="#71717a" style={{ marginTop: 8 }}>
+              Sign in to continue shopping smart
+            </ItimText>
+          </View>
+
+          {/* Form Section */}
+          <View style={styles.formSection}>
+            {/* Email Field */}
+            <View style={styles.inputWrapper}>
+              <View style={styles.inputIcon}>
+                <MaterialCommunityIcons
+                  name="email-outline"
+                  size={20}
+                  color={BRAND}
+                />
+              </View>
+              <Controller
+                name="email"
+                control={control}
+                render={({
+                  field: { value, onChange },
+                  fieldState: { error },
+                }) => (
+                  <View style={styles.inputContainer}>
+                    <TextField
+                      value={value}
+                      onChangeText={onChange}
+                      placeholder="Email"
+                      keyboardType="email-address"
+                    />
+                    {error && (
+                      <ItimText size={12} color="#ef4444" style={styles.error}>
+                        {error.message}
+                      </ItimText>
+                    )}
+                  </View>
+                )}
               />
-              {error && <Text style={s.err}>{error.message}</Text>}
-            </>
-          )}
-        />
+            </View>
 
-        {/* 🔒 Password Field */}
-        <Controller
-          name="password"
-          control={control}
-          render={({ field: { value, onChange }, fieldState: { error } }) => (
-            <>
-              <TextField
-                value={value}
-                onChangeText={onChange}
-                placeholder="Password"
-                secure
+            {/* Password Field */}
+            <View style={styles.inputWrapper}>
+              <View style={styles.inputIcon}>
+                <MaterialCommunityIcons
+                  name="lock-outline"
+                  size={20}
+                  color={BRAND}
+                />
+              </View>
+              <Controller
+                name="password"
+                control={control}
+                render={({
+                  field: { value, onChange },
+                  fieldState: { error },
+                }) => (
+                  <View style={styles.inputContainer}>
+                    <TextField
+                      value={value}
+                      onChangeText={onChange}
+                      placeholder="Password"
+                      secure
+                    />
+                    {error && (
+                      <ItimText size={12} color="#ef4444" style={styles.error}>
+                        {error.message}
+                      </ItimText>
+                    )}
+                  </View>
+                )}
               />
-              {error && <Text style={s.err}>{error.message}</Text>}
-            </>
-          )}
-        />
+            </View>
 
-        {/* 🚀 Submit Button */}
-        <Button
-          title={isSubmitting || isLoading ? "..." : "Sign In"}
-          onPress={handleSubmit(onSubmit)}
-        />
-        {(isSubmitting || isLoading) && <ActivityIndicator style={{ marginTop: 8 }} color="#197FF4" />}
+            {/* Sign In Button */}
+            <Pressable
+              style={[
+                styles.primaryButton,
+                (isSubmitting || isLoading) && styles.buttonDisabled,
+              ]}
+              onPress={handleSubmit(onSubmit)}
+              disabled={isSubmitting || isLoading}
+            >
+              {isSubmitting || isLoading ? (
+                <ActivityIndicator color="#fff" />
+              ) : (
+                <>
+                  <ItimText size={18} color="#fff" weight="bold">
+                    Sign In
+                  </ItimText>
+                  <MaterialCommunityIcons
+                    name="login"
+                    size={20}
+                    color="#fff"
+                    style={{ marginLeft: 8 }}
+                  />
+                </>
+              )}
+            </Pressable>
+          </View>
 
-        {/* 🔁 Switch to Sign Up */}
-        <Text style={s.switch}>
-          Don’t have an account? <Link href="/auth/sign-up">Sign up</Link>
-        </Text>
-      </View>
+          {/* Switch to Sign Up */}
+          <View style={styles.switchSection}>
+            <ItimText size={15} color="#71717a">
+              Don't have an account?{" "}
+            </ItimText>
+            <Pressable onPress={() => router.replace("/auth/sign-up")}>
+              <ItimText size={15} color={BRAND} weight="bold">
+                Sign Up
+              </ItimText>
+            </Pressable>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
 
-const s = StyleSheet.create({
-  page: {
+const styles = StyleSheet.create({
+  container: {
     flex: 1,
-    padding: 20,
-    gap: 12,
-    justifyContent: "center",
+    backgroundColor: "#fff",
   },
-  back: {
+  keyboardView: {
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingHorizontal: 24,
+    paddingTop: 16,
+    paddingBottom: 40,
+  },
+  // Decorative circles
+  decorCircle1: {
     position: "absolute",
-    top: 8,
-    left: 8,
+    top: -80,
+    right: -80,
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    backgroundColor: "rgba(25, 127, 244, 0.08)",
   },
-  title: {
-    fontSize: 26,
-    fontWeight: "800",
-    textAlign: "center",
-    marginTop: 6,
-    marginBottom: 8,
-    color: "#111",
+  decorCircle2: {
+    position: "absolute",
+    top: screenHeight * 0.4,
+    left: -60,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    backgroundColor: "rgba(25, 127, 244, 0.05)",
   },
-  switch: {
-    textAlign: "center",
+  decorCircle3: {
+    position: "absolute",
+    bottom: 60,
+    right: -40,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "rgba(25, 127, 244, 0.06)",
+  },
+  // Back Button
+  backBtn: {
+    width: 44,
+    height: 44,
+    borderRadius: 14,
+    backgroundColor: "#eff6ff",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 24,
+  },
+  // Logo Section
+  logoSection: {
+    alignItems: "center",
+    marginBottom: 40,
+  },
+  logoContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 28,
+    backgroundColor: "#f8fafc",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
+    shadowColor: BRAND,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.12,
+    shadowRadius: 16,
+    elevation: 6,
+  },
+  logo: {
+    width: 70,
+    height: 70,
+    resizeMode: "contain",
+  },
+  // Form Section
+  formSection: {
+    width: "100%",
+    gap: 16,
+  },
+  inputWrapper: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+  },
+  inputIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    backgroundColor: "#eff6ff",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 12,
+    marginTop: 4,
+  },
+  inputContainer: {
+    flex: 1,
+  },
+  error: {
+    marginTop: 4,
+    marginLeft: 4,
+  },
+  // Primary Button
+  primaryButton: {
+    flexDirection: "row",
+    width: "100%",
+    backgroundColor: BRAND,
+    paddingVertical: 16,
+    borderRadius: 16,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: BRAND,
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 6,
     marginTop: 8,
-    color: "#111827",
   },
-  err: {
-    color: "red",
-    fontSize: 12,
-    marginTop: -6,
-    marginBottom: 4,
+  buttonDisabled: {
+    opacity: 0.7,
+  },
+  // Switch Section
+  switchSection: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 32,
   },
 });

@@ -7,8 +7,11 @@ import {
     Animated,
     Image,
 } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ItimText from "./Itimtext";
 import { API_URL } from "@env";
+
+const BRAND = "#197FF4";
 
 interface ItemPopupProps {
     visible: boolean;
@@ -81,7 +84,6 @@ export default function ItemPopup({
     if (!visible || !item) return null;
 
     return (
-        // FIX: Prevent press on the popup content from triggering onClose
         <TouchableWithoutFeedback onPress={onClose}>
             <View style={styles.overlay}>
                 <TouchableWithoutFeedback>
@@ -94,42 +96,71 @@ export default function ItemPopup({
                         {/* Handle bar */}
                         <View style={styles.handleBar} />
 
-                        {/* Image */}
-                        <Image source={{ uri: fixImageURL(item.image) }} style={styles.popupImage} />
+                        {/* Close button */}
+                        <Pressable style={styles.closeBtn} onPress={onClose}>
+                            <MaterialCommunityIcons name="close" size={20} color="#71717a" />
+                        </Pressable>
 
-                        {/* Counter */}
-                        <View style={styles.counterRow}>
-                            <Pressable style={styles.qtyButtonSmall} onPress={handleDecrement}>
-                                <ItimText size={22} color="#197FF4" weight="bold">-</ItimText>
-                            </Pressable>
-
-                            <ItimText
-                                size={20}
-                                color="#000"
-                                weight="bold"
-                                style={{ marginHorizontal: 15 }}
-                            >
-                                {qty}
-                            </ItimText>
-
-                            <Pressable style={styles.qtyButtonSmall} onPress={handleIncrement}>
-                                <ItimText size={22} color="#197FF4" weight="bold">+</ItimText>
-                            </Pressable>
+                        {/* Image Container */}
+                        <View style={styles.imageContainer}>
+                            <Image source={{ uri: fixImageURL(item.image) }} style={styles.popupImage} />
                         </View>
 
-                        {/* Info */}
-                        <ItimText size={20} color="#000" weight="bold">
-                            {item.title}
-                        </ItimText>
+                        {/* Product Info */}
+                        <View style={styles.infoSection}>
+                            <ItimText size={18} color="#1a1a1a" weight="bold" style={styles.rtlText} numberOfLines={2}>
+                                {item.title}
+                            </ItimText>
 
-                        <ItimText size={18} color="#197FF4">
-                            {item.pricerange ?? ""}
-                        </ItimText>
+                            <View style={styles.priceRow}>
+                                <ItimText size={20} color={BRAND} weight="bold">
+                                    {item.pricerange ?? ""}
+                                </ItimText>
+                                {item.unit && (
+                                    <ItimText size={13} color="#9ca3af" style={{ marginLeft: 8 }}>
+                                        {item.unit}
+                                    </ItimText>
+                                )}
+                            </View>
+                        </View>
 
-                        <ItimText size={14} color="#555">
-                            {item.unit ?? ""}
-                        </ItimText>
+                        {/* Quantity Section */}
+                        <View style={styles.quantitySection}>
+                            <ItimText size={14} color="#71717a" style={{ marginBottom: 10 }}>
+                                Quantity
+                            </ItimText>
+                            <View style={styles.counterRow}>
+                                <Pressable
+                                    style={[styles.qtyButton, qty === 0 && styles.qtyButtonDisabled]}
+                                    onPress={handleDecrement}
+                                    disabled={qty === 0}
+                                >
+                                    <MaterialCommunityIcons
+                                        name="minus"
+                                        size={22}
+                                        color={qty === 0 ? "#d1d5db" : BRAND}
+                                    />
+                                </Pressable>
 
+                                <View style={styles.qtyDisplay}>
+                                    <ItimText size={24} color="#1a1a1a" weight="bold">
+                                        {qty}
+                                    </ItimText>
+                                </View>
+
+                                <Pressable style={styles.qtyButton} onPress={handleIncrement}>
+                                    <MaterialCommunityIcons name="plus" size={22} color={BRAND} />
+                                </Pressable>
+                            </View>
+                        </View>
+
+                        {/* Done Button */}
+                        <Pressable style={styles.doneBtn} onPress={onClose}>
+                            <MaterialCommunityIcons name="check" size={20} color="#fff" />
+                            <ItimText size={16} color="#fff" weight="600" style={{ marginLeft: 8 }}>
+                                {qty > 0 ? "עדכן סל" : "סגור"}
+                            </ItimText>
+                        </Pressable>
                     </Animated.View>
                 </TouchableWithoutFeedback>
             </View>
@@ -140,41 +171,102 @@ export default function ItemPopup({
 const styles = StyleSheet.create({
     overlay: {
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: "rgba(0,0,0,0.4)",
+        backgroundColor: "rgba(0,0,0,0.5)",
         justifyContent: "flex-end",
     },
     popupCard: {
         backgroundColor: "#fff",
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        padding: 20,
+        borderTopLeftRadius: 24,
+        borderTopRightRadius: 24,
+        paddingHorizontal: 20,
+        paddingTop: 12,
+        paddingBottom: 30,
         alignItems: "center",
     },
     handleBar: {
-        width: 50,
-        height: 5,
-        backgroundColor: "#ccc",
-        borderRadius: 2.5,
-        marginBottom: 10,
+        width: 40,
+        height: 4,
+        backgroundColor: "#e5e7eb",
+        borderRadius: 2,
+        marginBottom: 16,
+    },
+    closeBtn: {
+        position: "absolute",
+        top: 16,
+        right: 16,
+        width: 36,
+        height: 36,
+        borderRadius: 18,
+        backgroundColor: "#f4f4f5",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 10,
+    },
+    imageContainer: {
+        width: 140,
+        height: 140,
+        borderRadius: 16,
+        backgroundColor: "#f8fafc",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 16,
     },
     popupImage: {
-        width: 120,
-        height: 120,
+        width: 110,
+        height: 110,
         resizeMode: "contain",
-        marginBottom: 8,
+    },
+    infoSection: {
+        width: "100%",
+        alignItems: "center",
+        marginBottom: 20,
+    },
+    rtlText: {
+        textAlign: "center",
+        writingDirection: "rtl",
+    },
+    priceRow: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginTop: 8,
+    },
+    quantitySection: {
+        width: "100%",
+        alignItems: "center",
+        paddingVertical: 16,
+        borderTopWidth: 1,
+        borderTopColor: "#f4f4f5",
+        marginBottom: 16,
     },
     counterRow: {
         flexDirection: "row",
         alignItems: "center",
-        marginTop: 15,
-        marginBottom: 10,
     },
-    qtyButtonSmall: {
-        width: 40,
-        height: 40,
-        borderRadius: 12,
-        backgroundColor: "#E8F1FF",
+    qtyButton: {
+        width: 48,
+        height: 48,
+        borderRadius: 14,
+        backgroundColor: "#eff6ff",
         justifyContent: "center",
         alignItems: "center",
+        borderWidth: 1,
+        borderColor: "#e5e7eb",
+    },
+    qtyButtonDisabled: {
+        backgroundColor: "#f9fafb",
+        borderColor: "#f4f4f5",
+    },
+    qtyDisplay: {
+        width: 70,
+        alignItems: "center",
+    },
+    doneBtn: {
+        flexDirection: "row",
+        width: "100%",
+        backgroundColor: BRAND,
+        paddingVertical: 14,
+        borderRadius: 14,
+        alignItems: "center",
+        justifyContent: "center",
     },
 });

@@ -3,6 +3,8 @@ import { View, StyleSheet, TextInput, Pressable } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
+const BRAND = '#197FF4';
+
 interface SearchHeaderProps {
   placeholder?: string;
   backRoute?: string;
@@ -21,14 +23,14 @@ export default function SearchHeader({
   return (
     <View style={styles.topRow}>
       <Pressable onPress={() => router.replace(backRoute)} style={styles.backButton}>
-        <MaterialCommunityIcons name="arrow-left" size={20} color="#fff" />
+        <MaterialCommunityIcons name="arrow-left" size={22} color={BRAND} />
       </Pressable>
 
       <View style={styles.searchBar}>
-        <MaterialCommunityIcons name="magnify" size={22} color="#197FF4" />
+        <MaterialCommunityIcons name="magnify" size={20} color={BRAND} />
         <TextInput
           placeholder={placeholder}
-          placeholderTextColor="#888"
+          placeholderTextColor="#9ca3af"
           style={styles.searchInput}
           onChangeText={onSearchChange}
           value={value}
@@ -42,37 +44,32 @@ const styles = StyleSheet.create({
   topRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
-    paddingHorizontal: 10,
+    marginVertical: 12,
   },
   backButton: {
-    backgroundColor: '#197FF4',
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    backgroundColor: '#eff6ff',
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOpacity: 0.15,
-    shadowRadius: 3,
-    elevation: 4,
+    marginRight: 12,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#197FF4',
-    borderWidth: 1.5,
-    borderRadius: 25,
+    borderColor: '#e5e7eb',
+    borderWidth: 1,
+    borderRadius: 12,
     paddingHorizontal: 12,
-    paddingVertical: 6,
-    backgroundColor: '#f8f8f8',
+    paddingVertical: 10,
+    backgroundColor: '#fff',
     flex: 1,
-    marginLeft: 10,
   },
   searchInput: {
     flex: 1,
-    marginLeft: 6,
-    fontSize: 16,
-    color: '#000',
+    marginLeft: 8,
+    fontSize: 15,
+    color: '#1a1a1a',
   },
 });
