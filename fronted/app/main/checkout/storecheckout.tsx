@@ -6,9 +6,11 @@ import { useRouter, useLocalSearchParams } from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
 
 import ItimText from "../../../components/Itimtext";
-import Button from "../../../components/Button";
 import BottomNav from "../../../components/Bottomnavigation";
 import CheckoutCard from "../../../components/CheckoutCard";
+import Title from "../../../components/Title";
+
+const BRAND = "#197FF4";
 
 import { RootState } from "../../../redux/state/store";
 import { setActiveGroup } from "../../../redux/slices/groupSlice";
@@ -176,17 +178,12 @@ export default function StoreCheckoutScreen() {
       <View style={styles.container}>
 
         {/* TOP BAR */}
-        <View style={styles.top}>
-          <Pressable onPress={() => router.back()}>
-            <MaterialCommunityIcons
-              name="arrow-left"
-              size={26}
-              color="#197FF4"
-            />
+        <View style={styles.topBar}>
+          <Pressable style={styles.backBtn} onPress={() => router.back()}>
+            <MaterialCommunityIcons name="arrow-left" size={24} color={BRAND} />
           </Pressable>
-          <ItimText size={20} weight="bold">
-            {chain}
-          </ItimText>
+          <Title text={chain || "Store"} color={BRAND} />
+          <View style={{ width: 40 }} />
         </View>
 
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -208,7 +205,7 @@ export default function StoreCheckoutScreen() {
               <ItimText
                 size={16}
                 weight="bold"
-                style={{ marginTop: 20, color: "#999" }}
+                style={{ marginBottom: 10, color: "#999" }}
               >
                 מוצרים שלא זמינים בחנות
               </ItimText>
@@ -229,10 +226,12 @@ export default function StoreCheckoutScreen() {
           <View style={{ height: 25 }} />
         </ScrollView>
 
-        <Button
-          title={`אישור קניה • ₪${totalPrice}`}
-          onPress={handleCheckout}
-        />
+        <Pressable style={styles.checkoutBtn} onPress={handleCheckout}>
+          <MaterialCommunityIcons name="cart-check" size={20} color="#fff" />
+          <ItimText size={16} color="#fff" weight="600" style={{ marginLeft: 8 }}>
+            אישור קניה • ₪{totalPrice}
+          </ItimText>
+        </Pressable>
 
         <BottomNav />
       </View>
@@ -245,15 +244,40 @@ export default function StoreCheckoutScreen() {
 ====================================================== */
 
 const styles = StyleSheet.create({
-  wrapper: { flex: 1, backgroundColor: "#fff" },
-  container: { flex: 1, paddingHorizontal: 20 },
-  centerPage: { flex: 1, justifyContent: "center", alignItems: "center" },
-
-  top: {
+  wrapper: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+  },
+  centerPage: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  topBar: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 15,
-    marginBottom: 10,
-    marginTop: 5,
+    marginVertical: 12,
+  },
+  backBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    backgroundColor: "#eff6ff",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 12,
+  },
+  checkoutBtn: {
+    flexDirection: "row",
+    backgroundColor: BRAND,
+    paddingVertical: 14,
+    borderRadius: 14,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 12,
   },
 });

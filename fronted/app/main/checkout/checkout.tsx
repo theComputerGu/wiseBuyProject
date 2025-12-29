@@ -5,17 +5,21 @@ import {
   StyleSheet,
   ScrollView,
   Pressable,
+  ActivityIndicator,
 } from "react-native";
 import MapView, { Circle, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Slider from "@react-native-community/slider";
 import { useRouter } from "expo-router";
 import * as Location from "expo-location";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import TopNav from "../../../components/Topnav";
 import BottomNav from "../../../components/Bottomnavigation";
 import Title from "../../../components/Title";
 import ItimText from "../../../components/Itimtext";
+
+const BRAND = "#197FF4";
 
 import {
   useAppSelector,
@@ -262,27 +266,38 @@ export default function CheckoutScreen() {
   ========================= */
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <TopNav />
-        <Title text="Checkout" />
+        <Title text="Checkout" color={BRAND} />
 
-        <View style={{ alignItems: "center", marginVertical: 10 }}>
-          <ItimText color="#197FF4">
-            Radius: {radius} km
-          </ItimText>
+        {/* Radius Control Card */}
+        <View style={styles.radiusCard}>
+          <View style={styles.radiusHeader}>
+            <View style={styles.radiusIcon}>
+              <MaterialCommunityIcons name="map-marker-radius" size={16} color={BRAND} />
+            </View>
+            <ItimText size={13} color="#71717a">Search Radius </ItimText>
+            <ItimText size={15} weight="bold" color={BRAND}>
+              {radius.toFixed(1)} km
+            </ItimText>
+          </View>
           <Slider
             value={radius}
             minimumValue={0.2}
             maximumValue={3}
             step={0.2}
-            style={{ width: "80%" }}
+            style={styles.slider}
+            minimumTrackTintColor={BRAND}
+            maximumTrackTintColor="#e5e7eb"
+            thumbTintColor={BRAND}
             onValueChange={(v) => dispatch(setRadius(v))}
           />
         </View>
 
+        {/* Map Section */}
         <View style={styles.mapContainer}>
-          {location && (
+          {location ? (
             <MapView
               provider={PROVIDER_GOOGLE}
               style={styles.map}
@@ -317,77 +332,108 @@ export default function CheckoutScreen() {
                 fillColor="rgba(25,127,244,0.15)"
               />
             </MapView>
+          ) : (
+            <View style={styles.mapLoading}>
+              <ActivityIndicator size="large" color={BRAND} />
+              <ItimText size={14} color="#71717a" style={{ marginTop: 12 }}>
+                Getting your location...
+              </ItimText>
+            </View>
           )}
         </View>
 
-        <ScrollView>
-          {visibleStores.map((s) => {
-            const avail = qualityMeta(s.scoreBreakdown.availability);
-            const price = qualityMeta(s.scoreBreakdown.price);
-            const dist  = qualityMeta(s.scoreBreakdown.distance);
-            const cardStyle = getCardStyle(s.score);
+        {/* Stores Section Header */}
+        <View style={styles.sectionHeader}>
+          <MaterialCommunityIcons name="store" size={20} color={BRAND} />
+          <ItimText size={16} weight="600" color="#1a1a1a" style={{ marginLeft: 8 }}>
+            Nearby Stores
+          </ItimText>
+          <View style={styles.storeCount}>
+            <ItimText size={12} color={BRAND} weight="bold">
+              {visibleStores.length}
+            </ItimText>
+          </View>
+        </View>
 
-            return (
-              <Pressable
-                key={s.storeId}
-                style={[
-                  styles.storeCard,
-                  {
-                    backgroundColor: cardStyle.bg,
-                    borderColor: cardStyle.border,
-                    borderLeftWidth: 4,
-                    borderLeftColor: cardStyle.accent,
-                  },
-                ]}
-                onPress={() =>
-                  router.push({
-                    pathname: "/main/checkout/storecheckout",
-                    params: {
-                      chain: s.chain,
-                      address: s.address,
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
+          {visibleStores.length === 0 ? (
+            <View style={styles.emptyState}>
+              <MaterialCommunityIcons name="store-off" size={60} color="#d1d5db" />
+              <ItimText size={16} color="#71717a" style={{ marginTop: 12, textAlign: "center" }}>
+                No stores found in this area.
+              </ItimText>
+              <ItimText size={13} color="#9ca3af" style={{ marginTop: 4, textAlign: "center" }}>
+                Try increasing the search radius.
+              </ItimText>
+            </View>
+          ) : (
+            visibleStores.map((s) => {
+              const avail = qualityMeta(s.scoreBreakdown.availability);
+              const price = qualityMeta(s.scoreBreakdown.price);
+              const dist  = qualityMeta(s.scoreBreakdown.distance);
+              const cardStyle = getCardStyle(s.score);
+
+              return (
+                <Pressable
+                  key={s.storeId}
+                  style={[
+                    styles.storeCard,
+                    {
+                      backgroundColor: cardStyle.bg,
+                      borderColor: cardStyle.border,
+                      borderLeftWidth: 4,
+                      borderLeftColor: cardStyle.accent,
                     },
-                  })
-                }
-              >
-                <View style={styles.cardHeader}>
-                  <View style={{ flex: 1 }}>
-                    <ItimText weight="bold" color="#18181b" style={{ fontSize: 17 }}>
-                      {s.chain}
-                    </ItimText>
-                    <ItimText color="#71717a" style={{ fontSize: 13 }}>
-                      {s.address}
-                    </ItimText>
-                  </View>
-                  <View style={styles.priceContainer}>
-                    <ItimText color="#18181b" weight="bold" style={{ fontSize: 20 }}>
-                      {s.totalPrice > 0 ? `₪${s.totalPrice.toFixed(2)}` : "—"}
-                    </ItimText>
-                    <View style={[styles.scoreBadge, { backgroundColor: cardStyle.accent }]}>
-                      <ItimText color="#fff" style={{ fontSize: 12 }}>
-                        {s.score}
+                  ]}
+                  onPress={() =>
+                    router.push({
+                      pathname: "/main/checkout/storecheckout",
+                      params: {
+                        chain: s.chain,
+                        address: s.address,
+                      },
+                    })
+                  }
+                >
+                  <View style={styles.cardHeader}>
+                    <View style={{ flex: 1 }}>
+                      <ItimText weight="bold" color="#18181b" style={{ fontSize: 17 }}>
+                        {s.chain}
+                      </ItimText>
+                      <ItimText color="#71717a" style={{ fontSize: 13 }}>
+                        {s.address}
                       </ItimText>
                     </View>
+                    <View style={styles.priceContainer}>
+                      <ItimText color="#18181b" weight="bold" style={{ fontSize: 20 }}>
+                        {s.totalPrice > 0 ? `₪${s.totalPrice.toFixed(2)}` : "—"}
+                      </ItimText>
+                      <View style={[styles.scoreBadge, { backgroundColor: cardStyle.accent }]}>
+                        <ItimText color="#fff" style={{ fontSize: 12 }}>
+                          {s.score}
+                        </ItimText>
+                      </View>
+                    </View>
                   </View>
-                </View>
 
-                <View style={styles.metricsRow}>
-                  <View style={styles.metricItem}>
-                    <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Availability</ItimText>
-                    <ItimText color={avail.color} weight="bold">{avail.label}</ItimText>
+                  <View style={styles.metricsRow}>
+                    <View style={styles.metricItem}>
+                      <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Availability</ItimText>
+                      <ItimText color={avail.color} weight="bold">{avail.label}</ItimText>
+                    </View>
+                    <View style={styles.metricItem}>
+                      <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Price</ItimText>
+                      <ItimText color={price.color} weight="bold">{price.label}</ItimText>
+                    </View>
+                    <View style={styles.metricItem}>
+                      <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Distance</ItimText>
+                      <ItimText color={dist.color} weight="bold">{dist.label}</ItimText>
+                    </View>
                   </View>
-                  <View style={styles.metricItem}>
-                    <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Price</ItimText>
-                    <ItimText color={price.color} weight="bold">{price.label}</ItimText>
-                  </View>
-                  <View style={styles.metricItem}>
-                    <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Distance</ItimText>
-                    <ItimText color={dist.color} weight="bold">{dist.label}</ItimText>
-                  </View>
-                </View>
-              </Pressable>
-            );
-          })}
-          <View style={{ height: 120 }} />
+                </Pressable>
+              );
+            })
+          )}
         </ScrollView>
 
         <BottomNav />
@@ -401,19 +447,77 @@ export default function CheckoutScreen() {
 ====================================================== */
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
   container: {
     flex: 1,
     paddingHorizontal: 20,
   },
+  scrollContent: {
+    paddingBottom: 20,
+  },
+  emptyState: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 60,
+  },
+  radiusCard: {
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 10,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+  },
+  radiusHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 4,
+  },
+  radiusIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 10,
+    backgroundColor: "#eff6ff",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 10,
+  },
+  slider: {
+    width: "100%",
+    height: 30,
+  },
   mapContainer: {
-    height: 250,
-    borderRadius: 15,
+    height: 200,
+    borderRadius: 16,
     overflow: "hidden",
-    marginBottom: 15,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
   },
   map: {
     width: "100%",
     height: "100%",
+  },
+  mapLoading: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#f8f9fa",
+  },
+  sectionHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  storeCount: {
+    backgroundColor: "#eff6ff",
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+    marginLeft: "auto",
   },
   storeCard: {
     borderRadius: 12,

@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
   groupCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#ffffffff',
     borderRadius: 14,
     padding: 14,
     marginBottom: 20,

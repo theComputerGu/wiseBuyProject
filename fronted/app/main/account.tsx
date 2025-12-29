@@ -404,7 +404,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   profileCard: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#ffffffff',
     borderRadius: 20,
     padding: 24,
     alignItems: 'center',
@@ -449,7 +449,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   section: {
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#ffffffff',
     borderRadius: 16,
     marginBottom: 16,
     overflow: 'hidden',
