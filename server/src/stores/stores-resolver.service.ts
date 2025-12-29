@@ -286,88 +286,143 @@ export class StoresResolverService {
      Main Resolver
   ====================================================== */
   async resolveStores(
-    addressKey: string,
-    itemcodes: string[],
-  ): Promise<{
-    items: {
-      itemcode: string;
-      stores: StoreOffer[];
-      source: "cache" | "scrape";
-    }[];
-    scoredStores: {
-      storeId: string;
-      chain: string;
-      address: string;
-      lat: number;
-      lon: number;
-      score: number;
-      scoreBreakdown: {
-        availability: number;
-        price: number;
-        distance: number;
-        penalty: number;
-      };
-    }[];
-  }> {
-    // 1️⃣ פירוק קואורדינטות של המשתמש
-    const [lat, lon] = addressKey.split(",").map(Number);
+  addressKey: string,
+  itemcodes: string[],
+): Promise<{
+  items: {
+    itemcode: string;
+    stores: StoreOffer[];
+    source: "cache" | "scrape";
+  }[];
+  scoredStores: {
+    storeId: string;
+    chain: string;
+    address: string;
+    lat: number;
+    lon: number;
+    score: number;
+    scoreBreakdown: {
+      availability: number;
+      price: number;
+      distance: number;
+      penalty: number;
+    };
+  }[];
+}> {
+  console.log("🚀 resolveStores CALLED");
+  console.log("➡️ addressKey (raw):", addressKey);
+  console.log("➡️ itemcodes:", itemcodes);
 
-    if (Number.isNaN(lat) || Number.isNaN(lon)) {
-      throw new Error(
-        `Invalid addressKey format: ${addressKey}`
-      );
-    }
+  // 1️⃣ parse lat/lon
+  const [lat, lon] = addressKey.split(",").map(Number);
+  console.log("📍 Parsed lat/lon:", lat, lon);
 
-    // 2️⃣ Reverse geocode → כתובת מנורמלת
-    const normalizedAddressKey = (
-      await this.reverseGeocode(lat, lon)
-    )
-      .trim()
-      .toLowerCase();
+  if (Number.isNaN(lat) || Number.isNaN(lon)) {
+    console.error("❌ Invalid addressKey format:", addressKey);
+    throw new Error(`Invalid addressKey format: ${addressKey}`);
+  }
 
-    console.log("📍 Normalized addressKey:", normalizedAddressKey);
+  // 2️⃣ reverse geocode
+  console.log("🌍 Calling reverseGeocode...");
+  const normalizedAddressKey = (
+    await this.reverseGeocode(lat, lon)
+  )
+    .trim()
+    .toLowerCase();
 
-    // 3️⃣ בדיקת cache לפי כתובת
-    const { found, missing } =
-      await this.storesService.getCachedProducts(
-        normalizedAddressKey,
-        itemcodes,
-      );
+  console.log(
+    "📍 Normalized addressKey:",
+    normalizedAddressKey,
+  );
 
-    const results: {
-      itemcode: string;
-      stores: StoreOffer[];
-      source: "cache" | "scrape";
-    }[] = [];
+  // 3️⃣ cache lookup
+  console.log("🗄️ Checking cache...");
+  const { found, missing } =
+    await this.storesService.getCachedProducts(
+      normalizedAddressKey,
+      itemcodes,
+    );
 
-    // 4️⃣ תוצאות מה־cache
-    for (const product of found) {
-      results.push({
-        itemcode: product.itemcode,
-        stores: product.stores,
-        source: "cache",
-      });
-    }
+  console.log(
+    `🗄️ Cache result: found=${found.length}, missing=${missing.length}`,
+  );
+  console.log(
+    "🗄️ Found itemcodes:",
+    found.map(f => f.itemcode),
+  );
+  console.log("🗄️ Missing itemcodes:", missing);
 
-    // 5️⃣ חסרים → scrape + geocode לחנויות
-    for (const itemcode of missing) {
+  const results: {
+    itemcode: string;
+    stores: StoreOffer[];
+    source: "cache" | "scrape";
+  }[] = [];
+
+  // 4️⃣ cache results
+  for (const product of found) {
+    console.log(
+      `✅ Using CACHE for item ${product.itemcode} (${product.stores.length} stores)`,
+    );
+
+    results.push({
+      itemcode: product.itemcode,
+      stores: product.stores,
+      source: "cache",
+    });
+  }
+
+  // 5️⃣ scrape missing items
+  for (const itemcode of missing) {
+    console.log("🕷️ Scraping item:", itemcode);
+
+    try {
       const rawStores =
         await this.scrapeService.scrapeOne(
           itemcode,
           normalizedAddressKey,
         );
 
+      console.log(
+        `🕷️ Scrape returned ${rawStores.length} raw stores for ${itemcode}`,
+      );
+
       const stores: StoreOffer[] = [];
 
       for (const store of rawStores) {
-        const geo = await this.geocodeAddress(store.address);
-        if (!geo) continue;
+        console.log(
+          "🏪 Raw store:",
+          store.chain,
+          "|",
+          store.address,
+          "| price:",
+          store.price,
+        );
 
-        stores.push({
-          ...store,
-          geo,
-        });
+        const geo = await this.geocodeAddress(
+          store.address,
+        );
+
+        if (!geo) {
+          console.warn(
+            "⚠️ Geocode FAILED for store address:",
+            store.address,
+          );
+          continue;
+        }
+
+        console.log(
+          "📍 Geocode OK:",
+          geo.lat,
+          geo.lon,
+        );
+
+        // ⛔ שים לב: geo לא נשמר ב־StoreOffer
+        stores.push(store);
       }
+
+      console.log(
+        `💾 Upserting ${stores.length} stores for item ${itemcode}`,
+      );
 
       await this.storesService.upsertProduct(
         normalizedAddressKey,
@@ -380,38 +435,56 @@ export class StoresResolverService {
         stores,
         source: "scrape",
       });
-    }
 
-    // ======================================================
-    // ➕ Aggregation + Scoring (IN-MEMORY ONLY)
-    // ======================================================
-
-    const aggregatedStores =
-      aggregateStoresByStore(results, itemcodes);
-
-    const scoredStores =
-      this.storeScoringService.scoreStores(
-        aggregatedStores,
-        itemcodes.map(code => ({
-          itemcode: code,
-          quantity: 1,
-        })),
-        { lat, lon },
+    } catch (err) {
+      console.error(
+        `❌ Scraping failed for item ${itemcode}`,
       );
+      console.error(err);
 
-    console.log(
-      "🏪 SCORED STORES:",
-      scoredStores.map(s => ({
-        store: s.chain,
-        score: s.score,
-        breakdown: s.scoreBreakdown,
+      results.push({
+        itemcode,
+        stores: [],
+        source: "scrape",
+      });
+    }
+  }
+
+  // 6️⃣ aggregation + scoring
+  console.log("📊 Aggregating stores...");
+  const aggregatedStores =
+    aggregateStoresByStore(results, itemcodes);
+
+  console.log(
+    "📊 Aggregated stores count:",
+    aggregatedStores.length,
+  );
+
+  console.log("🧮 Scoring stores...");
+  const scoredStores =
+    this.storeScoringService.scoreStores(
+      aggregatedStores,
+      itemcodes.map(code => ({
+        itemcode: code,
+        quantity: 1,
       })),
+      { lat, lon },
     );
 
-    // ✅ NEW RESPONSE SHAPE
-    return {
-      items: results,
-      scoredStores,
-    };
-  }
+  console.log(
+    "🏁 Final scoredStores:",
+    scoredStores.map(s => ({
+      store: s.chain,
+      score: s.score,
+    })),
+  );
+
+  console.log("✅ resolveStores FINISHED");
+
+  return {
+    items: results,
+    scoredStores,
+  };
+}
+
 }
