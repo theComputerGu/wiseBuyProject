@@ -22,20 +22,60 @@ from sklearn.preprocessing import StandardScaler
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 
-def bought_together(cart_product_ids: list, all_shopping_lists: list, limit: int = 10) -> list:
+def bought_together(cart_product_ids: list, all_shopping_lists: list, limit: int = 10,
+                     products_data: list = None) -> list:
     """
-    Find products frequently bought together using co-occurrence.
+    Find products frequently bought together using category-aware co-occurrence.
+    Prioritizes complementary categories (e.g., bread+butter, meat+vegetables).
 
     Args:
         cart_product_ids: List of product IDs currently in cart
         all_shopping_lists: List of shopping lists, each with 'items' array of product IDs
         limit: Max recommendations to return
+        products_data: List of product objects with category info
 
     Returns:
         List of {productId, score, reason}
     """
     if not cart_product_ids or not all_shopping_lists:
         return []
+
+    # Define complementary category pairs (categories that go well together)
+    COMPLEMENTARY_CATEGORIES = {
+        'מוצרי קירור וביצים': ['לחמים ומאפים', 'חטיפים וממתקים', 'ירקות ופירות'],  # dairy -> bread, snacks, produce
+        'לחמים ומאפים': ['מוצרי קירור וביצים', 'מעדנייה וסלטים', 'עוף בשר ודגים'],  # bread -> dairy, deli, meat
+        'עוף בשר ודגים': ['ירקות ופירות', 'שימורים', 'לחמים ומאפים'],  # meat -> produce, canned, bread
+        'ירקות ופירות': ['עוף בשר ודגים', 'מוצרי קירור וביצים', 'שימורים'],  # produce -> meat, dairy, canned
+        'משקאות ויין': ['חטיפים וממתקים', 'מעדנייה וסלטים'],  # drinks -> snacks, deli
+        'חטיפים וממתקים': ['משקאות ויין', 'מוצרי קירור וביצים'],  # snacks -> drinks, dairy
+        'שימורים': ['לחמים ומאפים', 'עוף בשר ודגים', 'ירקות ופירות'],  # canned -> bread, meat, produce
+        'מעדנייה וסלטים': ['לחמים ומאפים', 'משקאות ויין'],  # deli -> bread, drinks
+        'הכל לבית': ['פארם ותינוקות'],  # household -> pharma
+        'פארם ותינוקות': ['הכל לבית', 'מוצרי קירור וביצים'],  # pharma -> household, dairy
+    }
+
+    # Build product -> category map
+    product_categories = {}
+    if products_data:
+        for p in products_data:
+            pid = p.get('_id', {}).get('$oid') or p.get('productId')
+            if pid:
+                product_categories[pid] = p.get('category', 'אחר')
+
+    # Get categories of cart items
+    cart_categories = set()
+    for pid in cart_product_ids:
+        cat = product_categories.get(pid)
+        if cat:
+            cart_categories.add(cat)
+
+    # Find complementary categories for cart
+    target_categories = set()
+    for cat in cart_categories:
+        if cat in COMPLEMENTARY_CATEGORIES:
+            target_categories.update(COMPLEMENTARY_CATEGORIES[cat])
+    # Remove categories already in cart
+    target_categories -= cart_categories
 
     # Build co-occurrence matrix
     co_occurrence = defaultdict(lambda: defaultdict(int))
@@ -44,20 +84,28 @@ def bought_together(cart_product_ids: list, all_shopping_lists: list, limit: int
         items = shopping_list.get('items', [])
         product_ids = [item.get('productId') for item in items if item.get('productId')]
 
-        # Count co-occurrences for all pairs
         for i, pid1 in enumerate(product_ids):
             for pid2 in product_ids[i+1:]:
                 co_occurrence[pid1][pid2] += 1
                 co_occurrence[pid2][pid1] += 1
 
     # Score products based on co-occurrence with cart items
-    scores = defaultdict(float)
     cart_set = set(cart_product_ids)
+    scores = defaultdict(float)
 
     for cart_pid in cart_product_ids:
         for other_pid, count in co_occurrence[cart_pid].items():
             if other_pid not in cart_set:
-                scores[other_pid] += count
+                other_category = product_categories.get(other_pid, '')
+
+                # Boost score if product is from a complementary category
+                category_boost = 1.0
+                if other_category in target_categories:
+                    category_boost = 3.0  # 3x boost for complementary categories
+                elif other_category in cart_categories:
+                    category_boost = 0.3  # Reduce score for same category (user already has it)
+
+                scores[other_pid] += count * category_boost
 
     # Normalize scores (0-1 range)
     max_score = max(scores.values()) if scores else 1
@@ -67,7 +115,7 @@ def bought_together(cart_product_ids: list, all_shopping_lists: list, limit: int
         recommendations.append({
             'productId': pid,
             'score': round(score / max_score, 3),
-            'reason': 'נקנה לעיתים קרובות יחד',  # "Frequently bought together"
+            'reason': 'משלים את הסל שלך',  # "Complements your cart"
             'strategy': 'bought_together'
         })
 
@@ -541,6 +589,7 @@ def get_recommendations(data: dict) -> dict:
             'userHistory': [...],
             'allPurchases': [...],
             'allProducts': [...],  # List of all product IDs for ML prediction
+            'productsData': [...],  # Full product objects with category info
             'limit': 15,
             'perCategory': 3  # Number of results per category
         }
@@ -553,6 +602,7 @@ def get_recommendations(data: dict) -> dict:
     user_history = data.get('userHistory', [])
     all_purchases = data.get('allPurchases', [])
     all_products = data.get('allProducts', [])
+    products_data = data.get('productsData', [])  # Product objects with categories
     per_category = data.get('perCategory', 3)  # 3 results per category
 
     # Exclude items already in cart
@@ -579,8 +629,8 @@ def get_recommendations(data: dict) -> dict:
     # Get recommendations from each strategy (fetch more than needed to account for duplicates)
     fetch_limit = per_category * 3
 
-    # 1. Bought Together
-    together_recs = bought_together(cart_ids, all_lists, limit=fetch_limit)
+    # 1. Bought Together (with category awareness)
+    together_recs = bought_together(cart_ids, all_lists, limit=fetch_limit, products_data=products_data)
     add_recs_from_strategy(together_recs, per_category)
 
     # 2. Buy Again

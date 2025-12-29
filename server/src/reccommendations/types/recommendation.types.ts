@@ -34,6 +34,10 @@ export interface RecommendationEngineInput {
     purchasedAt: string;
   }>;
   allProducts: string[];  // All product IDs for ML prediction
+  productsData: Array<{   // Product category data for bought_together
+    productId: string;
+    category: string;
+  }>;
   limit?: number;
 }
 

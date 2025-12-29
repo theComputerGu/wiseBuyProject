@@ -183,6 +183,17 @@ export class RecommendationsService {
     }
 
     /**
+     * Get all products with category info for bought_together logic
+     */
+    private async getProductsData(): Promise<Array<{ productId: string; category: string }>> {
+        const products = await this.productModel.find().select('_id category').lean();
+        return products.map(p => ({
+            productId: (p._id as Types.ObjectId).toString(),
+            category: p.category || 'אחר'
+        }));
+    }
+
+    /**
      * Enrich Python recommendations with product details
      */
     private async enrichRecommendations(pythonRecs: PythonRecommendation[]): Promise<Recommendation[]> {
@@ -243,11 +254,12 @@ export class RecommendationsService {
         }
 
         // 3. Gather data for ML engine
-        const [allShoppingLists, userHistory, allPurchases, allProducts] = await Promise.all([
+        const [allShoppingLists, userHistory, allPurchases, allProducts, productsData] = await Promise.all([
             this.getAllShoppingLists(),
             this.getUserHistory(user.groups || []),
             this.getAllPurchases(),
-            this.getAllProductIds()
+            this.getAllProductIds(),
+            this.getProductsData()
         ]);
 
         // 4. If no data, return empty
@@ -262,6 +274,7 @@ export class RecommendationsService {
             userHistory,
             allPurchases,
             allProducts,
+            productsData,
             limit: 15
         };
 
