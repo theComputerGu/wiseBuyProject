@@ -84,7 +84,7 @@ export default function Home() {
         <View style={styles.buttonSection}>
           <Pressable
             style={styles.primaryButton}
-            onPress={() => router.replace('/auth/sign-up')}
+            onPress={() => router.replace('/auth/sign-in')}
           >
             <ItimText size={18} color="#fff" weight="bold">
               Get Started
@@ -94,10 +94,10 @@ export default function Home() {
 
           <Pressable
             style={styles.secondaryButton}
-            onPress={() => router.replace('/auth/sign-in')}
+            onPress={() => router.replace('/auth/sign-up')}
           >
             <ItimText size={16} color={BRAND} weight="600">
-              Already have an account? Sign In
+              Don't have an account? Sign Up
             </ItimText>
           </Pressable>
         </View>
