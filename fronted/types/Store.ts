@@ -15,3 +15,20 @@ export type StoresEntry = {
   itemcode: string;
   stores: StoreOffer[];
 };
+
+
+
+export type ScoredStore = {
+  storeId: string;
+  chain: string;
+  address: string;
+  lat: number;
+  lon: number;
+  score: number;
+  scoreBreakdown: {
+    availability: number;
+    price: number;
+    distance: number;
+    penalty: number;
+  };
+};

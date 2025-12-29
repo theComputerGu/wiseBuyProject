@@ -15,16 +15,31 @@ export class StoresResolveController {
       addressKey: string;
       itemcodes: string[];
     },
-  ): Promise<
-    {
+  ): Promise<{
+    items: {
       itemcode: string;
       stores: StoreOffer[];
       source: "cache" | "scrape";
-    }[]
-  > {
+    }[];
+    scoredStores: {
+      storeId: string;
+      chain: string;
+      address: string;
+      lat: number;
+      lon: number;
+      score: number;
+      scoreBreakdown: {
+        availability: number;
+        price: number;
+        distance: number;
+        penalty: number;
+      };
+    }[];
+  }> {
     console.log("RAW BODY:", body);
-  console.log("addressKey:", body.addressKey);
-  console.log("itemcodes:", body.itemcodes);
+    console.log("addressKey:", body.addressKey);
+    console.log("itemcodes:", body.itemcodes);
+
     const { addressKey, itemcodes } = body;
 
     return this.resolver.resolveStores(
