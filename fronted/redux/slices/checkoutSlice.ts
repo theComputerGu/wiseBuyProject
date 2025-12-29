@@ -1,35 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { StoreEntry } from "../../types/Store";
 
 interface CheckoutState {
-  stores: StoreEntry[];
   radius: number;
   userLocation: { lat: number; lon: number } | null;
-  updatedAt: number | null;
 }
 
 const initialState: CheckoutState = {
-  stores: [],
-  radius: 5,
+  radius: 3,
   userLocation: null,
-  updatedAt: null,
 };
 
 const checkoutSlice = createSlice({
   name: "checkout",
   initialState,
   reducers: {
-    setStores(state, action: PayloadAction<StoreEntry[]>) {
-      state.stores = action.payload;
-      state.updatedAt = Date.now();
-    },
-
-    clearStores(state) {
-      state.stores = [];
-      state.updatedAt = null;
-    },
-
-    setUserLocation(state, action: PayloadAction<{ lat: number; lon: number }>) {
+    setUserLocation(
+      state,
+      action: PayloadAction<{ lat: number; lon: number }>
+    ) {
       state.userLocation = action.payload;
     },
 
@@ -39,7 +27,6 @@ const checkoutSlice = createSlice({
   },
 });
 
-export const { setStores, clearStores, setUserLocation, setRadius } =
-  checkoutSlice.actions;
+export const { setUserLocation, setRadius } = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;

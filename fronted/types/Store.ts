@@ -1,11 +1,17 @@
-export type StoreEntry = {
-  id:string;
-  chain:string;
-  address:string;
-  geo:{ lat:number; lon:number };
-  products:{ itemcode:string; price:number; amount:number }[];
+export type GeoPoint = {
+  lat: number;
+  lon: number;
+};
 
-  score:number;     // מחיר כולל
-  rating:number;    // דירוג 0–100 אחרי נרמול
-  stars:number;     // ⭐ 1–5 לתצוגה
+export type StoreOffer = {
+  chain: string;
+  address: string;
+  price: number;
+  geo?: GeoPoint;
+  lastUpdated?: string;
+};
+
+export type StoresEntry = {
+  itemcode: string;
+  stores: StoreOffer[];
 };
