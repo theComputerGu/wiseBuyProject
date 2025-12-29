@@ -7,6 +7,8 @@ import {
   Pressable,
   ActivityIndicator,
   Modal,
+  Alert,
+  Text,
 } from "react-native";
 import MapView, { Circle, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -234,7 +236,19 @@ export default function CheckoutScreen() {
         dispatch(setScoredStores(data.scoredStores));
         dispatch(setSignature(listSignature));
       })
-      .catch(console.error)
+      .catch((error) => {
+        console.error("❌ Failed to resolve stores:", error);
+        
+        const errorMessage = error?.data?.message 
+          || error?.message 
+          || "Failed to load store prices. Please try again.";
+        
+        Alert.alert(
+          "Error Loading Stores",
+          errorMessage,
+          [{ text: "OK" }]
+        );
+      })
       .finally(() => setIsLoadingStores(false));
   }, [
     isFocused,

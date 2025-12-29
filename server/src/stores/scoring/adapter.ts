@@ -60,7 +60,17 @@ export function aggregateStoresByStore(
 
     for (const rawStore of itemResult.stores ?? []) {
       // Must have geo for distance scoring (and map UI)
-      if (!rawStore?.geo) continue;
+      if (!rawStore?.geo) {
+        console.warn(
+          `⚠️ Adapter: Skipping store for item ${itemcode} - missing geo:`,
+          {
+            chain: rawStore?.chain,
+            address: rawStore?.address,
+            hasGeo: !!rawStore?.geo,
+          }
+        );
+        continue;
+      }
 
       const storeKey = buildStoreKey(rawStore);
 

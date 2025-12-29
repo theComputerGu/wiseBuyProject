@@ -416,8 +416,11 @@ export class StoresResolverService {
           geo.lon,
         );
 
-        // ⛔ שים לב: geo לא נשמר ב־StoreOffer
-        stores.push(store);
+        // ✅ Store the geo data with the store
+        stores.push({
+          ...store,
+          geo,
+        });
       }
 
       console.log(
