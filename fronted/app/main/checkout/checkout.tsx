@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { useIsFocused } from "@react-navigation/native";
 import {
   View,
@@ -6,6 +6,7 @@ import {
   ScrollView,
   Pressable,
   ActivityIndicator,
+  Modal,
 } from "react-native";
 import MapView, { Circle, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -142,6 +143,7 @@ export default function CheckoutScreen() {
   ========================= */
 
   const [resolveStores] = useResolveStoresMutation();
+  const [isLoadingStores, setIsLoadingStores] = useState(false);
 
   /* =========================
      EFFECT: GET USER LOCATION
@@ -215,6 +217,8 @@ export default function CheckoutScreen() {
       itemcodes: allItemcodes,
     };
 
+    setIsLoadingStores(true);
+
     resolveStores(payload)
       .unwrap()
       .then((data) => {
@@ -230,7 +234,8 @@ export default function CheckoutScreen() {
         dispatch(setScoredStores(data.scoredStores));
         dispatch(setSignature(listSignature));
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoadingStores(false));
   }, [
     isFocused,
     location,
@@ -436,8 +441,28 @@ export default function CheckoutScreen() {
           )}
         </ScrollView>
 
-        <BottomNav />
+        {!isLoadingStores && <BottomNav />}
       </View>
+
+      {/* Loading Overlay */}
+      <Modal
+        visible={isLoadingStores}
+        transparent
+        animationType="fade"
+        statusBarTranslucent
+      >
+        <View style={styles.loadingOverlay}>
+          <View style={styles.loadingCard}>
+            <ActivityIndicator size="large" color={BRAND} />
+            <ItimText size={16} color="#1a1a1a" weight="600" style={{ marginTop: 16 }}>
+              Finding best stores...
+            </ItimText>
+            <ItimText size={13} color="#71717a" style={{ marginTop: 4, textAlign: "center" }}>
+              Comparing prices and availability
+            </ItimText>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }
@@ -556,5 +581,23 @@ const styles = StyleSheet.create({
   metricItem: {
     alignItems: "center",
     flex: 1,
+  },
+  loadingOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  loadingCard: {
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    paddingHorizontal: 40,
+    paddingVertical: 32,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 8,
   },
 });
