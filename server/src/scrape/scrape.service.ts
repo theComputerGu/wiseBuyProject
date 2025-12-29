@@ -40,23 +40,27 @@ export class ScrapeService {
   // ----------------------------
   // Parse CHP raw table
   // ----------------------------
- private parseStores(raw: string[][]): StoreOffer[] {
+  private parseStores(raw: string[][]): StoreOffer[] {
+  console.log("🧾 RAW TABLE FROM PYTHON:", raw);
+
   const stores: StoreOffer[] = [];
 
   for (const row of raw) {
+    console.log("➡️ ROW:", row);
+
     if (row.length < 3) continue;
 
     const chain = row[0];
     const address = row[2];
 
-    // 👇 קח את המחיר מהסוף לאחור
     let price: number | null = null;
 
     for (let i = row.length - 1; i >= 0; i--) {
       const cell = row[i]?.trim();
+      console.log("   🔎 CELL:", cell);
+
       if (!cell) continue;
 
-      // תופס מספר עשרוני תקין
       const match = cell.match(/^\d+(\.\d+)?$/);
       if (match) {
         price = Number(match[0]);
@@ -64,48 +68,64 @@ export class ScrapeService {
       }
     }
 
-    if (price === null || Number.isNaN(price)) {
-      continue; // אין מחיר תקין
+    if (price === null) {
+      console.warn("❌ NO PRICE FOUND IN ROW:", row);
+      continue;
     }
 
-    stores.push({
-      chain,
-      address,
-      price,
-      lastUpdated: new Date(),
-    });
+    stores.push({ chain, address, price, lastUpdated: new Date() });
   }
 
   return stores;
 }
 
 
+
+
   // =========================
   // Scrape single product
   // =========================
-  async scrapeOne(
-    barcode: string,
-    city: string,
-  ): Promise<StoreOffer[]> {
-    const cmd = `"${this.PYTHON}" "${this.SCRIPT}" "${barcode}" "${city}"`;
+  async scrapeOne(barcode: string, city: string): Promise<StoreOffer[]> {
+  const cmd = `"${this.PYTHON}" "${this.SCRIPT}" "${barcode}" "${city}"`;
 
-    try {
-      const stdout = await this.execScraper(cmd);
-      const parsed = JSON.parse(stdout);
+  console.log("🐍 RUN PYTHON:", cmd);
 
-      const stores = this.parseStores(parsed.stores);
+  try {
+    const stdout = await this.execScraper(cmd);
 
-      if (!stores.length) {
-        throw new Error("No stores found");
-      }
+    console.log("🐍 PYTHON STDOUT RAW >>>");
+    console.log(stdout);
+    console.log("<<< END PYTHON STDOUT");
 
-      return stores;
-    } catch (e) {
-      throw new InternalServerErrorException(
-        "Scraping failed",
-      );
+    const parsed = JSON.parse(stdout);
+
+    console.log("🐍 PARSED JSON:", parsed);
+
+    const stores = this.parseStores(parsed.stores);
+
+    console.log("🏪 PARSED STORES:", stores);
+
+    if (!stores.length) {
+      console.warn("⚠️ NO STORES AFTER PARSE", {
+        barcode,
+        city,
+        raw: parsed.stores,
+      });
+      throw new Error("No stores found");
     }
+
+    return stores;
+  } catch (e) {
+    console.error("❌ SCRAPE ONE FAILED", {
+      barcode,
+      city,
+      error: e,
+    });
+
+    throw new InternalServerErrorException("Scraping faileddddd");
   }
+}
+
 
   async scrapeBatch(
     barcodes: string[],
