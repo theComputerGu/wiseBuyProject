@@ -1,56 +1,48 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, StyleSheet, FlatList, Pressable, ActivityIndicator, ScrollView, Alert } from "react-native";
+import { View, StyleSheet, Pressable, ActivityIndicator, ScrollView, Alert } from "react-native";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import BottomNav from "../../../components/Bottomnavigation";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
 import { useGetHistoryByIdQuery, useRestorePurchaseMutation } from "../../../redux/svc/groupsApi";
-import { useAddItemMutation } from "../../../redux/svc/shoppinglistApi";
 import { setActiveList } from "../../../redux/slices/shoppinglistSlice";
 import CheckoutCard from "../../../components/CheckoutCard";
 import { API_URL } from "@env";
 import ItimText from "../../../components/Itimtext";
+import Title from "../../../components/Title";
 
 const BRAND = "#197FF4";
 
 export default function HistoryItems() {
     const router = useRouter();
-    const { id } = useLocalSearchParams(); // historyId from navigation
+    const { id } = useLocalSearchParams();
 
     const dispatch = useDispatch();
     const activeGroup = useSelector((s: RootState) => s.group.activeGroup);
     const activeList = useSelector((s: RootState) => s.shoppingList.activeList);
     const [restorePurchase] = useRestorePurchaseMutation();
 
-    // Fetch this history purchase
     const { data, isLoading } = useGetHistoryByIdQuery({
         groupId: activeGroup?._id!,
         historyId: id as string,
     });
 
-    // Change 127.0.0.1 to your computer LAN IP
     const fixImageURL = (url: any) => {
         if (!url) return "";
 
         try {
             const original = new URL(url);
             const backend = new URL(API_URL);
-
-            // Replace only host + port
             original.host = backend.host;
-
             return original.toString();
         } catch (e) {
-            return url; // fallback
+            return url;
         }
     };
 
-
-
     const handleAddAll = async () => {
-
         Alert.alert(
             "Are you sure?",
             "This action will change shopping list",
@@ -71,9 +63,7 @@ export default function HistoryItems() {
                             }).unwrap();
 
                             dispatch(setActiveList(updatedList));
-
-                            router.replace('/main/product')
-
+                            router.replace('/main/product');
                         } catch (err) {
                             console.error("Restore error:", err);
                         }
@@ -81,50 +71,52 @@ export default function HistoryItems() {
                 },
             ]
         );
-
-
-    }
-
-
+    };
 
     if (isLoading) {
         return (
-            <SafeAreaView style={styles.center}>
-                <ActivityIndicator size="large" color={BRAND} />
+            <SafeAreaView style={styles.safeArea}>
+                <View style={styles.center}>
+                    <ActivityIndicator size="large" color={BRAND} />
+                </View>
             </SafeAreaView>
         );
     }
 
     if (!data) {
         return (
-            <SafeAreaView style={styles.center}>
-                <Text style={{ fontSize: 16, color: "#555" }}>History data not found.</Text>
+            <SafeAreaView style={styles.safeArea}>
+                <View style={styles.center}>
+                    <MaterialCommunityIcons name="alert-circle-outline" size={60} color="#d1d5db" />
+                    <ItimText size={16} color="#71717a" style={{ marginTop: 12 }}>
+                        History data not found.
+                    </ItimText>
+                </View>
             </SafeAreaView>
         );
     }
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+        <SafeAreaView style={styles.safeArea}>
             <View style={styles.container}>
-
                 {/* Top Bar */}
                 <View style={styles.topBar}>
-                    <Ionicons
-                        name="arrow-back"
-                        size={26}
-                        color={BRAND}
-                        onPress={() => router.replace('/main/history/history')}
-                    />
-                    <Text style={styles.title}>Purchase Details</Text>
-                    <View style={{ width: 26 }} />
+                    <Pressable style={styles.backBtn} onPress={() => router.replace('/main/history/history')}>
+                        <MaterialCommunityIcons name="arrow-left" size={24} color={BRAND} />
+                    </Pressable>
+                    <Title text="Purchase Details" color={BRAND} />
+                    <View style={{ width: 40 }} />
                 </View>
 
-                {/* ---------- ITEM LIST ---------- */}
-                <ScrollView contentContainerStyle={styles.scrollContent}>
+                {/* Item List */}
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
                     {data.items.length === 0 ? (
-                        <ItimText size={14} color="#777" style={{ textAlign: "center", marginTop: 20 }}>
-                            No items in your shopping list yet.
-                        </ItimText>
+                        <View style={styles.emptyState}>
+                            <MaterialCommunityIcons name="cart-off" size={60} color="#d1d5db" />
+                            <ItimText size={16} color="#71717a" style={{ marginTop: 12, textAlign: "center" }}>
+                                No items in this purchase.
+                            </ItimText>
+                        </View>
                     ) : (
                         data.items.map((item: any) => (
                             <CheckoutCard
@@ -140,7 +132,10 @@ export default function HistoryItems() {
 
                 {/* Add all button */}
                 <Pressable style={styles.addAllBtn} onPress={handleAddAll}>
-                    <Text style={styles.addAllText}>Add All Items to Shopping List</Text>
+                    <MaterialCommunityIcons name="cart-plus" size={20} color="#fff" />
+                    <ItimText size={16} color="#fff" weight="600" style={{ marginLeft: 8 }}>
+                        Add All Items to Shopping List
+                    </ItimText>
                 </Pressable>
 
                 <BottomNav />
@@ -150,48 +145,44 @@ export default function HistoryItems() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, paddingHorizontal: 20 },
+    safeArea: {
+        flex: 1,
+        backgroundColor: "#fff",
+    },
+    container: {
+        flex: 1,
+        paddingHorizontal: 20,
+    },
     topBar: {
         flexDirection: "row",
         alignItems: "center",
         marginVertical: 12,
     },
-    title: {
-        flex: 1,
-        textAlign: "center",
-        fontSize: 20,
-        fontWeight: "700",
-        color: "#111",
-    },
-    scrollContent: { paddingBottom: 0 },
-    card: {
-        backgroundColor: "#fff",
-        padding: 14,
+    backBtn: {
+        width: 40,
+        height: 40,
         borderRadius: 12,
-        marginBottom: 10,
-        borderWidth: 1,
-        borderColor: "#eee",
+        backgroundColor: "#eff6ff",
+        alignItems: "center",
+        justifyContent: "center",
+        marginRight: 12,
     },
-    name: {
-        fontSize: 16,
-        fontWeight: "600",
+    scrollContent: {
+        paddingBottom: 20,
     },
-    qty: {
-        fontSize: 14,
-        color: "#555",
-        marginTop: 4,
+    emptyState: {
+        alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 60,
     },
     addAllBtn: {
+        flexDirection: "row",
         backgroundColor: BRAND,
         paddingVertical: 14,
-        borderRadius: 10,
+        borderRadius: 14,
         alignItems: "center",
-        marginBottom: 10,
-    },
-    addAllText: {
-        color: "#fff",
-        fontWeight: "700",
-        fontSize: 16,
+        justifyContent: "center",
+        marginBottom: 12,
     },
     center: {
         flex: 1,

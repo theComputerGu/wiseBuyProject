@@ -1,15 +1,15 @@
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
 export default function TextField({
-  value, onChangeText, placeholder, secure, keyboardType="default"
+  value, onChangeText, placeholder, secure, keyboardType="default", style, inputStyle
 }:{
-  value: string; onChangeText:(t:string)=>void; placeholder:string; secure?:boolean; keyboardType?: any;
+  value: string; onChangeText:(t:string)=>void; placeholder:string; secure?:boolean; keyboardType?: any; style?: StyleProp<ViewStyle>; inputStyle?: StyleProp<TextStyle>;
 }) {
   const [hidden, setHidden] = useState(!!secure);
   return (
-    <View style={st.wrap}>
+    <View style={[st.wrap, style]}>
       <TextInput
         value={value}
         onChangeText={onChangeText}
@@ -17,7 +17,7 @@ export default function TextField({
         autoCapitalize="none"
         keyboardType={keyboardType}
         secureTextEntry={hidden}
-        style={st.input}
+        style={[st.input, inputStyle]}
       />
       {secure ? (
         <Ionicons name={hidden ? "eye" : "eye-off"} size={20} onPress={()=>setHidden(!hidden)} />

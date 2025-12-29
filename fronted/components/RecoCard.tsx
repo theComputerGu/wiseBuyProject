@@ -22,30 +22,30 @@ const BRAND = "#197FF4";
 function RecoCard({ title, price, image, reason, onAdd }: Props) {
     return (
         <View style={s.card}>
-            {/* FLOATING ADD BUTTON – TOP RIGHT OF CARD */}
-            <Pressable style={s.addBtn} onPress={onAdd}>
-                <MaterialCommunityIcons name="plus" size={20} color="#fff" />
-            </Pressable>
+            {/* Product Image */}
+            <Image source={image} style={s.img} />
 
-            {/* CONTENT */}
-            <View style={s.content}>
-                {/* IMAGE (LEFT) */}
-                <Image source={image} style={s.img} />
+            {/* Right Section - Button on top, text below */}
+            <View style={s.rightSection}>
+                {/* Add Button - Top Right */}
+                <Pressable style={s.addBtn} onPress={onAdd} hitSlop={8}>
+                    <MaterialCommunityIcons name="plus" size={20} color="#fff" />
+                </Pressable>
 
-                {/* TEXT (RIGHT, RTL ALIGNED) */}
-                <View style={s.textWrapper}>
-                    <ItimText size={14} weight="bold" style={s.rtlText}>
+                {/* Text Content - Below button */}
+                <View style={s.textContent}>
+                    <ItimText size={14} color="#1a1a1a" weight="600" style={s.rtlText} numberOfLines={2} ellipsizeMode="tail">
                         {title}
                     </ItimText>
 
                     {price && (
-                        <ItimText size={13} color="#555" style={s.rtlText}>
+                        <ItimText size={15} color={BRAND} weight="bold" style={[s.rtlText, { marginTop: 4 }]}>
                             {price}
                         </ItimText>
                     )}
 
                     {reason && (
-                        <ItimText size={12} color="#777" style={s.reasonText}>
+                        <ItimText size={11} color="#9ca3af" style={[s.rtlText, { marginTop: 4 }]} numberOfLines={1} ellipsizeMode="tail">
                             {reason}
                         </ItimText>
                     )}
@@ -57,24 +57,33 @@ function RecoCard({ title, price, image, reason, onAdd }: Props) {
 
 const s = StyleSheet.create({
     card: {
-        position: "relative",
+        flexDirection: "row",
         width: 260,
-        height: 110,
         backgroundColor: "#fff",
-        borderRadius: 14,
-        padding: 8,
-        marginRight: 12,
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: "#e5e7eb",
         shadowColor: "#000",
-        shadowOpacity: 0.08,
-        shadowRadius: 4,
-        elevation: 2,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.06,
+        shadowRadius: 8,
+        elevation: 3,
+        padding: 12,
+        marginRight: 12,
+        alignItems: "stretch",
     },
-
-    /* + BUTTON */
+    img: {
+        width: 70,
+        height: "100%",
+        borderRadius: 12,
+        resizeMode: "contain",
+    },
+    rightSection: {
+        flex: 1,
+        marginLeft: 12,
+        alignItems: "flex-end",
+    },
     addBtn: {
-        position: "absolute",
-        top: 6,
-        right: 6,
         width: 32,
         height: 32,
         borderRadius: 16,
@@ -82,44 +91,17 @@ const s = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         shadowColor: "#000",
-        shadowOpacity: 0.25,
+        shadowOpacity: 0.2,
         shadowRadius: 3,
         elevation: 4,
-        zIndex: 10,
+        marginBottom: 6,
     },
-
-    /* CONTENT ROW */
-    content: {
-        flexDirection: "row",
-        flex: 1,
-        marginTop: 8, // space under +
+    textContent: {
+        width: "100%",
     },
-
-    /* IMAGE */
-    img: {
-        width: "40%",
-        height: "100%",
-        resizeMode: "contain",
-        borderRadius: 10,
-    },
-
-    /* TEXT */
-    textWrapper: {
-        flex: 1,
-        paddingLeft: 10,
-        justifyContent: "center",
-    },
-
     rtlText: {
         textAlign: "right",
         writingDirection: "rtl",
-    },
-
-    reasonText: {
-        textAlign: "right",
-        writingDirection: "rtl",
-        marginTop: 4,
-        fontStyle: "italic",
     },
 });
 

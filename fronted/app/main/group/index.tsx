@@ -1,24 +1,25 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { View, StyleSheet, FlatList, Pressable } from "react-native";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import BottomNav from "../../../components/Bottomnavigation";
 import TopNav from "../../../components/Topnav";
 import Title from "../../../components/Title";
+import ItimText from "../../../components/Itimtext";
 import { useRouter } from "expo-router";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../redux/state/store";
 import { setActiveGroup } from "../../../redux/slices/groupSlice";
-import { setUser } from "../../../redux/slices/userSlice"; // ✅ חדש
+import { setUser } from "../../../redux/slices/userSlice";
 import { useGetUserGroupsQuery } from "../../../redux/svc/usersApi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSetActiveGroupMutation } from "../../../redux/svc/usersApi";
 import { useGetUserByIdQuery } from "../../../redux/svc/usersApi";
 import GroupAccordion from "../../../components/groupaccordion";
 import { setActiveList } from "../../../redux/slices/shoppinglistSlice";
 import { useLazyGetListByIdQuery } from "../../../redux/svc/shoppinglistApi";
-import { API_URL } from "@env";
 
 const BRAND = "#197FF4";
+
 function capitalizeFirstLetter(name: string) {
   if (!name) return name;
   return name[0].toUpperCase() + name.slice(1);
@@ -26,7 +27,6 @@ function capitalizeFirstLetter(name: string) {
 
 export default function GroupPage() {
   const user = useSelector((s: RootState) => s.user);
-  const shoppingList = useSelector((s: RootState) => s.shoppingList);
   const userId = user.current?._id;
   const dispatch = useDispatch();
 
@@ -56,162 +56,220 @@ export default function GroupPage() {
     );
   };
 
+  const handleSelectGroup = async (item: any) => {
+    try {
+      await updateActiveGroup({
+        userId: userId!,
+        groupId: item._id,
+      }).unwrap();
 
+      const freshUser = await refetchUser().unwrap();
+      dispatch(setUser(freshUser));
+      dispatch(setActiveGroup(item));
+
+      const list = await triggerGetList(item.activeshoppinglist).unwrap();
+      dispatch(setActiveList(list));
+      refetchGroups();
+    } catch (err) {
+      console.log("ERROR SETTING ACTIVE GROUP:", err);
+    }
+  };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF", paddingHorizontal: 20 }}>
-      <TopNav />
-      <Title text="My Groups:" />
+    <SafeAreaView style={s.safeArea}>
+      <View style={s.container}>
+        <TopNav />
+        <Title text="My Groups" />
 
-      {!isLoading && groups.length === 0 && (
-        <Text style={{ textAlign: "center", marginTop: 30, fontSize: 16, color: "#777" }}>
-          You are not part of any group yet.
-        </Text>
-      )}
+        {!isLoading && groups.length === 0 && (
+          <View style={s.emptyState}>
+            <MaterialCommunityIcons name="account-group-outline" size={60} color="#d1d5db" />
+            <ItimText size={16} color="#71717a" style={{ marginTop: 12, textAlign: 'center' }}>
+              You are not part of any group yet.
+            </ItimText>
+          </View>
+        )}
 
-      <FlatList
-        data={groups}
-        keyExtractor={(item) => item._id}
-        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 20 }}
-        ItemSeparatorComponent={() => <View style={s.separator} />}
-        renderItem={({ item }) => {
-          const isOpen = openGroupIds.includes(item._id);
+        <FlatList
+          data={groups}
+          keyExtractor={(item) => item._id}
+          contentContainerStyle={s.listContent}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => {
+            const isOpen = openGroupIds.includes(item._id);
+            const isActive = activeGroupId === item._id;
 
-          return (
-            <>
-              <View style={s.row}>
-                <Pressable style={{ flex: 1 }} onPress={() => toggleGroup(item._id)}>
-                  <Text style={s.link}>
-                    {capitalizeFirstLetter(item.name)}
-                  </Text>
+            return (
+              <View style={[s.groupCard, isActive && s.groupCardActive]}>
+                <Pressable style={s.cardHeader} onPress={() => toggleGroup(item._id)}>
+                  <View style={[s.groupIcon, isActive && s.groupIconActive]}>
+                    <MaterialCommunityIcons
+                      name="account-group"
+                      size={24}
+                      color={isActive ? "#fff" : BRAND}
+                    />
+                  </View>
+
+                  <View style={s.groupInfo}>
+                    <ItimText size={17} weight="600" color="#1a1a1a">
+                      {capitalizeFirstLetter(item.name)}
+                    </ItimText>
+                    <ItimText size={13} color="#71717a">
+                      {item.users?.length || 0} members
+                    </ItimText>
+                  </View>
+
+                  <View style={s.cardActions}>
+                    {isActive ? (
+                      <View style={s.activeBadge}>
+                        <MaterialCommunityIcons name="check-circle" size={16} color="#22c55e" />
+                        <ItimText size={12} color="#22c55e" weight="600" style={{ marginLeft: 4 }}>
+                          Active
+                        </ItimText>
+                      </View>
+                    ) : (
+                      <Pressable style={s.selectBtn} onPress={() => handleSelectGroup(item)}>
+                        <ItimText size={13} color="#fff" weight="600">Select</ItimText>
+                      </Pressable>
+                    )}
+
+                    <Pressable onPress={() => toggleGroup(item._id)} style={s.expandBtn}>
+                      <Ionicons
+                        name={isOpen ? "chevron-up" : "chevron-down"}
+                        size={20}
+                        color="#9ca3af"
+                      />
+                    </Pressable>
+                  </View>
                 </Pressable>
 
-                <Pressable
-                  style={s.selectButton}
-                  onPress={async () => {
-                    try {
-                      await updateActiveGroup({
-                        userId: userId!,
-                        groupId: item._id,
-                      }).unwrap();
-
-                      const freshUser = await refetchUser().unwrap();
-
-
-                      dispatch(setUser(freshUser));    // ✅ פה היה חסר
-                      dispatch(setActiveGroup(item)); // נשאר כפי שהיה
-
-
-
-
-
-                      const list = await triggerGetList(item.activeshoppinglist).unwrap();
-
-                      dispatch(setActiveList(list));
-
-
-                      refetchGroups(); // ✅ רענון רשימת קבוצות
-                    } catch (err) {
-                      console.log("ERROR SETTING ACTIVE GROUP:", err);
-                    }
-                  }}
-                >
-                  <Text style={s.selectText}>
-                    {activeGroupId === item._id ? "Active ✓" : "Select"}
-                  </Text>
-                </Pressable>
-
-                <Ionicons
-                  name={isOpen ? "chevron-up" : "chevron-down"}
-                  size={20}
-                  color={BRAND}
-                  onPress={() => toggleGroup(item._id)}
-                />
+                {isOpen && (
+                  <View style={s.accordionWrapper}>
+                    <GroupAccordion group={item} />
+                  </View>
+                )}
               </View>
+            );
+          }}
+        />
 
-              {isOpen && <GroupAccordion group={item} />}
-            </>
-          );
-        }}
-      />
+        <View style={s.actionButtons}>
+          <Pressable style={s.actionBtn} onPress={() => router.replace("/main/group/join")}>
+            <MaterialCommunityIcons name="account-plus" size={20} color="#fff" />
+            <ItimText size={15} color="#fff" weight="600" style={{ marginLeft: 8 }}>
+              Join Group
+            </ItimText>
+          </Pressable>
 
-      <Text style={s.watermark}>WiseBuy</Text>
+          <Pressable style={s.actionBtn} onPress={() => router.replace("/main/group/create")}>
+            <MaterialCommunityIcons name="plus-circle" size={20} color="#fff" />
+            <ItimText size={15} color="#fff" weight="600" style={{ marginLeft: 8 }}>
+              Create Group
+            </ItimText>
+          </Pressable>
+        </View>
 
-      <View style={s.pills}>
-        <Pressable
-          style={[s.pill, s.pillSolid]}
-          onPress={() => router.replace("/main/group/join")}
-        >
-          <Text style={[s.pillText, { color: "#fff" }]}>Join Group</Text>
-        </Pressable>
-
-        <Pressable
-          style={[s.pill, s.pillSolid]}
-          onPress={() => router.replace("/main/group/create")}
-        >
-          <Text style={[s.pillText, { color: "#fff" }]}>Create Group</Text>
-        </Pressable>
+        <BottomNav />
       </View>
-
-      <BottomNav />
     </SafeAreaView>
   );
 }
 
 const s = StyleSheet.create({
-  row: {
-    paddingVertical: 12,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  link: {
-    color: BRAND,
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  separator: {
-    height: 1,
-    backgroundColor: "#E5E7EB",
-    marginHorizontal: 16,
-  },
-  watermark: {
-    textAlign: "center",
-    fontSize: 36,
-    fontWeight: "900",
-    color: "#197FF4",
-    opacity: 0.08,
-    marginBottom: 16,
-  },
-
-  pills: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    gap: 12,
-    marginBottom: 10,
-  },
-  pill: {
+  safeArea: {
     flex: 1,
-    paddingVertical: 10,
-    borderRadius: 24,
+    backgroundColor: "#fff",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingHorizontal: 20,
+  },
+  listContent: {
+    paddingBottom: 20,
+  },
+  emptyState: {
     alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 60,
+  },
+  groupCard: {
+    backgroundColor: "#fff",
+    borderRadius: 16,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+    overflow: "hidden",
     shadowColor: "#000",
-    shadowOpacity: 0.1,
-    shadowRadius: 5,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 3,
   },
-  pillSolid: { backgroundColor: BRAND },
-  pillText: { fontSize: 14, fontWeight: "800" },
-
-  selectButton: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
+  groupCardActive: {
+    borderColor: BRAND,
+    borderWidth: 2,
+  },
+  cardHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 16,
+  },
+  groupIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 14,
+    backgroundColor: "#eff6ff",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 14,
+  },
+  groupIconActive: {
     backgroundColor: BRAND,
-    borderRadius: 12,
-    marginRight: 10,
   },
-  selectText: {
-    color: "white",
-    fontWeight: "700",
-    fontSize: 12,
+  groupInfo: {
+    flex: 1,
+  },
+  cardActions: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  activeBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#dcfce7",
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 20,
+  },
+  selectBtn: {
+    backgroundColor: BRAND,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
+  },
+  expandBtn: {
+    padding: 4,
+  },
+  accordionWrapper: {
+    borderTopWidth: 1,
+    borderTopColor: "#e5e7eb",
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  actionButtons: {
+    flexDirection: "row",
+    gap: 12,
+    marginBottom: 12,
+  },
+  actionBtn: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: BRAND,
+    paddingVertical: 14,
+    borderRadius: 14,
   },
 });

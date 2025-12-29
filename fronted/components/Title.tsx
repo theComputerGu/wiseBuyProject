@@ -8,12 +8,13 @@ type IconName = React.ComponentProps<typeof MaterialCommunityIcons>['name'];
 
 interface TitleProps {
   text: string;
-  icon?: IconName; 
+  icon?: IconName;
   onPress?: () => void;
   color?: string;
   size?: number;
   weight?: 'regular' | 'bold';
   align?: 'left' | 'center' | 'right';
+  fontFamily?: string;
 }
 
 export default function Title({
@@ -24,6 +25,7 @@ export default function Title({
   size = 20,
   weight = 'bold',
   align = 'left',
+  fontFamily,
 }: TitleProps) {
   
 
@@ -39,7 +41,7 @@ export default function Title({
           <MaterialCommunityIcons name={icon} size={size * 0.9} color={color} />
         </Pressable>
       )}
-      <ItimText size={size} color={color} weight={weight} style={styles.text}>
+      <ItimText size={size} color={color} weight={weight} fontFamily={fontFamily} style={styles.text}>
         {text}
       </ItimText>
     </View>

@@ -5,6 +5,7 @@ type Props = TextProps & {
   size?: number;
   color?: string;
   weight?: TextStyle["fontWeight"];
+  fontFamily?: string;
 };
 
 export default function Itimtext({
@@ -12,6 +13,7 @@ export default function Itimtext({
   size = 16,
   color = "#000",
   weight = "normal",
+  fontFamily,
   style,
   ...rest
 }: Props) {
@@ -20,7 +22,7 @@ export default function Itimtext({
       {...rest}
       style={[
         styles.base,
-        { fontSize: size, color, fontWeight: weight },
+        { fontSize: size, color, fontWeight: weight, fontFamily },
         style,
       ]}
       numberOfLines={rest.numberOfLines}     // 👈 מאפשר קיצור טקסט
@@ -32,7 +34,5 @@ export default function Itimtext({
 }
 
 const styles = StyleSheet.create({
-  base: {
-    fontFamily: "Itim_400Regular",
-  },
+  base: {},
 });

@@ -9,16 +9,17 @@ import TopNav from '../../components/Topnav';
 import ItimText from '../../components/Itimtext';
 import Title from '../../components/Title';
 import TextField from '../../components/TextField';
-import Button from '../../components/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../../redux/state/store';
-import { clearUser, setUser} from '../../redux/slices/userSlice';
+import { clearUser, setUser } from '../../redux/slices/userSlice';
 import {
   useUpdateUserMutation,
   useDeleteUserMutation,
   useUploadAvatarMutation,
 } from '../../redux/svc/usersApi';
 import { useRouter } from 'expo-router';
+
+const BRAND = '#197FF4';
 
 export default function AccountScreen() {
   const dispatch = useDispatch();
@@ -39,14 +40,12 @@ export default function AccountScreen() {
     }
   }, [user.current?.createdAt]);
 
-  const [showPassword, setShowPassword] = useState(false);
   const [editName, setEditName] = useState(false);
-  const [editEmail, setEditEmail] = useState(false);
-
   const [changePwMode, setChangePwMode] = useState(false);
   const [pwCurrent, setPwCurrent] = useState('');
   const [pwNew, setPwNew] = useState('');
   const [pwConfirm, setPwConfirm] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const [name, setName] = useState(user.current?.name || '');
   const [email, setEmail] = useState(user.current?.email || '');
@@ -54,10 +53,8 @@ export default function AccountScreen() {
   const [updateUser, { isLoading }] = useUpdateUserMutation();
   const [deleteUser, { isLoading: isDeleting }] = useDeleteUserMutation();
 
-  // ⬅⬅ FIX: always use _id
   const getUserId = () => user.current?._id;
 
-  // עדכון שם/אימייל
   const saveField = async (field: 'name' | 'email') => {
     const id = getUserId();
     if (!id) return alert('No logged-in user');
@@ -81,13 +78,11 @@ export default function AccountScreen() {
         })
       );
       if (field === 'name') setEditName(false);
-      if (field === 'email') setEditEmail(false);
     } catch (e: any) {
       alert(e?.data?.message || 'Failed to update user');
     }
   };
 
-  // שינוי סיסמה
   const savePassword = async () => {
     const id = getUserId();
     if (!id) return alert('No logged-in user');
@@ -98,7 +93,7 @@ export default function AccountScreen() {
     try {
       const updated = await updateUser({
         id,
-        patch: { password: pwNew } as any // ⬅⬅ FIX: allow password in patch
+        patch: { password: pwNew } as any
       }).unwrap();
 
       dispatch(
@@ -123,7 +118,6 @@ export default function AccountScreen() {
     }
   };
 
-  // בחירת תמונה + העלאה
   const onPickAndUploadAvatar = async () => {
     const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!granted) {
@@ -178,7 +172,7 @@ export default function AccountScreen() {
     const id = getUserId();
     if (!id) return alert('No logged-in user');
 
-    Alert.alert('Delete User', 'Are you sure?', [
+    Alert.alert('Delete User', 'Are you sure you want to delete your account? This action cannot be undone.', [
       { text: 'Cancel', style: 'cancel' },
       {
         text: isDeleting ? 'Deleting...' : 'Delete',
@@ -197,115 +191,197 @@ export default function AccountScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#ffffffff' }}>
+    <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <TopNav />
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
 
           <Title text="Account" />
-          <Title text="Settings" />
 
-          <View style={styles.accountRow}>
-            <View style={styles.profileContainer}>
-              <Pressable onPress={onPickAndUploadAvatar} style={styles.avatarWrap}>
-                {user.current?.avatarUrl ? (
-                  <Image
-                    source={{ uri: `${user.current.avatarUrl}?t=${avatarBust}` }}
-                    style={styles.avatarImg}
-                  />
-                ) : (
-                  <MaterialCommunityIcons name="account-circle" size={90} color="#197FF4" />
-                )}
-                <Pressable style={styles.addIcon} onPress={onPickAndUploadAvatar}>
-                  <MaterialCommunityIcons name="plus" size={14} color="#fff" />
-                </Pressable>
-              </Pressable>
-              {isUploading ? <ItimText size={12} color="#197FF4">Uploading...</ItimText> : null}
-            </View>
-
-            <View style={{ flex: 1 }}>
-              <ItimText size={14} color="#000" weight="bold">Account name</ItimText>
-              {editName ? (
-                <View style={{ gap: 6 }}>
-                  <TextField value={name} onChangeText={setName} placeholder="Account name" />
-                  <Button title={isLoading ? 'Saving...' : 'Save'} onPress={() => saveField('name')} />
-                </View>
+          {/* Profile Card */}
+          <View style={styles.profileCard}>
+            <Pressable onPress={onPickAndUploadAvatar} style={styles.avatarContainer}>
+              {user.current?.avatarUrl ? (
+                <Image
+                  source={{ uri: `${user.current.avatarUrl}?t=${avatarBust}` }}
+                  style={styles.avatarImg}
+                />
               ) : (
-                <ItimText size={16}>{user.current?.name || '—'}</ItimText>
+                <View style={styles.avatarPlaceholder}>
+                  <MaterialCommunityIcons name="account" size={50} color="#fff" />
+                </View>
               )}
+              <View style={styles.cameraIcon}>
+                <MaterialCommunityIcons name="camera" size={14} color="#fff" />
+              </View>
+            </Pressable>
+            {isUploading && <ItimText size={12} color={BRAND} style={{ marginTop: 8 }}>Uploading...</ItimText>}
 
-              <ItimText size={14} color="#000" weight="bold">Created on</ItimText>
-              <ItimText size={16}>{createdAtText || '—'}</ItimText>
-              <ItimText size={14} color="#000" weight="bold">Email Address</ItimText>
-              <ItimText size={16}>{user.current?.email || '—'}</ItimText>
-              
-            </View>
+            <ItimText size={22} weight="bold" color="#1a1a1a" style={styles.userName}>
+              {user.current?.name || 'User'}
+            </ItimText>
+            <ItimText size={14} color="#71717a">
+              {user.current?.email || ''}
+            </ItimText>
+            <ItimText size={12} color="#a1a1aa" style={{ marginTop: 4 }}>
+              Member since {createdAtText}
+            </ItimText>
+          </View>
 
-            <View style={styles.editIcons}>
-              <Pressable onPress={() => { setName(user.current?.name || ''); setEditName(true); }}>
-                <MaterialCommunityIcons name="pencil" size={18} color="#197FF4" />
-              </Pressable>
+          {/* Account Settings Section */}
+          <View style={styles.section}>
+            <ItimText size={13} color="#71717a" weight="600" style={styles.sectionTitle}>
+              ACCOUNT SETTINGS
+            </ItimText>
+
+            {/* Name Row */}
+            <Pressable
+              style={styles.settingRow}
+              onPress={() => { setName(user.current?.name || ''); setEditName(true); }}
+            >
+              <View style={styles.settingIcon}>
+                <MaterialCommunityIcons name="account-outline" size={22} color={BRAND} />
+              </View>
+              <View style={styles.settingContent}>
+                <ItimText size={13} color="#71717a">Name</ItimText>
+                {editName ? (
+                  <View style={styles.editField}>
+                    <TextField
+                      value={name}
+                      onChangeText={setName}
+                      placeholder="Enter name"
+                      style={styles.textInput}
+                    />
+                    <View style={styles.editButtons}>
+                      <Pressable style={styles.saveBtn} onPress={() => saveField('name')}>
+                        <ItimText size={13} color="#fff">{isLoading ? 'Saving...' : 'Save'}</ItimText>
+                      </Pressable>
+                      <Pressable style={styles.cancelBtn} onPress={() => setEditName(false)}>
+                        <ItimText size={13} color="#71717a">Cancel</ItimText>
+                      </Pressable>
+                    </View>
+                  </View>
+                ) : (
+                  <ItimText size={16} color="#1a1a1a">{user.current?.name || '—'}</ItimText>
+                )}
+              </View>
+              {!editName && (
+                <MaterialCommunityIcons name="chevron-right" size={22} color="#d4d4d8" />
+              )}
+            </Pressable>
+
+            {/* Email Row */}
+            <View style={styles.settingRow}>
+              <View style={styles.settingIcon}>
+                <MaterialCommunityIcons name="email-outline" size={22} color={BRAND} />
+              </View>
+              <View style={styles.settingContent}>
+                <ItimText size={13} color="#71717a">Email</ItimText>
+                <ItimText size={16} color="#1a1a1a">{user.current?.email || '—'}</ItimText>
+              </View>
             </View>
           </View>
 
-          <Title text="Privacy" />
+          {/* Security Section */}
+          <View style={styles.section}>
+            <ItimText size={13} color="#71717a" weight="600" style={styles.sectionTitle}>
+              SECURITY
+            </ItimText>
 
-          {changePwMode ? (
-            <View style={{ gap: 10, marginBottom: 12 }}>
-              <ItimText size={16} color="#000" weight="bold">Change Password</ItimText>
-
-              <TextField
-                value={pwCurrent}
-                onChangeText={setPwCurrent}
-                placeholder="Current password"
-                secure={!showPassword}
-              />
-              <TextField
-                value={pwNew}
-                onChangeText={setPwNew}
-                placeholder="New password"
-                secure={!showPassword}
-              />
-              <TextField
-                value={pwConfirm}
-                onChangeText={setPwConfirm}
-                placeholder="Confirm new password"
-                secure={!showPassword}
-              />
-
-              <View style={{ flexDirection: 'row', gap: 10 }}>
-                <Button style={{ paddingVertical: 10, paddingHorizontal: 16, borderRadius: 10, backgroundColor: '#197FF4' }}title={isLoading ? 'Saving...' : 'Save'} onPress={savePassword} />
+            {changePwMode ? (
+              <View style={styles.passwordForm}>
+                <TextField
+                  value={pwCurrent}
+                  onChangeText={setPwCurrent}
+                  placeholder="Current password"
+                  secure={!showPassword}
+                  style={styles.passwordInput}
+                />
+                <TextField
+                  value={pwNew}
+                  onChangeText={setPwNew}
+                  placeholder="New password"
+                  secure={!showPassword}
+                  style={styles.passwordInput}
+                />
+                <TextField
+                  value={pwConfirm}
+                  onChangeText={setPwConfirm}
+                  placeholder="Confirm new password"
+                  secure={!showPassword}
+                  style={styles.passwordInput}
+                />
                 <Pressable
-                  onPress={() => { setChangePwMode(false); setPwCurrent(''); setPwNew(''); setPwConfirm(''); }}
-                  style={{ paddingVertical: 10, paddingHorizontal: 16, borderRadius: 10, backgroundColor: '#eee' }}
+                  style={styles.showPasswordToggle}
+                  onPress={() => setShowPassword(!showPassword)}
                 >
-                  <ItimText size={14} color="#000">Cancel</ItimText>
+                  <MaterialCommunityIcons
+                    name={showPassword ? "eye-off" : "eye"}
+                    size={18}
+                    color="#71717a"
+                  />
+                  <ItimText size={13} color="#71717a" style={{ marginLeft: 6 }}>
+                    {showPassword ? 'Hide passwords' : 'Show passwords'}
+                  </ItimText>
                 </Pressable>
+                <View style={styles.editButtons}>
+                  <Pressable style={styles.saveBtn} onPress={savePassword}>
+                    <ItimText size={14} color="#fff">{isLoading ? 'Saving...' : 'Update Password'}</ItimText>
+                  </Pressable>
+                  <Pressable
+                    style={styles.cancelBtn}
+                    onPress={() => { setChangePwMode(false); setPwCurrent(''); setPwNew(''); setPwConfirm(''); }}
+                  >
+                    <ItimText size={14} color="#71717a">Cancel</ItimText>
+                  </Pressable>
+                </View>
               </View>
-            </View>
-          ) : (
-            <View style={styles.privacyRow}>
-              <View style={{ flex: 1 }}>
-                <ItimText size={16} color="#000" weight="bold">Password</ItimText>
-                <ItimText size={16} color="#000">
-                  { "*".repeat(user.current?.passwordLength ?? 0) }
+            ) : (
+              <Pressable style={styles.settingRow} onPress={() => setChangePwMode(true)}>
+                <View style={styles.settingIcon}>
+                  <MaterialCommunityIcons name="lock-outline" size={22} color={BRAND} />
+                </View>
+                <View style={styles.settingContent}>
+                  <ItimText size={13} color="#71717a">Password</ItimText>
+                  <ItimText size={16} color="#1a1a1a">
+                    {"•".repeat(user.current?.passwordLength ?? 8)}
+                  </ItimText>
+                </View>
+                <MaterialCommunityIcons name="chevron-right" size={22} color="#d4d4d8" />
+              </Pressable>
+            )}
+          </View>
+
+          {/* Actions Section */}
+          <View style={styles.section}>
+            <ItimText size={13} color="#71717a" weight="600" style={styles.sectionTitle}>
+              ACTIONS
+            </ItimText>
+
+            <Pressable style={styles.settingRow} onPress={onLogout}>
+              <View style={[styles.settingIcon, { backgroundColor: '#fef3c7' }]}>
+                <MaterialCommunityIcons name="logout" size={22} color="#f59e0b" />
+              </View>
+              <View style={styles.settingContent}>
+                <ItimText size={16} color="#1a1a1a">Log Out</ItimText>
+              </View>
+              <MaterialCommunityIcons name="chevron-right" size={22} color="#d4d4d8" />
+            </Pressable>
+
+            <Pressable style={styles.settingRow} onPress={onDeleteUser}>
+              <View style={[styles.settingIcon, { backgroundColor: '#fee2e2' }]}>
+                <MaterialCommunityIcons name="trash-can-outline" size={22} color="#ef4444" />
+              </View>
+              <View style={styles.settingContent}>
+                <ItimText size={16} color="#ef4444">
+                  {isDeleting ? 'Deleting...' : 'Delete Account'}
                 </ItimText>
               </View>
-              <Pressable style={styles.showPasswordBtn} onPress={() => setChangePwMode(true)}>
-                <ItimText size={14} color="#197FF4">Change password</ItimText>
-              </Pressable>
-            </View>
-          )}
+              <MaterialCommunityIcons name="chevron-right" size={22} color="#d4d4d8" />
+            </Pressable>
+          </View>
 
-          <Title text="Others" />
-          <Pressable onPress={onLogout}>
-            <ItimText size={16} color="#000" style={styles.otherText}>Log out</ItimText>
-          </Pressable>
-          <Pressable onPress={onDeleteUser}>
-            <ItimText size={16} color="red" style={styles.otherText}>
-              {isDeleting ? 'Deleting...' : 'Delete User'}
-            </ItimText>
-          </Pressable>
+          <View style={{ height: 100 }} />
         </ScrollView>
 
         <BottomNav />
@@ -315,31 +391,129 @@ export default function AccountScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff', paddingHorizontal: 20 },
-  accountRow: { flexDirection: 'row', alignItems: 'flex-start' },
-  profileContainer: { alignItems: 'center', justifyContent: 'center', marginRight: 15 },
-  avatarWrap: { position: 'relative' },
-  avatarImg: {
-    width: 90,
-    height: 90,
-    borderRadius: 45,
-    borderWidth: 2,
-    borderColor: '#197FF4',
-    backgroundColor: '#eee',
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
-  addIcon: {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+  },
+  scrollContent: {
+    paddingBottom: 20,
+  },
+  profileCard: {
+    backgroundColor: '#f8f9fa',
+    borderRadius: 20,
+    padding: 24,
+    alignItems: 'center',
+    marginBottom: 24,
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
+    elevation: 2,
+  },
+  avatarContainer: {
+    position: 'relative',
+    marginBottom: 12,
+  },
+  avatarImg: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    borderWidth: 3,
+    borderColor: BRAND,
+  },
+  avatarPlaceholder: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: BRAND,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cameraIcon: {
     position: 'absolute',
-    bottom: 5,
-    right: 5,
-    backgroundColor: '#197FF4',
-    borderRadius: 10,
-    width: 20,
-    height: 20,
+    bottom: 0,
+    right: 0,
+    backgroundColor: BRAND,
+    borderRadius: 15,
+    width: 30,
+    height: 30,
     justifyContent: 'center',
     alignItems: 'center',
+    borderWidth: 3,
+    borderColor: '#fff',
   },
-  editIcons: { justifyContent: 'flex-start', alignItems: 'flex-start', marginLeft: 6 },
-  privacyRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 },
-  showPasswordBtn: { backgroundColor: '#EAF3FF', borderRadius: 10, paddingVertical: 4, paddingHorizontal: 10 },
-  otherText: { marginBottom: 6 },
+  userName: {
+    marginTop: 8,
+  },
+  section: {
+    backgroundColor: '#f8f9fa',
+    borderRadius: 16,
+    marginBottom: 16,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
+  },
+  sectionTitle: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 8,
+  },
+  settingRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#f4f4f5',
+  },
+  settingIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+    backgroundColor: '#eff6ff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  settingContent: {
+    flex: 1,
+  },
+  editField: {
+    marginTop: 8,
+  },
+  textInput: {
+    marginBottom: 8,
+  },
+  editButtons: {
+    flexDirection: 'row',
+    gap: 10,
+    marginTop: 8,
+  },
+  saveBtn: {
+    backgroundColor: BRAND,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  cancelBtn: {
+    backgroundColor: '#f4f4f5',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+  },
+  passwordForm: {
+    padding: 16,
+    gap: 12,
+  },
+  passwordInput: {
+    marginBottom: 4,
+  },
+  showPasswordToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
 });

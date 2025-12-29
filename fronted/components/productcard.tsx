@@ -34,62 +34,70 @@ function ProductCard({
 
   return (
     <View style={s.card}>
+      {/* Product Image */}
       <Image source={image} style={s.img} />
 
-      <View style={s.info}>
-        {/* --- Header row --- */}
-        <View style={s.headerRow}>
-          <View style={{ flex: 1 }}>
-            {/* 🔥 הופך תמיד למחרוזת */}
-            <ItimText size={16} color="#000" weight="bold" style={s.rtlText}>
+      {/* Right Section - Title, Price & Controls */}
+      <View style={s.rightSection}>
+        {/* Title Row */}
+        <View style={s.titleRow}>
+          {uploaderAvatar && (
+            <Image source={uploaderAvatar} style={s.avatar} />
+          )}
+          <View style={s.nameContainer}>
+            <ItimText size={15} color="#1a1a1a" weight="600" style={s.rtlText} numberOfLines={2}>
               {String(name)}
             </ItimText>
-
-            {/* 🔥 לעולם לא יחזיר undefined / null */}
-            <ItimText size={14} color="#555" style={s.rtlText} >
-              {String(`${price}${averageLabel ? ` (${averageLabel})` : ""}`)}
-            </ItimText>
+            {uploaderName && (
+              <View style={s.uploaderInfo}>
+                <MaterialCommunityIcons name="account" size={12} color="#9ca3af" />
+                <ItimText size={11} color="#9ca3af" style={{ marginLeft: 4 }}>
+                  {String(uploaderName)}
+                </ItimText>
+              </View>
+            )}
           </View>
-
-          {/* Avatar בצד ימין */}
-          {uploaderAvatar && <Image source={uploaderAvatar} style={s.avatar} />}
         </View>
 
-        {/* --- Quantity controls --- */}
-        <View style={s.row}>
-          {!disabledDecrease && (
+        {/* Price & Controls Row */}
+        <View style={s.bottomRow}>
+          <View style={s.priceContainer}>
+            <ItimText size={16} color={BRAND} weight="bold">
+              {String(price)}
+            </ItimText>
+            {averageLabel && (
+              <View style={s.avgBadge}>
+                <ItimText size={10} color="#71717a">
+                  {averageLabel}
+                </ItimText>
+              </View>
+            )}
+          </View>
+
+          <View style={s.quantityControls}>
             <Pressable
-              style={[
-                s.btn,
-                disabledDecrease && { opacity: 0.3, borderColor: "#ccc" },
-              ]}
+              style={[s.btn, disabledDecrease && s.btnDisabled]}
               onPress={disabledDecrease ? undefined : onDecrease}
+              hitSlop={8}
             >
               <MaterialCommunityIcons
                 name="minus"
                 size={18}
-                color={disabledDecrease ? "#ccc" : BRAND}
+                color={disabledDecrease ? "#d1d5db" : BRAND}
               />
             </Pressable>
-          )}
 
-          <View style={s.qty}>
-            {/* 🔥 לעולם לא נשבר - הכמות תמיד string */}
-            <ItimText size={16} color={BRAND} weight="bold">
-              {String(quantity)}
-            </ItimText>
+            <View style={s.qtyDisplay}>
+              <ItimText size={16} color={BRAND} weight="bold">
+                {String(quantity)}
+              </ItimText>
+            </View>
+
+            <Pressable style={s.btn} onPress={onIncrease} hitSlop={8}>
+              <MaterialCommunityIcons name="plus" size={18} color={BRAND} />
+            </Pressable>
           </View>
-
-          <Pressable style={s.btn} onPress={onIncrease} hitSlop={8}>
-            <MaterialCommunityIcons name="plus" size={18} color={BRAND} />
-          </Pressable>
         </View>
-
-        {uploaderName && (
-          <ItimText size={12} color="#777" style={{ marginTop: 4 }}>
-            {String(`Added by: ${uploaderName}`)}
-          </ItimText>
-        )}
       </View>
     </View>
   );
@@ -99,53 +107,92 @@ const s = StyleSheet.create({
   card: {
     flexDirection: "row",
     backgroundColor: "#fff",
-    borderRadius: 14,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
     shadowColor: "#000",
-    shadowOpacity: 0.08,
-    shadowRadius: 4,
-    elevation: 2,
-    padding: 10,
-    marginVertical: 8,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 3,
+    padding: 12,
+    marginVertical: 6,
     alignItems: "center",
   },
-  img: { width: 70, height: 110, resizeMode: "contain", marginLeft: 10, borderRadius: 8 },
-  info: { flex: 1, marginLeft: 12 },
-  headerRow: {
+  img: {
+    width: 70,
+    height: 70,
+    borderRadius: 12,
+    resizeMode: "contain",
+  },
+  rightSection: {
+    flex: 1,
+    marginLeft: 12,
+  },
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  nameContainer: {
+    flex: 1,
+  },
+  avatar: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    marginRight: 8,
+    borderWidth: 2,
+    borderColor: "#eff6ff",
+  },
+  uploaderInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 4,
+  },
+  bottomRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  avatar: {
-    width: 26,
-    height: 50,
-    borderRadius: 13,
-    marginLeft: 8,
-    alignSelf: "center",
+  priceContainer: {
+    alignItems: "flex-start",
   },
-  row: { flexDirection: "row", alignItems: "center", justifyContent: "center", marginRight: 50, marginTop: 20, gap: 8 },
+  avgBadge: {
+    backgroundColor: "#f4f4f5",
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 8,
+    marginTop: 2,
+  },
+  quantityControls: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f4f4f5",
+    borderRadius: 10,
+    paddingHorizontal: 3,
+    paddingVertical: 3,
+  },
   btn: {
-    borderWidth: 1,
-    borderColor: BRAND,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
+    width: 32,
+    height: 32,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
   },
-  qty: {
-    borderWidth: 1,
-    borderColor: BRAND,
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    minWidth: 40,
+  btnDisabled: {
+    backgroundColor: "transparent",
+  },
+  qtyDisplay: {
+    minWidth: 36,
+    paddingHorizontal: 6,
     alignItems: "center",
   },
-
   rtlText: {
     textAlign: "right",
     writingDirection: "rtl",
   },
-
-
 });
 
 export default memo(ProductCard);
