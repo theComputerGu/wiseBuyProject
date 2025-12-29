@@ -4,18 +4,17 @@ import {
   StyleSheet,
   ScrollView,
   ActivityIndicator,
-  Text,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector, useDispatch } from "react-redux";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import TopNav from "../../components/Topnav";
 import BottomNav from "../../components/Bottomnavigation";
 import BottomSummary from "../../components/BottomSummary";
 import ProductCard from "../../components/productcard";
-import Title from "../../components/Title";
 import GroupSelector from "../../components/GroupSelector";
-
+import ItimText from "../../components/Itimtext";
 
 import { RootState } from "../../redux/state/store";
 import {
@@ -36,6 +35,8 @@ import {
 } from "../../redux/slices/shoppinglistSlice";
 import RecoCard from "../../components/RecoCard";
 import { useLazyGetProductByIdQuery } from "../../redux/svc/productApi";
+
+const BRAND = "#197FF4";
 
 export default function ProductScreen() {
   const dispatch = useDispatch();
@@ -109,7 +110,6 @@ export default function ProductScreen() {
     try {
       const res = await addItemToBackend({ listId, productId }).unwrap();
       if (currentItem) {
-        // 🔁 already exists → increase
         dispatch(
           updateItem({
             productId,
@@ -126,7 +126,7 @@ export default function ProductScreen() {
         );
       }
     } catch (err) {
-      console.error("❌ Add failed:", err);
+      console.error("Add failed:", err);
     }
   };
 
@@ -159,7 +159,7 @@ export default function ProductScreen() {
         );
       }
     } catch (err) {
-      console.error("❌ Decrease failed:", err);
+      console.error("Decrease failed:", err);
     }
   };
 
@@ -201,15 +201,40 @@ export default function ProductScreen() {
       <TopNav />
       <GroupSelector />
 
-      {/* SHOPPING LIST - takes remaining space */}
+      {/* Shopping List Section */}
+      <View style={styles.sectionHeader}>
+        <View style={styles.sectionIconContainer}>
+          <MaterialCommunityIcons name="cart-outline" size={18} color={BRAND} />
+        </View>
+        <ItimText size={16} weight="600" color="#1a1a1a" style={{ marginLeft: 10 }}>
+          Shopping List
+        </ItimText>
+        {items.length > 0 && (
+          <View style={styles.countBadge}>
+            <ItimText size={12} color={BRAND} weight="bold">
+              {totalItems}
+            </ItimText>
+          </View>
+        )}
+      </View>
+
       <ScrollView
         style={styles.shoppingListScroll}
         contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
       >
         {items.length === 0 ? (
-          <Text style={styles.emptyText}>
-            No items in your shopping list yet.
-          </Text>
+          <View style={styles.emptyContainer}>
+            <View style={styles.emptyIconContainer}>
+              <MaterialCommunityIcons name="cart-off" size={50} color="#d1d5db" />
+            </View>
+            <ItimText size={16} color="#71717a" style={{ marginTop: 16 }}>
+              Your shopping list is empty
+            </ItimText>
+            <ItimText size={13} color="#9ca3af" style={{ marginTop: 4, textAlign: "center" }}>
+              Add items to start building your list
+            </ItimText>
+          </View>
         ) : (
           items.map((item: any) => (
             <ProductCard
@@ -225,26 +250,45 @@ export default function ProductScreen() {
         )}
       </ScrollView>
 
-      {/* RECOMMENDATIONS SECTION - fixed height above summary */}
+      {/* Recommendations Section */}
       <View style={styles.recommendationsSection}>
-        <Title text="Recommendations" />
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.recoScroll}
-          contentContainerStyle={styles.recoContent}
-        >
-          {recommended.map((rec: any) => (
-            <RecoCard
-              key={rec.productId}
-              title={rec.title}
-              price={rec.pricerange}
-              image={{ uri: fixImageURL(rec.image) }}
-              reason={rec.reason}
-              onAdd={() => handleIncrease(rec.productId)}
-            />
-          ))}
-        </ScrollView>
+        <View style={styles.recoHeader}>
+          <View style={styles.sectionIconContainer}>
+            <MaterialCommunityIcons name="lightbulb-outline" size={18} color={BRAND} />
+          </View>
+          <ItimText size={16} weight="600" color="#1a1a1a" style={{ marginLeft: 10 }}>
+            Recommendations
+          </ItimText>
+          {recommendationsLoading && (
+            <ActivityIndicator size="small" color={BRAND} style={{ marginLeft: 10 }} />
+          )}
+        </View>
+
+        {recommended.length === 0 ? (
+          <View style={styles.emptyRecoContainer}>
+            <ItimText size={13} color="#9ca3af">
+              No recommendations available
+            </ItimText>
+          </View>
+        ) : (
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.recoScroll}
+            contentContainerStyle={styles.recoContent}
+          >
+            {recommended.map((rec: any) => (
+              <RecoCard
+                key={rec.productId}
+                title={rec.title}
+                price={rec.pricerange}
+                image={{ uri: fixImageURL(rec.image) }}
+                reason={rec.reason}
+                onAdd={() => handleIncrease(rec.productId)}
+              />
+            ))}
+          </ScrollView>
+        )}
       </View>
 
       <BottomSummary
@@ -258,24 +302,75 @@ export default function ProductScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff", paddingHorizontal: 20 },
-  shoppingListScroll: { flex: 1 },
-  scrollContent: { paddingBottom: 10 },
-  emptyText: {
-    textAlign: "center",
-    marginTop: 20,
-    color: "#777",
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingHorizontal: 20,
   },
+  // Section Header
+  sectionHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 8,
+    marginBottom: 12,
+  },
+  sectionIconContainer: {
+    width: 32,
+    height: 32,
+    borderRadius: 10,
+    backgroundColor: "#eff6ff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  countBadge: {
+    backgroundColor: "#eff6ff",
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 12,
+    marginLeft: "auto",
+  },
+  // Shopping List
+  shoppingListScroll: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: 10,
+  },
+  emptyContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 40,
+  },
+  emptyIconContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "#f8fafc",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  // Recommendations Section
   recommendationsSection: {
     borderTopWidth: 1,
-    borderTopColor: "#eee",
-    paddingTop: 8,
+    borderTopColor: "#f4f4f5",
+    paddingTop: 12,
+  },
+  recoHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  emptyRecoContainer: {
+    height: 100,
+    alignItems: "center",
+    justifyContent: "center",
   },
   recoScroll: {
-    height: 125,
+    height: 130,
   },
   recoContent: {
     paddingVertical: 5,
     paddingRight: 10,
+    gap: 12,
   },
 });

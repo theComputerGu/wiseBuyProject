@@ -90,13 +90,13 @@ export default function GroupSelector() {
     <View style={styles.container}>
       {/* כותרת עם חץ */}
       <Pressable style={styles.titleRow} onPress={() => setOpen(!open)}>
-        <ItimText size={26} weight="bold" color="#197FF4">
+        <ItimText size={20} weight="bold" color="#197FF4">
           {capitalizeFirstLetter(activeGroup?.name ?? "Group")}
         </ItimText>
 
         <Ionicons
           name={open ? "chevron-up" : "chevron-down"}
-          size={22}
+          size={18}
           color="#197FF4"
           style={{ marginLeft: 6 }}
         />
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
 
   dropdownOverlay: {
     position: "absolute",
-    top: 40,   // מתחת לשם הקבוצה
+    top: 34,
     left: 0,
     right: 0,
 
