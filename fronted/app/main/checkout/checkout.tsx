@@ -287,9 +287,9 @@ export default function CheckoutScreen() {
           </ItimText>
           <Slider
             value={radius}
-            minimumValue={1}
+            minimumValue={0.2}
             maximumValue={3}
-            step={0.5}
+            step={0.2}
             style={{ width: "80%" }}
             onValueChange={(v) => dispatch(setRadius(v))}
           />

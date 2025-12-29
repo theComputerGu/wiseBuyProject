@@ -311,11 +311,7 @@ export class StoresResolverService {
     console.log("📍 Normalized addressKey:", normalizedAddressKey);
 
     // 3️⃣ בדיקת cache לפי כתובת (לא לפי GPS!)
-    const { found, missing } =
-      await this.storesService.getCachedProducts(
-        normalizedAddressKey,
-        itemcodes,
-      );
+    const { found, missing } =await this.storesService.getCachedProducts(normalizedAddressKey,itemcodes,);
 
     const results: {
       itemcode: string;

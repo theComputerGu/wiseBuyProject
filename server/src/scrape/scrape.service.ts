@@ -40,35 +40,45 @@ export class ScrapeService {
   // ----------------------------
   // Parse CHP raw table
   // ----------------------------
-  private parseStores(raw: string[][]): StoreOffer[] {
-    const stores: StoreOffer[] = [];
+ private parseStores(raw: string[][]): StoreOffer[] {
+  const stores: StoreOffer[] = [];
 
-    for (const row of raw) {
-      if (row.length < 5) continue;
+  for (const row of raw) {
+    if (row.length < 3) continue;
 
-      const chain = row[0];
-      const address = row[2];
+    const chain = row[0];
+    const address = row[2];
 
-      const priceText =
-        row[5]?.trim() ||
-        row[4]?.trim() ||
-        null;
+    // 👇 קח את המחיר מהסוף לאחור
+    let price: number | null = null;
 
-      if (!priceText) continue;
+    for (let i = row.length - 1; i >= 0; i--) {
+      const cell = row[i]?.trim();
+      if (!cell) continue;
 
-      const match = priceText.match(/([\d.]+)/);
-      if (!match) continue;
-
-      stores.push({
-        chain,
-        address,
-        price: Number(match[1]),
-        lastUpdated: new Date(),
-      });
+      // תופס מספר עשרוני תקין
+      const match = cell.match(/^\d+(\.\d+)?$/);
+      if (match) {
+        price = Number(match[0]);
+        break;
+      }
     }
 
-    return stores;
+    if (price === null || Number.isNaN(price)) {
+      continue; // אין מחיר תקין
+    }
+
+    stores.push({
+      chain,
+      address,
+      price,
+      lastUpdated: new Date(),
+    });
   }
+
+  return stores;
+}
+
 
   // =========================
   // Scrape single product
