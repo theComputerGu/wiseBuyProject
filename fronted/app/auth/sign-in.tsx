@@ -79,8 +79,6 @@ export default function SignIn() {
 
     } catch (err: any) {
       const msg =
-        err?.data?.message?.[0] ||
-        err?.data?.message ||
         "Incorrect email or password";
 
       alert(msg);
