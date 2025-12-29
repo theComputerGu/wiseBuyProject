@@ -19,7 +19,9 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+# Only set encoding if running as main script
+if __name__ == "__main__":
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 
 def bought_together(cart_product_ids: list, all_shopping_lists: list, limit: int = 10,
@@ -51,7 +53,7 @@ def bought_together(cart_product_ids: list, all_shopping_lists: list, limit: int
         'שימורים': ['לחמים ומאפים', 'עוף בשר ודגים', 'ירקות ופירות'],  # canned -> bread, meat, produce
         'מעדנייה וסלטים': ['לחמים ומאפים', 'משקאות ויין'],  # deli -> bread, drinks
         'הכל לבית': ['פארם ותינוקות'],  # household -> pharma
-        'פארם ותינוקות': ['הכל לבית', 'מוצרי קירור וביצים'],  # pharma -> household, dairy
+        'פארם ותינוקות': ['הכל לבית',],  # pharma -> household
     }
 
     # Build product -> category map
@@ -103,7 +105,7 @@ def bought_together(cart_product_ids: list, all_shopping_lists: list, limit: int
                 if other_category in target_categories:
                     category_boost = 3.0  # 3x boost for complementary categories
                 elif other_category in cart_categories:
-                    category_boost = 0.3  # Reduce score for same category (user already has it)
+                    category_boost = 0.8  # Reduce score for same category (user already has it)
 
                 scores[other_pid] += count * category_boost
 
@@ -562,14 +564,21 @@ def ml_predict(user_history: list, all_purchases: list, all_products: list, limi
     # Sort by probability
     predictions.sort(key=lambda x: -x[1])
 
+    # Normalize scores to 0-1 range based on top predictions
+    max_proba = predictions[0][1] if predictions else 1.0
+    min_proba = predictions[min(limit, len(predictions)-1)][1] if len(predictions) > limit else 0.0
+
     recommendations = []
     for pid, proba in predictions[:limit]:
-        if proba < 0.2:  # Skip very low confidence predictions
-            continue
+        # Normalize score relative to the prediction range
+        if max_proba > min_proba:
+            normalized_score = (proba - min_proba) / (max_proba - min_proba)
+        else:
+            normalized_score = proba
 
         recommendations.append({
             'productId': pid,
-            'score': round(proba, 3),
+            'score': round(normalized_score, 3),
             'reason': 'מותאם אישית עבורך',  # "Personalized for you"
             'strategy': 'ml_predict'
         })
@@ -629,25 +638,25 @@ def get_recommendations(data: dict) -> dict:
     # Get recommendations from each strategy (fetch more than needed to account for duplicates)
     fetch_limit = per_category * 3
 
-    # 1. Bought Together (with category awareness)
-    together_recs = bought_together(cart_ids, all_lists, limit=fetch_limit, products_data=products_data)
-    add_recs_from_strategy(together_recs, per_category)
-
-    # 2. Buy Again
+    # 1. Buy Again
     again_recs = buy_again(user_history, limit=fetch_limit)
     add_recs_from_strategy(again_recs, per_category)
+
+    # 2. ML Predictions
+    ml_recs = ml_predict(user_history, all_purchases, all_products, limit=fetch_limit)
+    add_recs_from_strategy(ml_recs, per_category)
 
     # 3. Restock
     restock_recs = restock_items(user_history, limit=fetch_limit)
     add_recs_from_strategy(restock_recs, per_category)
 
-    # 4. Popular
+    # 4. Bought Together (with category awareness)
+    together_recs = bought_together(cart_ids, all_lists, limit=fetch_limit, products_data=products_data)
+    add_recs_from_strategy(together_recs, per_category)
+
+    # 5. Popular
     popular_recs = popular_items(all_purchases, limit=fetch_limit)
     add_recs_from_strategy(popular_recs, per_category)
-
-    # 5. ML Predictions
-    ml_recs = ml_predict(user_history, all_purchases, all_products, limit=fetch_limit)
-    add_recs_from_strategy(ml_recs, per_category)
 
     return {'recommendations': final_recs}
 

@@ -201,8 +201,11 @@ export default function ProductScreen() {
       <TopNav />
       <GroupSelector />
 
-      {/* SHOPPING LIST */}
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      {/* SHOPPING LIST - takes remaining space */}
+      <ScrollView
+        style={styles.shoppingListScroll}
+        contentContainerStyle={styles.scrollContent}
+      >
         {items.length === 0 ? (
           <Text style={styles.emptyText}>
             No items in your shopping list yet.
@@ -222,29 +225,27 @@ export default function ProductScreen() {
         )}
       </ScrollView>
 
-      {/* RECOMMENDATIONS */}
-      <Title text="Recommendations" />
-
-
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={{ marginVertical: 10 }}
-        contentContainerStyle={{ paddingBottom: 80, paddingTop: 5 }}
-      >
-        {recommended.map((rec: any) => (
-          <RecoCard
-            key={rec.productId}
-            title={rec.title}
-            price={rec.pricerange}
-            image={{ uri: fixImageURL(rec.image) }}
-            reason={rec.reason}
-            onAdd={() => handleIncrease(rec.productId)}
-          />
-        ))}
-      </ScrollView>
-
-
+      {/* RECOMMENDATIONS SECTION - fixed height above summary */}
+      <View style={styles.recommendationsSection}>
+        <Title text="Recommendations" />
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.recoScroll}
+          contentContainerStyle={styles.recoContent}
+        >
+          {recommended.map((rec: any) => (
+            <RecoCard
+              key={rec.productId}
+              title={rec.title}
+              price={rec.pricerange}
+              image={{ uri: fixImageURL(rec.image) }}
+              reason={rec.reason}
+              onAdd={() => handleIncrease(rec.productId)}
+            />
+          ))}
+        </ScrollView>
+      </View>
 
       <BottomSummary
         amount={totalItems}
@@ -258,17 +259,23 @@ export default function ProductScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#fff", paddingHorizontal: 20 },
-  scrollContent: { paddingBottom: 0 },
+  shoppingListScroll: { flex: 1 },
+  scrollContent: { paddingBottom: 10 },
   emptyText: {
     textAlign: "center",
     marginTop: 20,
     color: "#777",
   },
-  reason: {
-    fontSize: 12,
-    color: "#777",
-    textAlign: "center",
-    marginTop: 4,
-    maxWidth: 140,
+  recommendationsSection: {
+    borderTopWidth: 1,
+    borderTopColor: "#eee",
+    paddingTop: 8,
+  },
+  recoScroll: {
+    height: 125,
+  },
+  recoContent: {
+    paddingVertical: 5,
+    paddingRight: 10,
   },
 });

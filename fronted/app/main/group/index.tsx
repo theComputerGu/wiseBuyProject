@@ -175,15 +175,12 @@ const s = StyleSheet.create({
     marginHorizontal: 16,
   },
   watermark: {
-    position: "absolute",
-    left: 0,
-    right: 0,
     textAlign: "center",
-    top: "55%",
     fontSize: 36,
     fontWeight: "900",
     color: "#197FF4",
-    opacity: 0.06,
+    opacity: 0.08,
+    marginBottom: 16,
   },
 
   pills: {
