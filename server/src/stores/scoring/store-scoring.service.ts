@@ -70,6 +70,7 @@ export class StoreScoringService {
         return {
           ...store,
           score: result.score,
+          totalPrice: result.totalPrice,
           scoreBreakdown: result.breakdown,
         };
       })

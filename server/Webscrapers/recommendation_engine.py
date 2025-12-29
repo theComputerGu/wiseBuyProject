@@ -6,7 +6,7 @@ Five recommendation strategies:
 2. Buy Again - RFM (Recency-Frequency) scoring
 3. Restock - Time-based cycle estimation
 4. Popular Items - Time-weighted popularity
-5. ML Predict - Random Forest classification model
+5. ML Predict - Logistic Regression classification model
 """
 
 import sys
@@ -375,7 +375,7 @@ def popular_items(all_purchases: list, limit: int = 10, decay_days: int = 30) ->
 
 def ml_predict(user_history: list, all_purchases: list, all_products: list, limit: int = 10) -> list:
     """
-    Use Random Forest classifier to predict which products a user is likely to buy.
+    Use Logistic Regression classifier to predict which products a user is likely to buy.
 
     Features per user-product pair:
     - User's purchase frequency for this product

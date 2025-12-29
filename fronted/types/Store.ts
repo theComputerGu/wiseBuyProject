@@ -25,6 +25,7 @@ export type ScoredStore = {
   lat: number;
   lon: number;
   score: number;
+  totalPrice: number;
   scoreBreakdown: {
     availability: number;
     price: number;
