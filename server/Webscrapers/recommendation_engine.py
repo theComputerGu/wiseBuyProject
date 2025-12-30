@@ -638,9 +638,9 @@ def get_recommendations(data: dict) -> dict:
     # Get recommendations from each strategy (fetch more than needed to account for duplicates)
     fetch_limit = per_category * 3
 
-    # 1. Buy Again
-    again_recs = buy_again(user_history, limit=fetch_limit)
-    add_recs_from_strategy(again_recs, per_category)
+    # 1. Bought Together (with category awareness)
+    together_recs = bought_together(cart_ids, all_lists, limit=fetch_limit, products_data=products_data)
+    add_recs_from_strategy(together_recs, per_category)
 
     # 2. ML Predictions
     ml_recs = ml_predict(user_history, all_purchases, all_products, limit=fetch_limit)
@@ -650,13 +650,13 @@ def get_recommendations(data: dict) -> dict:
     restock_recs = restock_items(user_history, limit=fetch_limit)
     add_recs_from_strategy(restock_recs, per_category)
 
-    # 4. Bought Together (with category awareness)
-    together_recs = bought_together(cart_ids, all_lists, limit=fetch_limit, products_data=products_data)
-    add_recs_from_strategy(together_recs, per_category)
-
-    # 5. Popular
+    # 4. Popular
     popular_recs = popular_items(all_purchases, limit=fetch_limit)
     add_recs_from_strategy(popular_recs, per_category)
+
+    # 5. Buy Again
+    again_recs = buy_again(user_history, limit=fetch_limit)
+    add_recs_from_strategy(again_recs, per_category)
 
     return {'recommendations': final_recs}
 

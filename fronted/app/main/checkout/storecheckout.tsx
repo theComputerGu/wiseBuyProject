@@ -448,7 +448,7 @@ export default function StoreCheckoutScreen() {
 }
 
 const styles = StyleSheet.create({
-  wrapper: { flex: 1 },
+  wrapper: { flex: 1, backgroundColor: "#fff" },
   container: { flex: 1, paddingHorizontal: 20 },
   centerPage: { flex: 1, alignItems: "center", justifyContent: "center" },
   topBar: { flexDirection: "row", alignItems: "center", marginVertical: 12 },
@@ -456,7 +456,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: "#eff6ff",
+    backgroundColor: "#ffffffff",
     alignItems: "center",
     justifyContent: "center",
     marginRight: 12,
