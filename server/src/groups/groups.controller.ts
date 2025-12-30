@@ -94,8 +94,9 @@ export class GroupsController {
     @Body('storeadress') storeadress: string,
     @Body('totalprice') totalprice: number,
     @Body('itemcount') itemcount: number,
+     @Body('items') items: { itemcode: string; quantity: number }[],
   ) {
-    return this.groupsService.addToHistory(name, groupId,storename,storeadress,totalprice,itemcount);
+    return this.groupsService.addToHistory(name, groupId,storename,storeadress,totalprice,itemcount,items);
   }
 
   @Post(':id/restore-purchase')
