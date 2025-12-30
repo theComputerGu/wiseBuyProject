@@ -1,37 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ScoredStore, StoresEntry } from "../../types/Store";
-/* =========================
-   TYPES
-========================= */
+export type StoresState = {stores: Record<string, StoresEntry>;scoredStores: ScoredStore[]; signature: string | null;};
 
 
-export type StoresState = {
-  stores: Record<string, StoresEntry>;
-  scoredStores: ScoredStore[]; // ➕ NEW
-  signature: string | null;
-};
 
-/* =========================
-   INITIAL STATE
-========================= */
+const initialState: StoresState = {stores: {},scoredStores: [],signature: null,};
 
-const initialState: StoresState = {
-  stores: {},
-  scoredStores: [], // ➕ NEW
-  signature: null,
-};
 
-/* =========================
-   SLICE
-========================= */
+const storesSlice = createSlice({name: "stores",initialState,reducers: {
 
-const storesSlice = createSlice({
-  name: "stores",
-  initialState,
-  reducers: {
     clearStores(state) {
       state.stores = {};
-      state.scoredStores = []; // ➕ NEW
+      state.scoredStores = []; 
       state.signature = null;
     },
 
@@ -55,7 +35,7 @@ const storesSlice = createSlice({
 export const {
   clearStores,
   appendStores,
-  setScoredStores, // ➕ NEW
+  setScoredStores,
   setSignature,
 } = storesSlice.actions;
 

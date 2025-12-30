@@ -18,7 +18,7 @@ import {setRadius,setUserLocation,} from "../../../redux/slices/checkoutSlice";
 import { useResolveStoresMutation } from "../../../redux/svc/storesApi";
 import { ShoppingListItem } from "../../../redux/slices/shoppinglistSlice";
 import { ScoredStore } from "../../../types/Store";
-
+import { clearStores } from "../../../redux/slices/storesSlice";
 
 
 function distanceKm(lat1: number,lon1: number,lat2: number,lon2: number) {
@@ -96,7 +96,15 @@ export default function CheckoutScreen() {
   const [isFetchingStores, setIsFetchingStores] = useState(false);
 
 
+  useEffect(() => {
+  if (!shoppingItems.length) {
+    dispatch(clearStores());
+  }
+  }, [shoppingItems.length]);
 
+
+
+  
 
   useEffect(() => {
     (async () => {
@@ -266,7 +274,7 @@ return (
         <Slider
           value={radius}
           minimumValue={0.2}
-          maximumValue={3}
+          maximumValue={6}
           step={0.2}
           style={styles.slider}
           minimumTrackTintColor={BRAND}

@@ -4,23 +4,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useDispatch, useSelector } from "react-redux";
-
 import ItimText from "../../../components/Itimtext";
 import BottomNav from "../../../components/Bottomnavigation";
 import CheckoutCard from "../../../components/CheckoutCard";
 import Title from "../../../components/Title";
-
 const BRAND = "#197FF4";
-
 import { RootState } from "../../../redux/state/store";
 import { setActiveGroup } from "../../../redux/slices/groupSlice";
 import { setActiveList } from "../../../redux/slices/shoppinglistSlice";
 import { useAddToHistoryMutation } from "../../../redux/svc/groupsApi";
 import { API_URL } from "@env";
-
-/* ======================================================
-   TYPES
-====================================================== */
+import { clearStores } from "../../../redux/slices/storesSlice";
 
 type Product = {
   itemcode: string;
@@ -32,9 +26,7 @@ type Product = {
   };
 };
 
-/* ======================================================
-   COMPONENT
-====================================================== */
+
 
 export default function StoreCheckoutScreen() {
   const router = useRouter();
@@ -53,9 +45,7 @@ export default function StoreCheckoutScreen() {
 
   const [addToHistory] = useAddToHistoryMutation();
 
-  /* =========================
-     BUILD PRODUCTS FROM REDUX
-  ========================= */
+
 
   const products: Product[] = useMemo(() => {
     if (!chain || !address) return [];
@@ -86,10 +76,7 @@ export default function StoreCheckoutScreen() {
     return result;
   }, [items, storesByItemcode, chain, address]);
 
-  /* =========================
-     👉 NEW: MISSING PRODUCTS
-     (בלי שינוי לוגיקה קיימת)
-  ========================= */
+
 
   const missingProducts = useMemo(() => {
     return items.filter(
@@ -100,9 +87,7 @@ export default function StoreCheckoutScreen() {
     );
   }, [items, products]);
 
-  /* =========================
-     TOTAL PRICE
-  ========================= */
+
 
   const totalPrice = useMemo(() => {
     return products
@@ -110,9 +95,6 @@ export default function StoreCheckoutScreen() {
       .toFixed(2);
   }, [products]);
 
-  /* =========================
-     IMAGE URL FIX
-  ========================= */
 
   const fixImageURL = (url?: string) => {
     if (!url) return "";
@@ -126,9 +108,7 @@ export default function StoreCheckoutScreen() {
     }
   };
 
-  /* =========================
-     CHECKOUT ACTION
-  ========================= */
+
 
   const handleCheckout = async () => {
     if (!activeGroup) return;
@@ -145,6 +125,7 @@ export default function StoreCheckoutScreen() {
 
       dispatch(setActiveGroup(res.updatedGroup));
       dispatch(setActiveList(res.newList));
+      dispatch(clearStores());
 
       router.replace("/main/history/history");
     } catch (err) {
@@ -152,9 +133,7 @@ export default function StoreCheckoutScreen() {
     }
   };
 
-  /* =========================
-     STORE NOT FOUND
-  ========================= */
+
 
   if (!chain || !address) {
     return (
@@ -169,9 +148,7 @@ export default function StoreCheckoutScreen() {
     );
   }
 
-  /* =========================
-     UI
-  ========================= */
+
 
   return (
     <SafeAreaView style={styles.wrapper}>
@@ -239,9 +216,7 @@ export default function StoreCheckoutScreen() {
   );
 }
 
-/* ======================================================
-   STYLES
-====================================================== */
+
 
 const styles = StyleSheet.create({
   wrapper: {

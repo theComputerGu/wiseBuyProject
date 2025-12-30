@@ -6,7 +6,7 @@ interface CheckoutState {
 }
 
 const initialState: CheckoutState = {
-  radius: 3,
+  radius: 6,
   userLocation: null,
 };
 
