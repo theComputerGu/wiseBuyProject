@@ -320,6 +320,13 @@ export class StoresResolverService {
     const normalized = `${street}, ${city}`;
     console.log("🌍 reverseGeocode RESULT:", normalized);
 
+    // Hardcode override: if nominatim returns "אורנים, רמת גן", replace with "אורנים, גבעת שמואל"
+    if (normalized === "אורנים, רמת גן") {
+      const overridden = "אורנים, גבעת שמואל";
+      console.log("🔧 HARDCODE OVERRIDE:", normalized, "=>", overridden);
+      return overridden;
+    }
+
     return normalized;
   }
 
