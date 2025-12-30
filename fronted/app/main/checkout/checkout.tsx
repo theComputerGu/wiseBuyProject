@@ -274,7 +274,7 @@ return (
         <Slider
           value={radius}
           minimumValue={0.2}
-          maximumValue={3}
+          maximumValue={4}
           step={0.2}
           style={styles.slider}
           minimumTrackTintColor={BRAND}

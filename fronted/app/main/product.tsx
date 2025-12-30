@@ -1,62 +1,43 @@
 import React, { useEffect, useMemo } from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  ActivityIndicator,
-} from "react-native";
+import {View,StyleSheet,ScrollView,ActivityIndicator,} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector, useDispatch } from "react-redux";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
 import TopNav from "../../components/Topnav";
 import BottomNav from "../../components/Bottomnavigation";
 import BottomSummary from "../../components/BottomSummary";
 import ProductCard from "../../components/productcard";
 import GroupSelector from "../../components/GroupSelector";
 import ItimText from "../../components/Itimtext";
-
 import { RootState } from "../../redux/state/store";
-import {
-  useLazyGetRecommendationsQuery,
-} from "../../redux/svc/recommendationsApi";
+import {useLazyGetRecommendationsQuery,} from "../../redux/svc/recommendationsApi";
 import { setRecommendations } from "../../redux/slices/recommendedSlice";
 import { API_URL } from "@env";
-
-import {
-  useAddItemMutation,
-  useRemoveItemMutation,
-} from "../../redux/svc/shoppinglistApi";
-
-import {
-  updateItem,
-  removeItem,
-  addItem,
-} from "../../redux/slices/shoppinglistSlice";
+import {useAddItemMutation,useRemoveItemMutation,} from "../../redux/svc/shoppinglistApi";
+import {updateItem,removeItem,addItem,} from "../../redux/slices/shoppinglistSlice";
 import RecoCard from "../../components/RecoCard";
 import { useLazyGetProductByIdQuery } from "../../redux/svc/productApi";
 
 const BRAND = "#197FF4";
 
+
+
+
+
 export default function ProductScreen() {
+
+
   const dispatch = useDispatch();
 
-  /* =========================
-     REDUX STATE
-  ========================= */
   const shoppingList = useSelector((s: RootState) => s.shoppingList);
   const user = useSelector((s: RootState) => s.user);
-  const recommended = useSelector(
-    (s: RootState) => s.recommended.items
-  );
+  const recommended = useSelector((s: RootState) => s.recommended.items);
 
   const items = shoppingList.activeList?.items ?? [];
   const userId = user.current?._id;
   const [fetchProductById] = useLazyGetProductByIdQuery();
 
-  /* =========================
-     STABLE LIST SIGNATURE
-  ========================= */
+
   const listSignature = useMemo(() => {
     return (
       shoppingList.activeList?.items
@@ -66,39 +47,37 @@ export default function ProductScreen() {
     );
   }, [shoppingList.activeList?.items]);
 
-  /* =========================
-     API (MANUAL)
-  ========================= */
-  const [
-    triggerRecommendations,
-    {
-      data: recommendationsData,
-      isFetching: recommendationsLoading,
-    },
-  ] = useLazyGetRecommendationsQuery();
+
+  const [triggerRecommendations,{data: recommendationsData,isFetching: recommendationsLoading,},] = useLazyGetRecommendationsQuery();
 
   const [addItemToBackend] = useAddItemMutation();
   const [removeItemFromBackend] = useRemoveItemMutation();
 
-  /* =========================
-     EFFECT A: TRIGGER FETCH
-  ========================= */
+
+
+
+
+
   useEffect(() => {
     if (!userId) return;
     triggerRecommendations(userId);
   }, [userId, listSignature, triggerRecommendations]);
 
-  /* =========================
-     EFFECT B: STORE RESULT
-  ========================= */
+
+
+
+
   useEffect(() => {
     if (!recommendationsData) return;
     dispatch(setRecommendations(recommendationsData));
   }, [recommendationsData, dispatch]);
 
-  /* =========================
-     HANDLERS
-  ========================= */
+
+
+
+
+
+
   const handleIncrease = async (productId: string) => {
     const listId = shoppingList.activeList?._id;
     if (!listId) return;
@@ -129,6 +108,11 @@ export default function ProductScreen() {
       console.error("Add failed:", err);
     }
   };
+
+
+
+
+
 
   const handleDecrease = async (productId: string) => {
     const listId = shoppingList.activeList?._id;
@@ -163,9 +147,11 @@ export default function ProductScreen() {
     }
   };
 
-  /* =========================
-     IMAGE FIX
-  ========================= */
+
+
+
+
+
   const fixImageURL = (url: any) => {
     if (!url) return "";
     try {
@@ -178,9 +164,12 @@ export default function ProductScreen() {
     }
   };
 
-  /* =========================
-     TOTALS
-  ========================= */
+
+
+
+
+
+
   const totalPrice = items.reduce((sum, item: any) => {
     const price = parseFloat(
       item._id.pricerange?.replace(/[^\d.]/g, "") || "0"
@@ -193,9 +182,12 @@ export default function ProductScreen() {
     0
   );
 
-  /* =========================
-     UI
-  ========================= */
+
+
+
+
+
+
   return (
     <SafeAreaView style={styles.container}>
       <TopNav />

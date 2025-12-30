@@ -3,33 +3,14 @@ import { InjectModel } from "@nestjs/mongoose";
 import { Model, Types } from "mongoose";
 import { exec } from "child_process";
 import * as path from "path";
+import {ShoppingList,ShoppingListDocument,} from "../shoppinglist/schemas/shopping-list.schema";
+import {Product,ProductDocument,} from "../products/schemas/product.schema";
+import {Group,GroupDocument,} from "../groups/schemas/groups.schema";
+import {User,UserDocument,} from "../users/schemas/users.schema";
+import {Recommendation,RecommendationEngineInput,RecommendationEngineOutput,PythonRecommendation,} from "./types/recommendation.types";
 
-import {
-    ShoppingList,
-    ShoppingListDocument,
-} from "../shoppinglist/schemas/shopping-list.schema";
 
-import {
-    Product,
-    ProductDocument,
-} from "../products/schemas/product.schema";
 
-import {
-    Group,
-    GroupDocument,
-} from "../groups/schemas/groups.schema";
-
-import {
-    User,
-    UserDocument,
-} from "../users/schemas/users.schema";
-
-import {
-    Recommendation,
-    RecommendationEngineInput,
-    RecommendationEngineOutput,
-    PythonRecommendation,
-} from "./types/recommendation.types";
 
 @Injectable()
 export class RecommendationsService {
@@ -60,56 +41,92 @@ export class RecommendationsService {
         private productModel: Model<ProductDocument>
     ) { }
 
-    /**
-     * Call Python ML engine with data via stdin
-     */
+   
+
+
+    //getting a lot of things:a lot of data from the DB - like all the shopping lists things like that
     private callPythonEngine(input: RecommendationEngineInput): Promise<RecommendationEngineOutput> {
         return new Promise((resolve, reject) => {
-            const childProcess = exec(
-                `"${this.PYTHON}" "${this.SCRIPT}"`,
-                { maxBuffer: 10 * 1024 * 1024 },
-                (err, stdout, stderr) => {
-                    if (err) {
-                        console.error("Python engine error:", stderr);
-                        return reject(new Error(stderr || err.message));
-                    }
+        const childProcess = exec(`"${this.PYTHON}" "${this.SCRIPT}"`,{ maxBuffer: 10 * 1024 * 1024 },(err, stdout, stderr) => {
 
-                    try {
-                        const result = JSON.parse(stdout);
-                        resolve(result);
-                    } catch (parseErr) {
-                        reject(new Error(`Failed to parse Python output: ${stdout}`));
-                    }
-                }
+            if (stderr) {
+            console.warn("🐍 Python STDERR:", stderr);
+            }
+
+            if (err) {
+            console.error("❌ Python process failed:", err.message);
+            return reject(new Error(stderr || err.message));
+            }
+
+
+            try {
+            const result = JSON.parse(stdout);
+
+            console.log("✅ Parsed Python Result:", result);
+
+            resolve(result);
+            } catch (parseErr) {
+                console.error("❌ Failed to parse Python output");
+                return reject(new Error(`Invalid JSON from Python:\n${stdout}`)
             );
+            }
+        }
+    );
 
-            // Send input data via stdin
-            childProcess.stdin?.write(JSON.stringify(input));
-            childProcess.stdin?.end();
-        });
-    }
+    console.log("📥 Input sent to Python:", input);
 
-    /**
-     * Get all shopping lists for co-occurrence analysis
-     */
+    childProcess.stdin?.write(JSON.stringify(input));
+    childProcess.stdin?.end();
+  });
+}
+
+
+
+
+    //getting all the shopping lists in the DB and return just: which products appears together in the shopping lists
     private async getAllShoppingLists(): Promise<Array<{ items: Array<{ productId: string }> }>> {
+  
         const lists = await this.shoppingListModel.find().lean();
 
-        return lists.map(list => ({
+
+        console.log("🛒 getAllShoppingLists | total lists:", lists.length);
+
+
+        if (lists.length > 0) {
+            console.log("🛒 Raw shopping list example:", {
+            _id: lists[0]._id,
+            items: lists[0].items,
+            });
+        }
+
+        const result = lists.map(list => ({
             items: (list.items || []).map(item => ({
-                productId: item._id.toString()
-            }))
+            productId: item._id.toString(),
+            })),
         }));
+
+
+        if (result.length > 0) {
+            console.log("🛒 Processed shopping list example:", result[0]);
+        }
+
+
+        console.log("🛒 getAllShoppingLists | result:", result);
+
+        return result;
+
     }
 
-    /**
-     * Get user's purchase history from group history (includes category for restock)
-     */
+
+
+
+
+    //getting all the products that the user buy in all the groups - not just his - all the group
     private async getUserHistory(groupIds: Types.ObjectId[]): Promise<Array<{ productId: string; purchasedAt: string; category?: string }>> {
         const groups = await this.groupModel.find({ _id: { $in: groupIds } }).lean();
         const history: Array<{ productId: string; purchasedAt: string; category?: string }> = [];
 
-        // Collect all product IDs first
+
         const allProductIds: Types.ObjectId[] = [];
         const purchaseData: Array<{ productId: Types.ObjectId; purchasedAt: Date }> = [];
 
@@ -130,13 +147,13 @@ export class RecommendationsService {
             }
         }
 
-        // Fetch all products to get categories
+ 
         const products = await this.productModel.find({ _id: { $in: allProductIds } }).lean();
         const categoryMap = new Map(
             products.map(p => [(p._id as Types.ObjectId).toString(), p.category])
         );
 
-        // Build history with categories
+
         for (const purchase of purchaseData) {
             history.push({
                 productId: purchase.productId.toString(),
@@ -148,9 +165,11 @@ export class RecommendationsService {
         return history;
     }
 
-    /**
-     * Get all purchases across all groups for popularity calculation
-     */
+
+
+
+
+    //get all the purcahses from all the DB - all the histories
     private async getAllPurchases(): Promise<Array<{ productId: string; purchasedAt: string }>> {
         const groups = await this.groupModel.find().lean();
         const purchases: Array<{ productId: string; purchasedAt: string }> = [];
@@ -174,17 +193,24 @@ export class RecommendationsService {
         return purchases;
     }
 
-    /**
-     * Get all product IDs for ML prediction candidates
-     */
+
+
+
+
+
+    //get all the id of all the product in order to know to show the products that will be recommended:
     private async getAllProductIds(): Promise<string[]> {
         const products = await this.productModel.find().select('_id').lean();
         return products.map(p => (p._id as Types.ObjectId).toString());
     }
 
-    /**
-     * Get all products with category info for bought_together logic
-     */
+
+
+
+
+
+
+    // for each product relate it to his category:
     private async getProductsData(): Promise<Array<{ productId: string; category: string }>> {
         const products = await this.productModel.find().select('_id category').lean();
         return products.map(p => ({
@@ -193,9 +219,14 @@ export class RecommendationsService {
         }));
     }
 
-    /**
-     * Enrich Python recommendations with product details
-     */
+    
+
+
+
+
+
+
+    //changing th eproducts that python gave to products that can be shown
     private async enrichRecommendations(pythonRecs: PythonRecommendation[]): Promise<Recommendation[]> {
         const productIds = pythonRecs.map(r => new Types.ObjectId(r.productId));
         const products = await this.productModel.find({ _id: { $in: productIds } }).lean();
@@ -226,19 +257,23 @@ export class RecommendationsService {
         return recommendations;
     }
 
-    /**
-     * Main method: Get ML-powered recommendations for a user
-     */
+  
+    
+
+
+
+
+    //funcion that run all the other functions:
     async getByUserId(userId: string): Promise<Recommendation[]> {
         const userObjectId = new Types.ObjectId(userId);
 
-        // 1. Load user
+ 
         const user = await this.userModel.findById(userObjectId).lean();
         if (!user) {
             return [];
         }
 
-        // 2. Load current cart items
+
         let cartProductIds: string[] = [];
 
         if (user.activeGroup) {
@@ -253,7 +288,7 @@ export class RecommendationsService {
             }
         }
 
-        // 3. Gather data for ML engine
+
         const [allShoppingLists, userHistory, allPurchases, allProducts, productsData] = await Promise.all([
             this.getAllShoppingLists(),
             this.getUserHistory(user.groups || []),
@@ -262,12 +297,12 @@ export class RecommendationsService {
             this.getProductsData()
         ]);
 
-        // 4. If no data, return empty
+ 
         if (!allShoppingLists.length && !userHistory.length && !allPurchases.length) {
             return [];
         }
 
-        // 5. Call Python ML engine
+   
         const input: RecommendationEngineInput = {
             cartProductIds,
             allShoppingLists,
@@ -286,7 +321,7 @@ export class RecommendationsService {
                 return [];
             }
 
-            // 6. Enrich with product details
+       
             return this.enrichRecommendations(result.recommendations);
         } catch (error) {
             console.error("Failed to get recommendations:", error);
