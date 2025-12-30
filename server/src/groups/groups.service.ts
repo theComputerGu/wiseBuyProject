@@ -112,52 +112,83 @@ export class GroupsService {
     const group = await this.groupModel.findById(groupId);
     if (!group) throw new NotFoundException('Group not found');
 
-    group.activeshoppinglist = listId;  // either a listId or null
+    group.activeshoppinglist = listId; 
     await group.save();
 
     return group;
   }
 
-  async addToHistory(name: string, groupId: string ,storename: string,storeadress : string,totalprice: number, itemcount: number  ) {
-    const group = await this.groupModel.findById(groupId);
-    if (!group) throw new NotFoundException("Group not found");
-
-    if (!group.activeshoppinglist) {
-      throw new Error("No active shopping list");
-    }
-
-    // מביאים את הרשימה עם הפריטים
-    const list = await this.shoppingListService.findById(
-      group.activeshoppinglist.toString()
-    );
-
-    // מוסיפים היסטוריה
-    group.history.push({
-      name:name,
-      shoppingListId: list._id,
-      purchasedAt: new Date(),
-      storename: storename,
-      storeadress: storeadress,
-      totalprice: totalprice ,
-      itemcount: itemcount,
-    });
-
-    // יוצרים רשימה חדשה ריקה
-    const newList = await this.shoppingListService.create();
-
-    // מעדכנים לקבוצה רשימה פעילה חדשה
-    group.activeshoppinglist = newList._id;
-
-    await group.save();
-
-    return {
-      updatedGroup: group,
-      newList,
-    };
+  // groups.service.ts
+  async addToHistory(
+  name: string,
+  groupId: string,
+  storename: string,
+  storeadress: string,
+  totalprice: number,
+  itemcount: number,
+  items: { itemcode: string; quantity: number }[],
+) {
+  const group = await this.groupModel.findById(groupId);
+  if (!group || !group.activeshoppinglist) {
+    throw new NotFoundException("Group or active list not found");
   }
 
+  // ✅ הרשימה הפעילה (כבר עם populate בפנים)
+  const list = await this.shoppingListService.findById(
+    group.activeshoppinglist.toString()
+  );
 
-  //get active shopping list
+  // ✅ יוצרים רשימת קנייה חדשה שתכנס להיסטוריה
+  const purchasedList = await this.shoppingListService.create();
+
+  // ✅ מעתיקים רק פריטים שנקנו בפועל
+  for (const i of items) {
+    const original = list.items.find(
+      (x: any) => x._id.itemcode === i.itemcode
+    );
+
+    if (!original) continue;
+
+    purchasedList.items.push({
+      _id: original._id,
+      quantity: i.quantity,
+    });
+  }
+
+  purchasedList.total = purchasedList.items.reduce(
+    (s, i) => s + i.quantity,
+    0,
+  );
+
+  await purchasedList.save();
+
+  // ✅ היסטוריה
+  group.history.push({
+    name,
+    shoppingListId: purchasedList._id,
+    purchasedAt: new Date(),
+    storename,
+    storeadress,
+    totalprice,
+    itemcount,
+  });
+
+  // ✅ רשימה חדשה ריקה
+  const newList = await this.shoppingListService.create();
+  group.activeshoppinglist = newList._id;
+
+  await group.save();
+
+  return {
+    updatedGroup: group,
+    newList,
+  };
+}
+
+
+
+
+
   async getActiveShoppingList(groupId: string) {
     const group = await this.groupModel.findById(groupId).populate('activeshoppinglist');
 
@@ -166,7 +197,7 @@ export class GroupsService {
     return group.activeshoppinglist;
   }
 
-  //get Group Admin
+
   async getAdmin(groupId: string) {
     const group = await this.groupModel.findById(groupId).populate('admin');
 
@@ -175,7 +206,7 @@ export class GroupsService {
     return group.admin;
   }
 
-  //get group histroy
+
   async getHistory(groupId: string) {
     const group = await this.groupModel.findById(groupId).populate('history');
 
@@ -201,7 +232,7 @@ export class GroupsService {
 
     if (!oldList) throw new NotFoundException("Purchase list not found");
 
-    // ✅ מוסיף את הפריטים מהיסטוריה לרשימה הנוכחית
+
     for (const oldItem of oldList.items) {
       const existingItem = activeList.items.find(
         (item) =>
@@ -229,13 +260,13 @@ export class GroupsService {
   }
 
   async gethistorybyid(groupId: string, historyId: string) {
-    // 1. Fetch group
+ 
     const group = await this.groupModel.findById(groupId);
     if (!group) {
       throw new NotFoundException("Group not found");
     }
 
-    // 2. Locate the history entry
+
     try {
       const history = group.history.find(
         (h) => h.shoppingListId?.toString() === historyId

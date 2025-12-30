@@ -1,59 +1,28 @@
 import React, { useMemo, useEffect, useState } from "react";
 import { useIsFocused } from "@react-navigation/native";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  Pressable,
-  ActivityIndicator,
-  Modal,
-  Alert,
-  Text,
-} from "react-native";
+import {View,StyleSheet,ScrollView,Pressable,ActivityIndicator,Modal,Alert,Text,} from "react-native";
 import MapView, { Circle, Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Slider from "@react-native-community/slider";
 import { useRouter } from "expo-router";
 import * as Location from "expo-location";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
 import TopNav from "../../../components/Topnav";
 import BottomNav from "../../../components/Bottomnavigation";
 import Title from "../../../components/Title";
 import ItimText from "../../../components/Itimtext";
-
 const BRAND = "#197FF4";
-
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../../redux/state/hooks";
-
-import {
-  appendStores,
-  setSignature,
-  setScoredStores,
-} from "../../../redux/slices/storesSlice";
-
-import {
-  setRadius,
-  setUserLocation,
-} from "../../../redux/slices/checkoutSlice";
-
+import {useAppSelector,useAppDispatch,} from "../../../redux/state/hooks";
+import {appendStores,setSignature,setScoredStores,} from "../../../redux/slices/storesSlice";
+import {setRadius,setUserLocation,} from "../../../redux/slices/checkoutSlice";
 import { useResolveStoresMutation } from "../../../redux/svc/storesApi";
 import { ShoppingListItem } from "../../../redux/slices/shoppinglistSlice";
 import { ScoredStore } from "../../../types/Store";
+import { clearStores } from "../../../redux/slices/storesSlice";
 
-/* ======================================================
-   HELPERS
-====================================================== */
 
-function distanceKm(
-  lat1: number,
-  lon1: number,
-  lat2: number,
-  lon2: number
-) {
+function distanceKm(lat1: number,lon1: number,lat2: number,lon2: number) {
+
   const R = 6371;
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
   const dLon = ((lon2 - lon1) * Math.PI) / 180;
@@ -67,89 +36,75 @@ function distanceKm(
   return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 }
 
+
+
+
 function buildAddressKey(lat: number, lon: number) {
   return `${lat.toFixed(4)},${lon.toFixed(4)}`;
 }
 
-/* ===== NEW: QUALITY META ===== */
+
 
 function qualityMeta(v: number) {
   if (v >= 75) {
-    return { label: "GOOD", color: "#2ecc71" }; // ירוק
+    return { label: "GOOD", color: "#2ecc71" };
   }
   if (v >= 45) {
-    return { label: "OK", color: "#f1c40f" }; // צהוב
+    return { label: "OK", color: "#f1c40f" };
   }
-  return { label: "WEAK", color: "#e74c3c" }; // אדום
+  return { label: "WEAK", color: "#e74c3c" };
 }
 
-/* ===== NEW: CARD STYLING BY SCORE ===== */
+
 
 function getCardStyle(score: number) {
   if (score >= 80) {
     return {
       bg: "#ffffff",
       border: "#e2e8f0",
-      accent: "#10b981", // green accent for top stores
+      accent: "#10b981",
     };
   }
   if (score >= 60) {
     return {
       bg: "#ffffff",
       border: "#e5e7eb",
-      accent: "#f1c40f", // indigo accent for good stores
+      accent: "#f1c40f",
     };
   }
   return {
     bg: "#ffffff",
     border: "#d4d4d8",
-    accent: "#e74c3c", // gray accent for lower stores
+    accent: "#e74c3c",
   };
 }
 
-/* ======================================================
-   COMPONENT
-====================================================== */
 
 export default function CheckoutScreen() {
+
+
   const router = useRouter();
   const dispatch = useAppDispatch();
   const isFocused = useIsFocused();
-
-  /* =========================
-     REDUX STATE
-  ========================= */
-
-  const shoppingItems = useAppSelector(
-    (s) => s.shoppingList.activeList?.items ?? []
-  );
-
-  const scoredStores = useAppSelector(
-    (s) => s.stores.scoredStores
-  );
-
-  const storedSignature = useAppSelector(
-    (s) => s.stores.signature
-  );
-
-  const radius = useAppSelector(
-    (s) => s.checkout.radius
-  );
-
-  const location = useAppSelector(
-    (s) => s.checkout.userLocation
-  );
-
-  /* =========================
-     API
-  ========================= */
-
+  const shoppingItems = useAppSelector((s) => s.shoppingList.activeList?.items ?? []);
+  const scoredStores = useAppSelector((s) => s.stores.scoredStores);
+  const storedSignature = useAppSelector((s) => s.stores.signature);
+  const radius = useAppSelector((s) => s.checkout.radius);
+  const location = useAppSelector((s) => s.checkout.userLocation);
   const [resolveStores] = useResolveStoresMutation();
-  const [isLoadingStores, setIsLoadingStores] = useState(false);
 
-  /* =========================
-     EFFECT: GET USER LOCATION
-  ========================= */
+  const [isFetchingStores, setIsFetchingStores] = useState(false);
+
+
+  useEffect(() => {
+  if (!shoppingItems.length) {
+    dispatch(clearStores());
+  }
+  }, [shoppingItems.length]);
+
+
+
+  
 
   useEffect(() => {
     (async () => {
@@ -174,9 +129,9 @@ export default function CheckoutScreen() {
     })();
   }, [dispatch]);
 
-  /* =========================
-     LIST SIGNATURE
-  ========================= */
+
+
+
 
   const listSignature = useMemo(() => {
     const itemsSig = shoppingItems
@@ -193,9 +148,10 @@ export default function CheckoutScreen() {
     return `${itemsSig}@${locSig}`;
   }, [shoppingItems, location]);
 
-  /* =========================
-     ALL ITEMCODES
-  ========================= */
+
+
+
+
 
   const allItemcodes = useMemo(() => {
     return shoppingItems
@@ -203,66 +159,72 @@ export default function CheckoutScreen() {
       .filter((c): c is string => Boolean(c));
   }, [shoppingItems]);
 
-  /* =========================
-     EFFECT: RESOLVE STORES
-  ========================= */
 
-  useEffect(() => {
-    if (!isFocused) return;
-    if (!shoppingItems.length) return;
-    if (!location) return;
-    if (!allItemcodes.length) return;
-    if (storedSignature === listSignature) return;
 
-    const payload = {
-      addressKey: buildAddressKey(location.lat, location.lon),
-      itemcodes: allItemcodes,
-    };
 
-    setIsLoadingStores(true);
 
-    resolveStores(payload)
-      .unwrap()
-      .then((data) => {
-        for (const r of data.items) {
-          dispatch(
-            appendStores({
-              itemcode: r.itemcode,
-              stores: r.stores,
-            })
-          );
-        }
 
-        dispatch(setScoredStores(data.scoredStores));
-        dispatch(setSignature(listSignature));
-      })
-      .catch((error) => {
-        console.error("❌ Failed to resolve stores:", error);
-        
-        const errorMessage = error?.data?.message 
-          || error?.message 
-          || "Failed to load store prices. Please try again.";
-        
-        Alert.alert(
-          "Error Loading Stores",
-          errorMessage,
-          [{ text: "OK" }]
+ useEffect(() => {
+  if (!isFocused) return;
+  if (!shoppingItems.length) return;
+  if (!location) return;
+  if (!allItemcodes.length) return;
+  if (storedSignature === listSignature) return;
+
+  const payload = {
+    addressKey: buildAddressKey(location.lat, location.lon),
+    itemcodes: allItemcodes,
+  };
+
+  setIsFetchingStores(true);
+
+  resolveStores(payload)
+    .unwrap()
+    .then((data) => {
+      for (const r of data.items) {
+        dispatch(
+          appendStores({
+            itemcode: r.itemcode,
+            stores: r.stores,
+          })
         );
-      })
-      .finally(() => setIsLoadingStores(false));
-  }, [
-    isFocused,
-    location,
-    allItemcodes.join(","),
-    listSignature,
-    storedSignature,
-    resolveStores,
-    dispatch,
-  ]);
+      }
 
-  /* =========================
-     FILTER + SORT
-  ========================= */
+      dispatch(setScoredStores(data.scoredStores));
+      dispatch(setSignature(listSignature));
+    })
+    .catch((error) => {
+      console.error("❌ Failed to resolve stores:", error);
+
+      const errorMessage =
+        error?.data?.message ||
+        error?.message ||
+        "Failed to load store prices. Please try again.";
+
+      Alert.alert("Error Loading Stores", errorMessage, [
+        { text: "OK" },
+      ]);
+    })
+    .finally(() => {
+      setIsFetchingStores(false);
+    });
+}, [
+  isFocused,
+  location,
+  allItemcodes.join(","),
+  listSignature,
+  storedSignature,
+  resolveStores,
+  dispatch,
+]);
+
+
+
+
+
+
+
+
 
   const visibleStores = useMemo<ScoredStore[]>(() => {
     if (!location) return [];
@@ -280,210 +242,263 @@ export default function CheckoutScreen() {
       .sort((a, b) => b.score - a.score);
   }, [scoredStores, location, radius]);
 
-  /* =========================
-     RENDER
-  ========================= */
 
-  return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <TopNav />
-        <Title text="Checkout" color={BRAND} />
 
-        {/* Radius Control Card */}
-        <View style={styles.radiusCard}>
-          <View style={styles.radiusHeader}>
-            <View style={styles.radiusIcon}>
-              <MaterialCommunityIcons name="map-marker-radius" size={16} color={BRAND} />
-            </View>
-            <ItimText size={13} color="#71717a">Search Radius </ItimText>
-            <ItimText size={15} weight="bold" color={BRAND}>
-              {radius.toFixed(1)} km
-            </ItimText>
+
+
+
+
+return (
+  <SafeAreaView style={styles.safeArea}>
+    <View style={styles.container}>
+      <TopNav />
+      <Title text="Checkout" color={BRAND} />
+
+      {/* Radius Control Card */}
+      <View style={styles.radiusCard}>
+        <View style={styles.radiusHeader}>
+          <View style={styles.radiusIcon}>
+            <MaterialCommunityIcons
+              name="map-marker-radius"
+              size={16}
+              color={BRAND}
+            />
           </View>
-          <Slider
-            value={radius}
-            minimumValue={0.2}
-            maximumValue={3}
-            step={0.2}
-            style={styles.slider}
-            minimumTrackTintColor={BRAND}
-            maximumTrackTintColor="#e5e7eb"
-            thumbTintColor={BRAND}
-            onValueChange={(v) => dispatch(setRadius(v))}
-          />
-        </View>
-
-        {/* Map Section */}
-        <View style={styles.mapContainer}>
-          {location ? (
-            <MapView
-              provider={PROVIDER_GOOGLE}
-              style={styles.map}
-              region={{
-                latitude: location.lat,
-                longitude: location.lon,
-                latitudeDelta: 0.05,
-                longitudeDelta: 0.05,
-              }}
-              showsUserLocation
-            >
-              {visibleStores.map((s) => (
-                <Marker
-                  key={s.storeId}
-                  title={s.chain}
-                  description={`Score: ${s.score}/100`}
-                  coordinate={{
-                    latitude: s.lat,
-                    longitude: s.lon,
-                  }}
-                />
-              ))}
-
-              <Circle
-                center={{
-                  latitude: location.lat,
-                  longitude: location.lon,
-                }}
-                radius={radius * 1000}
-                strokeWidth={2}
-                strokeColor="rgba(25,127,244,0.8)"
-                fillColor="rgba(25,127,244,0.15)"
-              />
-            </MapView>
-          ) : (
-            <View style={styles.mapLoading}>
-              <ActivityIndicator size="large" color={BRAND} />
-              <ItimText size={14} color="#71717a" style={{ marginTop: 12 }}>
-                Getting your location...
-              </ItimText>
-            </View>
-          )}
-        </View>
-
-        {/* Stores Section Header */}
-        <View style={styles.sectionHeader}>
-          <MaterialCommunityIcons name="store" size={20} color={BRAND} />
-          <ItimText size={16} weight="600" color="#1a1a1a" style={{ marginLeft: 8 }}>
-            Nearby Stores
+          <ItimText size={13} color="#71717a">
+            Search Radius
           </ItimText>
-          <View style={styles.storeCount}>
-            <ItimText size={12} color={BRAND} weight="bold">
-              {visibleStores.length}
-            </ItimText>
-          </View>
+          <ItimText size={15} weight="bold" color={BRAND}>
+            {radius.toFixed(1)} km
+          </ItimText>
         </View>
-
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-          {visibleStores.length === 0 ? (
-            <View style={styles.emptyState}>
-              <MaterialCommunityIcons name="store-off" size={60} color="#d1d5db" />
-              <ItimText size={16} color="#71717a" style={{ marginTop: 12, textAlign: "center" }}>
-                No stores found in this area.
-              </ItimText>
-              <ItimText size={13} color="#9ca3af" style={{ marginTop: 4, textAlign: "center" }}>
-                Try increasing the search radius.
-              </ItimText>
-            </View>
-          ) : (
-            visibleStores.map((s) => {
-              const avail = qualityMeta(s.scoreBreakdown.availability);
-              const price = qualityMeta(s.scoreBreakdown.price);
-              const dist  = qualityMeta(s.scoreBreakdown.distance);
-              const cardStyle = getCardStyle(s.score);
-
-              return (
-                <Pressable
-                  key={s.storeId}
-                  style={[
-                    styles.storeCard,
-                    {
-                      backgroundColor: cardStyle.bg,
-                      borderColor: cardStyle.border,
-                      borderLeftWidth: 4,
-                      borderLeftColor: cardStyle.accent,
-                    },
-                  ]}
-                  onPress={() =>
-                    router.push({
-                      pathname: "/main/checkout/storecheckout",
-                      params: {
-                        chain: s.chain,
-                        address: s.address,
-                      },
-                    })
-                  }
-                >
-                  <View style={styles.cardHeader}>
-                    <View style={{ flex: 1 }}>
-                      <ItimText weight="bold" color="#18181b" style={{ fontSize: 17 }}>
-                        {s.chain}
-                      </ItimText>
-                      <ItimText color="#71717a" style={{ fontSize: 13 }}>
-                        {s.address}
-                      </ItimText>
-                    </View>
-                    <View style={styles.priceContainer}>
-                      <ItimText color="#18181b" weight="bold" style={{ fontSize: 20 }}>
-                        {s.totalPrice > 0 ? `₪${s.totalPrice.toFixed(2)}` : "—"}
-                      </ItimText>
-                      <View style={[styles.scoreBadge, { backgroundColor: cardStyle.accent }]}>
-                        <ItimText color="#fff" style={{ fontSize: 12 }}>
-                          {s.score}
-                        </ItimText>
-                      </View>
-                    </View>
-                  </View>
-
-                  <View style={styles.metricsRow}>
-                    <View style={styles.metricItem}>
-                      <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Availability</ItimText>
-                      <ItimText color={avail.color} weight="bold">{avail.label}</ItimText>
-                    </View>
-                    <View style={styles.metricItem}>
-                      <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Price</ItimText>
-                      <ItimText color={price.color} weight="bold">{price.label}</ItimText>
-                    </View>
-                    <View style={styles.metricItem}>
-                      <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>Distance</ItimText>
-                      <ItimText color={dist.color} weight="bold">{dist.label}</ItimText>
-                    </View>
-                  </View>
-                </Pressable>
-              );
-            })
-          )}
-        </ScrollView>
-
-        {!isLoadingStores && <BottomNav />}
+        <Slider
+          value={radius}
+          minimumValue={0.2}
+          maximumValue={6}
+          step={0.2}
+          style={styles.slider}
+          minimumTrackTintColor={BRAND}
+          maximumTrackTintColor="#e5e7eb"
+          thumbTintColor={BRAND}
+          onValueChange={(v) => dispatch(setRadius(v))}
+        />
       </View>
 
-      {/* Loading Overlay */}
-      <Modal
-        visible={isLoadingStores}
-        transparent
-        animationType="fade"
-        statusBarTranslucent
-      >
-        <View style={styles.loadingOverlay}>
-          <View style={styles.loadingCard}>
+      {/* Map Section */}
+      <View style={styles.mapContainer}>
+        {location ? (
+          <MapView
+            provider={PROVIDER_GOOGLE}
+            style={styles.map}
+            region={{
+              latitude: location.lat,
+              longitude: location.lon,
+              latitudeDelta: 0.05,
+              longitudeDelta: 0.05,
+            }}
+            showsUserLocation
+          >
+            {visibleStores.map((s) => (
+              <Marker
+                key={s.storeId}
+                title={s.chain}
+                description={`Score: ${s.score}/100`}
+                coordinate={{
+                  latitude: s.lat,
+                  longitude: s.lon,
+                }}
+              />
+            ))}
+
+            <Circle
+              center={{
+                latitude: location.lat,
+                longitude: location.lon,
+              }}
+              radius={radius * 1000}
+              strokeWidth={2}
+              strokeColor="rgba(25,127,244,0.8)"
+              fillColor="rgba(25,127,244,0.15)"
+            />
+          </MapView>
+        ) : (
+          <View style={styles.mapLoading}>
             <ActivityIndicator size="large" color={BRAND} />
-            <ItimText size={16} color="#1a1a1a" weight="600" style={{ marginTop: 16 }}>
-              Finding best stores...
-            </ItimText>
-            <ItimText size={13} color="#71717a" style={{ marginTop: 4, textAlign: "center" }}>
-              Comparing prices and availability
+            <ItimText size={14} color="#71717a" style={{ marginTop: 12 }}>
+              Getting your location...
             </ItimText>
           </View>
+        )}
+      </View>
+
+      {/* Stores Section Header */}
+      <View style={styles.sectionHeader}>
+        <MaterialCommunityIcons name="store" size={20} color={BRAND} />
+        <ItimText
+          size={16}
+          weight="600"
+          color="#1a1a1a"
+          style={{ marginLeft: 8 }}
+        >
+          Nearby Stores
+        </ItimText>
+        <View style={styles.storeCount}>
+          <ItimText size={12} color={BRAND} weight="bold">
+            {visibleStores.length}
+          </ItimText>
         </View>
-      </Modal>
-    </SafeAreaView>
-  );
+      </View>
+
+      {/* Inline Fetching Indicator */}
+      {isFetchingStores && (
+        <View style={{ paddingVertical: 12, alignItems: "center" }}>
+          <ActivityIndicator color={BRAND} />
+          <ItimText size={12} color="#71717a" style={{ marginTop: 6 }}>
+            Updating store prices…
+          </ItimText>
+        </View>
+      )}
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {visibleStores.length === 0 ? (
+          <View style={styles.emptyState}>
+            <MaterialCommunityIcons
+              name="store-off"
+              size={60}
+              color="#d1d5db"
+            />
+            <ItimText
+              size={16}
+              color="#71717a"
+              style={{ marginTop: 12, textAlign: "center" }}
+            >
+              No stores found in this area.
+            </ItimText>
+            <ItimText
+              size={13}
+              color="#9ca3af"
+              style={{ marginTop: 4, textAlign: "center" }}
+            >
+              Try increasing the search radius.
+            </ItimText>
+          </View>
+        ) : (
+          visibleStores.map((s) => {
+            const avail = qualityMeta(s.scoreBreakdown.availability);
+            const price = qualityMeta(s.scoreBreakdown.price);
+            const dist = qualityMeta(s.scoreBreakdown.distance);
+            const cardStyle = getCardStyle(s.score);
+
+            return (
+              <Pressable
+                key={s.storeId}
+                style={[
+                  styles.storeCard,
+                  {
+                    backgroundColor: cardStyle.bg,
+                    borderColor: cardStyle.border,
+                    borderLeftWidth: 4,
+                    borderLeftColor: cardStyle.accent,
+                  },
+                ]}
+                onPress={() =>
+                  router.push({
+                    pathname: "/main/checkout/storecheckout",
+                    params: {
+                      chain: s.chain,
+                      address: s.address,
+                    },
+                  })
+                }
+              >
+                <View style={styles.cardHeader}>
+                  <View style={styles.storeTextContainer}>
+                    <ItimText
+                      weight="bold"
+                      color="#18181b"
+                      style={{ fontSize: 17, textAlign: "right" }}
+                    >
+                      {s.chain}
+                    </ItimText>
+                    <ItimText
+                      color="#71717a"
+                      style={{ fontSize: 13, textAlign: "right" }}
+                    >
+                      {s.address}
+                    </ItimText>
+                  </View>
+
+                  <View style={styles.priceContainer}>
+                    <ItimText
+                      color="#18181b"
+                      weight="bold"
+                      style={{ fontSize: 20 }}
+                    >
+                      {s.totalPrice > 0
+                        ? `₪${s.totalPrice.toFixed(2)}`
+                        : "—"}
+                    </ItimText>
+                    <View
+                      style={[
+                        styles.scoreBadge,
+                        { backgroundColor: cardStyle.accent },
+                      ]}
+                    >
+                      <ItimText color="#fff" style={{ fontSize: 12 }}>
+                        {s.score}
+                      </ItimText>
+                    </View>
+                  </View>
+                </View>
+
+                <View style={styles.metricsRow}>
+                  <View style={styles.metricItem}>
+                    <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>
+                      Availability
+                    </ItimText>
+                    <ItimText color={avail.color} weight="bold">
+                      {avail.label}
+                    </ItimText>
+                  </View>
+                  <View style={styles.metricItem}>
+                    <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>
+                      Price
+                    </ItimText>
+                    <ItimText color={price.color} weight="bold">
+                      {price.label}
+                    </ItimText>
+                  </View>
+                  <View style={styles.metricItem}>
+                    <ItimText color="#a1a1aa" style={{ fontSize: 11 }}>
+                      Distance
+                    </ItimText>
+                    <ItimText color={dist.color} weight="bold">
+                      {dist.label}
+                    </ItimText>
+                  </View>
+                </View>
+              </Pressable>
+            );
+          })
+        )}
+      </ScrollView>
+
+      <BottomNav />
+    </View>
+  </SafeAreaView>
+);
 }
 
-/* ======================================================
-   STYLES
-====================================================== */
+
+ 
+
+
+
+
+
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -571,7 +586,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   cardHeader: {
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 4,
@@ -582,7 +597,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   priceContainer: {
-    alignItems: "flex-end",
+    alignItems: "flex-start",
     gap: 6,
   },
   metricsRow: {
@@ -602,6 +617,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  storeTextContainer: {
+  flex: 1,
+  alignItems: "flex-end",
+},
   loadingCard: {
     backgroundColor: "#fff",
     borderRadius: 20,
@@ -615,3 +634,5 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
 });
+
+

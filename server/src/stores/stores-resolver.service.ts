@@ -3,16 +3,20 @@
 // import { ScrapeService } from "../scrape/scrape.service";
 // import { StoreOffer } from "./schemas/stores.schema";
 
+
+// import { StoreScoringService } from "./scoring/store-scoring.service";
+// import { aggregateStoresByStore } from "./scoring/adapter";
+
 // @Injectable()
 // export class StoresResolverService {
 //   constructor(
 //     private readonly storesService: StoresService,
 //     private readonly scrapeService: ScrapeService,
+
+//     private readonly storeScoringService: StoreScoringService,
 //   ) {}
 
-//   /* ======================================================
-//      Reverse Geocoding: lat/lon -> "Street, City"
-//   ====================================================== */
+
 //   private async reverseGeocode(
 //     lat: number,
 //     lon: number,
@@ -27,7 +31,7 @@
 //     );
 
 //     if (!res.ok) {
-//       throw new Error(`Reverse geocoding failed`);
+//       throw new Error("Reverse geocoding failed");
 //     }
 
 //     const data = await res.json();
@@ -57,9 +61,7 @@
 //     return `${street}, ${city}`;
 //   }
 
-//   /* ======================================================
-//      Forward Geocoding: address -> lat/lon (לחנויות)
-//   ====================================================== */
+
 //   private async geocodeAddress(
 //     address: string,
 //   ): Promise<{ lat: number; lon: number } | null> {
@@ -92,77 +94,114 @@
 //     };
 //   }
 
-//   /* ======================================================
-//      Main Resolver
-//   ====================================================== */
+
 //   async resolveStores(
-//     addressKey: string, 
-//     itemcodes: string[],
-//   ): Promise<
-//     {
-//       itemcode: string;
-//       stores: StoreOffer[];
-//       source: "cache" | "scrape";
-//     }[]
-//   > {
-//     // 1️⃣ פירוק קואורדינטות של המשתמש
-//     const [lat, lon] = addressKey.split(",").map(Number);
+//   addressKey: string,
+//   itemcodes: string[],
+// ): Promise<{
+//   items: {
+//     itemcode: string;
+//     stores: StoreOffer[];
+//     source: "cache" | "scrape";
+//   }[];
+//   scoredStores: {
+//     storeId: string;
+//     chain: string;
+//     address: string;
+//     lat: number;
+//     lon: number;
+//     score: number;
+//     scoreBreakdown: {
+//       availability: number;
+//       price: number;
+//       distance: number;
+//       penalty: number;
+//     };
+//   }[];
+// }> {
 
-//     if (Number.isNaN(lat) || Number.isNaN(lon)) {
-//       throw new Error(
-//         `Invalid addressKey format: ${addressKey}`
-//       );
-//     }
 
-//     // 2️⃣ Reverse geocode למיקום המשתמש (רחוב, עיר)
-//     const address = await this.reverseGeocode(lat, lon);
-//     console.log("📍 User address:", address);
+//   const [lat, lon] = addressKey.split(",").map(Number);
 
-//     // 3️⃣ בדיקת cache לפי lat/lon
-//     const { found, missing } =
-//       await this.storesService.getCachedProducts(
-//         addressKey,
-//         itemcodes,
-//       );
+//   if (Number.isNaN(lat) || Number.isNaN(lon)) {
+//     console.error("❌ Invalid addressKey format:", addressKey);
+//     throw new Error(`Invalid addressKey format: ${addressKey}`);
+//   }
 
-//     const results: {
-//       itemcode: string;
-//       stores: StoreOffer[];
-//       source: "cache" | "scrape";
-//     }[] = [];
 
-//     // 4️⃣ תוצאות מה-cache
-//     for (const product of found) {
-//       results.push({
-//         itemcode: product.itemcode,
-//         stores: product.stores,
-//         source: "cache",
-//       });
-//     }
+//   const normalizedAddressKey = (
+//     await this.reverseGeocode(lat, lon)
+//   )
+//     .trim()
+//     .toLowerCase();
 
-//     // 5️⃣ חסרים → scrape + geocode לחנויות
-//     for (const itemcode of missing) {
+
+
+//   const { found, missing } =
+//     await this.storesService.getCachedProducts(
+//       normalizedAddressKey,
+//       itemcodes,
+//     );
+
+
+//   const results: {
+//     itemcode: string;
+//     stores: StoreOffer[];
+//     source: "cache" | "scrape";
+//   }[] = [];
+
+
+//   for (const product of found) {
+
+//     results.push({
+//       itemcode: product.itemcode,
+//       stores: product.stores,
+//       source: "cache",
+//     });
+//   }
+
+
+//   for (const itemcode of missing) {
+    
+
+//     try {
 //       const rawStores =
 //         await this.scrapeService.scrapeOne(
 //           itemcode,
-//           address,
+//           normalizedAddressKey,
 //         );
+
+   
 
 //       const stores: StoreOffer[] = [];
 
 //       for (const store of rawStores) {
-//         const geo = await this.geocodeAddress(store.address);
+      
 
-//         if (!geo) continue; // בלי lat/lon לא שומרים
+//         const geo = await this.geocodeAddress(
+//           store.address,
+//         );
+
+//         if (!geo) {
+//           console.warn(
+//             "⚠️ Geocode FAILED for store address:",
+//             store.address,
+//           );
+//           continue;
+//         }
+
+     
 
 //         stores.push({
-//           ...store,
-//           geo,
-//         });
+//             ...store,
+//             geo,
+//           });
 //       }
 
+  
+
 //       await this.storesService.upsertProduct(
-//         addressKey,
+//         normalizedAddressKey,
 //         itemcode,
 //         stores,
 //       );
@@ -172,11 +211,46 @@
 //         stores,
 //         source: "scrape",
 //       });
-//     }
 
-//     return results;
+//     } catch (err) {
+//       console.error(
+//         `❌ Scraping failed for item ${itemcode}`,
+//       );
+//       console.error(err);
+
+//       results.push({
+//         itemcode,
+//         stores: [],
+//         source: "scrape",
+//       });
+//     }
 //   }
+
+
+//   const aggregatedStores =
+//     aggregateStoresByStore(results, itemcodes);
+
+
+
+//   const scoredStores =
+//     this.storeScoringService.scoreStores(
+//       aggregatedStores,
+//       itemcodes.map(code => ({
+//         itemcode: code,
+//         quantity: 1,
+//       })),
+//       { lat, lon },
+//     );
+
+//   return {
+//     items: results,
+//     scoredStores,
+//   };
 // }
+
+// }
+
+
 
 
 
@@ -185,7 +259,6 @@ import { StoresService } from "./stores.service";
 import { ScrapeService } from "../scrape/scrape.service";
 import { StoreOffer } from "./schemas/stores.schema";
 
-// ➕ NEW
 import { StoreScoringService } from "./scoring/store-scoring.service";
 import { aggregateStoresByStore } from "./scoring/adapter";
 
@@ -194,19 +267,15 @@ export class StoresResolverService {
   constructor(
     private readonly storesService: StoresService,
     private readonly scrapeService: ScrapeService,
-
-    // ➕ NEW
     private readonly storeScoringService: StoreScoringService,
   ) {}
 
-  /* ======================================================
-     Reverse Geocoding: lat/lon -> "Street, City"
-     (משמש כ־addressKey ל־DB)
-  ====================================================== */
   private async reverseGeocode(
     lat: number,
     lon: number,
   ): Promise<string> {
+    console.log("🌍 reverseGeocode INPUT:", { lat, lon });
+
     const res = await fetch(
       `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`,
       {
@@ -216,12 +285,16 @@ export class StoresResolverService {
       }
     );
 
+    console.log("🌍 reverseGeocode STATUS:", res.status);
+
     if (!res.ok) {
       throw new Error("Reverse geocoding failed");
     }
 
     const data = await res.json();
     const addr = data.address;
+
+    console.log("🌍 reverseGeocode ADDRESS:", addr);
 
     if (!addr) {
       throw new Error("No address data from reverse geocode");
@@ -244,15 +317,17 @@ export class StoresResolverService {
       );
     }
 
-    return `${street}, ${city}`;
+    const normalized = `${street}, ${city}`;
+    console.log("🌍 reverseGeocode RESULT:", normalized);
+
+    return normalized;
   }
 
-  /* ======================================================
-     Forward Geocoding: address -> lat/lon (לחנויות)
-  ====================================================== */
   private async geocodeAddress(
     address: string,
   ): Promise<{ lat: number; lon: number } | null> {
+    console.log("📍 geocodeAddress INPUT:", address);
+
     const res = await fetch(
       `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
         address
@@ -264,6 +339,8 @@ export class StoresResolverService {
       }
     );
 
+    console.log("📍 geocodeAddress STATUS:", res.status);
+
     if (!res.ok) {
       console.warn("❌ Geocode failed for:", address);
       return null;
@@ -271,223 +348,230 @@ export class StoresResolverService {
 
     const data = await res.json();
 
+    console.log("📍 geocodeAddress RESULT RAW:", data);
+
     if (!data?.length) {
       console.warn("❌ No geo result for:", address);
       return null;
     }
 
-    return {
+    const geo = {
       lat: Number(data[0].lat),
       lon: Number(data[0].lon),
     };
+
+    console.log("📍 geocodeAddress PARSED:", geo);
+
+    return geo;
   }
 
-  /* ======================================================
-     Main Resolver
-  ====================================================== */
   async resolveStores(
-  addressKey: string,
-  itemcodes: string[],
-): Promise<{
-  items: {
-    itemcode: string;
-    stores: StoreOffer[];
-    source: "cache" | "scrape";
-  }[];
-  scoredStores: {
-    storeId: string;
-    chain: string;
-    address: string;
-    lat: number;
-    lon: number;
-    score: number;
-    scoreBreakdown: {
-      availability: number;
-      price: number;
-      distance: number;
-      penalty: number;
-    };
-  }[];
-}> {
-  console.log("🚀 resolveStores CALLED");
-  console.log("➡️ addressKey (raw):", addressKey);
-  console.log("➡️ itemcodes:", itemcodes);
+    addressKey: string,
+    itemcodes: string[],
+  ): Promise<{
+    items: {
+      itemcode: string;
+      stores: StoreOffer[];
+      source: "cache" | "scrape";
+    }[];
+    scoredStores: {
+      storeId: string;
+      chain: string;
+      address: string;
+      lat: number;
+      lon: number;
+      score: number;
+      scoreBreakdown: {
+        availability: number;
+        price: number;
+        distance: number;
+        penalty: number;
+      };
+    }[];
+  }> {
+    console.log("🚀 resolveStores START");
+    console.log("➡️ addressKey:", addressKey);
+    console.log("➡️ itemcodes:", itemcodes);
 
-  // 1️⃣ parse lat/lon
-  const [lat, lon] = addressKey.split(",").map(Number);
-  console.log("📍 Parsed lat/lon:", lat, lon);
+    const [lat, lon] = addressKey.split(",").map(Number);
+    console.log("📍 Parsed lat/lon:", { lat, lon });
 
-  if (Number.isNaN(lat) || Number.isNaN(lon)) {
-    console.error("❌ Invalid addressKey format:", addressKey);
-    throw new Error(`Invalid addressKey format: ${addressKey}`);
-  }
+    if (Number.isNaN(lat) || Number.isNaN(lon)) {
+      console.error("❌ Invalid addressKey format:", addressKey);
+      throw new Error(`Invalid addressKey format: ${addressKey}`);
+    }
 
-  // 2️⃣ reverse geocode
-  console.log("🌍 Calling reverseGeocode...");
-  const normalizedAddressKey = (
-    await this.reverseGeocode(lat, lon)
-  )
-    .trim()
-    .toLowerCase();
+    const normalizedAddressKey = (
+      await this.reverseGeocode(lat, lon)
+    )
+      .trim()
+      .toLowerCase();
 
-  console.log(
-    "📍 Normalized addressKey:",
-    normalizedAddressKey,
-  );
-
-  // 3️⃣ cache lookup
-  console.log("🗄️ Checking cache...");
-  const { found, missing } =
-    await this.storesService.getCachedProducts(
-      normalizedAddressKey,
-      itemcodes,
-    );
-
-  console.log(
-    `🗄️ Cache result: found=${found.length}, missing=${missing.length}`,
-  );
-  console.log(
-    "🗄️ Found itemcodes:",
-    found.map(f => f.itemcode),
-  );
-  console.log("🗄️ Missing itemcodes:", missing);
-
-  const results: {
-    itemcode: string;
-    stores: StoreOffer[];
-    source: "cache" | "scrape";
-  }[] = [];
-
-  // 4️⃣ cache results
-  for (const product of found) {
     console.log(
-      `✅ Using CACHE for item ${product.itemcode} (${product.stores.length} stores)`,
+      "📍 Normalized addressKey:",
+      normalizedAddressKey,
     );
 
-    results.push({
-      itemcode: product.itemcode,
-      stores: product.stores,
-      source: "cache",
-    });
-  }
-
-  // 5️⃣ scrape missing items
-  for (const itemcode of missing) {
-    console.log("🕷️ Scraping item:", itemcode);
-
-    try {
-      const rawStores =
-        await this.scrapeService.scrapeOne(
-          itemcode,
-          normalizedAddressKey,
-        );
-
-      console.log(
-        `🕷️ Scrape returned ${rawStores.length} raw stores for ${itemcode}`,
+    const { found, missing } =
+      await this.storesService.getCachedProducts(
+        normalizedAddressKey,
+        itemcodes,
       );
 
-      const stores: StoreOffer[] = [];
+    console.log("🗄️ Cache FOUND:", found.map(f => ({
+      itemcode: f.itemcode,
+      stores: f.stores.length,
+    })));
+    console.log("🗄️ Cache MISSING:", missing);
 
-      for (const store of rawStores) {
+    const results: {
+      itemcode: string;
+      stores: StoreOffer[];
+      source: "cache" | "scrape";
+    }[] = [];
+
+    for (const product of found) {
+      console.log(
+        "✅ Using CACHE:",
+        product.itemcode,
+        product.stores.length,
+      );
+
+      results.push({
+        itemcode: product.itemcode,
+        stores: product.stores,
+        source: "cache",
+      });
+    }
+
+    for (const itemcode of missing) {
+      console.log("🕷️ SCRAPING ITEM:", itemcode);
+
+      try {
+        const rawStores =
+          await this.scrapeService.scrapeOne(
+            itemcode,
+            normalizedAddressKey,
+          );
+
         console.log(
-          "🏪 Raw store:",
-          store.chain,
-          "|",
-          store.address,
-          "| price:",
-          store.price,
+          "🕷️ Raw stores count:",
+          rawStores.length,
         );
 
-        const geo = await this.geocodeAddress(
-          store.address,
-        );
+        const stores: StoreOffer[] = [];
+        let geocodeFailed = 0;
 
-        if (!geo) {
-          console.warn(
-            "⚠️ Geocode FAILED for store address:",
+        for (const store of rawStores) {
+          console.log(
+            "🏪 Raw store:",
+            store.chain,
+            "|",
+            store.address,
+            "|",
+            store.price,
+          );
+
+          const geo = await this.geocodeAddress(
             store.address,
           );
-          continue;
+
+          if (!geo) {
+            geocodeFailed++;
+            console.warn(
+              "⚠️ Geocode FAILED for store address:",
+              store.address,
+            );
+            continue;
+          }
+
+          stores.push({
+            ...store,
+            geo,
+          });
         }
 
         console.log(
-          "📍 Geocode OK:",
-          geo.lat,
-          geo.lon,
+          "📉 Geocode failures:",
+          geocodeFailed,
+        );
+        console.log(
+          "💾 Stores after geocode:",
+          stores.length,
         );
 
-        // ✅ Store the geo data with the store
-        stores.push({
-          ...store,
-          geo,
+        await this.storesService.upsertProduct(
+          normalizedAddressKey,
+          itemcode,
+          stores,
+        );
+
+        console.log(
+          "💾 Upserted stores:",
+          itemcode,
+          stores.length,
+        );
+
+        results.push({
+          itemcode,
+          stores,
+          source: "scrape",
+        });
+      } catch (err) {
+        console.error(
+          "❌ Scraping failed for item:",
+          itemcode,
+        );
+        console.error(err);
+
+        results.push({
+          itemcode,
+          stores: [],
+          source: "scrape",
         });
       }
-
-      console.log(
-        `💾 Upserting ${stores.length} stores for item ${itemcode}`,
-      );
-
-      await this.storesService.upsertProduct(
-        normalizedAddressKey,
-        itemcode,
-        stores,
-      );
-
-      results.push({
-        itemcode,
-        stores,
-        source: "scrape",
-      });
-
-    } catch (err) {
-      console.error(
-        `❌ Scraping failed for item ${itemcode}`,
-      );
-      console.error(err);
-
-      results.push({
-        itemcode,
-        stores: [],
-        source: "scrape",
-      });
     }
-  }
 
-  // 6️⃣ aggregation + scoring
-  console.log("📊 Aggregating stores...");
-  const aggregatedStores =
-    aggregateStoresByStore(results, itemcodes);
-
-  console.log(
-    "📊 Aggregated stores count:",
-    aggregatedStores.length,
-  );
-
-  console.log("🧮 Scoring stores...");
-  const scoredStores =
-    this.storeScoringService.scoreStores(
-      aggregatedStores,
-      itemcodes.map(code => ({
-        itemcode: code,
-        quantity: 1,
+    console.log(
+      "📊 Results per item:",
+      results.map(r => ({
+        itemcode: r.itemcode,
+        stores: r.stores.length,
+        source: r.source,
       })),
-      { lat, lon },
     );
 
-  console.log(
-    "🏁 Final scoredStores:",
-    scoredStores.map(s => ({
-      store: s.chain,
-      score: s.score,
-    })),
-  );
+    const aggregatedStores =
+      aggregateStoresByStore(results, itemcodes);
 
-  console.log("✅ resolveStores FINISHED");
+    console.log(
+      "📊 Aggregated stores count:",
+      aggregatedStores.length,
+    );
 
-  return {
-    items: results,
-    scoredStores,
-  };
-}
+    const scoredStores =
+      this.storeScoringService.scoreStores(
+        aggregatedStores,
+        itemcodes.map(code => ({
+          itemcode: code,
+          quantity: 1,
+        })),
+        { lat, lon },
+      );
 
+    console.log(
+      "🏁 Scored stores:",
+      scoredStores.map(s => ({
+        store: s.chain,
+        score: s.score,
+      })),
+    );
+
+    console.log("✅ resolveStores END");
+
+    return {
+      items: results,
+      scoredStores,
+    };
+  }
 }
