@@ -168,7 +168,6 @@ export const groupsApi = baseApi.injectEndpoints({
         }),
 
 
-        // ADD ACTIVE SHOPPING LIST → HISTORY
         addToHistory: builder.mutation<
             { updatedGroup: Group; newList: any },
             {
@@ -178,18 +177,14 @@ export const groupsApi = baseApi.injectEndpoints({
                 storeadress: string;
                 totalprice: number;
                 itemcount: number;
+                items: { itemcode: string; quantity: number }[];
             }
-        >({
-            query: ({ groupId, name, storename, storeadress, totalprice,itemcount }) => ({
+            >({
+            query: ({ groupId, ...body }) => ({
                 url: `/groups/${groupId}/history`,
                 method: "POST",
-                body: { name, storename, storeadress, totalprice,itemcount },
+                body,
             }),
-
-            invalidatesTags: (_, __, { groupId }) => [
-                { type: "Groups", id: groupId },
-                { type: "Groups", id: `history-${groupId}` },
-            ],
         }),
     }),
 });
