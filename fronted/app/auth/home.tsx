@@ -43,7 +43,7 @@ export default function Home() {
             <Image source={Logo} style={styles.logo} />
           </View>
 
-          <ItimText size={48} color={BRAND} weight="bold" style={styles.appName}>
+          <ItimText size={48} color={BRAND} weight="bold" fontFamily='Itim_400Regular'style={styles.appName}>
             WiseBuy
           </ItimText>
         </View>

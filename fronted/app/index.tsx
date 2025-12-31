@@ -243,7 +243,7 @@ export default function Index() {
               transform: [{ translateY: textTranslateY }],
             }}
           >
-            <ItimText size={44} weight="bold" color={BRAND} style={styles.appName}>
+            <ItimText size={44} weight="bold" color={BRAND} fontFamily='Itim_400Regular' style={styles.appName}>
               WiseBuy
             </ItimText>
           </Animated.View>
