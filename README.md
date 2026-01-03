@@ -22,9 +22,15 @@ WiseBuy allows users to create shopping lists, compare grocery prices across sup
 ## 📱 App Screenshots
 
 <p align="center">
-  <img src="./assets/checkout-map.png" width="220"/>
-  <img src="./assets/shopping-list.png" width="220"/>
-  <img src="./assets/store-comparison.png" width="220"/>
+    <img src="./Design/1000119321.jpg/" width="220"/>
+    <img src="./Design/1000119324.jpg" width="220"/>
+    <img src="./Design/1000119327.jpg" width="220"/>
+    <img src="./Design/1000119330.jpg" width="220"/>
+    <img src="./Design/1000119333.jpg" width="220"/>
+    <img src="./Design/1000119336.jpg" width="220"/>
+    <img src="./Design//1000119339.jpg" width="220"/>
+    <img src="./Design/1000119342.jpg" width="220"/>
+    <img src="./Design/1000119345.jpg" width="220"/>
 </p>
 
 > Screenshots are placeholders and can be replaced with real images from the app.
