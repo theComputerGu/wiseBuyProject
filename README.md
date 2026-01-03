@@ -86,7 +86,6 @@ Products can be searched, selected, and added with quantities in just a few taps
 <p align="center">
   <img src="./Design//1000119327.jpg" alt="Add Products Screen" width="250"/>
 </p>
----
 
 
 ## 🧩 Tech Stack
