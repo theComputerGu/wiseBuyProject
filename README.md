@@ -1,25 +1,120 @@
-# 🧠🛒 WiseBuy
+# 🛒 WiseBuy – Smart Grocery Shopping Assistant
 
-**Smart Grocery Shopping Made Easy**
+WiseBuy is a full-stack smart grocery shopping platform that helps users find the **best nearby stores**, **lowest prices**, and **optimal shopping experience** — all based on real-time data, user location, and collaborative shopping lists.
 
-WiseBuy is a mobile app built with **React Native (Expo)** and a **NestJS + MongoDB backend**, designed to help users compare grocery prices, manage shopping lists, and save money — all through a clean and intuitive interface.  
+![WiseBuy Banner](./assets/banner.png)
 
-# Running instructions
-**Backend running instructions**  
-1.cd server  
-2.npm install (if not installed allready)  
-3.npm run start:dev  
+WiseBuy allows users to create shopping lists, compare grocery prices across supermarkets, and easily decide where to shop using an intuitive mobile interface.
 
-**frontend running instructions**  
-1.cd frontend  
-2.npm install (if not installed allready)  
-3.npx expo start  
+---
 
-**goverment prices site:**
-https://www.gov.il/he/pages/cpfta_prices_regulations
+## 🚀 Features
 
-**CHP price comparison site**
-https://chp.co.il/
+- 📍 Location-based store comparison  
+- 💰 Smart price aggregation and store scoring  
+- 👥 Group shopping and shared shopping lists  
+- 🗺️ Interactive checkout map with nearby stores  
+- ⚡ Cached scraping for fast and up-to-date results  
+- 🧠 Optional ML-powered product recommendations  
 
-**Jira**
+---
+
+## 📱 App Screenshots
+
+<p align="center">
+  <img src="./assets/checkout-map.png" width="220"/>
+  <img src="./assets/shopping-list.png" width="220"/>
+  <img src="./assets/store-comparison.png" width="220"/>
+</p>
+
+> Screenshots are placeholders and can be replaced with real images from the app.
+
+---
+
+## 🧩 Tech Stack
+
+**Frontend**
+- React Native (Expo)
+- Expo Router
+- Redux Toolkit + RTK Query
+- Custom reusable UI components
+
+**Backend**
+- Node.js
+- NestJS
+- MongoDB + Mongoose
+- JWT Authentication
+- REST API
+
+**Scraper & ML**
+- Python
+- Selenium
+- Price scraping and normalization
+- Experimental ML-based ranking logic
+
+---
+
+## 🧮 Store Scoring Logic (Simplified)
+
+Each store receives a final score between **1–100** based on multiple factors:
+
+```ts
+finalScore =
+  priceScore * 0.5 +
+  distanceScore * 0.3 +
+  availabilityScore * 0.2;
+💰 Price – total basket cost
+
+📍 Distance – proximity to the user
+
+📦 Availability – number of found items
+
+🗺️ Checkout Map
+Displays nearby stores on a map
+
+Adjustable search radius
+
+Color-coded store markers
+
+Best store highlighted automatically
+
+🧠 ML Recommendations (Optional)
+The recommendation system is trained using:
+
+User purchase history
+
+Global product popularity
+
+Similar user behavior
+
+Outputs include:
+
+Suggested products
+
+Smart sorting inside the shopping list
+
+🔧 Installation & Running the Project
+Clone the repository
+
+bash
+Copy code
+git clone https://github.com/your-username/wisebuy.git
+cd wisebuy
+Frontend
+
+bash
+Copy code
+cd app
+npm install
+npx expo start
+Backend
+
+bash
+Copy code
+cd backend
+npm install
+npm run start:dev
+📌 Project Management (Jira)
+WiseBuy project board:
 https://marksheinberg01.atlassian.net/jira/software/projects/WB/boards/1
+
