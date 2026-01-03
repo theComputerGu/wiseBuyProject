@@ -12,6 +12,20 @@ import BottomNav from "../../../components/Bottomnavigation";
 import Title from "../../../components/Title";
 import ItimText from "../../../components/Itimtext";
 const BRAND = "#197FF4";
+
+// ============== DEMO MODE CONFIGURATION ==============
+// Set to true to use hardcoded location for presentations
+const DEMO_MODE = true;
+
+// Hardcoded location for demo (Bar ilan university)
+const DEMO_LOCATION = {
+  lat: 32.0689,
+  lon: 34.8435,
+};
+
+// NOTE: To change the hardcoded address for reverse geocoding,
+// edit DEMO_ADDRESS in: server/src/stores/stores-resolver.service.ts
+// =====================================================
 import {useAppSelector,useAppDispatch,} from "../../../redux/state/hooks";
 import {appendStores,setSignature,setScoredStores,} from "../../../redux/slices/storesSlice";
 import {setRadius,setUserLocation,} from "../../../redux/slices/checkoutSlice";
@@ -108,6 +122,13 @@ export default function CheckoutScreen() {
 
   useEffect(() => {
     (async () => {
+      // Use hardcoded location in demo mode
+      if (DEMO_MODE) {
+        console.log("📍 Demo mode: Using hardcoded location", DEMO_LOCATION);
+        dispatch(setUserLocation(DEMO_LOCATION));
+        return;
+      }
+
       const { status } =
         await Location.requestForegroundPermissionsAsync();
 
@@ -296,8 +317,23 @@ return (
               latitudeDelta: 0.05,
               longitudeDelta: 0.05,
             }}
-            showsUserLocation
+            showsUserLocation={!DEMO_MODE}
           >
+            {/* User location marker for demo mode */}
+            {DEMO_MODE && (
+              <Marker
+                coordinate={{
+                  latitude: location.lat,
+                  longitude: location.lon,
+                }}
+                anchor={{ x: 0.5, y: 0.5 }}
+              >
+                <View style={styles.userLocationDot}>
+                  <View style={styles.userLocationDotInner} />
+                </View>
+              </Marker>
+            )}
+
             {visibleStores.map((s) => (
               <Marker
                 key={s.storeId}
@@ -319,6 +355,7 @@ return (
               strokeWidth={2}
               strokeColor="rgba(25,127,244,0.8)"
               fillColor="rgba(25,127,244,0.15)"
+              zIndex={1}
             />
           </MapView>
         ) : (
@@ -632,6 +669,22 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 12,
     elevation: 8,
+  },
+  userLocationDot: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: "rgba(66, 133, 244, 0.2)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  userLocationDotInner: {
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    backgroundColor: "#4285F4",
+    borderWidth: 2,
+    borderColor: "#fff",
   },
 });
 

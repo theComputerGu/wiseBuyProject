@@ -262,6 +262,14 @@ import { StoreOffer } from "./schemas/stores.schema";
 import { StoreScoringService } from "./scoring/store-scoring.service";
 import { aggregateStoresByStore } from "./scoring/adapter";
 
+// ============== DEMO MODE CONFIGURATION ==============
+// Set to true to use hardcoded address for presentations
+const DEMO_MODE = true;
+
+// Hardcoded address for demo (bypasses reverse geocoding)
+const DEMO_ADDRESS = "אורנים, גבעת שמואל";
+// =====================================================
+
 @Injectable()
 export class StoresResolverService {
   constructor(
@@ -274,6 +282,12 @@ export class StoresResolverService {
     lat: number,
     lon: number,
   ): Promise<string> {
+    // Use hardcoded address in demo mode
+    if (DEMO_MODE) {
+      console.log("📍 Demo mode: Using hardcoded address", DEMO_ADDRESS);
+      return DEMO_ADDRESS;
+    }
+
     console.log("🌍 reverseGeocode INPUT:", { lat, lon });
 
     const res = await fetch(
