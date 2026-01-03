@@ -103,7 +103,6 @@ Products can be searched, selected, and added with quantities in just a few taps
 - Node.js
 - NestJS
 - MongoDB + Mongoose
-- JWT Authentication
 
 **Scraper & ML**
 - Python
