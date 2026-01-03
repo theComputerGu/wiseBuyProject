@@ -13,19 +13,16 @@ import Title from "../../../components/Title";
 import ItimText from "../../../components/Itimtext";
 const BRAND = "#197FF4";
 
-// ============== DEMO MODE CONFIGURATION ==============
-// Set to true to use hardcoded location for presentations
+
 const DEMO_MODE = true;
 
-// Hardcoded location for demo (Bar ilan university)
+
 const DEMO_LOCATION = {
   lat: 32.0689,
   lon: 34.8435,
 };
 
-// NOTE: To change the hardcoded address for reverse geocoding,
-// edit DEMO_ADDRESS in: server/src/stores/stores-resolver.service.ts
-// =====================================================
+
 import {useAppSelector,useAppDispatch,} from "../../../redux/state/hooks";
 import {appendStores,setSignature,setScoredStores,} from "../../../redux/slices/storesSlice";
 import {setRadius,setUserLocation,} from "../../../redux/slices/checkoutSlice";
@@ -56,6 +53,8 @@ function distanceKm(lat1: number,lon1: number,lat2: number,lon2: number) {
 function buildAddressKey(lat: number, lon: number) {
   return `${lat.toFixed(4)},${lon.toFixed(4)}`;
 }
+
+
 
 
 
@@ -108,6 +107,7 @@ export default function CheckoutScreen() {
   const [resolveStores] = useResolveStoresMutation();
 
   const [isFetchingStores, setIsFetchingStores] = useState(false);
+  const storesByItemcode = useAppSelector((s) => s.stores.stores);
 
 
   useEffect(() => {
@@ -244,9 +244,6 @@ export default function CheckoutScreen() {
 
 
 
-
-
-
   const visibleStores = useMemo<ScoredStore[]>(() => {
     if (!location) return [];
 
@@ -262,6 +259,36 @@ export default function CheckoutScreen() {
       })
       .sort((a, b) => b.score - a.score);
   }, [scoredStores, location, radius]);
+
+
+
+
+
+
+
+// ✅ REAL total price per store (like StoreCheckoutScreen)
+function calcTotalPriceWithQuantity(store: ScoredStore) {
+  let total = 0;
+
+  for (const item of shoppingItems) {
+    const itemcode = item._id?.itemcode;
+    if (!itemcode) continue;
+
+    const entry = storesByItemcode[itemcode];
+    if (!entry?.stores?.length) continue;
+
+    const offer = entry.stores.find(
+      (s) => s.chain === store.chain && s.address === store.address
+    );
+
+    if (!offer) continue;
+
+    const qty = item.quantity ?? 1;
+    total += offer.price * qty;
+  }
+
+  return total;
+}
 
 
 
@@ -474,9 +501,10 @@ return (
                       weight="bold"
                       style={{ fontSize: 20 }}
                     >
-                      {s.totalPrice > 0
-                        ? `₪${s.totalPrice.toFixed(2)}`
-                        : "—"}
+                      {(() => {
+  const total = calcTotalPriceWithQuantity(s);
+  return total > 0 ? `₪${total.toFixed(2)}` : "—";
+})()}
                     </ItimText>
                     <View
                       style={[
