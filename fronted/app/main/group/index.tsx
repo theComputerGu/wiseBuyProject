@@ -122,14 +122,17 @@ export default function GroupPage() {
                   <View style={s.cardActions}>
                     {isActive ? (
                       <View style={s.activeBadge}>
-                        <MaterialCommunityIcons name="check-circle" size={16} color="#22c55e" />
-                        <ItimText size={12} color="#22c55e" weight="600" style={{ marginLeft: 4 }}>
+                        <MaterialCommunityIcons name="check-circle" size={16} color="#fff" />
+                        <ItimText size={12} color="#fff" weight="600" style={{ marginLeft: 4, textAlign: "left" }}>
                           Active
                         </ItimText>
                       </View>
                     ) : (
-                      <Pressable style={s.selectBtn} onPress={() => handleSelectGroup(item)}>
-                        <ItimText size={13} color="#fff" weight="600">Select</ItimText>
+                      <Pressable style={s.inactiveBadge} onPress={() => handleSelectGroup(item)}>
+                        <MaterialCommunityIcons name="circle-outline" size={16} color="#9ca3af" />
+                        <ItimText size={12} color="#6b7280" weight="600" style={{ marginLeft: 4, textAlign: "left" }}>
+                          Inactive
+                        </ItimText>
                       </Pressable>
                     )}
 
@@ -238,16 +241,22 @@ const s = StyleSheet.create({
   activeBadge: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#dcfce7",
+    justifyContent: "flex-start",
+    backgroundColor: BRAND,
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: 20,
+    minWidth: 85,
   },
-  selectBtn: {
-    backgroundColor: BRAND,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+  inactiveBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    backgroundColor: "#e5e7eb",
+    paddingHorizontal: 10,
+    paddingVertical: 6,
     borderRadius: 20,
+    minWidth: 85,
   },
   expandBtn: {
     padding: 4,
