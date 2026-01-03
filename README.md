@@ -28,7 +28,7 @@ Create and manage your grocery shopping list with an intuitive interface.
 Items can be added, removed, and shared with group members in real time.
 
 <p align="center">
-  <img src="./Design/1000119345.jpg" alt="Shopping List Screen" width="300"/>
+  <img src="./Design/1000119345.jpg" alt="Shopping List Screen" width="250"/>
 </p>
 
 ---
@@ -38,7 +38,7 @@ Collaborate with friends or family using shared shopping lists.
 All group members stay in sync and see updates instantly.
 
 <p align="center">
-  <img src="./Design//1000119339.jpg" alt="Group Shopping Screen" width="300"/>
+  <img src="./Design//1000119339.jpg" alt="Group Shopping Screen" width="250"/>
 </p>
 
 ---
@@ -49,7 +49,7 @@ During checkout, WiseBuy displays nearby supermarkets on an interactive map and 
 Each store is evaluated according to **distance from the user**, **product availability**, and **total basket price**, and then assigned a final score between **1–100** to highlight the best shopping option.
 
 <p align="center">
-  <img src="./Design/1000119336.jpg" alt="Smart Store Selection Screen" width="320"/>
+  <img src="./Design/1000119336.jpg" alt="Smart Store Selection Screen" width="250"/>
 </p>
 
 
@@ -60,7 +60,7 @@ Get product recommendations based on previous purchases and shopping behavior,
 helping users discover relevant and popular items.
 
 <p align="center">
-  <img src="./Design/1000119345.jpg" alt="Recommendations Screen" width="300"/>
+  <img src="./Design/1000119345.jpg" alt="Recommendations Screen" width="250"/>
 </p>
 
 
@@ -72,7 +72,7 @@ WiseBuy keeps a clear and organized history of previous shopping sessions.
 Users can review past shopping lists, see where they shopped, and track prices and totals over time.
 
 <p align="center">
-  <img src="./Design//1000119333.jpg" alt="Shopping History Screen" width="320"/>
+  <img src="./Design//1000119333.jpg" alt="Shopping History Screen" width="250"/>
 </p>
 
 
@@ -84,7 +84,7 @@ Easily add products to your shopping list using a simple and fast input flow.
 Products can be searched, selected, and added with quantities in just a few taps.
 
 <p align="center">
-  <img src="./Design//1000119327.jpg" alt="Add Products Screen" width="320"/>
+  <img src="./Design//1000119327.jpg" alt="Add Products Screen" width="250"/>
 </p>
 ---
 
