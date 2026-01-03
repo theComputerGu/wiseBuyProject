@@ -77,7 +77,7 @@ finalScore =
 
 
 
-## 🧠 ML Recommendations (Optional)
+## 🧠 ML Recommendations
 The recommendation system is trained using:
 
 User purchase history
@@ -90,11 +90,10 @@ Smart sorting inside the shopping list
 
 
 ## 🔧 Installation & Running the Project
-Clone the repository
+Clone the repository: git clone https://github.com/your-username/wisebuy.git
 
 **Frontend**
 ```ts
-git clone https://github.com/your-username/wisebuy.git
 cd wisebuy
 cd Frontend
 npx expo start -c
@@ -102,7 +101,6 @@ npx expo start -c
 
 **Backend**
 ```ts
-git clone https://github.com/your-username/wisebuy.git
 cd wisebuy
 cd Server
 npm run start:dev
