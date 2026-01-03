@@ -44,17 +44,15 @@ WiseBuy allows users to create shopping lists, compare grocery prices across sup
 - NestJS
 - MongoDB + Mongoose
 - JWT Authentication
-- REST API
 
 **Scraper & ML**
 - Python
 - Selenium
-- Price scraping and normalization
 - Experimental ML-based ranking logic
 
 ---
 
-## 🧮 Store Scoring Logic (Simplified)
+## 🧮 Store Scoring Logic
 
 Each store receives a final score between **1–100** based on multiple factors:
 
@@ -64,57 +62,53 @@ finalScore =
   distanceScore * 0.3 +
   availabilityScore * 0.2;
 💰 Price – total basket cost
+```
 
 📍 Distance – proximity to the user
 
 📦 Availability – number of found items
 
-🗺️ Checkout Map
-Displays nearby stores on a map
+## 🗺️ Checkout Map
+- Displays nearby stores on a map
+- Adjustable search radius
+- Color-coded store markers
 
-Adjustable search radius
+- Best store highlighted automatically
 
-Color-coded store markers
 
-Best store highlighted automatically
 
-🧠 ML Recommendations (Optional)
+## 🧠 ML Recommendations (Optional)
 The recommendation system is trained using:
 
 User purchase history
 
-Global product popularity
-
-Similar user behavior
-
-Outputs include:
-
+- Global product popularity
+- Similar user behavior
+- Outputs include:
 Suggested products
-
 Smart sorting inside the shopping list
 
-🔧 Installation & Running the Project
+
+## 🔧 Installation & Running the Project
 Clone the repository
 
-bash
-Copy code
+**Frontend**
+```ts
 git clone https://github.com/your-username/wisebuy.git
 cd wisebuy
-Frontend
+cd Frontend
+npx expo start -c
+```
 
-bash
-Copy code
-cd app
-npm install
-npx expo start
-Backend
-
-bash
-Copy code
-cd backend
-npm install
+**Backend**
+```ts
+git clone https://github.com/your-username/wisebuy.git
+cd wisebuy
+cd Server
 npm run start:dev
-📌 Project Management (Jira)
+```
+
+## 📌 Project Management (Jira)
 WiseBuy project board:
 https://marksheinberg01.atlassian.net/jira/software/projects/WB/boards/1
 
