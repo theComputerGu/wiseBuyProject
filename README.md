@@ -2,7 +2,7 @@
 
 WiseBuy is a full-stack smart grocery shopping platform that helps users find the **best nearby stores**, **lowest prices**, and **optimal shopping experience** — all based on real-time data, user location, and collaborative shopping lists.
 
-![WiseBuy Banner](./assets/banner.png)
+![WiseBuy Banner](./Design//Screenshot%202025-11-03%20114439.png)
 
 WiseBuy allows users to create shopping lists, compare grocery prices across supermarkets, and easily decide where to shop using an intuitive mobile interface.
 
