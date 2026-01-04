@@ -23,7 +23,7 @@ export class ShoppingListsController {
     return this.service.findById(id);
   }
 
-  // add item update by plus one
+  // add item to shopping list
   @Patch(':id/items')
   addItem(
     @Param('id') id: string,
