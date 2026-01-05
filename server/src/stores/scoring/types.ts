@@ -34,7 +34,6 @@ export type StoreScoreBreakdown = {
   availability: number;
   price: number;
   distance: number;
-  penalty: number;
 };
 
 export type StoreScoreResult = {

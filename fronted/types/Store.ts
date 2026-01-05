@@ -30,6 +30,5 @@ export type ScoredStore = {
     availability: number;
     price: number;
     distance: number;
-    penalty: number;
   };
 };

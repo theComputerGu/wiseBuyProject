@@ -54,24 +54,31 @@ export function scoreStore(
     (found / Math.max(shoppingList.length, 1)) *
     SCORE_WEIGHTS.AVAILABILITY_MAX;
 
-  // 2️⃣ Price
+  // 2️⃣ Price (penalize stores with missing items)
   const prices = shoppingList
     .map(i => storePriceMap.get(i.itemcode))
     .filter((p): p is number => p !== undefined);
 
-  const avgPrice =
-    prices.reduce((a, b) => a + b, 0) /
-    Math.max(prices.length, 1);
+  // If store has no items, give worst price score
+  let priceScore = 0;
+  if (prices.length > 0) {
+    const avgPrice =
+      prices.reduce((a, b) => a + b, 0) / prices.length;
 
-  const priceScore =
-    SCORE_WEIGHTS.PRICE_MAX *
-    (1 -
-      (avgPrice - globalPriceStats.min) /
-        Math.max(
-          globalPriceStats.max -
-            globalPriceStats.min,
-          1,
-        ));
+    // Base price score from average price
+    const basePriceScore =
+      SCORE_WEIGHTS.PRICE_MAX *
+      (1 -
+        (avgPrice - globalPriceStats.min) /
+          Math.max(
+            globalPriceStats.max - globalPriceStats.min,
+            1,
+          ));
+
+    // Penalize based on missing items ratio
+    const availabilityRatio = found / Math.max(shoppingList.length, 1);
+    priceScore = basePriceScore * availabilityRatio;
+  }
 
   // 3️⃣ Distance
   const dist = distanceKm(
@@ -90,35 +97,22 @@ export function scoreStore(
     distanceScore = SCORE_WEIGHTS.DISTANCE_MAX * 0.4;
   }
 
-  // 4️⃣ Penalty
-  const penaltyScore =
-    -missing *
-    SCORE_WEIGHTS.PENALTY_MISSING_ITEM;
 
   // Raw score
-  const rawScore =
-    availabilityScore +
-    priceScore +
-    distanceScore +
-    penaltyScore;
+  const rawScore = availabilityScore + priceScore + distanceScore;
 
-  // Normalize (1–100)
-  let finalScore = normalizeScore(rawScore, midpoint);
+  let finalScore = rawScore;
 
-  // 🛑 חוק עסקי: אין 100 כשיש מוצרים חסרים
-  if (missing > 0) {
-    finalScore = Math.min(finalScore, 95);
-  }
-
-  // Calculate total price for all items in shopping list
+  // Calculate total price only for items the store has
   const totalPrice = shoppingList.reduce((sum, item) => {
     const itemPrice = storePriceMap.get(item.itemcode);
-    return sum + (itemPrice ?? 0) * (item.quantity || 1);
+    if (itemPrice === undefined) return sum; // Skip missing items
+    return sum + itemPrice * (item.quantity || 1);
   }, 0);
 
   return {
     rawScore,
-    score: finalScore,
+    score: Math.round(finalScore),
     totalPrice: Math.round(totalPrice * 100) / 100, // Round to 2 decimals
     breakdown: {
       availability: Math.round(
@@ -136,7 +130,6 @@ export function scoreStore(
           SCORE_WEIGHTS.DISTANCE_MAX) *
           100,
       ),
-      penalty: penaltyScore,
     },
   };
 }

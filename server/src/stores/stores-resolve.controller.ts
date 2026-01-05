@@ -32,7 +32,7 @@ export class StoresResolveController {
         availability: number;
         price: number;
         distance: number;
-        penalty: number;
+  
       };
     }[];
   }> {
