@@ -267,7 +267,7 @@ import { aggregateStoresByStore } from "./scoring/adapter";
 const DEMO_MODE = true;
 
 // Hardcoded address for demo (bypasses reverse geocoding)
-const DEMO_ADDRESS = "אורנים, גבעת שמואל";
+const DEMO_ADDRESS = "נחשוני יהודה, בני ברק";
 // =====================================================
 
 @Injectable()
