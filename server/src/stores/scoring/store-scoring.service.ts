@@ -36,6 +36,19 @@ export class StoreScoringService {
       max: Math.max(...allPrices),
     };
 
+    // Build per-item max price map (worst price for each item across all stores)
+    const itemMaxPrices = new Map<string, number>();
+    for (const item of shoppingList) {
+      let maxPrice = 0;
+      for (const store of stores) {
+        const offer = store.offers.find(o => o.itemcode === item.itemcode);
+        if (offer && offer.price > maxPrice) {
+          maxPrice = offer.price;
+        }
+      }
+      itemMaxPrices.set(item.itemcode, maxPrice);
+    }
+
     // =========================
     // 1️⃣ First pass: rawScores
     // =========================
@@ -45,6 +58,7 @@ export class StoreScoringService {
         shoppingList,
         userLocation,
         priceStats,
+        itemMaxPrices,
         0, // midpoint זמני
       ).rawScore,
     );
@@ -64,6 +78,7 @@ export class StoreScoringService {
           shoppingList,
           userLocation,
           priceStats,
+          itemMaxPrices,
           midpoint, // ⭐ חציון דינמי
         );
 

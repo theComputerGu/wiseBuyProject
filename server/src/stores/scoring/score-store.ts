@@ -34,6 +34,7 @@ export function scoreStore(
   shoppingList: ShoppingItem[],
   userLocation: UserLocation,
   globalPriceStats: { min: number; max: number },
+  itemMaxPrices: Map<string, number>,
   midpoint: number,
 ): StoreScoreResult & { rawScore: number } {
   const storePriceMap = new Map(
@@ -54,31 +55,27 @@ export function scoreStore(
     (found / Math.max(shoppingList.length, 1)) *
     SCORE_WEIGHTS.AVAILABILITY_MAX;
 
-  // 2️⃣ Price (penalize stores with missing items)
-  const prices = shoppingList
-    .map(i => storePriceMap.get(i.itemcode))
-    .filter((p): p is number => p !== undefined);
+  // 2️⃣ Price (use max price for missing items)
+  const prices = shoppingList.map(item => {
+    const storePrice = storePriceMap.get(item.itemcode);
+    if (storePrice !== undefined) {
+      return storePrice;
+    }
+    // Use worst price across all stores for missing items
+    return itemMaxPrices.get(item.itemcode) ?? 0;
+  });
 
-  // If store has no items, give worst price score
-  let priceScore = 0;
-  if (prices.length > 0) {
-    const avgPrice =
-      prices.reduce((a, b) => a + b, 0) / prices.length;
+  const avgPrice =
+    prices.reduce((a, b) => a + b, 0) / Math.max(prices.length, 1);
 
-    // Base price score from average price
-    const basePriceScore =
-      SCORE_WEIGHTS.PRICE_MAX *
-      (1 -
-        (avgPrice - globalPriceStats.min) /
-          Math.max(
-            globalPriceStats.max - globalPriceStats.min,
-            1,
-          ));
-
-    // Penalize based on missing items ratio
-    const availabilityRatio = found / Math.max(shoppingList.length, 1);
-    priceScore = basePriceScore * availabilityRatio;
-  }
+  const priceScore =
+    SCORE_WEIGHTS.PRICE_MAX *
+    (1 -
+      (avgPrice - globalPriceStats.min) /
+        Math.max(
+          globalPriceStats.max - globalPriceStats.min,
+          1,
+        ));
 
   // 3️⃣ Distance
   const dist = distanceKm(
